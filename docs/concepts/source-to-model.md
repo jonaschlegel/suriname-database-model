@@ -302,4 +302,4 @@ On the tension between document structure and data structure.
 
 ---
 
-_Last edited: 2025-01-06_
+7 January 2026

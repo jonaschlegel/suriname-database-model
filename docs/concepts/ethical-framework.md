@@ -182,22 +182,43 @@ I'm not sure about:
 
 ## What I've Been Reading
 
-These are shaping how I think about this:
+These are shaping how I think about this. For a fuller bibliography, see [references.md](./references.md).
+
+### On the Archive and Its Violence
 
 **Hartman, Saidiya.** "Venus in Two Acts." _Small Axe_ 12, no. 2 (2008): 1-14.
-The most important piece for me. About what we can and can't recover from the archive. "How does one revisit the scene of subjection without replicating the grammar of violence?"
+The most important piece for me. About what we can and can't recover from the archive. "How does one revisit the scene of subjection without replicating the grammar of violence?" I keep returning to her question of whether recovery is even possible.
 
-**Fuentes, Marisa J.** _Dispossessed Lives: Enslaved Women, Violence, and the Archive_. University of Pennsylvania Press, 2016.
-Uses fragmentary sources to reconstruct lives of enslaved women in Barbados. Good model for working with limited data.
+**Fuentes, Marisa J.** _Dispossessed Lives: Enslaved Women, Violence, and the Archive_. Philadelphia: University of Pennsylvania Press, 2016.
+Uses fragmentary sources to reconstruct lives of enslaved women in Barbados. Good model for working with limited data. Her chapter "Enraged, Diabolic Woman" is a masterclass in reading against the grain.
 
-**Trouillot, Michel-Rolph.** _Silencing the Past: Power and the Production of History_. Beacon Press, 1995.
-On how power operates through historical production. Who gets to make history? What silences get built in?
+**Trouillot, Michel-Rolph.** _Silencing the Past: Power and the Production of History_. Boston: Beacon Press, 1995.
+On how historical silences are produced. The chapter on the Haitian Revolution is famous, but the theoretical framework applies to any colonial archive.
+
+**Stoler, Ann Laura.** _Along the Archival Grain: Epistemic Anxieties and Colonial Common Sense_. Princeton: Princeton University Press, 2009.
+Not specifically about slavery, but essential for thinking about what colonial archives do, how they were produced, what they reveal about colonial governance.
+
+### On Digital Methods and Slavery
 
 **Johnson, Jessica Marie.** "Markup Bodies: Black [Life] Studies and Slavery [Death] Studies at the Digital Crossroads." _Social Text_ 36, no. 4 (2018): 57-79.
-Specifically about digital humanities and slavery databases. Critical of how Black bodies get "marked up" in databases.
+Critical examination of how slavery databases mark up Black bodies. Required reading before building any database of enslaved people. She asks hard questions about what databases do to people.
 
-**Berry, Daina Ramey.** _The Price for Their Pound of Flesh: The Value of the Enslaved, from Womb to Grave, in the Building of a Nation_. Beacon Press, 2017.
-On how enslaved people were valued economically. Relevant because many of my sources (registers, inventories) are economic documents.
+**Gallon, Kim.** "Making a Case for the Black Digital Humanities." In _Debates in the Digital Humanities 2016_, edited by Matthew K. Gold and Lauren F. Klein. Minneapolis: University of Minnesota Press, 2016.
+On why mainstream digital humanities methods may not serve Black history well. Makes me question my assumptions.
+
+**Risam, Roopika.** _New Digital Worlds: Postcolonial Digital Humanities in Theory, Praxis, and Pedagogy_. Evanston: Northwestern University Press, 2019.
+Broader than just slavery, but essential on decolonising digital methods.
+
+### On Valuation and Names
+
+**Berry, Daina Ramey.** _The Price for Their Pound of Flesh: The Value of the Enslaved, from Womb to Grave, in the Building of a Nation_. Boston: Beacon Press, 2017.
+On how enslaved people were valued economically. Relevant because our plantation registers and inventories are economic documents. Helps me understand what the sources were actually _for_.
+
+**Morgan, Jennifer L.** _Reckoning with Slavery: Gender, Kinship, and Capitalism in the Early Black Atlantic_. Durham: Duke University Press, 2021.
+On reproduction, kinship, and slavery's political economy. Challenges how we think about "demographic data."
+
+**Zeuske, Michael.** "The Names of Slavery and Beyond: The Atlantic, the Americas and Cuba." In _The Second Slavery_, edited by Javier Laviña and Michael Zeuske, 15-50. Berlin: LIT Verlag, 2014.
+On naming practices. What names tell us (and don't).
 
 ---
 
@@ -228,5 +249,6 @@ I don't have answers to most of these. I'm not sure answers are possible. But I 
 
 ---
 
-_Last edited: 2025-01-06_
-_This is a living document. It will change as my thinking changes._
+---
+
+7 January 2026

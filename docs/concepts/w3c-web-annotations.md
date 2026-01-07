@@ -346,4 +346,4 @@ The viewer/editor. The documentation is thin, but the tool itself is usable.
 
 ---
 
-_Last edited: 2025-01-06_
+7 January 2026

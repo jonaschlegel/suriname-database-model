@@ -515,5 +515,4 @@ I should actually read these properly at some point:
 
 ---
 
-_Last edited: 2025-01-06_
-_This document is intentionally rough. Polish it later, or don't._
+7 January 2026

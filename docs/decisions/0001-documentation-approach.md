@@ -59,4 +59,4 @@ We will adopt a **documentation-first approach** where:
 
 ---
 
-_This is an Architecture Decision Record (ADR) following the format described by Michael Nygard._
+7 January 2026

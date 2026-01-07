@@ -3,7 +3,29 @@
 > **Version:** V1  
 > **Citation:** [@KasteleijnvanOort2024-ward]  
 > **License:** CC BY-NC-SA 4.0  
-> **DOI:** [10.17026/SS/VAQF63](https://hdl.handle.net/10622/SS/VAQF63)
+> **DOI:** [10.17026/SS/VAQF63](https://hdl.handle.net/10622/VLN8FD)
+
+---
+
+## Linked Open Data Version
+
+This dataset has also been published as Linked Open Data using the PICO (Persons in Context) model:
+
+| Resource             | URL                                                                         |
+| -------------------- | --------------------------------------------------------------------------- |
+| **DataLegend (RDF)** | https://druid.datalegend.net/RJM/Paramaribo-Ward-Registers-1828-1847        |
+| **SPARQL Endpoint**  | https://druid.datalegend.net/RJM/Paramaribo-Ward-Registers-1828-1847/sparql |
+| **Statements**       | 2,078,149 triples                                                           |
+| **Schema**           | Extended PICO with HDSC enslavement properties                              |
+
+The LOD version uses:
+
+- `pico:PersonObservation` for each person record
+- `pnv:PersonName` for structured names
+- `hdsc:isEnslavedOf` / `hdsc:isEnslaverBy` for enslavement relationships
+- `sdo:PostalAddress` with `hdsc:wijk` for addresses
+
+See [pico-model.md](../concepts/pico-model.md) for full analysis of this schema.
 
 ---
 
@@ -308,4 +330,4 @@ erDiagram
 
 ---
 
-_Last updated: 2026-01-06_
+7 January 2026

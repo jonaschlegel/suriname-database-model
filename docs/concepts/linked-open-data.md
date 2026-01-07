@@ -266,4 +266,6 @@ Visualise how JSON-LD maps to RDF triples.
 
 ---
 
-_Last edited: 2025-01-06_
+---
+
+7 January 2026

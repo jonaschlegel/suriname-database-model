@@ -187,4 +187,4 @@ If extracting data from the website:
 
 ---
 
-_Last updated: 2026-01-06_
+7 January 2026

@@ -324,4 +324,4 @@ References are organized by category and use a citation key format: `[AuthorYear
 
 ---
 
-_Last updated: 2026-01-06_
+7 January 2026

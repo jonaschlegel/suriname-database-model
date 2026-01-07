@@ -700,14 +700,14 @@ CREATE INDEX idx_digitized_features_geom ON digitized_features USING GIST (geom)
 
 ---
 
-## Questions to Resolve
+## Questions
 
-- [ ] What are the archive sources for each historic map?
-- [ ] What is the georeferencing accuracy (RMS error) for each map?
-- [ ] How should we handle features that appear on multiple maps?
-- [ ] What is the relationship between `Koarten` layer and other reference data?
-- [ ] How do we track changes when maps are re-digitized or interpretations change?
+- what are the archive sources for each historic map?
+- what is georeferencing accuracy (RMS error) for each?
+- how handle features appearing on multiple maps?
+- relationship between Koarten layer and other reference data?
+- how track changes when maps re-digitised or interpretations change?
 
 ---
 
-_Last updated: 2025-01-06_
+7 January 2026

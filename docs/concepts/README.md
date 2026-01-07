@@ -11,10 +11,13 @@ concepts/
 ├── relational-databases.md      # Relational model theory
 ├── linked-open-data.md          # W3C LOD principles
 ├── cidoc-crm.md                 # Cultural heritage ontology
+├── pico-model.md                # Persons in Context (Dutch LOD standard)
+├── linked-places-format.md      # Linked Places / NL-LP for locations
 ├── time-machine-projects.md     # Precedent projects
 ├── w3c-web-annotations.md       # re:Charted and annotation integration
 ├── visualization-guide.md       # How to view and create diagrams
-└── source-to-model.md           # Transformation documentation
+├── source-to-model.md           # Transformation documentation
+└── references.md                # Working bibliography
 ```
 
 ## Document Overview
@@ -35,6 +38,8 @@ concepts/
 | [relational-databases.md](./relational-databases.md) | Normalization, keys, constraints, PostgreSQL types |
 | [linked-open-data.md](./linked-open-data.md)         | RDF, JSON-LD, SPARQL, Wikidata integration         |
 | [cidoc-crm.md](./cidoc-crm.md)                       | Event-based cultural heritage ontology             |
+| [pico-model.md](./pico-model.md)                     | Dutch standard for historical persons (LOD)        |
+| [linked-places-format.md](./linked-places-format.md) | Linked Places / NL-LP for temporal locations       |
 | [w3c-web-annotations.md](./w3c-web-annotations.md)   | re:Charted tool, AnnoRepo, IIIF integration        |
 
 ### Methodology
@@ -86,4 +91,4 @@ concepts/
 
 ---
 
-_Last updated: 2025-01-06_
+7 January 2026

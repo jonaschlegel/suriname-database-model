@@ -1,62 +1,56 @@
-# Suriname Database Model Documentation
+# Suriname Database Model
 
-> A comprehensive documentation repository for the Suriname Time Machine database project, combining data modeling research, comparative analysis of database paradigms, and incremental design documentation.
-
-## Documentation Structure
-
-```
-docs/
-├── README.md                    # This file - documentation overview
-├── references.md                # Academic citations (BibTeX format)
-│
-├── data-sources/                # Inventory of all datasets
-│   ├── 00-overview.md           # Summary of all data sources
-│   ├── 01-plantagen-dataset.md  # Suriname Plantagen Dataset
-│   ├── 02-death-certificates.md # Death Certificates 1845-1915
-│   ├── 03-birth-certificates.md # Birth Certificates 1828-1921
-│   ├── 04-ward-registers.md     # Ward Registers 1828-1847
-│   ├── 05-slave-emancipation.md # Slave & Emancipation Registers
-│   ├── 06-almanakken.md         # Surinaamse Almanakken
-│   ├── 07-qgis-maps.md          # QGIS Geographic Data
-│   └── 08-wikidata.md           # Wikidata Integration
-│
-├── concepts/                    # Theoretical foundations
-│   ├── relational-databases.md  # Relational model theory
-│   ├── linked-open-data.md      # W3C LOD principles
-│   ├── cidoc-crm.md             # CIDOC-CRM for cultural heritage
-│   └── time-machine-projects.md # Existing Time Machine projects
-│
-├── models/                      # Data models and diagrams
-│   ├── current-state/           # As-is diagrams of source data
-│   ├── conceptual/              # High-level entity diagrams
-│   ├── logical/                 # Detailed relational models
-│   └── physical/                # Implementation-specific schemas
-│
-└── decisions/                   # Architecture Decision Records (ADRs)
-    └── 0001-documentation-approach.md
-```
-
-## Project Goals
-
-1. **Document existing datasets** - Understand structure, content, and relationships
-2. **Learn data modeling** - Study relational, LOD, and CIDOC-CRM approaches
-3. **Design incrementally** - Build models step-by-step with rationale
-4. **Enable reproducibility** - All decisions documented with citations
-
-## How to Read This Documentation
-
-1. Start with [data-sources/00-overview.md](data-sources/00-overview.md) for dataset inventory
-2. Read individual dataset documentation to understand source structures
-3. Explore [concepts/](concepts/) for theoretical background
-4. Review [models/](models/) for evolving database designs
-5. Check [decisions/](decisions/) for architectural rationale
-
-## Quick Links
-
-- [References & Citations](references.md)
-- [Data Sources Overview](data-sources/00-overview.md)
-- [Current Entity-Relationship Diagrams](models/current-state/)
+Documentation for the Suriname Time Machine database project. Combining data modelling research with incremental design.
 
 ---
 
-_Last updated: 2026-01-06_
+## Structure
+
+```
+docs/
+├── data-sources/    datasets we are integrating
+├── concepts/        theoretical background, research notes
+├── models/          schema designs, trace examples, testing
+├── collaboration/   questions for external teams
+├── decisions/       architecture decision records
+└── references.md    citations
+```
+
+---
+
+## Data sources
+
+9 datasets, ~475,000 records, 1700-1935
+
+see data-sources/00-overview.md
+
+---
+
+## Current thinking
+
+Using PICO-compatible terminology (PersonObservation, PersonReconstruction, Source). See concepts/pico-model.md
+
+Hybrid approach: PostgreSQL for storage and queries, RDF export for interoperability with Dutch LOD ecosystem.
+
+Location model using Linked Places Format concepts. See concepts/linked-places-format.md
+
+---
+
+## Key documents
+
+- data-sources/00-overview.md (what we have)
+- concepts/pico-model.md (person modelling)
+- concepts/linked-places-format.md (location modelling)
+- models/trace-examples.md (real records through the model)
+- models/testing-strategy.md (how we validate)
+- collaboration/hdsc-questions.md (questions for HDSC team)
+
+---
+
+## Navigation
+
+Start with data sources overview to understand what we are integrating. Then concepts/ for background. models/ for actual schema work. decisions/ for architectural choices.
+
+---
+
+7 January 2026

@@ -282,18 +282,43 @@ Haven't tested this yet.
 
 ## References
 
-**Date, C.J.** _An Introduction to Database Systems_. 8th ed. Addison-Wesley, 2003.
-The classic textbook. Dense but thorough.
+### Database Fundamentals
+
+**Date, C.J.** _An Introduction to Database Systems_. 8th ed. Boston: Addison-Wesley, 2003.
+The classic textbook. Dense but thorough. Good on theory, less on practical implementation.
+
+**Kleppmann, Martin.** _Designing Data-Intensive Applications_. Sebastopol, CA: O'Reilly, 2017.
+Good overview of database concepts and trade-offs. Not PostgreSQL-specific but very practical. The chapters on data models and encoding are excellent.
+
+### PostgreSQL and PostGIS
 
 **PostgreSQL Documentation** - https://www.postgresql.org/docs/current/
-Very good reference. The tutorial sections are accessible.
+Very good reference. The tutorial sections are accessible. I keep the JSON functions page open constantly.
 
 **PostGIS Documentation** - https://postgis.net/documentation/
-Essential for spatial work.
+Essential for spatial work. The "Introduction to PostGIS" workshop materials are a good starting point.
 
-**Kleppmann, Martin.** _Designing Data-Intensive Applications_. O'Reilly, 2017.
-Good overview of database concepts and trade-offs. Not PostgreSQL-specific.
+**Obe, Regina O., and Leo S. Hsu.** _PostGIS in Action_. 3rd ed. Shelter Island, NY: Manning, 2021.
+Practical cookbook. Has chapters on raster data and 3D which might be relevant for maps.
+
+### Historical Data Specifically
+
+**Gregory, Ian N., and Paul S. Ell.** _Historical GIS: Technologies, Methodologies and Scholarship_. Cambridge: Cambridge University Press, 2007.
+The standard introduction to historical GIS. Chapter 5 on data quality and uncertainty is directly relevant to our date and certainty problems.
+
+**Harvey, Charles, and Jon Press.** _Databases in Historical Research: Theory, Methods, and Applications_. Basingstoke: Macmillan, 1996.
+Older but still useful. Written before current tools but the conceptual issues remain.
+
+### On Dates and Uncertainty
+
+**Library of Congress.** "Extended Date/Time Format (EDTF)." https://www.loc.gov/standards/datetime/
+The standard for uncertain and approximate dates. Worth implementing properly.
+
+**Grossner, Karl, and Rainer Simon.** "Linked Places: A Modeling Pattern and Software for Representing Historical Movement." In _Proceedings of the Workshop on Linked Data on the Web_. 2017.
+On representing temporal uncertainty in linked data. Relevant even if we stay in PostgreSQL.
+
+See also the full [references document](./references.md) for more on data modelling and historical databases.
 
 ---
 
-_Last edited: 2025-01-06_
+7 January 2026

@@ -219,18 +219,41 @@ Projects die when funding runs out. The ones that survive have institutional hom
 
 ## References
 
-**Kaplan, Frédéric.** "The Venice Time Machine." In _Proceedings of the 2015 ACM Symposium on Document Engineering_. ACM, 2015.
-The overview paper. Good for big picture.
+For a full bibliography, see [references.md](./references.md).
 
-**Rehbein, Malte.** "Ontologies for Historical Knowledge Graphs." In _DH2019_.
-On the challenge of modelling historical knowledge.
+### Time Machine Projects
 
-**Enslaved.org.** "Data Principles." https://enslaved.org/data-principles
-Their ethical framework. Required reading.
+**Kaplan, Frédéric.** "The Venice Time Machine." In _Proceedings of the 2015 ACM Symposium on Document Engineering_, 73-73. New York: ACM, 2015.
+Brief overview. More detail at https://www.timemachine.eu/
 
-**Eltis, David, and David Richardson.** "A New Assessment of the Transatlantic Slave Trade." In _Extending the Frontiers: Essays on the New Transatlantic Slave Trade Database_. Yale University Press, 2008.
-On the methodology behind Slave Voyages.
+**Kaplan, Frédéric, and Isabella di Lenardo.** "Big Data of the Past." _Frontiers in Digital Humanities_ 4 (2017): 12.
+On the vision of large-scale historical data extraction. Ambitious but thought-provoking.
+
+**Time Machine Europe.** "Time Machine Technical White Paper." 2019. https://www.timemachine.eu/
+Technical architecture documentation.
+
+### Slavery Databases
+
+**Eltis, David, and David Richardson.** "A New Assessment of the Transatlantic Slave Trade." In _Extending the Frontiers: Essays on the New Transatlantic Slave Trade Database_, edited by David Eltis and David Richardson, 1-60. New Haven: Yale University Press, 2008.
+Methodology behind Slave Voyages. Essential reading on handling uncertainty and imputation.
+
+**Hawthorne, Walter, Daryle Williams, and Dean Rehberger, dirs.** _Enslaved: Peoples of the Historical Slave Trade_. Michigan State University: Matrix Center for Digital Humanities & Social Sciences, 2024. https://enslaved.org/
+The project itself. Documentation at https://docs.enslaved.org/ is required reading.
+
+**Journal of Slavery and Data Preservation.** https://jsdp.enslaved.org/
+Peer-reviewed journal publishing slavery datasets. Good for methodology and standards.
+
+**Hall, Gwendolyn Midlo.** _Databases for the Study of Afro-Louisiana History and Genealogy, 1699-1860_. Baton Rouge: Louisiana State University Press, 2000.
+One of the earliest slavery databases. Documentation of methodology and limitations.
+
+### Digital Humanities Methods
+
+**Rehbein, Malte.** "On Modeling Historical Knowledge Graphs." Presented at DH2019, Utrecht, 2019.
+On the challenge of modelling historical knowledge in graph structures.
+
+**Brown, Vincent.** "Mapping a Slave Revolt: Visualizing Spatial History through the Archives of Slavery." _Social Text_ 33, no. 4 (2015): 134-141.
+Reflections on visualisation choices and their implications. Honest about the challenges.
 
 ---
 
-_Last edited: 2025-01-06_
+7 January 2026
