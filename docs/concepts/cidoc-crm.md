@@ -20,17 +20,9 @@ Seems verbose but lets you:
 
 ## Why using it
 
-Projects I am learning from use CIDOC-CRM or compatible:
+If data maps to CIDOC-CRM, can exchange with projects using that concept, would be maybe more possible then not using it (especially staying on to the core model). Concepts recognisable to cultural heritage informatics people.
 
-- OpenAtlas with project INDIGO
-- Venice Time Machine
-- Amsterdam Time Machine
-- Europeana
-- various museum databases
-
-If data maps to CIDOC-CRM, can exchange with these projects. Concepts recognisable to cultural heritage informatics people.
-
-Event-based approach fits our problem. Not trying to establish "truth" about people and places. Trying to capture what sources say, when, how confident.
+Event-based, object-centristic approach fits our problem. Not trying to establish "truth" about people and places. Trying to capture what sources say, when, how confident.
 
 ---
 
@@ -138,9 +130,12 @@ Applying this principle even where not using CIDOC-CRM syntax.
 
 Papers:
 
-- Doerr (2003) "The CIDOC CRM: An Ontological Approach" AI Magazine
-- Meroño-Peñuela et al. (2015) "Semantic Technologies for Historical Research" Semantic Web
-- Theodoridou et al. (2010) "Modeling and Querying Provenance by Extending CIDOC CRM"
+- Doerr (2003) "The CIDOC CRM: An Ontological Approach to Sematic Interoperability of Metadata" https://www.researchgate.net/publication/240290981_The_CIDOC_CRM_-_an_Ontological_Approach_to_Semantic_Interoperability_of_Metadata
+- Meroño-Peñuela et al. (2015) "Semantic Technologies for Historical Research: A Survey" https://www.semantic-web-journal.net/system/files/swj588_0.pdf
+- Theodoridou et al. (2010) "Modeling and querying provenance by extending CIDOC CRM" https://link.springer.com/article/10.1007/s10619-009-7059-2
+- Hiebel et al. (2017) "CRMgeo: A spatiotemporal extension of CIDOC-CRM" https://link.springer.com/article/10.1007/s00799-016-0192-4
+- OpenAtlas: https://brill.com/display/book/9789004712126/BP000014.pdf
+- Eleni Gkadolou and Poulicos Prastacos (2021) "Historical Cartographic Information for Cultural Heritage Applications in a Semantic Framework" https://utppublishing.com/doi/10.3138/cart-2021-0002
 
 ---
 
