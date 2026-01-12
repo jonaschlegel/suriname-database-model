@@ -270,41 +270,41 @@ These are **modern research outputs** — vector geometries created by researche
 
 #### Plantation Points Layer
 
-| Attribute        | Type    | Description              | Example                   |
-| ---------------- | ------- | ------------------------ | ------------------------- |
-| `fid`            | integer | Feature ID (auto)        | `1`                       |
-| `source_map`     | text    | Which map digitized from | `MAP_1763`                |
-| `label_text`     | text    | Text as written on map   | `Pl. Nieuw Amsterdam`     |
-| `label_readable` | boolean | Is text clearly legible? | `true`                    |
-| `geom`           | Point   | Location (WGS84)         | `POINT(-55.1 5.8)`        |
-| `digitized_by`   | text    | Researcher name          | `JC`                      |
-| `digitized_date` | date    | When digitized           | `2024-03-15`              |
-| `notes`          | text    | Any observations         | `Name partially obscured` |
+| Attribute        | Type    | Description              | Example                   | Crucial for Linking | Primary Information |
+| ---------------- | ------- | ------------------------ | ------------------------- | ------------------- | ------------------- |
+| `fid`            | integer | Feature ID (auto)        | `1`                       |                     |                     |
+| `source_map`     | text    | Which map digitized from | `MAP_1763`                |                     |                     |
+| `label_text`     | text    | Text as written on map   | `Pl. Nieuw Amsterdam`     |                     |                     |
+| `label_readable` | boolean | Is text clearly legible? | `true`                    |                     |                     |
+| `geom`           | Point   | Location (WGS84)         | `POINT(-55.1 5.8)`        |                     |                     |
+| `digitized_by`   | text    | Researcher name          | `JC`                      |                     |                     |
+| `digitized_date` | date    | When digitized           | `2024-03-15`              |                     |                     |
+| `notes`          | text    | Any observations         | `Name partially obscured` |                     |                     |
 
 #### Plantation Polygons Layer
 
-| Attribute        | Type    | Description                | Example                           |
-| ---------------- | ------- | -------------------------- | --------------------------------- |
-| `fid`            | integer | Feature ID (auto)          | `1`                               |
-| `source_map`     | text    | Which map digitized from   | `MAP_1840`                        |
-| `label_text`     | text    | Text as written on map     | `Alkmaar`                         |
-| `boundary_type`  | text    | How boundary was drawn     | `solid_line`, `dashed`, `implied` |
-| `geom`           | Polygon | Boundary (WGS84)           | `POLYGON((...))`                  |
-| `area_ha`        | float   | Calculated area (hectares) | `245.6`                           |
-| `digitized_by`   | text    | Researcher name            | `JC`                              |
-| `digitized_date` | date    | When digitized             | `2024-03-15`                      |
-| `certainty`      | text    | Confidence in boundary     | `high`, `medium`, `low`           |
+| Attribute        | Type    | Description                | Example                           | Crucial for Linking | Primary Information |
+| ---------------- | ------- | -------------------------- | --------------------------------- | ------------------- | ------------------- |
+| `fid`            | integer | Feature ID (auto)          | `1`                               |                     |                     |
+| `source_map`     | text    | Which map digitized from   | `MAP_1840`                        |                     |                     |
+| `label_text`     | text    | Text as written on map     | `Alkmaar`                         |                     |                     |
+| `boundary_type`  | text    | How boundary was drawn     | `solid_line`, `dashed`, `implied` |                     |                     |
+| `geom`           | Polygon | Boundary (WGS84)           | `POLYGON((...))`                  |                     |                     |
+| `area_ha`        | float   | Calculated area (hectares) | `245.6`                           |                     |                     |
+| `digitized_by`   | text    | Researcher name            | `JC`                              |                     |                     |
+| `digitized_date` | date    | When digitized             | `2024-03-15`                      |                     |                     |
+| `certainty`      | text    | Confidence in boundary     | `high`, `medium`, `low`           |                     |                     |
 
 #### Rivers Layer
 
-| Attribute    | Type       | Description              | Example                        |
-| ------------ | ---------- | ------------------------ | ------------------------------ |
-| `fid`        | integer    | Feature ID (auto)        | `1`                            |
-| `source_map` | text       | Which map digitized from | `MAP_1763`                     |
-| `label_text` | text       | River name on map        | `Suriname Rivier`              |
-| `river_type` | text       | Type classification      | `main_river`, `creek`, `canal` |
-| `geom`       | LineString | Course (WGS84)           | `LINESTRING((...))`            |
-| `length_km`  | float      | Calculated length        | `12.4`                         |
+| Attribute    | Type       | Description              | Example                        | Crucial for Linking | Primary Information |
+| ------------ | ---------- | ------------------------ | ------------------------------ | ------------------- | ------------------- |
+| `fid`        | integer    | Feature ID (auto)        | `1`                            |                     |                     |
+| `source_map` | text       | Which map digitized from | `MAP_1763`                     |                     |                     |
+| `label_text` | text       | River name on map        | `Suriname Rivier`              |                     |                     |
+| `river_type` | text       | Type classification      | `main_river`, `creek`, `canal` |                     |                     |
+| `geom`       | LineString | Course (WGS84)           | `LINESTRING((...))`            |                     |                     |
+| `length_km`  | float      | Calculated length        | `12.4`                         |                     |                     |
 
 ---
 

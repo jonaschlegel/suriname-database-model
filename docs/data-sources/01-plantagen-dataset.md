@@ -37,64 +37,64 @@ Based on the source documentation, the dataset contains these columns:
 
 ### Identification
 
-| Field             | Type        | Description                          | Example    |
-| ----------------- | ----------- | ------------------------------------ | ---------- |
-| `ID_plantation`   | text/string | PSUR identifier (unique key)         | `PSUR0001` |
-| `Name_plantation` | text/string | Primary/standardized plantation name | `Aasvogel` |
+| Field             | Type        | Description                          | Example    | Crucial for Linking | Primary Information |
+| ----------------- | ----------- | ------------------------------------ | ---------- | ------------------- | ------------------- |
+| `ID_plantation`   | text/string | PSUR identifier (unique key)         | `PSUR0001` |                     |                     |
+| `Name_plantation` | text/string | Primary/standardized plantation name | `Aasvogel` |                     |                     |
 
 ### Enslaved Population Series
 
 The dataset tracks enslaved population across **4 temporal series**:
 
-| Field                    | Type    | Description                           | Notes      |
-| ------------------------ | ------- | ------------------------------------- | ---------- |
-| `Serie1_number_enslaved` | integer | Number of enslaved people in Series 1 | ~1830–1840 |
-| `Serie2_number_enslaved` | integer | Number of enslaved people in Series 2 | ~1841–1850 |
-| `Serie3_number_enslaved` | integer | Number of enslaved people in Series 3 | ~1851–1860 |
-| `Serie4_number_enslaved` | integer | Number of enslaved people in Series 4 | ~1861–1863 |
+| Field                    | Type    | Description                           | Notes      | Crucial for Linking | Primary Information |
+| ------------------------ | ------- | ------------------------------------- | ---------- | ------------------- | ------------------- |
+| `Serie1_number_enslaved` | integer | Number of enslaved people in Series 1 | ~1830–1840 |                     |                     |
+| `Serie2_number_enslaved` | integer | Number of enslaved people in Series 2 | ~1841–1850 |                     |                     |
+| `Serie3_number_enslaved` | integer | Number of enslaved people in Series 3 | ~1851–1860 |                     |                     |
+| `Serie4_number_enslaved` | integer | Number of enslaved people in Series 4 | ~1861–1863 |                     |                     |
 
 ### Series Status
 
 Each series has a status indicating data completeness:
 
-| Field           | Type        | Description              | Values                                |
-| --------------- | ----------- | ------------------------ | ------------------------------------- |
-| `Serie1_Status` | text/string | Completeness of Series 1 | `complete`, `missing`, `non existent` |
-| `Serie2_Status` | text/string | Completeness of Series 2 | `complete`, `missing`, `non existent` |
-| `Serie3_Status` | text/string | Completeness of Series 3 | `complete`, `missing`, `non existent` |
-| `Serie4_Status` | text/string | Completeness of Series 4 | `complete`, `missing`, `non existent` |
+| Field           | Type        | Description              | Values                                | Crucial for Linking | Primary Information |
+| --------------- | ----------- | ------------------------ | ------------------------------------- | ------------------- | ------------------- |
+| `Serie1_Status` | text/string | Completeness of Series 1 | `complete`, `missing`, `non existent` |                     |                     |
+| `Serie2_Status` | text/string | Completeness of Series 2 | `complete`, `missing`, `non existent` |                     |                     |
+| `Serie3_Status` | text/string | Completeness of Series 3 | `complete`, `missing`, `non existent` |                     |                     |
+| `Serie4_Status` | text/string | Completeness of Series 4 | `complete`, `missing`, `non existent` |                     |                     |
 
 ### Temporal Information
 
-| Field           | Type        | Description                      | Notes |
-| --------------- | ----------- | -------------------------------- | ----- |
-| `StartYear`     | integer     | Start year of plantation records |       |
-| `EndYear`       | integer     | End year of plantation records   |       |
-| `Start_remarks` | text/string | Notes about start/transfer       |       |
-| `Start_date`    | text/string | Specific start date if known     |       |
-| `End_remarks`   | text/string | Notes about end/closure          |       |
-| `End_date`      | text/string | Specific end date if known       |       |
+| Field           | Type        | Description                      | Notes | Crucial for Linking | Primary Information |
+| --------------- | ----------- | -------------------------------- | ----- | ------------------- | ------------------- |
+| `StartYear`     | integer     | Start year of plantation records |       |                     |                     |
+| `EndYear`       | integer     | End year of plantation records   |       |                     |                     |
+| `Start_remarks` | text/string | Notes about start/transfer       |       |                     |                     |
+| `Start_date`    | text/string | Specific start date if known     |       |                     |                     |
+| `End_remarks`   | text/string | Notes about end/closure          |       |                     |                     |
+| `End_date`      | text/string | Specific end date if known       |       |                     |                     |
 
 ### Geographic Information
 
-| Field           | Type        | Description      | Notes                              |
-| --------------- | ----------- | ---------------- | ---------------------------------- |
-| `District_1842` | text/string | District in 1842 | Historical administrative division |
-| `District_1855` | text/string | District in 1855 | May differ from 1842               |
+| Field           | Type        | Description      | Notes                              | Crucial for Linking | Primary Information |
+| --------------- | ----------- | ---------------- | ---------------------------------- | ------------------- | ------------------- |
+| `District_1842` | text/string | District in 1842 | Historical administrative division |                     |                     |
+| `District_1855` | text/string | District in 1855 | May differ from 1842               |                     |                     |
 
 ### Production Information
 
-| Field          | Type        | Description           | Values                                       |
-| -------------- | ----------- | --------------------- | -------------------------------------------- |
-| `Product_1846` | text/string | Product grown in 1846 | `sugar`, `coffee`, `cotton`, `cacao`, `food` |
-| `Product_1854` | text/string | Product grown in 1854 | Same as above                                |
-| `Product_1859` | text/string | Product grown in 1859 | Same as above                                |
+| Field          | Type        | Description           | Values                                       | Crucial for Linking | Primary Information |
+| -------------- | ----------- | --------------------- | -------------------------------------------- | ------------------- | ------------------- |
+| `Product_1846` | text/string | Product grown in 1846 | `sugar`, `coffee`, `cotton`, `cacao`, `food` |                     |                     |
+| `Product_1854` | text/string | Product grown in 1854 | Same as above                                |                     |                     |
+| `Product_1859` | text/string | Product grown in 1859 | Same as above                                |                     |                     |
 
 ### Additional Information
 
-| Field             | Type        | Description                                 |
-| ----------------- | ----------- | ------------------------------------------- |
-| `General_remarks` | text/string | Additional notes and historical information |
+| Field             | Type        | Description                                 | Crucial for Linking | Primary Information |
+| ----------------- | ----------- | ------------------------------------------- | ------------------- | ------------------- |
+| `General_remarks` | text/string | Additional notes and historical information |                     |                     |
 
 ---
 

@@ -185,12 +185,37 @@ Papers:
 
 ---
 
+## Datasprint approach
+
+Interesting idea from GLOBALISE: they ran a datasprint on historical maps with three parallel sessions:
+
+1. georeferencing (using Allmaps, produced 48 georeferenced maps in one afternoon)
+2. data extraction (annotating visual features in Recogito, ~500 annotations)
+3. data linking (uploading curated place data to World Historical Gazetteer)
+
+See: https://globalise.huygens.knaw.nl/old-maps-new-discoveries-a-datasprints-digital-exploration/
+
+What caught my attention:
+
+- they combined Atlas of Mutual Heritage metadata with National Archives IIIF images
+- linked from IIIF Manifests to structured RDF using rdfs:seeAlso
+- critical discussion about map reliability (coastlines often sketchy, projections vary)
+- bottom-up annotation then standardisation (tag first, define vocabulary after)
+
+Could we do something similar? Get historians, data people, heritage experts in a room for an afternoon. Work on Suriname maps together. Generate useful data while learning what works.
+
+Different context (VOC vs WIC, Asia vs Caribbean) but same challenges: name variants, changing boundaries, linking places across sources.
+
+---
+
 ## Next
 
 - read Linked.art docs more carefully
 - try modelling one death certificate end-to-end
 - look at how Enslaved.org maps to CIDOC-CRM
 - figure out geometry question (CRMgeo or give up)
+- look at Allmaps for georeferencing workflow
+- consider organising a datasprint
 
 ---
 

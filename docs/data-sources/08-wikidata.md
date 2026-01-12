@@ -102,38 +102,38 @@ https://wikishootme.toolforge.org/#lat=5.697085388657068&lng=-56.24953324538664&
 
 ### For Persons
 
-| Property               | ID   | Description    | Example            |
-| ---------------------- | ---- | -------------- | ------------------ |
-| instance of            | P31  | Type of entity | Q5 (human)         |
-| sex or gender          | P21  | Gender         | Q6581097 (male)    |
-| date of birth          | P569 | Birth date     | 1623               |
-| date of death          | P570 | Death date     | 1670               |
-| place of birth         | P19  | Birth location |                    |
-| place of death         | P20  | Death location |                    |
-| occupation             | P106 | Job/role       | Q484876 (governor) |
-| country of citizenship | P27  | Nationality    | Q145 (England)     |
-| given name             | P735 | First name     |                    |
-| family name            | P734 | Surname        |                    |
+| Property               | ID   | Description    | Example            | Crucial for Linking | Primary Information |
+| ---------------------- | ---- | -------------- | ------------------ | ------------------- | ------------------- |
+| instance of            | P31  | Type of entity | Q5 (human)         |                     |                     |
+| sex or gender          | P21  | Gender         | Q6581097 (male)    |                     |                     |
+| date of birth          | P569 | Birth date     | 1623               |                     |                     |
+| date of death          | P570 | Death date     | 1670               |                     |                     |
+| place of birth         | P19  | Birth location |                    |                     |                     |
+| place of death         | P20  | Death location |                    |                     |                     |
+| occupation             | P106 | Job/role       | Q484876 (governor) |                     |                     |
+| country of citizenship | P27  | Nationality    | Q145 (England)     |                     |                     |
+| given name             | P735 | First name     |                    |                     |                     |
+| family name            | P734 | Surname        |                    |                     |                     |
 
 ### For Places
 
-| Property                | ID    | Description           | Example         |
-| ----------------------- | ----- | --------------------- | --------------- |
-| instance of             | P31   | Type of entity        | Q515 (city)     |
-| coordinate location     | P625  | Lat/Long              | 5°52′N, 55°10′W |
-| country                 | P17   | Country               | Q730 (Suriname) |
-| located in admin entity | P131  | Administrative parent |                 |
-| population              | P1082 | Number of inhabitants |                 |
+| Property                | ID    | Description           | Example         | Crucial for Linking | Primary Information |
+| ----------------------- | ----- | --------------------- | --------------- | ------------------- | ------------------- |
+| instance of             | P31   | Type of entity        | Q515 (city)     |                     |                     |
+| coordinate location     | P625  | Lat/Long              | 5°52′N, 55°10′W |                     |                     |
+| country                 | P17   | Country               | Q730 (Suriname) |                     |                     |
+| located in admin entity | P131  | Administrative parent |                 |                     |                     |
+| population              | P1082 | Number of inhabitants |                 |                     |                     |
 
 ### For Organizations (Plantations)
 
-| Property             | ID   | Description | Example    |
-| -------------------- | ---- | ----------- | ---------- |
-| instance of          | P31  | Type        | plantation |
-| coordinate location  | P625 | Location    |            |
-| owned by             | P127 | Owner       |            |
-| operator             | P137 | Who runs it |            |
-| dissolved/demolished | P576 | End date    |            |
+| Property             | ID   | Description | Example    | Crucial for Linking | Primary Information |
+| -------------------- | ---- | ----------- | ---------- | ------------------- | ------------------- |
+| instance of          | P31  | Type        | plantation |                     |                     |
+| coordinate location  | P625 | Location    |            |                     |                     |
+| owned by             | P127 | Owner       |            |                     |                     |
+| operator             | P137 | Who runs it |            |                     |                     |
+| dissolved/demolished | P576 | End date    |            |                     |                     |
 
 ---
 

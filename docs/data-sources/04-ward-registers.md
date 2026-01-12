@@ -62,115 +62,115 @@ Based on the source documentation screenshot:
 
 ### Archive Identification
 
-| Field     | Type        | Description                       | Example |
-| --------- | ----------- | --------------------------------- | ------- |
-| `Id`      | integer     | Record identifier                 |         |
-| `Ark`     | text/string | Archive code (e.g., `1.04.08.01`) |         |
-| `Inv`     | integer     | Inventory number                  |         |
-| `Scan_Id` | text/string | Scan(image) identifier            |         |
-| `Scan`    | bool/string | URL to digitized original scan    |         |
-| `Year`    | integer     | Level (year)                      |         |
+| Field     | Type        | Description                       | Example | Crucial for Linking | Primary Information |
+| --------- | ----------- | --------------------------------- | ------- | ------------------- | ------------------- |
+| `Id`      | integer     | Record identifier                 |         |                     |                     |
+| `Ark`     | text/string | Archive code (e.g., `1.04.08.01`) |         |                     |                     |
+| `Inv`     | integer     | Inventory number                  |         |                     |                     |
+| `Scan_Id` | text/string | Scan(image) identifier            |         |                     |                     |
+| `Scan`    | bool/string | URL to digitized original scan    |         |                     |                     |
+| `Year`    | integer     | Level (year)                      |         |                     |                     |
 
 ### Person Information - Name
 
-| Field           | Type        | Description                         |
-| --------------- | ----------- | ----------------------------------- |
-| `Voornaam`      | text/string | First name/given name(s)            |
-| `Tussenvoesel`  | text/string | Name prefix(es) (e.g., `van`, `de`) |
-| `Achternaam`    | text/string | Surname/family name                 |
-| `Patroon`       | text/string | Patron name (e.g., `van 't`)        |
-| `Naamtype`      | text/string | Unique name                         |
-| `Geboorteland`  | text/string | Origin (place)                      |
-| `Ov_Dec_Borrow` | text/string | First name of deceased spouse       |
-| `Suffix`        | text/string | Suffix (e.g., `Jr`)                 |
+| Field           | Type        | Description                         | Crucial for Linking | Primary Information |
+| --------------- | ----------- | ----------------------------------- | ------------------- | ------------------- |
+| `Voornaam`      | text/string | First name/given name(s)            |                     |                     |
+| `Tussenvoesel`  | text/string | Name prefix(es) (e.g., `van`, `de`) |                     |                     |
+| `Achternaam`    | text/string | Surname/family name                 |                     |                     |
+| `Patroon`       | text/string | Patron name (e.g., `van 't`)        |                     |                     |
+| `Naamtype`      | text/string | Unique name                         |                     |                     |
+| `Geboorteland`  | text/string | Origin (place)                      |                     |                     |
+| `Ov_Dec_Borrow` | text/string | First name of deceased spouse       |                     |                     |
+| `Suffix`        | text/string | Suffix (e.g., `Jr`)                 |                     |                     |
 
 ### Person Information - Demographics
 
-| Field       | Type        | Description                                                | Notes                       |
-| ----------- | ----------- | ---------------------------------------------------------- | --------------------------- |
-| `Religie`   | text/string | Religion - original                                        |                             |
-| `Rel_Std`   | text/string | Religion - standardized level DAIS                         | Standardized classification |
-| `Leeftijd`  | mixed/float | Age in years (can include fractions like `0.5` for months) |                             |
-| `Ethnicity` | text/string | Ethnicity                                                  |                             |
-| `Sex`       | text/string | Sex (`M` for male, `V` for female)                         |                             |
-| `Beroep`    | text/string | Occupation/profession                                      |                             |
-| `Burgerst`  | text/string | Civil/marital status                                       |                             |
+| Field       | Type        | Description                                                | Notes                       | Crucial for Linking | Primary Information |
+| ----------- | ----------- | ---------------------------------------------------------- | --------------------------- | ------------------- | ------------------- |
+| `Religie`   | text/string | Religion - original                                        |                             |                     |                     |
+| `Rel_Std`   | text/string | Religion - standardized level DAIS                         | Standardized classification |                     |                     |
+| `Leeftijd`  | mixed/float | Age in years (can include fractions like `0.5` for months) |                             |                     |                     |
+| `Ethnicity` | text/string | Ethnicity                                                  |                             |                     |                     |
+| `Sex`       | text/string | Sex (`M` for male, `V` for female)                         |                             |                     |                     |
+| `Beroep`    | text/string | Occupation/profession                                      |                             |                     |                     |
+| `Burgerst`  | text/string | Civil/marital status                                       |                             |                     |                     |
 
 ### Household Composition - Free Persons
 
-| Field | Type    | Description                                        |
-| ----- | ------- | -------------------------------------------------- |
-| `Hwa` | integer | Number of free adult males - cross-referenced      |
-| `Vba` | integer | Number of free adult females - cross-referenced    |
-| `Hwb` | integer | Number of free male children - uncrossreferenced   |
-| `Vbb` | integer | Number of free female children - uncrossreferenced |
-| `Hwc` | integer | Number of free adult males - heathen               |
-| `Vbc` | integer | Number of free adult females - heathen             |
-| `Hwi` | integer | Number of free male children - (heathen)           |
-| `Vbi` | integer | Number of free female children - (heathen)         |
-| `ink` | integer | Number of persons with unknown demographics        |
+| Field | Type    | Description                                        | Crucial for Linking | Primary Information |
+| ----- | ------- | -------------------------------------------------- | ------------------- | ------------------- |
+| `Hwa` | integer | Number of free adult males - cross-referenced      |                     |                     |
+| `Vba` | integer | Number of free adult females - cross-referenced    |                     |                     |
+| `Hwb` | integer | Number of free male children - uncrossreferenced   |                     |                     |
+| `Vbb` | integer | Number of free female children - uncrossreferenced |                     |                     |
+| `Hwc` | integer | Number of free adult males - heathen               |                     |                     |
+| `Vbc` | integer | Number of free adult females - heathen             |                     |                     |
+| `Hwi` | integer | Number of free male children - (heathen)           |                     |                     |
+| `Vbi` | integer | Number of free female children - (heathen)         |                     |                     |
+| `ink` | integer | Number of persons with unknown demographics        |                     |                     |
 
 ### Enslaved Persons
 
-| Field                   | Type        | Description                 |
-| ----------------------- | ----------- | --------------------------- |
-| `Enslaved`              | text/string | Enslaved status indicator   |
-| `Aantal_Slaafgemaakten` | integer     | Count of enslaved persons   |
-| `Sloneman`              | text/string | Enslaved information detail |
-| `Medel_Members`         | text/string | Family members              |
-| `Response_Members`      | text/string | Additional members          |
-| `Eigenaar`              | text/string | Owner's name                |
+| Field                   | Type        | Description                 | Crucial for Linking | Primary Information |
+| ----------------------- | ----------- | --------------------------- | ------------------- | ------------------- |
+| `Enslaved`              | text/string | Enslaved status indicator   |                     |                     |
+| `Aantal_Slaafgemaakten` | integer     | Count of enslaved persons   |                     |                     |
+| `Sloneman`              | text/string | Enslaved information detail |                     |                     |
+| `Medel_Members`         | text/string | Family members              |                     |                     |
+| `Response_Members`      | text/string | Additional members          |                     |                     |
+| `Eigenaar`              | text/string | Owner's name                |                     |                     |
 
 ### Address Information
 
-| Field                             | Type        | Description                                            | Notes |
-| --------------------------------- | ----------- | ------------------------------------------------------ | ----- |
-| `Annotaties`                      | text/string | Annotations/notes                                      |       |
-| `Oiv`                             | text/string | District/ward                                          |       |
-| `wijkletter`                      | text/string | Ward/district letter code                              |       |
-| `Straatnaam`                      | text/string | Street name (old)                                      |       |
-| `Housnummer`                      | text/string | House number (in `M+` entry)                           |       |
-| `Adres_Huiding_anno`              | text/string | Address direction (suppression): e.g., `Prins`, `Oost` |       |
-| `Adres_Lat_code_het_a_oost_zijde` | text/string | Location on street: `a=oost zijde, zo=z oost zijde`    |       |
-| `Adres_Aanvulling`                | text/string | Address supplement                                     |       |
-| `source`                          | text/string | Source description (e.g., `N house`, `N1 house`)       |       |
-| `Buurt`                           | text/string | Neighborhood                                           |       |
+| Field                             | Type        | Description                                            | Notes | Crucial for Linking | Primary Information |
+| --------------------------------- | ----------- | ------------------------------------------------------ | ----- | ------------------- | ------------------- |
+| `Annotaties`                      | text/string | Annotations/notes                                      |       |                     |                     |
+| `Oiv`                             | text/string | District/ward                                          |       |                     |                     |
+| `wijkletter`                      | text/string | Ward/district letter code                              |       |                     |                     |
+| `Straatnaam`                      | text/string | Street name (old)                                      |       |                     |                     |
+| `Housnummer`                      | text/string | House number (in `M+` entry)                           |       |                     |                     |
+| `Adres_Huiding_anno`              | text/string | Address direction (suppression): e.g., `Prins`, `Oost` |       |                     |                     |
+| `Adres_Lat_code_het_a_oost_zijde` | text/string | Location on street: `a=oost zijde, zo=z oost zijde`    |       |                     |                     |
+| `Adres_Aanvulling`                | text/string | Address supplement                                     |       |                     |                     |
+| `source`                          | text/string | Source description (e.g., `N house`, `N1 house`)       |       |                     |                     |
+| `Buurt`                           | text/string | Neighborhood                                           |       |                     |                     |
 
 ### Location Codes
 
-| Field                | Type        | Description                                           |
-| -------------------- | ----------- | ----------------------------------------------------- |
-| `BN`                 | text/string | Location code                                         |
-| `Ov`                 | text/string | Old numbering system code                             |
-| `Nw`                 | text/string | New numbering system code                             |
-| `Locatie`            | text/string | Location description                                  |
-| `Adres_Master`       | text/string | Standardized address                                  |
-| `Generation_Maptype` | text/string | Generation/cross-reference to other numbering systems |
-| `Address_Ful`        | text/string | Formatted full address                                |
+| Field                | Type        | Description                                           | Crucial for Linking | Primary Information |
+| -------------------- | ----------- | ----------------------------------------------------- | ------------------- | ------------------- |
+| `BN`                 | text/string | Location code                                         |                     |                     |
+| `Ov`                 | text/string | Old numbering system code                             |                     |                     |
+| `Nw`                 | text/string | New numbering system code                             |                     |                     |
+| `Locatie`            | text/string | Location description                                  |                     |                     |
+| `Adres_Master`       | text/string | Standardized address                                  |                     |                     |
+| `Generation_Maptype` | text/string | Generation/cross-reference to other numbering systems |                     |                     |
+| `Address_Ful`        | text/string | Formatted full address                                |                     |                     |
 
 ### Administrative Fields
 
-| Field       | Type        | Description                              |
-| ----------- | ----------- | ---------------------------------------- |
-| `G_Orden`   | integer     | Sort order                               |
-| `Register`  | text/string | Register type (`W=Registers Paramaribo`) |
-| `Onderdeel` | text/string | Living counts number                     |
+| Field       | Type        | Description                              | Crucial for Linking | Primary Information |
+| ----------- | ----------- | ---------------------------------------- | ------------------- | ------------------- |
+| `G_Orden`   | integer     | Sort order                               |                     |                     |
+| `Register`  | text/string | Register type (`W=Registers Paramaribo`) |                     |                     |
+| `Onderdeel` | text/string | Living counts number                     |                     |                     |
 
 ### Original Data Fields
 
 These preserve the original values before standardization:
 
-| Field               | Type        | Description                                                          |
-| ------------------- | ----------- | -------------------------------------------------------------------- |
-| `Age_Orig`          | text/string | Original age notation (may include `m` for months, etc.)             |
-| `Rel_orig`          | text/string | Original religion abbreviation                                       |
-| `Slilr_Or`          | text/string | Original activity code (`B` = Blanke/white, `K` = kleurling/colored) |
-| `Rleur/Colon_K`     | text/string | Color/colonial status                                                |
-| `Surname_Orig`      | text/string | Surname as recorded                                                  |
-| `FirstSurname_Orig` | text/string | Original first name as recorded                                      |
-| `Remarks_Orig`      | text/string | Original remarks from source                                         |
-| `Links_Orig`        | text/string | Cross-links original                                                 |
-| `Kroniek_Remarks`   | text/string | Extra entry remarks                                                  |
+| Field               | Type        | Description                                                          | Crucial for Linking | Primary Information |
+| ------------------- | ----------- | -------------------------------------------------------------------- | ------------------- | ------------------- |
+| `Age_Orig`          | text/string | Original age notation (may include `m` for months, etc.)             |                     |                     |
+| `Rel_orig`          | text/string | Original religion abbreviation                                       |                     |                     |
+| `Slilr_Or`          | text/string | Original activity code (`B` = Blanke/white, `K` = kleurling/colored) |                     |                     |
+| `Rleur/Colon_K`     | text/string | Color/colonial status                                                |                     |                     |
+| `Surname_Orig`      | text/string | Surname as recorded                                                  |                     |                     |
+| `FirstSurname_Orig` | text/string | Original first name as recorded                                      |                     |                     |
+| `Remarks_Orig`      | text/string | Original remarks from source                                         |                     |                     |
+| `Links_Orig`        | text/string | Cross-links original                                                 |                     |                     |
+| `Kroniek_Remarks`   | text/string | Extra entry remarks                                                  |                     |                     |
 
 ---
 

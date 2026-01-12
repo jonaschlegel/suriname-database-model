@@ -39,105 +39,105 @@ Based on the source documentation screenshot:
 
 ### Document Identification (Certificate)
 
-| Field              | Type    | Description                                      |
-| ------------------ | ------- | ------------------------------------------------ |
-| `id`               | integer | Unique certificate identifier                    |
-| `original_scanid`  | integer | Scan identifier                                  |
-| `inventory_number` | integer | Inventory number from National Archives Suriname |
-| `projectid`        | integer | Project entry identifier                         |
-| `folio`            | integer | Folio number of the birth certificate            |
+| Field              | Type    | Description                                      | Crucial for Linking | Primary Information |
+| ------------------ | ------- | ------------------------------------------------ | ------------------- | ------------------- |
+| `id`               | integer | Unique certificate identifier                    |                     |                     |
+| `original_scanid`  | integer | Scan identifier                                  |                     |                     |
+| `inventory_number` | integer | Inventory number from National Archives Suriname |                     |                     |
+| `projectid`        | integer | Project entry identifier                         |                     |                     |
+| `folio`            | integer | Folio number of the birth certificate            |                     |                     |
 
 ### Certification Metadata
 
-| Field        | Type        | Description                                        | Format       |
-| ------------ | ----------- | -------------------------------------------------- | ------------ |
-| `cert_date`  | date        | Date the certificate was issued                    | `dd-mm-yyyy` |
-| `cert_place` | text/string | Place the certificate was issued (like Paramaribo) |              |
+| Field        | Type        | Description                                        | Format       | Crucial for Linking | Primary Information |
+| ------------ | ----------- | -------------------------------------------------- | ------------ | ------------------- | ------------------- |
+| `cert_date`  | date        | Date the certificate was issued                    | `dd-mm-yyyy` |                     |                     |
+| `cert_place` | text/string | Place the certificate was issued (like Paramaribo) |              |                     |                     |
 
 ### Informant Identification
 
-| Field            | Type        | Description                                        |
-| ---------------- | ----------- | -------------------------------------------------- |
-| `inf_fname`      | text/string | The first name of the informant                    |
-| `inf_prefix`     | text/string | The surname prefix of the informant                |
-| `inf_sname`      | text/string | The last name of the informant                     |
-| `inf_age`        | integer     | Age of the informant (format: yy)                  |
-| `inf_occ`        | text/string | Occupation of the informant                        |
-| `inf_place`      | text/string | Address of the informant                           |
-| `inf_otherinfo`  | text/string | Other information concerning the informant         |
-| `inf_sig`        | text/string | Whether informant was able to sign the certificate |
-| `inf_sig_other`  | text/string | Other information about the informant's signature  |
-| `inf_pres`       | text/string | Whether informant was present at birth             |
-| `inf_pres_other` | text/string | Other information about the informant's presence   |
+| Field            | Type        | Description                                        | Crucial for Linking | Primary Information |
+| ---------------- | ----------- | -------------------------------------------------- | ------------------- | ------------------- |
+| `inf_fname`      | text/string | The first name of the informant                    |                     |                     |
+| `inf_prefix`     | text/string | The surname prefix of the informant                |                     |                     |
+| `inf_sname`      | text/string | The last name of the informant                     |                     |                     |
+| `inf_age`        | integer     | Age of the informant (format: yy)                  |                     |                     |
+| `inf_occ`        | text/string | Occupation of the informant                        |                     |                     |
+| `inf_place`      | text/string | Address of the informant                           |                     |                     |
+| `inf_otherinfo`  | text/string | Other information concerning the informant         |                     |                     |
+| `inf_sig`        | text/string | Whether informant was able to sign the certificate |                     |                     |
+| `inf_sig_other`  | text/string | Other information about the informant's signature  |                     |                     |
+| `inf_pres`       | text/string | Whether informant was present at birth             |                     |                     |
+| `inf_pres_other` | text/string | Other information about the informant's presence   |                     |                     |
 
 ### Birth Information
 
-| Field           | Type        | Description                        | Format       |
-| --------------- | ----------- | ---------------------------------- | ------------ |
-| `birth_date`    | date        | Date of birth                      | `dd-mm-yyyy` |
-| `birth_daypart` | text/string | Part of the day the child was born |              |
-| `birth_hour`    | text/string | Hour of the day the child was born |              |
-| `birth_place`   | text/string | Place the child was born           |              |
+| Field           | Type        | Description                        | Format       | Crucial for Linking | Primary Information |
+| --------------- | ----------- | ---------------------------------- | ------------ | ------------------- | ------------------- |
+| `birth_date`    | date        | Date of birth                      | `dd-mm-yyyy` |                     |                     |
+| `birth_daypart` | text/string | Part of the day the child was born |              |                     |                     |
+| `birth_hour`    | text/string | Hour of the day the child was born |              |                     |                     |
+| `birth_place`   | text/string | Place the child was born           |              |                     |                     |
 
 ### Child Information
 
-| Field          | Type        | Description                         |
-| -------------- | ----------- | ----------------------------------- |
-| `child_sex`    | text/string | The sex of the newborn child        |
-| `child_fname`  | text/string | First name of the newborn child     |
-| `child_prefix` | text/string | Surname prefix of the newborn child |
-| `child_sname`  | text/string | Last name of the newborn child      |
+| Field          | Type        | Description                         | Crucial for Linking | Primary Information |
+| -------------- | ----------- | ----------------------------------- | ------------------- | ------------------- |
+| `child_sex`    | text/string | The sex of the newborn child        |                     |                     |
+| `child_fname`  | text/string | First name of the newborn child     |                     |                     |
+| `child_prefix` | text/string | Surname prefix of the newborn child |                     |                     |
+| `child_sname`  | text/string | Last name of the newborn child      |                     |                     |
 
 ### Mother Information
 
-| Field            | Type        | Description                             |
-| ---------------- | ----------- | --------------------------------------- |
-| `moth_fname`     | text/string | The first name of the mother            |
-| `moth_prefix`    | text/string | The surname prefix of the mother        |
-| `moth_sname`     | text/string | The last name of the mother             |
-| `moth_occ`       | text/string | Occupation of the mother                |
-| `moth_place`     | text/string | Address of the mother                   |
-| `moth_otherinfo` | text/string | Other information concerning the mother |
+| Field            | Type        | Description                             | Crucial for Linking | Primary Information |
+| ---------------- | ----------- | --------------------------------------- | ------------------- | ------------------- |
+| `moth_fname`     | text/string | The first name of the mother            |                     |                     |
+| `moth_prefix`    | text/string | The surname prefix of the mother        |                     |                     |
+| `moth_sname`     | text/string | The last name of the mother             |                     |                     |
+| `moth_occ`       | text/string | Occupation of the mother                |                     |                     |
+| `moth_place`     | text/string | Address of the mother                   |                     |                     |
+| `moth_otherinfo` | text/string | Other information concerning the mother |                     |                     |
 
 ### Father Information
 
-| Field         | Type        | Description                      |
-| ------------- | ----------- | -------------------------------- |
-| `fath_fname`  | text/string | The first name of the father     |
-| `fath_prefix` | text/string | The surname prefix of the father |
-| `fath_sname`  | text/string | Last name of the father          |
+| Field         | Type        | Description                      | Crucial for Linking | Primary Information |
+| ------------- | ----------- | -------------------------------- | ------------------- | ------------------- |
+| `fath_fname`  | text/string | The first name of the father     |                     |                     |
+| `fath_prefix` | text/string | The surname prefix of the father |                     |                     |
+| `fath_sname`  | text/string | Last name of the father          |                     |                     |
 
 ### Witness 1
 
-| Field             | Type        | Description                                            |
-| ----------------- | ----------- | ------------------------------------------------------ |
-| `wts_fname_1`     | text/string | The first name of the first witness                    |
-| `wts_prefix_1`    | text/string | The surname prefix of the first witness                |
-| `wts_sname_1`     | text/string | The last name of the first witness                     |
-| `wts_age_1`       | integer     | Age of the first witness (format: yy)                  |
-| `wts_occ_1`       | text/string | Occupation of the first witness                        |
-| `wts_place_1`     | text/string | Address of the first witness                           |
-| `wts_sig_1`       | text/string | Whether first witness was able to sign the certificate |
-| `wts_sig_other_1` | text/string | Other information about the first witness signature    |
+| Field             | Type        | Description                                            | Crucial for Linking | Primary Information |
+| ----------------- | ----------- | ------------------------------------------------------ | ------------------- | ------------------- |
+| `wts_fname_1`     | text/string | The first name of the first witness                    |                     |                     |
+| `wts_prefix_1`    | text/string | The surname prefix of the first witness                |                     |                     |
+| `wts_sname_1`     | text/string | The last name of the first witness                     |                     |                     |
+| `wts_age_1`       | integer     | Age of the first witness (format: yy)                  |                     |                     |
+| `wts_occ_1`       | text/string | Occupation of the first witness                        |                     |                     |
+| `wts_place_1`     | text/string | Address of the first witness                           |                     |                     |
+| `wts_sig_1`       | text/string | Whether first witness was able to sign the certificate |                     |                     |
+| `wts_sig_other_1` | text/string | Other information about the first witness signature    |                     |                     |
 
 ### Witness 2
 
-| Field             | Type        | Description                                             |
-| ----------------- | ----------- | ------------------------------------------------------- |
-| `wts_fname_2`     | text/string | The first name of the second witness                    |
-| `wts_prefix_2`    | text/string | The surname prefix of the second witness                |
-| `wts_sname_2`     | text/string | The last name of the second witness                     |
-| `wts_age_2`       | integer     | Age of the second witness (format: yy)                  |
-| `wts_occ_2`       | text/string | Occupation of the second witness                        |
-| `wts_place_2`     | text/string | Address of the second witness                           |
-| `wts_sig_2`       | text/string | Whether second witness was able to sign the certificate |
-| `wts_sig_other_2` | text/string | Other information about the second witness signature    |
+| Field             | Type        | Description                                             | Crucial for Linking | Primary Information |
+| ----------------- | ----------- | ------------------------------------------------------- | ------------------- | ------------------- |
+| `wts_fname_2`     | text/string | The first name of the second witness                    |                     |                     |
+| `wts_prefix_2`    | text/string | The surname prefix of the second witness                |                     |                     |
+| `wts_sname_2`     | text/string | The last name of the second witness                     |                     |                     |
+| `wts_age_2`       | integer     | Age of the second witness (format: yy)                  |                     |                     |
+| `wts_occ_2`       | text/string | Occupation of the second witness                        |                     |                     |
+| `wts_place_2`     | text/string | Address of the second witness                           |                     |                     |
+| `wts_sig_2`       | text/string | Whether second witness was able to sign the certificate |                     |                     |
+| `wts_sig_other_2` | text/string | Other information about the second witness signature    |                     |                     |
 
 ### Additional Notes
 
-| Field       | Type        | Description                                                     |
-| ----------- | ----------- | --------------------------------------------------------------- |
-| `notes_all` | text/string | All notations added by the clerk on the side of the certificate |
+| Field       | Type        | Description                                                     | Crucial for Linking | Primary Information |
+| ----------- | ----------- | --------------------------------------------------------------- | ------------------- | ------------------- |
+| `notes_all` | text/string | All notations added by the clerk on the side of the certificate |                     |                     |
 
 ---
 

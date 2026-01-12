@@ -41,90 +41,90 @@ Based on the source documentation screenshot:
 
 ### Person Identification
 
-| Field           | Type        | Description                 | Example |
-| --------------- | ----------- | --------------------------- | ------- |
-| `Id_person`     | integer     | Person identifier           |         |
-| `Id_source`     | text/string | Source identifier           |         |
-| `Name_enslaved` | text/string | Name of the enslaved person |         |
-| `Sex`           | text/string | Sex of the person           |         |
+| Field           | Type        | Description                 | Example | Crucial for Linking | Primary Information |
+| --------------- | ----------- | --------------------------- | ------- | ------------------- | ------------------- |
+| `Id_person`     | integer     | Person identifier           |         |                     |                     |
+| `Id_source`     | text/string | Source identifier           |         |                     |                     |
+| `Name_enslaved` | text/string | Name of the enslaved person |         |                     |                     |
+| `Sex`           | text/string | Sex of the person           |         |                     |                     |
 
 ### Age and Birth Information
 
-| Field            | Type        | Description                                                 | Notes |
-| ---------------- | ----------- | ----------------------------------------------------------- | ----- |
-| `Age`            | integer     | Age                                                         |       |
-| `Age_Ruw`        | text/string | Raw/original age value                                      |       |
-| `Day_birth`      | integer     | Day of birth                                                |       |
-| `Month_birth`    | integer     | Month of birth                                              |       |
-| `Year_birth`     | integer     | Year of birth                                               |       |
-| `Year_Birth2_ER` | integer     | Alternative/corrected birth year from Emancipation Register |       |
+| Field            | Type        | Description                                                 | Notes | Crucial for Linking | Primary Information |
+| ---------------- | ----------- | ----------------------------------------------------------- | ----- | ------------------- | ------------------- |
+| `Age`            | integer     | Age                                                         |       |                     |                     |
+| `Age_Ruw`        | text/string | Raw/original age value                                      |       |                     |                     |
+| `Day_birth`      | integer     | Day of birth                                                |       |                     |                     |
+| `Month_birth`    | integer     | Month of birth                                              |       |                     |                     |
+| `Year_birth`     | integer     | Year of birth                                               |       |                     |                     |
+| `Year_Birth2_ER` | integer     | Alternative/corrected birth year from Emancipation Register |       |                     |                     |
 
 ### Death Information
 
-| Field         | Type    | Description    |
-| ------------- | ------- | -------------- |
-| `Day_death`   | integer | Day of death   |
-| `Month_death` | integer | Month of death |
-| `Year_death`  | integer | Year of death  |
+| Field         | Type    | Description    | Crucial for Linking | Primary Information |
+| ------------- | ------- | -------------- | ------------------- | ------------------- |
+| `Day_death`   | integer | Day of death   |                     |                     |
+| `Month_death` | integer | Month of death |                     |                     |
+| `Year_death`  | integer | Year of death  |                     |                     |
 
 ### Family
 
-| Field         | Type        | Description    |
-| ------------- | ----------- | -------------- |
-| `Name_mother` | text/string | Name of mother |
+| Field         | Type        | Description    | Crucial for Linking | Primary Information |
+| ------------- | ----------- | -------------- | ------------------- | ------------------- |
+| `Name_mother` | text/string | Name of mother |                     |                     |
 
 ### Organization
 
-| Field        | Type        | Description     |
-| ------------ | ----------- | --------------- |
-| `Plantation` | text/string | Plantation name |
-| `Name_owner` | text/string | Owner's name    |
+| Field        | Type        | Description     | Crucial for Linking | Primary Information |
+| ------------ | ----------- | --------------- | ------------------- | ------------------- |
+| `Plantation` | text/string | Plantation name |                     |                     |
+| `Name_owner` | text/string | Owner's name    |                     |                     |
 
 ### Start Entry Information
 
 Tracks when a person entered a particular status/location:
 
-| Field                     | Type        | Description                      | Values                                                                              |
-| ------------------------- | ----------- | -------------------------------- | ----------------------------------------------------------------------------------- |
-| `StartEntryDay`           | integer     | Day of start entry               |                                                                                     |
-| `StartEntryMonth`         | integer     | Month of start entry             |                                                                                     |
-| `StartEntryYear`          | integer     | Year of start entry              |                                                                                     |
-| `StartEntryInfo`          | text/string | Additional start info            |                                                                                     |
-| `StartEntryEventDetailed` | text/string | Detailed start event description |                                                                                     |
-| `StartEntryEvent`         | text/string | Specific event types             | `Start Series`, `Birth`, `Transferred`, `Acquired/Transferred`, `Acquired (newlyb)` |
+| Field                     | Type        | Description                      | Values                                                                              | Crucial for Linking | Primary Information |
+| ------------------------- | ----------- | -------------------------------- | ----------------------------------------------------------------------------------- | ------------------- | ------------------- |
+| `StartEntryDay`           | integer     | Day of start entry               |                                                                                     |                     |                     |
+| `StartEntryMonth`         | integer     | Month of start entry             |                                                                                     |                     |                     |
+| `StartEntryYear`          | integer     | Year of start entry              |                                                                                     |                     |                     |
+| `StartEntryInfo`          | text/string | Additional start info            |                                                                                     |                     |                     |
+| `StartEntryEventDetailed` | text/string | Detailed start event description |                                                                                     |                     |                     |
+| `StartEntryEvent`         | text/string | Specific event types             | `Start Series`, `Birth`, `Transferred`, `Acquired/Transferred`, `Acquired (newlyb)` |                     |                     |
 
 ### End Entry Information
 
 Tracks when a person left a particular status/location:
 
-| Field                   | Type        | Description                    | Values                                                        |
-| ----------------------- | ----------- | ------------------------------ | ------------------------------------------------------------- |
-| `EndEntryDay`           | integer     | Day of end entry               |                                                               |
-| `EndEntryMonth`         | integer     | Month of end entry             |                                                               |
-| `EndEntryYear`          | integer     | Year of end entry              |                                                               |
-| `EndEntryInfo`          | text/string | Additional end info            |                                                               |
-| `EndEntryEventDetailed` | text/string | Detailed end event description |                                                               |
-| `EndEntryEvent`         | text/string | Specific event types           | `End Series/Freedom`, `Ended`, `Death`, `Transferred`, `Sold` |
+| Field                   | Type        | Description                    | Values                                                        | Crucial for Linking | Primary Information |
+| ----------------------- | ----------- | ------------------------------ | ------------------------------------------------------------- | ------------------- | ------------------- |
+| `EndEntryDay`           | integer     | Day of end entry               |                                                               |                     |                     |
+| `EndEntryMonth`         | integer     | Month of end entry             |                                                               |                     |                     |
+| `EndEntryYear`          | integer     | Year of end entry              |                                                               |                     |                     |
+| `EndEntryInfo`          | text/string | Additional end info            |                                                               |                     |                     |
+| `EndEntryEventDetailed` | text/string | Detailed end event description |                                                               |                     |                     |
+| `EndEntryEvent`         | text/string | Specific event types           | `End Series/Freedom`, `Ended`, `Death`, `Transferred`, `Sold` |                     |                     |
 
 ### Personal Details (Primarily from Emancipation Register)
 
-| Field              | Type        | Description                                           |
-| ------------------ | ----------- | ----------------------------------------------------- |
-| `First_name`       | text/string | First name                                            |
-| `Family_name`      | text/string | Family name                                           |
-| `Baptized_name`    | text/string | Baptized name                                         |
-| `Family_relations` | text/string | Family relationships (e.g., `Kind van...` = child of) |
-| `Occupation`       | text/string | Occupation                                            |
-| `Remarks_ER`       | text/string | Remarks from Emancipation Register                    |
+| Field              | Type        | Description                                           | Crucial for Linking | Primary Information |
+| ------------------ | ----------- | ----------------------------------------------------- | ------------------- | ------------------- |
+| `First_name`       | text/string | First name                                            |                     |                     |
+| `Family_name`      | text/string | Family name                                           |                     |                     |
+| `Baptized_name`    | text/string | Baptized name                                         |                     |                     |
+| `Family_relations` | text/string | Family relationships (e.g., `Kind van...` = child of) |                     |                     |
+| `Occupation`       | text/string | Occupation                                            |                     |                     |
+| `Remarks_ER`       | text/string | Remarks from Emancipation Register                    |                     |                     |
 
 ### Archive Information
 
-| Field              | Type        | Description                                                                                         |
-| ------------------ | ----------- | --------------------------------------------------------------------------------------------------- |
-| `Inventory_number` | integer     | Archive inventory number                                                                            |
-| `Folio_number`     | integer     | Folio number                                                                                        |
-| `Slaveregister`    | text/string | Slave register reference                                                                            |
-| `Typeregister`     | text/string | Register type: `Slave register plantation`, `Slave register private owner`, `Emancipation Register` |
+| Field              | Type        | Description                                                                                         | Crucial for Linking | Primary Information |
+| ------------------ | ----------- | --------------------------------------------------------------------------------------------------- | ------------------- | ------------------- |
+| `Inventory_number` | integer     | Archive inventory number                                                                            |                     |                     |
+| `Folio_number`     | integer     | Folio number                                                                                        |                     |                     |
+| `Slaveregister`    | text/string | Slave register reference                                                                            |                     |                     |
+| `Typeregister`     | text/string | Register type: `Slave register plantation`, `Slave register private owner`, `Emancipation Register` |                     |                     |
 
 ---
 

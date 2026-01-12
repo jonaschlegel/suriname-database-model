@@ -38,120 +38,120 @@ Based on the source documentation screenshot:
 
 ### Identification and Location Fields
 
-| Field                 | Type        | Description                              | Example                                   |
-| --------------------- | ----------- | ---------------------------------------- | ----------------------------------------- |
-| `recordId`            | text/string | Record identifier                        |                                           |
-| `id`                  | integer     | Integer ID                               |                                           |
-| `year`                | integer     | Year of almanac entry                    | `1819`, `1827`, `1835`                    |
-| `page`                | text/string | Page number or range                     | `e.g., '28', '176-177'`                   |
-| `Itr_std`             | text/string | Letter-index                             | `e.g., 'D', 'D', 'E'`                     |
-| `district_of_divisie` | text/string | Division name                            |                                           |
-| `loc_org`             | text/string | Original location description (in Dutch) |                                           |
-| `loc_std`             | text/string | Standardized location name               |                                           |
-| `direction`           | text/string | Direction                                | `rechts`, `links`, `links afvarend`, etc. |
+| Field                 | Type        | Description                              | Example                                   | Crucial for Linking | Primary Information |
+| --------------------- | ----------- | ---------------------------------------- | ----------------------------------------- | ------------------- | ------------------- |
+| `recordId`            | text/string | Record identifier                        |                                           |                     |                     |
+| `id`                  | integer     | Integer ID                               |                                           |                     |                     |
+| `year`                | integer     | Year of almanac entry                    | `1819`, `1827`, `1835`                    |                     |                     |
+| `page`                | text/string | Page number or range                     | `e.g., '28', '176-177'`                   |                     |                     |
+| `Itr_std`             | text/string | Letter-index                             | `e.g., 'D', 'D', 'E'`                     |                     |                     |
+| `district_of_divisie` | text/string | Division name                            |                                           |                     |                     |
+| `loc_org`             | text/string | Original location description (in Dutch) |                                           |                     |                     |
+| `loc_std`             | text/string | Standardized location name               |                                           |                     |                     |
+| `direction`           | text/string | Direction                                | `rechts`, `links`, `links afvarend`, etc. |                     |                     |
 
 ### Plantation Information
 
-| Field            | Type        | Description                                                    | Notes                      |
-| ---------------- | ----------- | -------------------------------------------------------------- | -------------------------- |
-| `plantation_std` | text/string | Standardized plantation name                                   |                            |
-| `plantation_org` | text/string | Original plantation name OR plantation name as organization??? |                            |
-| `plantation_id`  | text/string | Wikidata Q-identifier                                          |                            |
-| `psur_id`        | text/string | PSUR identifier (e.g., `PSUROOO1`)                             | Links to Plantagen Dataset |
+| Field            | Type        | Description                                                    | Notes                      | Crucial for Linking | Primary Information |
+| ---------------- | ----------- | -------------------------------------------------------------- | -------------------------- | ------------------- | ------------------- |
+| `plantation_std` | text/string | Standardized plantation name                                   |                            |                     |                     |
+| `plantation_org` | text/string | Original plantation name OR plantation name as organization??? |                            |                     |                     |
+| `plantation_id`  | text/string | Wikidata Q-identifier                                          |                            |                     |                     |
+| `psur_id`        | text/string | PSUR identifier (e.g., `PSUROOO1`)                             | Links to Plantagen Dataset |                     |                     |
 
 ### Split Plantations
 
 For plantations split with Q-identifier — Wikidata:
 
-| Field        | Type        | Description              |
-| ------------ | ----------- | ------------------------ |
-| `split1_lab` | text/string | Split plantation 1 label |
-| `split1_id`  | text/string | Split plantation 1 ID    |
-| `split2_lab` | text/string | Split plantation 2 label |
-| `split2_id`  | text/string | Split plantation 2 ID    |
-| `split3_lab` | text/string | Split plantation 3 label |
-| `split3_id`  | text/string | Split plantation 3 ID    |
-| `split4_lab` | text/string | Split plantation 4 label |
-| `split4_id`  | text/string | Split plantation 4 ID    |
-| `split5_lab` | text/string | Split plantation 5 label |
-| `split5_id`  | text/string | Split plantation 5 ID    |
+| Field        | Type        | Description              | Crucial for Linking | Primary Information |
+| ------------ | ----------- | ------------------------ | ------------------- | ------------------- |
+| `split1_lab` | text/string | Split plantation 1 label |                     |                     |
+| `split1_id`  | text/string | Split plantation 1 ID    |                     |                     |
+| `split2_lab` | text/string | Split plantation 2 label |                     |                     |
+| `split2_id`  | text/string | Split plantation 2 ID    |                     |                     |
+| `split3_lab` | text/string | Split plantation 3 label |                     |                     |
+| `split3_id`  | text/string | Split plantation 3 ID    |                     |                     |
+| `split4_lab` | text/string | Split plantation 4 label |                     |                     |
+| `split4_id`  | text/string | Split plantation 4 ID    |                     |                     |
+| `split5_lab` | text/string | Split plantation 5 label |                     |                     |
+| `split5_id`  | text/string | Split plantation 5 ID    |                     |                     |
 
 ### References and Location Relationships
 
-| Field               | Type        | Description              |
-| ------------------- | ----------- | ------------------------ |
-| `partof_lab`        | text/string | Part of (label)          |
-| `part_of_id`        | text/string | Part of (ID)             |
-| `reference_org`     | text/string | Reference organization   |
-| `reference_std_lab` | text/string | Reference standard label |
-| `reference_std_id`  | text/string | Reference standard ID    |
+| Field               | Type        | Description              | Crucial for Linking | Primary Information |
+| ------------------- | ----------- | ------------------------ | ------------------- | ------------------- |
+| `partof_lab`        | text/string | Part of (label)          |                     |                     |
+| `part_of_id`        | text/string | Part of (ID)             |                     |                     |
+| `reference_org`     | text/string | Reference organization   |                     |                     |
+| `reference_std_lab` | text/string | Reference standard label |                     |                     |
+| `reference_std_id`  | text/string | Reference standard ID    |                     |                     |
 
 ### Plantation Characteristics
 
-| Field             | Type        | Description                     |
-| ----------------- | ----------- | ------------------------------- |
-| `size_std`        | integer     | Size (standardized)             |
-| `product_std`     | text/string | Product type                    |
-| `function`        | text/string | Function/purpose                |
-| `additional_info` | text/string | Additional information          |
-| `deserted`        | text/string | Whether plantation was deserted |
-| `nummer`          | integer     | Number                          |
+| Field             | Type        | Description                     | Crucial for Linking | Primary Information |
+| ----------------- | ----------- | ------------------------------- | ------------------- | ------------------- |
+| `size_std`        | integer     | Size (standardized)             |                     |                     |
+| `product_std`     | text/string | Product type                    |                     |                     |
+| `function`        | text/string | Function/purpose                |                     |                     |
+| `additional_info` | text/string | Additional information          |                     |                     |
+| `deserted`        | text/string | Whether plantation was deserted |                     |                     |
+| `nummer`          | integer     | Number                          |                     |                     |
 
 ### Personnel
 
-| Field                         | Type        | Description                |
-| ----------------------------- | ----------- | -------------------------- |
-| `administrateurs`             | text/string | Administrators' names      |
-| `directeuren`                 | text/string | Directors' names           |
-| `eigenaren`                   | text/string | Owners' names              |
-| `administrateurs_in_Europa`   | text/string | Administrators in Europe   |
-| `administrateurs_in_Suriname` | text/string | Administrators in Suriname |
-| `blankofficier`               | text/string | Officer names              |
+| Field                         | Type        | Description                | Crucial for Linking | Primary Information |
+| ----------------------------- | ----------- | -------------------------- | ------------------- | ------------------- |
+| `administrateurs`             | text/string | Administrators' names      |                     |                     |
+| `directeuren`                 | text/string | Directors' names           |                     |                     |
+| `eigenaren`                   | text/string | Owners' names              |                     |                     |
+| `administrateurs_in_Europa`   | text/string | Administrators in Europe   |                     |                     |
+| `administrateurs_in_Suriname` | text/string | Administrators in Suriname |                     |                     |
+| `blankofficier`               | text/string | Officer names              |                     |                     |
 
 ### Enslaved Population
 
-| Field                                      | Type        | Description                           |
-| ------------------------------------------ | ----------- | ------------------------------------- |
-| `slaven`                                   | integer     | Number of enslaved people             |
-| `namen_totaalafgemaakten`                  | text/string | Names of enslaved people (total list) |
-| `plantage_mannelijke_niet_vrije_bewoners`  | integer     | Male unfree plantation residents      |
-| `plantage_totaal_niet_vrije_bewoners`      | integer     | Total unfree plantation residents     |
-| `plantage_vrouwelijke_niet_vrije_bewoners` | integer     | Female unfree plantation residents    |
-| `priv_mannelijk_niet_vrije_bewoners`       | integer     | Male private unfree residents         |
-| `priv_totaal_niet_vrije_bewoners`          | integer     | Total private unfree residents        |
-| `priv_vrouwelijk_niet_vrije_bewoners`      | integer     | Female private unfree residents       |
+| Field                                      | Type        | Description                           | Crucial for Linking | Primary Information |
+| ------------------------------------------ | ----------- | ------------------------------------- | ------------------- | ------------------- |
+| `slaven`                                   | integer     | Number of enslaved people             |                     |                     |
+| `namen_totaalafgemaakten`                  | text/string | Names of enslaved people (total list) |                     |                     |
+| `plantage_mannelijke_niet_vrije_bewoners`  | integer     | Male unfree plantation residents      |                     |                     |
+| `plantage_totaal_niet_vrije_bewoners`      | integer     | Total unfree plantation residents     |                     |                     |
+| `plantage_vrouwelijke_niet_vrije_bewoners` | integer     | Female unfree plantation residents    |                     |                     |
+| `priv_mannelijk_niet_vrije_bewoners`       | integer     | Male private unfree residents         |                     |                     |
+| `priv_totaal_niet_vrije_bewoners`          | integer     | Total private unfree residents        |                     |                     |
+| `priv_vrouwelijk_niet_vrije_bewoners`      | integer     | Female private unfree residents       |                     |                     |
 
 ### General Population Statistics
 
-| Field                                                        | Type    | Description                           |
-| ------------------------------------------------------------ | ------- | ------------------------------------- |
-| `totaal_generaal_bewoners`                                   | integer | Total general population              |
-| `vrije_bewoners`                                             | integer | Free residents                        |
-| `generaal_totaal_slaven`                                     | integer | General total enslaved                |
-| `generaal_aant_slaven_geschikt_tot_werken_plantages`         | integer | Enslaved fit for plantation work      |
-| `generaal_aant_slaven_geschikt_tot_werken_priv`              | integer | Enslaved fit for private work         |
-| `generaal_aant_slaven_ongeschikt_tot_werken_plantages`       | integer | Enslaved unfit for plantation work    |
-| `generaal_aant_slaven_ongeschikt_tot_werken_priv`            | integer | Enslaved unfit for private work       |
-| `totaal_slaven_op_de_plantages_aanwezig_geschikt_tot_werk`   | integer | Total enslaved present fit for work   |
-| `totaal_slaven_op_de_plantages_aanwezig_ongeschikt_tot_werk` | integer | Total enslaved present unfit for work |
+| Field                                                        | Type    | Description                           | Crucial for Linking | Primary Information |
+| ------------------------------------------------------------ | ------- | ------------------------------------- | ------------------- | ------------------- |
+| `totaal_generaal_bewoners`                                   | integer | Total general population              |                     |                     |
+| `vrije_bewoners`                                             | integer | Free residents                        |                     |                     |
+| `generaal_totaal_slaven`                                     | integer | General total enslaved                |                     |                     |
+| `generaal_aant_slaven_geschikt_tot_werken_plantages`         | integer | Enslaved fit for plantation work      |                     |                     |
+| `generaal_aant_slaven_geschikt_tot_werken_priv`              | integer | Enslaved fit for private work         |                     |                     |
+| `generaal_aant_slaven_ongeschikt_tot_werken_plantages`       | integer | Enslaved unfit for plantation work    |                     |                     |
+| `generaal_aant_slaven_ongeschikt_tot_werken_priv`            | integer | Enslaved unfit for private work       |                     |                     |
+| `totaal_slaven_op_de_plantages_aanwezig_geschikt_tot_werk`   | integer | Total enslaved present fit for work   |                     |                     |
+| `totaal_slaven_op_de_plantages_aanwezig_ongeschikt_tot_werk` | integer | Total enslaved present unfit for work |                     |                     |
 
 ### Free Persons on Plantations
 
-| Field                                 | Type    | Description                       |
-| ------------------------------------- | ------- | --------------------------------- |
-| `vrije_personen_op_plantages_jongens` | integer | Free boys on plantations          |
-| `vrije_personen_op_plantages_mannen`  | integer | Free men on plantations           |
-| `vrije_personen_op_plantages_meisjes` | integer | Free girls on plantations         |
-| `vrije_personen_op_plantages_vrouwen` | integer | Free women on plantations         |
-| `vrije_personen_op_plantages_totaal`  | integer | Total free persons on plantations |
+| Field                                 | Type    | Description                       | Crucial for Linking | Primary Information |
+| ------------------------------------- | ------- | --------------------------------- | ------------------- | ------------------- |
+| `vrije_personen_op_plantages_jongens` | integer | Free boys on plantations          |                     |                     |
+| `vrije_personen_op_plantages_mannen`  | integer | Free men on plantations           |                     |                     |
+| `vrije_personen_op_plantages_meisjes` | integer | Free girls on plantations         |                     |                     |
+| `vrije_personen_op_plantages_vrouwen` | integer | Free women on plantations         |                     |                     |
+| `vrije_personen_op_plantages_totaal`  | integer | Total free persons on plantations |                     |                     |
 
 ### Machinery
 
-| Field             | Type        | Description                    |
-| ----------------- | ----------- | ------------------------------ |
-| `soort_van_molen` | text/string | Type of mill (`Stoom` = steam) |
-| `werktuig_stoom`  | integer     | Steam machinery count          |
-| `werktuig_water`  | integer     | Water machinery count          |
+| Field             | Type        | Description                    | Crucial for Linking | Primary Information |
+| ----------------- | ----------- | ------------------------------ | ------------------- | ------------------- |
+| `soort_van_molen` | text/string | Type of mill (`Stoom` = steam) |                     |                     |
+| `werktuig_stoom`  | integer     | Steam machinery count          |                     |                     |
+| `werktuig_water`  | integer     | Water machinery count          |                     |                     |
 
 ---
 

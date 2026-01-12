@@ -1,327 +1,459 @@
-# References & Citations
+# References
 
-> Academic citations for the Suriname Database Model project, formatted in BibTeX style for Zotero integration.
-
-## How to Use This File
-
-References are organized by category and use a citation key format: `[AuthorYear]` or `[AuthorYear-keyword]`.
-
-**In-text citation example:**
-
-> The relational model was first proposed by Codd [@Codd1970], establishing the foundation for modern database systems.
+Working bibliography. Sources found useful or plan to read. Notes on what I've read vs what's on the list.
 
 ---
 
-## Related Data Sources - Primary Datasets
+## Primary Datasets
 
-### Suriname Plantagen Dataset
+IISH Data Collection hosts the main datasets:
 
-```bibtex
-@dataset{RosenbaumFeldbrugge2024-plantagen,
-  author       = {Rosenbaum-Feldbrügge, Matthias and
-                  Maurits, Rick J. A.B. and
-                  Mauritz, Janssen, Jasanthan and
-                  Quanjer, Björn and
-                  van Oort, Thunnis and
-                  Jak, Jay and
-                  van Galen, Coen},
-  title        = {{Suriname Plantagen Dataset Version 1.1}},
-  year         = {2024},
-  publisher    = {IISH Data Collection},
-  version      = {V1},
-  doi          = {10.17026/SS/YOFINK},
-  url          = {https://hdl.handle.net/10622/YOFINK},
-  note         = {Data Rows: 375, Data Columns: 15. License: CC BY-SA 4.0}
-}
-```
+| dataset                        | DOI                | records | notes                       |
+| ------------------------------ | ------------------ | ------- | --------------------------- |
+| Suriname Plantagen             | 10.17026/SS/YOFINK | 375     | plantation master list      |
+| Slave & Emancipation Registers | 10.17026/SS/MSJBAN | 95,388  | individual enslaved persons |
+| Death Certificates             | (pending)          | 192,335 | 1845-1915                   |
+| Birth Certificates             | 10.17026/FUBB05    | 63,200  | Paramaribo 1828-1921        |
+| Ward Registers                 | 10.17026/SS/VAQF63 | 102,260 | Paramaribo 1828-1847        |
+| Almanakken                     | 10.17026/SS/MVOJY5 | 22,000  | plantation management data  |
 
-### Suriname Death Certificates
-
-```bibtex
-@dataset{vanOort2023-deathcert,
-  author       = {van Oort, Thunnis and others},
-  title        = {{Suriname Death Certificates 1845-1915 Version 1.0}},
-  year         = {2023},
-  publisher    = {IISH Data Collection},
-  version      = {1.0},
-  url          = {https://hdl.handle.net/10622/...},
-  note         = {Data Rows: 192,335, Data Columns: 38. License: CC BY-SA 4.0}
-}
-```
-
-### Paramaribo Birth Certificates
-
-```bibtex
-@dataset{Collection2024-birthcert,
-  author       = {{NL-HaNA Collection}},
-  title        = {{Paramaribo Birth Certificates 1828-1921 Version 1.0}},
-  year         = {2024},
-  publisher    = {IISH Data Collection},
-  version      = {1.0},
-  doi          = {10.17026/FUBB05},
-  url          = {https://hdl.handle.net/10622/FUBB05},
-  note         = {Data Rows: 63,200, Data Columns: 32. License: CC BY-SA 4.0}
-}
-```
-
-### Paramaribo Ward Registers
-
-```bibtex
-@dataset{KasteleijnvanOort2024-ward,
-  author       = {Kasteleijn, Karel-Jan and
-                  Oort, Aiko and
-                  Sildani, Molly and
-                  Janssen, Carlo and
-                  Kruizevanger, Nicky and
-                  Olav, Glen and
-                  van Crey, Thando},
-  title        = {{Paramaribo Ward Registers 1828-1847}},
-  year         = {2024},
-  publisher    = {IISH Data Collection},
-  version      = {V1},
-  doi          = {10.17026/SS/VAQF63},
-  url          = {https://hdl.handle.net/10622/SS/VAQF63},
-  note         = {Data Rows: 102,260, Data Columns: 40. License: CC BY-NC-SA 4.0}
-}
-```
-
-### Suriname Slave and Emancipation Registers
-
-```bibtex
-@dataset{RosenbaumFeldbrugge2023-emancipation,
-  author       = {Rosenbaum-Feldbrügge, Matthias and
-                  Maurits, Rick J. A.B. and
-                  Mauritz, Janssen, Jasanthan and
-                  Quanjer, Björn and
-                  van Oort, Thunnis and
-                  Jak, Jay and
-                  van Galen, Coen},
-  title        = {{Suriname Slave and Emancipation Registers Dataset Version 1.1}},
-  year         = {2023},
-  publisher    = {IISH Data Collection},
-  version      = {V2},
-  doi          = {10.17026/SS/MSJBAN},
-  url          = {https://hdl.handle.net/10622/MSJBAN},
-  note         = {Data Rows: 95,388, Data Columns: 38. License: CC BY-SA 4.0}
-}
-```
-
-### Plantations Surinaamse Almanakken
-
-```bibtex
-@dataset{vanOort2023-almanakken,
-  author       = {van Oort, Thunnis and
-                  Altink, Hera and
-                  Sanders, Doortje and
-                  Smith, Rik and
-                  Piault, Damion and
-                  Rosenbaum-Feldbrügge, Matthias and
-                  Quanjer, Björn and
-                  van Galen, Coen},
-  title        = {{Plantations Surinaamse Almanakken}},
-  year         = {2023},
-  publisher    = {IISH Data Collection},
-  version      = {V1},
-  doi          = {10.17026/SS/MVOJY5},
-  url          = {https://hdl.handle.net/10622/MVOJY5},
-  note         = {Data Rows: 22,000, Data Columns: 60. License: CC BY-SA 4.0}
-}
-```
+Ward Registers also available as LOD: https://druid.datalegend.net/RJM/Paramaribo-Ward-Registers-1828-1847
 
 ---
 
-## Theoretical Foundations
+## Surinamese History and Slavery
 
-### Relational Database Theory
+### Essential (read these)
 
-```bibtex
-@article{Codd1970,
-  author    = {Codd, Edgar F.},
-  title     = {{A Relational Model of Data for Large Shared Data Banks}},
-  journal   = {Communications of the ACM},
-  volume    = {13},
-  number    = {6},
-  pages     = {377--387},
-  year      = {1970},
-  doi       = {10.1145/362384.362685},
-  note      = {The foundational paper introducing the relational model}
-}
-```
+Stipriaan, Alex van. _Surinaams Contrast: Roofbouw en Overleven in een Caraïbische Plantagekolonie, 1750-1863_. KITLV Press, 1993.
 
-```bibtex
-@book{Date2019,
-  author    = {Date, C.J.},
-  title     = {{Database Design and Relational Theory: Normal Forms and All That Jazz}},
-  edition   = {2nd},
-  publisher = {Apress},
-  year      = {2019},
-  isbn      = {978-1484255391}
-}
-```
+- standard economic history of Surinamese plantation slavery
+- used same plantation registers we work with
+- methodology for incomplete records directly relevant
 
-### Linked Open Data & Semantic Web
+Oostindie, Gert. _Roosenburg en Mon Bijou: Twee Surinaamse Plantages, 1720-1870_. KITLV Press, 1989.
 
-```bibtex
-@misc{BernersLee2006-linkeddata,
-  author    = {Berners-Lee, Tim},
-  title     = {{Linked Data - Design Issues}},
-  year      = {2006},
-  url       = {https://www.w3.org/DesignIssues/LinkedData.html},
-  note      = {The original design principles for Linked Data}
-}
-```
+- micro-history of two plantations
+- shows what's possible tracing single location through multiple sources
 
-```bibtex
-@techreport{W3C2014-rdf,
-  author      = {{W3C}},
-  title       = {{RDF 1.1 Concepts and Abstract Syntax}},
-  institution = {World Wide Web Consortium},
-  year        = {2014},
-  type        = {W3C Recommendation},
-  url         = {https://www.w3.org/TR/rdf11-concepts/}
-}
-```
+Price, Richard. _First-Time: The Historical Vision of an African American People_. 2nd ed. Chicago, 2002.
 
-```bibtex
-@article{Heath2011-linkeddata,
-  author    = {Heath, Tom and Bizer, Christian},
-  title     = {{Linked Data: Evolving the Web into a Global Data Space}},
-  journal   = {Synthesis Lectures on the Semantic Web: Theory and Technology},
-  volume    = {1},
-  number    = {1},
-  pages     = {1--136},
-  year      = {2011},
-  doi       = {10.2200/S00334ED1V01Y201102WBE001}
-}
-```
+- oral history of Saramaka Maroons
+- what colonial archives don't capture
+- corrective to plantation-centric view
 
-### CIDOC-CRM (Cultural Heritage)
+Price, Richard, and Sally Price. _Stedman's Surinam: Life in an Eighteenth-Century Slave Society_. Johns Hopkins, 1992.
 
-```bibtex
-@techreport{CIDOC2024-crm,
-  author      = {{CIDOC CRM Special Interest Group}},
-  title       = {{Definition of the CIDOC Conceptual Reference Model}},
-  institution = {ICOM/CIDOC},
-  year        = {2024},
-  version     = {7.1.3},
-  url         = {https://www.cidoc-crm.org/Version/version-7.1.3},
-  note        = {The ISO 21127:2014 standard for cultural heritage documentation}
-}
-```
+- annotated edition of Stedman's narrative
+- primary source with scholarly apparatus
 
-```bibtex
-@article{Doerr2003-cidoc,
-  author    = {Doerr, Martin},
-  title     = {{The CIDOC Conceptual Reference Model: An Ontological Approach to Semantic Interoperability of Metadata}},
-  journal   = {AI Magazine},
-  volume    = {24},
-  number    = {3},
-  pages     = {75--92},
-  year      = {2003},
-  doi       = {10.1609/aimag.v24i3.1720}
-}
-```
+### On Dutch Colonial Slavery
 
-### Time Machine Projects
+Fatah-Black, Karwan. _White Lies and Black Markets: Evading Metropolitan Authority in Colonial Suriname, 1650-1800_. Brill, 2015.
 
-```bibtex
-@article{Kaplan2015-venicetimemachine,
-  author    = {Kaplan, Frédéric and di Lenardo, Isabella},
-  title     = {{Big Data of the Past}},
-  journal   = {Frontiers in Digital Humanities},
-  volume    = {4},
-  year      = {2017},
-  doi       = {10.3389/fdigh.2017.00012},
-  note      = {Overview of the Venice Time Machine project methodology}
-}
-```
+- smuggling and informal economies
+- official records only part of economic life
 
-```bibtex
-@misc{TimeMachineOrg2024,
-  author    = {{Time Machine Organisation}},
-  title     = {{Time Machine Europe}},
-  year      = {2024},
-  url       = {https://www.timemachine.eu/},
-  note      = {Pan-European initiative for digitizing cultural heritage}
-}
-```
+Emmer, Piet C., and Gommans, Jos J.L. _The Dutch Overseas Empire, 1600-1800_. Cambridge, 2020.
+
+- general overview
+- Suriname is one part
+
+Postma, Johannes. _The Dutch in the Atlantic Slave Trade, 1600-1815_. Cambridge, 1990.
+
+- standard work on Dutch slave trading
+- how people arrived in Suriname
+
+### Maroon History
+
+Price, Richard. _Alabi's World_. Johns Hopkins, 1990.
+
+- 18th-century Saramaka from oral traditions and archives
+- model for integrating different source types
+
+Bilby, Kenneth. _True-Born Maroons_. University Press of Florida, 2005.
+
+- comparative study including Suriname
 
 ---
 
-## Technical References
+## The Archive and Colonial Records
 
-### PostgreSQL & PostGIS
+Stoler, Ann Laura. _Along the Archival Grain: Epistemic Anxieties and Colonial Common Sense_. Princeton, 2009.
 
-```bibtex
-@manual{PostgreSQL2024,
-  author    = {{PostgreSQL Global Development Group}},
-  title     = {{PostgreSQL 16 Documentation}},
-  year      = {2024},
-  url       = {https://www.postgresql.org/docs/16/}
-}
-```
+- what colonial archives do
+- how they were produced
+- essential for thinking about our sources
 
-```bibtex
-@manual{PostGIS2024,
-  author    = {{PostGIS Project Steering Committee}},
-  title     = {{PostGIS 3.4 Manual}},
-  year      = {2024},
-  url       = {https://postgis.net/docs/manual-3.4/}
-}
-```
+Hartman, Saidiya. "Venus in Two Acts." _Small Axe_ 12, no. 2 (2008): 1-14.
 
-### Data Modeling
+- what we can and can't recover
+- violence of the archive itself
+- "How does one revisit the scene of subjection without replicating the grammar of violence?"
 
-```bibtex
-@book{Hoberman2009,
-  author    = {Hoberman, Steve},
-  title     = {{Data Modeling Made Simple}},
-  edition   = {2nd},
-  publisher = {Technics Publications},
-  year      = {2009},
-  isbn      = {978-0977140060}
-}
-```
+Fuentes, Marisa J. _Dispossessed Lives: Enslaved Women, Violence, and the Archive_. Philadelphia, 2016.
+
+- methodological model for fragmentary records
+- uses Bridgetown, Barbados archives
+- "Enraged, Diabolic Woman" chapter on reading against the grain
+
+Trouillot, Michel-Rolph. _Silencing the Past: Power and the Production of History_. Beacon Press, 1995.
+
+- how historical silences are produced
+- Haitian Revolution chapter famous, framework applies broadly
+
+Berry, Daina Ramey. _The Price for Their Pound of Flesh_. Beacon Press, 2017.
+
+- how enslaved people were valued economically
+- relevant because our sources are economic documents
+
+Morgan, Jennifer L. _Reckoning with Slavery: Gender, Kinship, and Capitalism in the Early Black Atlantic_. Duke, 2021.
+
+- reproduction, kinship, slavery's political economy
+- challenges how we think about "demographic data"
+
+---
+
+## Digital Humanities and Slavery Databases
+
+### Critical Approaches
+
+Johnson, Jessica Marie. "Markup Bodies: Black [Life] Studies and Slavery [Death] Studies at the Digital Crossroads." _Social Text_ 36, no. 4 (2018): 57-79.
+
+- how slavery databases mark up Black bodies
+- required reading before building any database of enslaved people
+
+Gallon, Kim. "Making a Case for the Black Digital Humanities." In _Debates in the Digital Humanities 2016_.
+
+- mainstream DH methods may not serve Black history well
+
+Risam, Roopika. _New Digital Worlds: Postcolonial Digital Humanities_. Northwestern, 2019.
+
+- decolonising digital methods
+
+Brown, Vincent. "Mapping a Slave Revolt." _Social Text_ 33, no. 4 (2015): 134-141.
+
+- "Slave Revolt in Jamaica, 1760-1761" mapping project
+- visualisation choices and implications
+
+### Database Projects
+
+Enslaved.org - https://enslaved.org/
+
+- most directly relevant project
+- person-centric, multiple names, uncertainty tracking
+- documentation at https://docs.enslaved.org/
+
+Slave Voyages - https://slavevoyages.org/
+
+- trans-Atlantic trade database
+- 36,000+ voyages
+- methodology on uncertainty and imputation
+
+Freedom on the Move - https://freedomonthemove.org/
+
+- crowdsourced transcription of runaway ads
+- handling biased sources
+
+UCL Legacies of British Slavery - https://www.ucl.ac.uk/lbs/
+
+- compensation records after abolition
+
+Journal of Slavery and Data Preservation - https://jsdp.enslaved.org/
+
+- peer-reviewed datasets with methodology papers
+
+### Methodology Papers
+
+Eltis, David, and Richardson, David. "A New Assessment of the Transatlantic Slave Trade." In _Extending the Frontiers_. Yale, 2008.
+
+- Slave Voyages methodology
+- uncertainty, imputation, data quality
+
+Hall, Gwendolyn Midlo. _Databases for the Study of Afro-Louisiana History and Genealogy_. LSU Press, 2000.
+
+- one of earliest slavery databases
+- methodology and limitations
+
+Zeuske, Michael. "The Names of Slavery and Beyond." In _The Second Slavery_. LIT Verlag, 2014.
+
+- naming practices
+- what names tell us (and don't)
+
+---
+
+## Historical GIS
+
+Gregory, Ian N., and Ell, Paul S. _Historical GIS: Technologies, Methodologies and Scholarship_. Cambridge, 2007.
+
+- standard introduction
+- chapter on uncertainty in historical data
+
+Southall, Humphrey, Mostern, Ruth, and Berman, Merrick Lex. "On Historical Gazetteers." _International Journal of Humanities and Arts Computing_ 5, no. 2 (2011): 127-145.
+
+- building historical place-name databases
+- foundational for LPF thinking
+
+Gregory, Ian N., and Geddes, Alistair, eds. _Toward Spatial Humanities_. Indiana, 2014.
+
+- uncertainty and temporal change
+
+---
+
+## Database Design and Ontologies
+
+### CIDOC-CRM
+
+Doerr, Martin. "The CIDOC CRM: An Ontological Approach." _AI Magazine_ 24, no. 3 (2003): 75-92.
+
+- foundational paper
+- dense but important
+
+Official spec: https://www.cidoc-crm.org/ (version 7.1.3, ISO 21127:2014)
+
+Linked.art - https://linked.art/
+
+- CIDOC-CRM profile for art museums
+- good examples
+
+ResearchSpace - https://www.researchspace.org/
+
+- British Museum project
+- tutorials
+
+Theodoridou et al. "Modeling and Querying Provenance by Extending CIDOC CRM." _Distributed and Parallel Databases_ 27, no. 2 (2010).
+
+- provenance in CIDOC-CRM
+- relevant to interpretation tracking
+
+### Relational Theory
+
+Codd, Edgar F. "A Relational Model of Data for Large Shared Data Banks." _Communications of the ACM_ 13, no. 6 (1970).
+
+- foundational paper
+
+Date, C.J. _Database Design and Relational Theory_. 2nd ed. Apress, 2019.
+
+### Linked Data
+
+Berners-Lee, Tim. "Linked Data - Design Issues." 2006.
+
+- https://www.w3.org/DesignIssues/LinkedData.html
+
+Heath, Tom, and Bizer, Christian. _Linked Data: Evolving the Web into a Global Data Space_. Morgan and Claypool, 2011.
+
+- free at http://linkeddatabook.com/
+
+Meroño-Peñuela et al. "Semantic Technologies for Historical Research: A Survey." _Semantic Web_ 6, no. 6 (2015).
+
+- survey of approaches
+
+---
+
+## PICO (Persons in Context)
+
+Model documentation: https://www.personsincontext.org/model/
+
+- Dutch standard for historical person data
+- PersonObservation vs PersonReconstruction
+
+Person Name Vocabulary (PNV): https://w3id.org/pnv
+
+- Dutch personal names
+- prefixes, patronymics
+
+Woltjer et al. "Persons in Context. A Model to Represent Observations and Reconstructions." _Historical Life Course Studies_ 14 (2024).
+
+- https://doi.org/10.51964/hlcs19312
+- foundational paper
+
+Mourits et al. "Modelling the enslaved as historical persons." DH Benelux 2025.
+
+- https://doi.org/10.5281/zenodo.15586904
+- PICO extensions for enslaved people
+- directly relevant
+
+Related projects:
+
+- HDSC (Historical Database Suriname and Caribbean) - https://www.ru.nl/hdsc/
+- CBG (Centre for Family History) - https://cbg.nl/
+- WieWasWie - https://wiewaswie.nl/
+
+Tools:
+
+- A2A to PICO converter: https://github.com/ivozandhuis/a2a-to-pico
+- PICO SHACL validation: https://github.com/CBG-Centrum-voor-familiegeschiedenis/PiCo
+
+---
+
+## Linked Places Format
+
+LPF spec: https://github.com/LinkedPasts/linked-places-format
+
+- international standard for historical gazetteers
+- GeoJSON-LD with temporal scoping
+
+Nederlands profiel (NL-LP): https://geonovum.github.io/geooptijd/
+
+- Dutch profile for heritage data
+- working draft November 2025
+
+Linked Pasts Ontology: https://github.com/LinkedPasts/linked-pasts-ontology
+
+- formal RDF layer
+
+Platforms:
+
+- World Historical Gazetteer - https://whgazetteer.org/
+- Pelagios Network - https://pelagios.org/
+- HisGIS Netherlands - https://hisgis.nl/
+
+Dutch heritage infrastructure:
+
+- Netwerk Digitaal Erfgoed - https://netwerkdigitaalerfgoed.nl/
+- Erfgoedatlas - https://www.cultureelerfgoed.nl/onderwerpen/bronnen-en-kaarten/overzicht/erfgoedatlas
+- Termennetwerk - https://termennetwerk.netwerkdigitaalerfgoed.nl/
+
+---
+
+## Time Machine Projects
+
+Venice Time Machine:
+
+- Kaplan, Frédéric. "The Venice Time Machine." ACM DocEng 2015.
+- https://www.timemachine.eu/
+
+Amsterdam Time Machine:
+
+- similar infrastructure, Dutch context
+- WIC records overlap with our sources
+
+GLOBALISE - https://globalise.huygens.knaw.nl/
+
+- VOC archives
+- developed re:Charted, AnnoRepo, Loghi HTR
+- datasprint approach: https://globalise.huygens.knaw.nl/old-maps-new-discoveries-a-datasprints-digital-exploration/
+
+---
+
+## W3C Web Annotations
+
+Specs:
+
+- Data Model: https://www.w3.org/TR/annotation-model/
+- Protocol: https://www.w3.org/TR/annotation-protocol/
+
+IIIF Presentation API: https://iiif.io/api/presentation/3.0/
+
+Tools:
+
+- AnnoRepo: https://github.com/knaw-huc/annorepo
+- re:Charted viewer: https://necessaryreunions.org/viewer
+- Allmaps (georeferencing): https://allmaps.org/
+- Recogito (annotation): https://recogito.pelagios.org/
+
+---
+
+## Technical Documentation
+
+PostgreSQL: https://www.postgresql.org/docs/current/
+PostGIS: https://postgis.net/documentation/
+
+- Obe and Hsu, _PostGIS in Action_, 3rd ed. Manning, 2021.
+
+EDTF (Extended Date/Time Format): https://www.loc.gov/standards/datetime/
+
+- standard for uncertain/approximate dates
+
+Mermaid diagrams: https://mermaid.live/
+JSON-LD playground: https://json-ld.org/playground/
+Wikidata Query Service: https://query.wikidata.org/
 
 ---
 
 ## External Data Sources
 
-### Wikidata
+Wikidata: https://www.wikidata.org/
 
-```bibtex
-@misc{Wikidata2024,
-  author    = {{Wikidata contributors}},
-  title     = {{Wikidata: A Free Collaborative Knowledge Base}},
-  year      = {2024},
-  url       = {https://www.wikidata.org/},
-  note      = {REST API: https://www.wikidata.org/wiki/Wikidata:REST_API}
-}
-```
+- REST API for place/person identifiers
 
-### Suriname Heritage Guide
+Atlas of Mutual Heritage: https://www.atlasofmutualheritage.nl/
 
-```bibtex
-@misc{SurinameHeritageGuide2024,
-  author    = {{Suriname Heritage Guide}},
-  title     = {{Suriname Heritage Guide - Historic Panden}},
-  year      = {2024},
-  url       = {https://www.suriname-heritage-guide.com/},
-  note      = {Source for 3D models and historic building documentation}
-}
-```
+- historical maps VOC/WIC area
+
+Suriname Heritage Guide: https://www.suriname-heritage-guide.com/
+
+- 3D models historic buildings
+
+Australian National Placenames Survey: https://www.anps.org.au/
+
+- good docs on contested/Indigenous place names
 
 ---
 
-## How to Add New References
+## Archives
 
-1. Use consistent citation keys: `[AuthorYear]` or `[AuthorYear-keyword]`
-2. Include DOI where available
-3. Add descriptive notes for context
-4. Place in appropriate category section
+Nationaal Archief, The Hague: https://www.nationaalarchief.nl/
 
-**Zotero Export:** This file can be imported into Zotero using the BibTeX translator.
+- Archief Sociëteit van Suriname (1.05.03)
+- main archive for Surinamese colonial records
+
+Stadsarchief Amsterdam: https://archief.amsterdam/
+
+- WIC records
+- Directie van de Sociëteit van Suriname
+
+Zeeuws Archief, Middelburg:
+
+- Middelburgsche Commercie Compagnie (MCC)
+- slave trading company records
+
+Surinaams Museum, Paramaribo:
+
+- materials not transferred to Netherlands
+- access can be challenging
 
 ---
 
-7 January 2026
+## Search Resources
+
+General:
+
+- Google Scholar (set up alerts)
+- JSTOR
+- WorldCat
+- ProQuest Dissertations
+
+Dutch:
+
+- DBNL - https://www.dbnl.org/
+- Delpher - https://www.delpher.nl/
+- KB - https://www.kb.nl/
+
+Slavery:
+
+- Enslaved.org
+- JSDP - https://jsdp.enslaved.org/
+
+Publishers:
+
+- KITLV/Brill - https://brill.com/
+
+Networks:
+
+- NiNsee - https://nfrse.nl/
+- Caribbean Studies Association
+
+---
+
+## Gaps I notice
+
+- Surinamese scholarship in Sranan/Sranantongo
+- recent PhD dissertations (check ProQuest, university repositories)
+- grey literature (NGO reports, museum catalogues)
+- oral history collections
+- comparable Caribbean projects (Jamaica, Barbados, Haiti)
+- more Maroon history beyond Price
+- post-emancipation transition period
+
+---

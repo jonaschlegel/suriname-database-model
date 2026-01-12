@@ -6,17 +6,17 @@ All datasets we are integrating and where they come from.
 
 ## The datasets
 
-| # | name | records | period | what |
-|---|------|---------|--------|------|
-| 01 | Plantagen 1900 | ~40 | 1900 | plantation survey |
-| 02 | Slavenregisters | ~82,000 | 1830-1863 | slave registers |
-| 03 | Emancipatieregisters | ~34,000 | 1863 | emancipation records |
-| 04 | Surinaamse manumissies | ~9,000 | 1832-1863 | manumissions |
-| 05 | PNV 18e-19e | ~280,000 | 1700-1838 | vrijbrieven, contracts |
-| 06 | Doodakten Suriname | ~30,000 | 1828-1935 | death certificates |
-| 07 | QGIS Maps | varies | 18th-19th c | georeferenced maps |
-| 08 | HDSC Transcriptions | large | various | transcription files |
-| 09 | Heritage Guide 3D | ~66 | various | monuments |
+| #   | name                   | records  | period      | what                   |
+| --- | ---------------------- | -------- | ----------- | ---------------------- |
+| 01  | Plantagen 1900         | ~40      | 1900        | plantation survey      |
+| 02  | Slavenregisters        | ~82,000  | 1830-1863   | slave registers        |
+| 03  | Emancipatieregisters   | ~34,000  | 1863        | emancipation records   |
+| 04  | Surinaamse manumissies | ~9,000   | 1832-1863   | manumissions           |
+| 05  | PNV 18e-19e            | ~280,000 | 1700-1838   | vrijbrieven, contracts |
+| 06  | Doodakten Suriname     | ~30,000  | 1828-1935   | death certificates     |
+| 07  | QGIS Maps              | varies   | 18th-19th c | georeferenced maps     |
+| 08  | HDSC Transcriptions    | large    | various     | transcription files    |
+| 09  | Heritage Guide 3D      | ~66      | various     | monuments              |
 
 Some overlap. Manumissions appear in multiple places. Same persons appear across datasets at different life stages.
 
@@ -50,7 +50,7 @@ graph TD
         P2[Person manumitted]
         P3[Person dies free]
     end
-    
+
     subgraph Records
         SR[Slavenregister entry]
         MR[Manumissie entry]
@@ -58,19 +58,19 @@ graph TD
         DA[Dood akte]
         PNV[PNV document]
     end
-    
+
     subgraph Places
         PL[Plantation]
         CITY[Paramaribo]
     end
-    
+
     SR --> P1
     MR --> P2
     ER --> P2
     DA --> P3
     PNV --> P1
     PNV --> P2
-    
+
     P1 --> PL
     P2 --> CITY
     P3 --> CITY
@@ -82,23 +82,22 @@ One person, multiple records across life. Key challenge is linking them.
 
 ## Key identifiers
 
-Each dataset has its own ID scheme:
+Each dataset has its own ID scheme as it seems:
 
-| dataset | id field | example |
-|---------|----------|---------|
-| Slavenregisters | PSUR_ID | PSUR_12345 |
-| Manumissies | Id_person | 5678 |
-| Doodakten | original_scanid | scan_001 |
-| QGIS maps | (none) | - |
-| Heritage 3D | Wikidata Q-ID | Q12345678 |
-
-No shared IDs. Must link through names, dates, places. Probabilistic matching.
+| dataset         | id field        | example    |
+| --------------- | --------------- | ---------- |
+| Slavenregisters | PSUR_ID         | PSUR_12345 |
+| Manumissies     | Id_person       | 5678       |
+| Doodakten       | original_scanid | scan_001   |
+| QGIS maps       | (none)          | -          |
+| Heritage 3D     | Wikidata Q-ID   | Q12345678  |
 
 ---
 
 ## Reading order
 
 Suggest going through docs in order:
+
 1. this overview
 2. each numbered source doc (01 through 09)
 3. HDSC questions for outstanding issues

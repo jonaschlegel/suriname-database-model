@@ -44,17 +44,7 @@ docs/
 - [References & Citations](docs/references.md)
 - [ADR-0001: Documentation Approach](docs/decisions/0001-documentation-approach.md)
 
-## Related Projects
+## Related Projects in regards to the Time Machine
 
 - [Venice Time Machine](https://www.timemachine.eu/)
 - [Amsterdam Time Machine](https://amsterdamtimemachine.nl/)
-- [IISH Data Collection](https://datasets.iisg.amsterdam/)
-
-## License
-
-Documentation: CC BY-SA 4.0  
-Code: MIT (when implemented)
-
----
-
-_Part of the Suriname Time Machine initiative_
