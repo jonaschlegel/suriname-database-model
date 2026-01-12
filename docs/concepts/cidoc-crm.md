@@ -1,6 +1,6 @@
 # CIDOC-CRM
 
-Notes on the cultural heritage ontology. Do we use it?
+Notes, thoughts and resources on the cultural heritage ontology.
 
 ---
 
@@ -18,7 +18,7 @@ Seems verbose but lets you:
 
 ---
 
-## Why keep coming back to it
+## Why using it
 
 Projects I am learning from use CIDOC-CRM or compatible:
 
@@ -85,7 +85,7 @@ More complex but now can say:
 | E5 Event                 | general happening | event table          |
 | E13 Attribute Assignment | interpretation    | interpretation table |
 
-E13 Attribute Assignment particularly important. Formal way of saying "someone (E39 Actor) at some time assigned this property to this thing." How you model interpretations.
+E13 Attribute Assignment https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E13 particularly important. Formal way of saying "someone (E39 Actor) at some time assigned this property to this thing." How you model interpretations.
 
 ---
 
@@ -93,63 +93,22 @@ E13 Attribute Assignment particularly important. Formal way of saying "someone (
 
 Roughly:
 
-person → E21 Person
+person → E21 Person https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E21
 
-- name is E41 Appellation via E15 Identifier Assignment
+- name is E41 Appellation https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E41 via E15 Identifier Assignment http://cidoc-crm.org/cidoc-crm/7.1.3/E15_Identifier_Assignment
 - multiple names = multiple E15 events
 
-place → E53 Place
+place → E53 Place https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E53
 
-- name is E44 Place Appellation
-- geometry... tricky
+map_feature → E22 Human-Made Object https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E22 (maybe? Or rather E24 Physical Human-Made Thing?)
 
-map_feature → E25 Human-Made Feature (maybe?)
+- polygon traced is feature (digital, or analog on the actual map?) on physical map, so a E25: Hamn-Made Feature https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E25
+- physical map is E22 Human-Made Object https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E22
 
-- polygon traced is feature on physical map
-- physical map is E22 Human-Made Object
+interpretation → E13 Attribute Assignment https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E13
 
-interpretation → E13 Attribute Assignment
-
-- "I claim this map_feature represents this place" is E13 event
+- "I claim this map_feature represents this place" is E13 event https://cidoc-crm.org/html/cidoc_crm_v7.1.3.html#E13
 - carried out by person (P14), at time (P4), with reliability
-
----
-
-## Problems
-
-Geometry:
-
-- E53 Place and E94 Space Primitive exist
-- no native way to say "this polygon represents boundary of this place at this time"
-- CRMgeo extension connects to GeoSPARQL but haven't fully understood
-- current approach: don't model geometry in pure CIDOC-CRM, keep in PostGIS, export to RDF without spatial bits
-
-Verbosity:
-
-- single birth record becomes dozens of triples
-- don't want to store in this format but could generate for export
-
-Learning curve:
-
-- 81 classes and 160 properties in current version
-- plus extensions (CRMsoc, CRMgeo, CRMdig)
-- read spec multiple times, still look things up constantly
-
----
-
-## What we should do
-
-1. don't use CIDOC-CRM as primary data model. PostgreSQL tables more practical.
-
-2. design with compatibility in mind:
-
-   - event-based interpretation layer
-   - track provenance
-   - distinguish things from names
-
-3. create CIDOC-CRM mappings for export. document which tables/columns map to which classes/properties.
-
-4. learn key patterns. event-centric thinking useful even without CIDOC-CRM syntax.
 
 ---
 
@@ -175,7 +134,7 @@ Applying this principle even where not using CIDOC-CRM syntax.
 
 - https://www.cidoc-crm.org/ (spec, version 7.1.3, ISO 21127:2014)
 - https://linked.art/ (CIDOC-CRM profile for art museums, good examples)
-- https://www.researchspace.org/ (British Museum project, tutorials)
+- https://www.researchspace.org/ (British Museum project, tutorials, and really great tool/space)
 
 Papers:
 
@@ -187,7 +146,7 @@ Papers:
 
 ## Datasprint approach
 
-Interesting idea from GLOBALISE: they ran a datasprint on historical maps with three parallel sessions:
+Interesting idea from GLOBALISE: they ran a datasprint on historical maps with three parallel sessions (Leon wrote on it in the blog post, link below):
 
 1. georeferencing (using Allmaps, produced 48 georeferenced maps in one afternoon)
 2. data extraction (annotating visual features in Recogito, ~500 annotations)
@@ -195,28 +154,18 @@ Interesting idea from GLOBALISE: they ran a datasprint on historical maps with t
 
 See: https://globalise.huygens.knaw.nl/old-maps-new-discoveries-a-datasprints-digital-exploration/
 
-What caught my attention:
+What to consider to do for here, as it has similar challenges: name variants, changing boundaries, linking places across sources:
 
-- they combined Atlas of Mutual Heritage metadata with National Archives IIIF images
-- linked from IIIF Manifests to structured RDF using rdfs:seeAlso
+- combine Atlas of Mutual Heritage metadata with National Archives IIIF images
+- link from IIIF Manifests to structured RDF using rdfs:seeAlso
 - critical discussion about map reliability (coastlines often sketchy, projections vary)
 - bottom-up annotation then standardisation (tag first, define vocabulary after)
 
-Could we do something similar? Get historians, data people, heritage experts in a room for an afternoon. Work on Suriname maps together. Generate useful data while learning what works.
-
-Different context (VOC vs WIC, Asia vs Caribbean) but same challenges: name variants, changing boundaries, linking places across sources.
-
 ---
 
-## Next
+## Tools to use when reconstruction a model following the CIDOC CRM
 
-- read Linked.art docs more carefully
-- try modelling one death certificate end-to-end
-- look at how Enslaved.org maps to CIDOC-CRM
-- figure out geometry question (CRMgeo or give up)
-- look at Allmaps for georeferencing workflow
-- consider organising a datasprint
-
----
-
-7 January 2026
+- The CIDOC CRM periodic table: https://remogrillo.github.io/cidoc-crm_periodic_table/?code=E1
+- X3ML mapping tool: https://rdamsc.bath.ac.uk/msc/m114
+- Latest release: https://cidoc-crm.org/get-last-official-release
+- With explanations: https://cidoc-crm.org/html/cidoc_crm_v7.1.3_with_translations.html#E1
