@@ -23,6 +23,7 @@ The Suriname Heritage Guide provides documentation of historic buildings in Suri
 - Photographs and historical images
 - Location information
 - Links to 3D models on Sketchfab (Dikland project)
+  - which will be changed as all this should be intregrated within the Suriname archive
 
 ---
 
@@ -43,7 +44,6 @@ Content includes:
 
 - What is the data format? (Structured or unstructured?)
 - Is there an API or export capability?
-- What is the citation/license?
 - Data quantity: How many buildings documented?
 
 ### 3D Models - Dikland / Sketchfab
@@ -116,19 +116,16 @@ flowchart TB
 
 ### Link to Other Datasets
 
-| Dataset                                       | Relationship       | Linking Field               |
-| --------------------------------------------- | ------------------ | --------------------------- |
-| [Ward Registers](04-ward-registers.md)        | Street addresses   | `Straatnaam`, `Housnummer`  |
-| [QGIS Maps](07-qgis-maps.md)                  | Building locations | Coordinates                 |
-| [Wikidata](08-wikidata.md)                    | Building entities  | Q-IDs for notable buildings |
-| [Birth/Death Certs](02-death-certificates.md) | Addresses          | Place fields                |
+| Dataset                                | Relationship       | Linking Field               |
+| -------------------------------------- | ------------------ | --------------------------- |
+| [Ward Registers](04-ward-registers.md) | Street addresses   | `Straatnaam`, `Housnummer`  |
+| [QGIS Maps](07-qgis-maps.md)           | Building locations | Coordinates                 |
+| [Wikidata](08-wikidata.md)             | Building entities  | Q-IDs for notable buildings |
 
 ### Data Extraction Questions
 
 - [ ] Can building data be structured into a database table?
-- [ ] How to link street addresses between Heritage Guide and Ward Registers?
 - [ ] Are the 3D models geolocated (coordinates)?
-- [ ] What is the overlap with QGIS digitized buildings?
 
 ---
 
@@ -155,36 +152,15 @@ If incorporating 3D models:
 - Coordinate system alignment with QGIS data
 - Level of detail (LOD) for web display
 - Texture/material storage
-
-### Web Scraping Considerations
-
-If extracting data from the website:
-
-- Respect robots.txt
-- Check terms of service
-- Consider contacting owners for data export
-- Document extraction methodology
+- Maybe using Cesium.js/Resium would be the way to go to create an hBIM/3D Paramaribo model?
+- Maybe look into the IIIF 3D initiative
 
 ---
 
 ## Questions to Investigate
 
 - [ ] What is the total number of buildings in the Heritage Guide?
-- [ ] Is there structured data available (not just web pages)?
-- [ ] Can we get permission to use/extract data?
-- [ ] How do street names map between modern and historical?
-- [ ] Are 3D models under open license?
-
----
-
-## Related Datasets
-
-| Dataset                                | Relationship         |
-| -------------------------------------- | -------------------- |
-| [Ward Registers](04-ward-registers.md) | Historical addresses |
-| [QGIS Maps](07-qgis-maps.md)           | Geographic context   |
-| [Wikidata](08-wikidata.md)             | Building Q-IDs       |
-
----
-
-7 January 2026
+- [ ] Is there an easier link between the 3D models and the PDFs?
+- [ ] Can we extract data easier from the quite deep folder/pdf like organisation of the data?
+- [ ] create a documentation/questionaire for the workflow/creation of the 3D models
+- [ ] What story to tell within PURE3D?

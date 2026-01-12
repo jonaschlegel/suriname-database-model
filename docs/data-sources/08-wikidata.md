@@ -56,7 +56,7 @@ Based on the screenshot:
 
 Example: **Paramaribo** (Q3001)
 
-Based on the screenshot:
+Based on the screenshot from Wikidata:
 
 | Property            | Value                    |
 | ------------------- | ------------------------ |
@@ -293,15 +293,13 @@ GET https://www.wikidata.org/wiki/Special:EntityData/Q1416286.json
 ### Challenges
 
 1. **Coverage gaps**: Not all Suriname plantations have Wikidata entries
-2. **Data quality**: Some entries may be incomplete or incorrect
+2. **Data quality**: Some entries may be incomplete or incorrect, so there is a need to verify the resources
 3. **API rate limits**: Need to respect query limits
 4. **Matching ambiguity**: Multiple entities with similar names
 
 ### Questions to Investigate
 
-- [ ] How many Suriname plantations currently have Wikidata entries?
-- [ ] What is the coverage for historical persons (governors, owners)?
-- [ ] Should we create new Wikidata entries for missing plantations?
+- [ ] How many Suriname plantations (and are they also differentiated as organisations or only locations), persons, locations currently have Wikidata entries?
 - [ ] How to handle reconciliation when names don't match exactly?
 
 ---
@@ -314,7 +312,3 @@ GET https://www.wikidata.org/wiki/Special:EntityData/Q1416286.json
 | SPARQL Tutorial           | https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial  | Query examples                |
 | OpenRefine Reconciliation | https://www.wikidata.org/wiki/Wikidata:Tools/OpenRefine | Bulk matching tool            |
 | WikiShootMe               | https://wikishootme.toolforge.org/                      | Map visualization of Wikidata |
-
----
-
-7 January 2026

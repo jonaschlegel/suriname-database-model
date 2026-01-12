@@ -18,7 +18,7 @@
 
 ---
 
-## What is a Historic Map?
+## What is a Historic Map? (My definiton)
 
 A historic map is not a photograph of the past — it is a **schematic representation** of how a mapmaker understood and chose to depict a place at a particular moment in time. It reflects:
 
@@ -26,6 +26,8 @@ A historic map is not a photograph of the past — it is a **schematic represent
 - **Purpose**: Why the map was made (navigation, administration, land claims)
 - **Technology**: Available surveying and drawing techniques
 - **Perspective**: Colonial viewpoints, ownership interests, aesthetic conventions
+
+### The difference to a Historical Map
 
 ### The Chain of Representation
 
@@ -462,9 +464,9 @@ flowchart TB
 
 ## Legacy Layer Documentation
 
-The following tables document the **current state** of QGIS layers as they exist in the QGIS project:
+The following tables document the current state of QGIS layers as they exist in the QGIS project:
 
-> **Note:** These are the actual layer names and attributes from the current digitization work. Future database integration will normalize these into the conceptual structure described above.
+> Note: These are the actual layer names and attributes from the current digitization work as far as I could see, but these are prone to changes soon once better cleaned.
 
 ### Current Raster Layers (Historic Maps)
 
@@ -704,10 +706,6 @@ CREATE INDEX idx_digitized_features_geom ON digitized_features USING GIST (geom)
 
 - what are the archive sources for each historic map?
 - what is georeferencing accuracy (RMS error) for each?
+- how do we track/map for different accuracies in the georeferencing process to therfore track the locational accuracy of places based on the map?
 - how handle features appearing on multiple maps?
-- relationship between Koarten layer and other reference data?
 - how track changes when maps re-digitised or interpretations change?
-
----
-
-7 January 2026

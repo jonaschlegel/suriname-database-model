@@ -6,17 +6,18 @@ All datasets we are integrating and where they come from.
 
 ## The datasets
 
-| #   | name                   | records  | period      | what                   |
-| --- | ---------------------- | -------- | ----------- | ---------------------- |
-| 01  | Plantagen 1900         | ~40      | 1900        | plantation survey      |
-| 02  | Slavenregisters        | ~82,000  | 1830-1863   | slave registers        |
-| 03  | Emancipatieregisters   | ~34,000  | 1863        | emancipation records   |
-| 04  | Surinaamse manumissies | ~9,000   | 1832-1863   | manumissions           |
-| 05  | PNV 18e-19e            | ~280,000 | 1700-1838   | vrijbrieven, contracts |
-| 06  | Doodakten Suriname     | ~30,000  | 1828-1935   | death certificates     |
-| 07  | QGIS Maps              | varies   | 18th-19th c | georeferenced maps     |
-| 08  | HDSC Transcriptions    | large    | various     | transcription files    |
-| 09  | Heritage Guide 3D      | ~66      | various     | monuments              |
+| #   | name                     | records  | period      | what                      |
+| --- | ------------------------ | -------- | ----------- | ------------------------- |
+| 01  | Plantagen 1900           | ~40      | 1900        | plantation survey         |
+| 02  | Slavenregisters          | ~82,000  | 1830-1863   | slave registers           |
+| 03  | Emancipatieregisters     | ~34,000  | 1863        | emancipation records      |
+| 04  | Surinaamse manumissies   | ~9,000   | 1832-1863   | manumissions              |
+| 05  | PNV 18e-19e              | ~280,000 | 1700-1838   | vrijbrieven, contracts    |
+| 06  | Doodakten Suriname       | ~30,000  | 1828-1935   | death certificates        |
+| 07  | QGIS Maps                | varies   | 18th-19th c | georeferenced maps        |
+| 08  | HDSC Transcriptions      | large    | various     | transcription files       |
+| 09  | Heritage Guide 3D        | ~66      | various     | monuments                 |
+| 10  | Historic Map Annotations | TBD      | 17th-19th c | HTR place names from maps |
 
 Some overlap. Manumissions appear in multiple places. Same persons appear across datasets at different life stages.
 
@@ -35,6 +36,7 @@ Doodakten                               [================]
 Plantagen 1900                                  [=]
 Heritage 3D     [==================================]
 QGIS Maps       [==================================]
+Historic Maps   [==================================]
 ```
 
 PNV is the spine. Most records, longest timespan. But least structured (document images). Slavenregisters most structured. Death certificates bridge into 20th century.
@@ -99,7 +101,7 @@ Each dataset has its own ID scheme as it seems:
 Suggest going through docs in order:
 
 1. this overview
-2. each numbered source doc (01 through 09)
+2. each numbered source doc (01 through 10)
 3. HDSC questions for outstanding issues
 
 Each doc has same structure: what it is, what fields, how it connects, problems, todo.
