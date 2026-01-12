@@ -56,7 +56,3 @@ We will adopt a **documentation-first approach** where:
 
 - [@Codd1970] - Foundational relational model paper
 - [@Hoberman2009] - Data Modeling Made Simple
-
----
-
-7 January 2026

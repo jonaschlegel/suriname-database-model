@@ -166,7 +166,3 @@ CREATE TABLE persons (
 - [@BernersLee2006-linkeddata] - Cool URIs don't change
 - [W3C Data on the Web Best Practices](https://www.w3.org/TR/dwbp/)
 - Excalidraw board: "the unique identifier - decision" diagram
-
----
-
-7 January 2026
