@@ -42,13 +42,13 @@ See [pico-model.md](../concepts/pico-model.md) for full analysis of this schema.
 
 ### Purpose & Description
 
-Since 1828, the colonial government of Suriname made an annual registration of the non-enslaved free inhabitants of the city. The registers have been partially preserved for 18 years. These "Ward Registers" are now available as a single CSV dataset. For more detailed information, consult the documentation.
+Since 1828, the colonial government of Suriname made an annual registration of the non-enslaved free inhabitants of the city. The registers have been partially preserved for 18 years. These "Ward Registers" are now available as a single CSV dataset. For more detailed information, consult the documentation or the datapaper (TSEG 2025): https://doi.org/10.52024/x5vgg810 
 
 The dataset includes:
 
-- Person demographics (name, age, sex, ethnicity, religion)
+- Person demographics (name, age, sex, ethnicity, religion, occupation)
 - Household information (free persons count by type)
-- Enslaved persons (count per household)
+- Enslaved persons (count per household) (from 1836 onwards)
 - Address information (detailed street-level)
 - Location codes (using historical numbering systems)
 - Administrative fields (register type, ward number)
@@ -64,37 +64,37 @@ Based on the source documentation screenshot:
 
 | Field     | Type        | Description                       | Example | Crucial for Linking | Primary Information |
 | --------- | ----------- | --------------------------------- | ------- | ------------------- | ------------------- |
-| `Id`      | integer     | Record identifier                 |         |                     |                     |
-| `Ark`     | text/string | Archive code (e.g., `1.04.08.01`) |         |                     |                     |
-| `Inv`     | integer     | Inventory number                  |         |                     |                     |
-| `Scan_Id` | text/string | Scan(image) identifier            |         |                     |                     |
-| `Scan`    | bool/string | URL to digitized original scan    |         |                     |                     |
-| `Year`    | integer     | Level (year)                      |         |                     |                     |
+| `Id`      | integer     | Record identifier                 |     60713    |         In the future: yes, if we start linking persons within this dataset and with external person data            |          No           |
+| `Ark`     | text/string | Archive code (e.g., `1.04.08.01`) |    1.05.08.01     |          Yes: to provide provenance information? -- link to the archive (unless we only use the link to the scan)          |         provide provenance information            |
+| `Inv`     | integer     | Inventory number                  |    669     |          No           |         No            |
+| `Scan_Id` | text/string | Scan(image) identifier            |   1840f73      |         Only if we want to be able to refer to all entries on one card (meaning all free inhabitants on a certain address in a certain year)             |          No           |
+| `Scan`    | bool/string | URL to digitized original scan    |   https://www.nationaalarchief.nl/onderzoeken/archief/1.05.08.01/invnr/669/file/NL-HaNA_1.05.08.01_669_0079      |         Yes for linking to the orig source / provenance            |          Yes           |
+| `Year`    | integer     | Level (year)                      |     1840    |        Yes if you want to be able to limit linking to a certain year             |         Yes            |
 
 ### Person Information - Name
 
 | Field           | Type        | Description                         | Crucial for Linking | Primary Information |
 | --------------- | ----------- | ----------------------------------- | ------------------- | ------------------- |
-| `Voornaam`      | text/string | First name/given name(s)            |                     |                     |
-| `Tussenvoesel`  | text/string | Name prefix(es) (e.g., `van`, `de`) |                     |                     |
-| `Achternaam`    | text/string | Surname/family name                 |                     |                     |
-| `Patroon`       | text/string | Patron name (e.g., `van 't`)        |                     |                     |
-| `Naamtype`      | text/string | Unique name                         |                     |                     |
-| `Geboorteland`  | text/string | Origin (place)                      |                     |                     |
-| `Ov_Dec_Borrow` | text/string | First name of deceased spouse       |                     |                     |
-| `Suffix`        | text/string | Suffix (e.g., `Jr`)                 |                     |                     |
-
+| `Voornaam`      | text/string | First name/given name(s) .           |          Depends on how we will link to other person observations, I assume this will be done via person IDs and thse are not (yet) in this dataset           |         Yes            |
+| `Tussenvoegsel`  | text/string | Name prefix(es) (e.g., `van`, `de`). Note that prefixes have additional meaning in Suriname, 'van' can indicate a manumission name, referring to the previous owner |         Idem            |         Yes            |
+| `Achternaam`    | text/string | Surname/family name. Note that people in slavery were not allowed surnames                 |       Idem              |           Yes          |
+| `Meisjesnaam`       | text/string | Maiden name, the surname of a married woman before marriage        |          Idem           |          Yes           |
+| `Weduwe`      | text/string |           Field contains 'weduwe' if the person was widow                |            Idem         |           Nice to have           |
+| `Fn_Dec_Spouse` | text/string | First name of deceased (male) spouse       |        Idem             |         No  -- in the linked data modelling the deceased husband should lead to a new person observation            |
+| `Suffix`        | text/string | Suffix (e.g., `Jr`)                 |        Idem             |           Nice to have           |
+| `Prefix`        | text/string | Prefix (e.g., 'de vrije', 'mr.')                 |          Idem            |        Nice to have             |
 ### Person Information - Demographics
 
 | Field       | Type        | Description                                                | Notes                       | Crucial for Linking | Primary Information |
 | ----------- | ----------- | ---------------------------------------------------------- | --------------------------- | ------------------- | ------------------- |
-| `Religie`   | text/string | Religion - original                                        |                             |                     |                     |
-| `Rel_Std`   | text/string | Religion - standardized level DAIS                         | Standardized classification |                     |                     |
-| `Leeftijd`  | mixed/float | Age in years (can include fractions like `0.5` for months) |                             |                     |                     |
-| `Ethnicity` | text/string | Ethnicity                                                  |                             |                     |                     |
-| `Sex`       | text/string | Sex (`M` for male, `V` for female)                         |                             |                     |                     |
+| `Religie`   | text/string | Religion - normalized                                       |            Normalized notation of religion                 |           No: assuming we link person observations outside in a separate operation          |          Yes           |
+| `Rel_Std`   | text/string | Religion - standardized level DAIS                         | Standardized classification, useful for research purposes but better use the normalized terms for presentation |           No          |          No           |
+| `Leeftijd`  | mixed/float | Normalized age in years (can include fractions like `0.5` for months) |                             |        No            |          Yes           |
+| `Ethnicity` | text/string | Ethnicity                                                  |       Normalized. Contemporary ethnic classification referring to skin color. The n-word is replaced by 'Zwarte'.                   |           No          |           Yes          |
+| `Sex`       | text/string | Sex (`M` for male, `V` for female)                         |                             |            No         |         Yes            |
 | `Beroep`    | text/string | Occupation/profession                                      |                             |                     |                     |
 | `Burgerst`  | text/string | Civil/marital status                                       |                             |                     |                     |
+| `Geboorteland`  | text/string | Origin (place)                      |                     |                     |
 
 ### Household Composition - Free Persons
 
