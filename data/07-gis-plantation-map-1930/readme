@@ -1,0 +1,13 @@
+Brief explanation of fields of plantation_polygons_1930.csv
+26-1-2026
+
+fid	QGIS record id
+psur_id	primary id that links to plantation in the Slave registers plantation dataset
+psur_id2	secondary id that links to plantation in the Slave registers plantation dataset: in some cases more than one entry in the Slave registers dataset refers to one single plantation
+psur_id3	In a few cases even 3 PSUR plantation ids are linked to 1 plantation on the 1930 map
+label_1930	label on the 1930 map
+label_1860-79	label on the 186-78 map
+qid	reference to QID on wikidata (at present the only unique plantation ID that we have)
+qid_alt	alternative QID: can refer to another plantation that owns this plantation, or the fusion plantation that has been part of
+plantation_label	label of the polygon, primarily based in 1930 map label, otherwise the 1860-78 map
+coords	polygon coordinates
