@@ -3,28 +3,30 @@ title: Suriname Time Machine - Map Observation Pattern (CIDOC-CRM)
 ---
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4ea'}}}%%
 flowchart TB
-    %% =============================================================
-    %% CIDOC-CRM PATTERN FOR MAP OBSERVATIONS
-    %%
-    %% When we see a plantation on a historic map, we are observing:
-    %% 1. The map exists (E73 Information Object)
-    %% 2. The map depicts something (P138 represents)
-    %% 3. That something has a location (E53 Place)
-    %% 4. The location has geometry (P168 place is defined by)
-    %% 5. The depicted thing is identifiable (E24/E26)
-    %% =============================================================
-
-    subgraph MAP_LAYER ["E73 Information Object (Historic Map)"]
-        MAP["E73 Information Object
+    subgraph SOURCE_LAYER ["E22 Human-Made Object (Physical Map)"]
+        E22["E22 Human-Made Object
         'Kaart van Suriname 1930'
-        P2 has type: historic-map
-        P4 has time-span: 1930"]
+        P2 has type: historic-map"]
     end
 
-    subgraph VISUAL_LAYER ["Visual Representation on Map"]
-        VISUAL["E36 Visual Item
-        (The polygon drawn on the map)
-        P138i has representation: E24/E26"]
+    subgraph DIGITAL_LAYER ["E38 Image (Digital Scan)"]
+        E38["E38 Image
+        IIIF scan of the map
+        P138 represents: E22"]
+    end
+
+    subgraph VISUAL_LAYER ["E36 Visual Item (What Map Carries)"]
+        E36["E36 Visual Item
+        (The cartographic content)
+        P138 represents: E24/E26"]
+    end
+
+    subgraph PRODUCTION_LAYER ["E12 Production (Creation Event)"]
+        E12["E12 Production
+        P14 carried out by: cartographer"]
+        E52["E52 Time-Span
+        P82a: 1930-01-01
+        P82b: 1930-12-31"]
     end
 
     subgraph THING_LAYER ["E24 Physical Human-Made Thing"]
@@ -34,101 +36,62 @@ flowchart TB
         P2 has type: plantation"]
     end
 
-    subgraph PLACE_LAYER ["E53 Place (Location)"]
+    subgraph FEATURE_LAYER ["E26 Physical Feature"]
+        E26["E26 Physical Feature
+        'Suriname River'
+        P2 has type: river"]
+    end
+
+    subgraph PLACE_LAYER ["E53 Place (Spatial Extent)"]
         E53["E53 Place
         stm:place/fid-1619
-        P168 place is defined by: WKT Polygon
-        P89 falls within: Suriname"]
+        P168 place is defined by: WKT Polygon"]
     end
 
-    subgraph APPELLATION_LAYER ["E41 Appellation (Name)"]
-        E41["E41 Appellation
-        'Geijersvlijt' (label on map)
-        P2 has type: observed-label"]
-    end
+    E22 -->|"P128 carries"| E36
+    E38 -->|"P138 represents"| E22
+    E22 -->|"P108i was produced by"| E12
+    E12 -->|"P4 has time-span"| E52
 
-    subgraph TIME_LAYER ["Temporal Qualification"]
-        TIME["The observation:
-        • Geometry observed in 1930
-        • Name observed in 1930
-        • Location valid ~1930"]
-    end
+    E36 -->|"P138 represents"| E24
+    E36 -->|"P138 represents"| E26
 
-    %% =============================================================
-    %% RELATIONSHIPS
-    %% =============================================================
+    E24 -->|"P53 has location"| E53
+    E26 -->|"P53 has location"| E53
 
-    %% Map contains visual item
-    MAP -->|"P65 shows visual item"| VISUAL
-
-    %% Visual item represents the plantation
-    VISUAL -->|"P138 represents"| E24
-
-    %% Map documents the place
-    MAP -->|"P70 documents"| E53
-
-    %% Plantation has location
-    E24 -->|"P53 has former or
-    current location"| E53
-
-    %% Plantation identified by name
-    E24 -->|"P1 is identified by"| E41
-
-    %% Appellation observed on map
-    MAP -->|"P67 refers to"| E41
-
-    %% Temporal context
-    MAP -.->|"temporal context"| TIME
-    E53 -.->|"observed at"| TIME
-    E41 -.->|"observed at"| TIME
-
-    %% =============================================================
-    %% THE KEY INSIGHT:
-    %% =============================================================
-    subgraph INSIGHT ["KEY CIDOC-CRM PATTERN"]
+    subgraph KEY_INSIGHT ["KEY INSIGHT: Universal Source Pattern"]
         direction LR
-        KEY1["P70 documents:
-        Map → E53 Place
-        (geometry source)"]
-
-        KEY2["P138 represents:
-        Visual → E24 Thing
-        (what's depicted)"]
-
-        KEY3["P53 has location:
-        E24 → E53 Place
-        (spatial relation)"]
+        KEY1["E22 → P128 → E36
+        Physical carries visual"]
+        KEY2["E36 → P138 → E24/E26
+        Visual represents things"]
+        KEY3["E24/E26 → P53 → E53
+        Things have locations"]
     end
 
-    %% =============================================================
-    %% STYLING
-    %% =============================================================
+    classDef e22 fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#856404
+    classDef e38 fill:#cce5ff,stroke:#004085,stroke-width:2px,color:#004085
+    classDef e36 fill:#e2e3e5,stroke:#6c757d,stroke-width:2px,color:#383d41
+    classDef e24 fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#155724
+    classDef e26 fill:#b2dfdb,stroke:#00796b,stroke-width:2px,color:#004d40
+    classDef e53 fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#1b5e20
+    classDef production fill:#f8d7da,stroke:#721c24,stroke-width:1px,color:#721c24
+    classDef insight fill:#fff5f5,stroke:#dc3545,stroke-width:2px
 
-    classDef e73 fill:#f8f9fa,stroke:#6c757d,stroke-width:2px
-    class MAP e73
-
-    classDef e36 fill:#e9ecef,stroke:#adb5bd,stroke-width:1px
-    class VISUAL e36
-
-    classDef e24 fill:#d4edda,stroke:#28a745,stroke-width:2px
+    class E22 e22
+    class E38 e38
+    class E36 e36
     class E24 e24
-
-    classDef e53 fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    class E26 e26
     class E53 e53
-
-    classDef e41 fill:#fff3cd,stroke:#ffc107,stroke-width:2px
-    class E41 e41
-
-    classDef temporal fill:#e2d5f1,stroke:#6f42c1,stroke-width:1px,stroke-dasharray: 5 5
-    class TIME temporal
-
-    classDef insight fill:#f8d7da,stroke:#dc3545,stroke-width:2px
+    class E12,E52 production
     class KEY1,KEY2,KEY3 insight
 
-    style MAP_LAYER fill:#f8f9fa,stroke:#6c757d
-    style VISUAL_LAYER fill:#e9ecef,stroke:#adb5bd
-    style THING_LAYER fill:#d4edda,stroke:#28a745
-    style PLACE_LAYER fill:#e8f5e9,stroke:#4caf50
-    style APPELLATION_LAYER fill:#fff3cd,stroke:#ffc107
-    style TIME_LAYER fill:#e2d5f1,stroke:#6f42c1,stroke-dasharray: 5 5
-    style INSIGHT fill:#fff5f5,stroke:#dc3545
+    style SOURCE_LAYER fill:#fff8e1,stroke:#ffc107
+    style DIGITAL_LAYER fill:#e3f2fd,stroke:#1976d2
+    style VISUAL_LAYER fill:#eceff1,stroke:#607d8b
+    style PRODUCTION_LAYER fill:#ffebee,stroke:#c62828
+    style THING_LAYER fill:#e8f5e9,stroke:#2e7d32
+    style FEATURE_LAYER fill:#e0f2f1,stroke:#00796b
+    style PLACE_LAYER fill:#f1f8e9,stroke:#558b2f
+    style KEY_INSIGHT fill:#fff5f5,stroke:#dc3545,stroke-dasharray: 5 5

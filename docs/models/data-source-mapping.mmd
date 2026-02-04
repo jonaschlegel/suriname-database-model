@@ -40,7 +40,7 @@ flowchart TB
             A_partof_id["partof_id"]
         end
 
-        subgraph MAPS ["E73 Information Objects (Maps)"]
+        subgraph MAPS ["E22 Human-Made Objects (Source Documents)"]
             MAP_1930["Map 1930"]
             MAP_1860["Map 1860-79"]
             ALMANAC["Almanakken 1818-1899"]
@@ -50,22 +50,22 @@ flowchart TB
     subgraph ENTITIES ["🎯 CIDOC-CRM ENTITIES"]
         direction TB
 
-        E24["🟢 E24 Physical Human-Made Thing
+        E24["E24 Physical Human-Made Thing
         (Plantation as physical complex)
         URI: stm:plantation/{slug}"]
 
-        E53["🟩 E53 Place
+        E53["E53 Place
         (Land geometry from maps)
         URI: stm:place/{fid}"]
 
-        E74["🔵 E74 Group
+        E74["E74 Group
         (Organization with Q-ID)
         URI: wd:{qid}"]
 
-        E55["🟡 E55 Type
+        E55["E55 Type
         (Classification vocabulary)"]
 
-        OBS["🟣 Observation
+        OBS["Observation
         (Time-varying Almanakken data)
         URI: obs:{recordid}"]
     end
@@ -136,7 +136,7 @@ flowchart TB
     %% =============================================================
     %% CENTRAL LINKING KEY
     %% =============================================================
-    subgraph KEY ["🔑 LINKING KEYS"]
+    subgraph KEY ["LINKING KEYS"]
         QID_KEY["Q-ID links:
         • QGIS qid → E74 Organization
         • Almanakken plantation_id → E74

@@ -1,27 +1,15 @@
 ---
 title: Suriname Time Machine - PostgreSQL Schema (CIDOC-CRM Aligned)
+config:
+  theme: base
+  themeVariables:
+    primaryColor: "#e8f4ea"
 ---
-%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4ea'}}}%%
 erDiagram
-    %% =============================================================
-    %% POSTGRESQL/SUPABASE SCHEMA - CIDOC-CRM ALIGNED
-    %%
-    %% LEGEND (matches conceptual model):
-    %% - Green: E24 Physical Human-Made Thing tables
-    %% - Teal: E26 Physical Feature tables (natural)
-    %% - Light Green: E53 Place tables (geometry)
-    %% - Blue: E74 Group / Organization tables
-    %% - Yellow: E55 Type lookup tables
-    %% - Purple: Observation tables
-    %% - Gray: E73 Information Object (documents/maps)
-    %%
-    %% Requires: CREATE EXTENSION IF NOT EXISTS postgis;
-    %% =============================================================
-
     e24_human_made_things {
         uuid id PK "gen_random_uuid()"
-        text uri UK "stm:plantation/{slug}"
-        text p1_label "Name (P1_is_identified_by)"
+        text uri UK "stm:plantation/slug"
+        text p1_label "Name P1_is_identified_by"
         text p2_type_id FK "Links to e55_types"
         text p52_owner_qid FK "Links to e74_groups"
         timestamptz created_at "DEFAULT NOW()"
@@ -30,17 +18,17 @@ erDiagram
 
     e26_physical_features {
         uuid id PK "gen_random_uuid()"
-        text uri UK "stm:feature/{slug}"
-        text p1_label "Name (Suriname River)"
+        text uri UK "stm:feature/slug"
+        text p1_label "Name Suriname River"
         text p2_type_id FK "Links to e55_types"
         timestamptz created_at "DEFAULT NOW()"
     }
 
     e53_places {
         uuid id PK "gen_random_uuid()"
-        text uri UK "stm:place/{fid}"
+        text uri UK "stm:place/fid"
         integer fid "QGIS feature ID"
-        geometry p168_geometry "PostGIS Polygon/Line"
+        text p168_geometry "PostGIS Polygon/Line"
         integer observed_year "Year of map observation"
         uuid p89_within_id FK "Parent place"
         text p70i_documented_in FK "Source map/document"
@@ -48,7 +36,7 @@ erDiagram
     }
 
     e74_groups {
-        text qid PK "Wikidata Q-ID (wd:Qxxxxx)"
+        text qid PK "Wikidata Q-ID wd:Qxxxxx"
         text p1_label "Standardized Dutch name"
         text p2_type_id FK "Links to e55_types"
         text p107i_member_of_qid FK "Parent organization"
@@ -60,13 +48,13 @@ erDiagram
         text id PK "Type vocabulary ID"
         text label "Human readable label"
         text scope_note "Definition"
-        text category "feature|organization|document"
+        text category "feature organization document"
     }
 
-    e73_information_objects {
+    e22_human_made_objects {
         text id PK "Document/map identifier"
         text p1_label "Title"
-        text p2_type_id FK "map|almanac|register"
+        text p2_type_id FK "map almanac register"
         integer p4_year "Year of creation"
         text source_url "External reference"
         timestamptz created_at "DEFAULT NOW()"
@@ -89,15 +77,11 @@ erDiagram
         timestamptz created_at "DEFAULT NOW()"
     }
 
-    %% =============================================================
-    %% JUNCTION/LINK TABLES (for many-to-many)
-    %% =============================================================
-
     e24_e53_locations {
         uuid id PK "gen_random_uuid()"
         uuid e24_id FK "Links to e24_human_made_things"
         uuid e53_id FK "Links to e53_places"
-        text certainty "certain|probable|uncertain"
+        text certainty "certain probable uncertain"
         integer start_year "When location started"
         integer end_year "When location ended"
         text evidence "Supporting evidence"
@@ -117,10 +101,10 @@ erDiagram
         uuid id PK "gen_random_uuid()"
         uuid e24_id FK "Links to e24_human_made_things"
         text e74_qid FK "Links to e74_groups"
-        text relationship_type "owner|operator|claimed_by"
+        text relationship_type "owner operator claimed_by"
         integer start_year "When relationship started"
         integer end_year "When relationship ended"
-        text certainty "certain|probable|uncertain"
+        text certainty "certain probable uncertain"
         text evidence "Supporting evidence"
         timestamptz created_at "DEFAULT NOW()"
     }
@@ -128,7 +112,7 @@ erDiagram
     e74_identifiers {
         uuid id PK "gen_random_uuid()"
         text organization_qid FK "Links to e74_groups"
-        text identifier_type "psur_id|alternate_qid"
+        text identifier_type "psur_id alternate_qid"
         text identifier_value "e.g. PSUR0118"
         timestamptz created_at "DEFAULT NOW()"
     }
@@ -137,83 +121,33 @@ erDiagram
         uuid id PK "gen_random_uuid()"
         text organization_qid FK "Links to e74_groups"
         text name "Historical name variant"
-        text source "map_1860|map_1930|almanakken"
+        text source "map_1860 map_1930 almanakken"
         integer source_year "Year of source"
         boolean is_preferred "DEFAULT FALSE"
         timestamptz created_at "DEFAULT NOW()"
     }
 
-    %% =============================================================
-    %% RELATIONSHIPS
-    %% =============================================================
-
-    %% E24 → E55 Type
     e24_human_made_things }o--|| e55_types : "P2_has_type"
-
-    %% E26 → E55 Type
     e26_physical_features }o--|| e55_types : "P2_has_type"
-
-    %% E74 → E55 Type
     e74_groups }o--|| e55_types : "P2_has_type"
+    e22_human_made_objects }o--|| e55_types : "P2_has_type"
 
-    %% E73 → E55 Type
-    e73_information_objects }o--|| e55_types : "P2_has_type"
-
-    %% E24 ↔ E53 via junction (many-to-many with temporal)
     e24_e53_locations }o--|| e24_human_made_things : "e24_id"
     e24_e53_locations }o--|| e53_places : "e53_id"
 
-    %% E26 ↔ E53 via junction
     e26_e53_locations }o--|| e26_physical_features : "e26_id"
     e26_e53_locations }o--|| e53_places : "e53_id"
 
-    %% E24 ↔ E74 via junction (ownership with temporal)
     e24_e74_ownership }o--|| e24_human_made_things : "e24_id"
     e24_e74_ownership }o--|| e74_groups : "e74_qid"
 
-    %% E53 nested (district contains plots)
     e53_places }o--o| e53_places : "P89_falls_within"
-
-    %% E74 nested (org membership)
     e74_groups }o--o| e74_groups : "P107i_member_of"
 
-    %% Observations → E74
     observations }o--|| e74_groups : "organization_qid"
+    observations }o--|| e22_human_made_objects : "P70i_documented_in"
 
-    %% Observations → E73 (source document)
-    observations }o--|| e73_information_objects : "P70i_documented_in"
+    e53_places }o--o| e22_human_made_objects : "P70i_documented_in"
 
-    %% E53 → E73 (documented in map)
-    e53_places }o--o| e73_information_objects : "P70i_documented_in"
-
-    %% E74 identifiers and names
     e74_groups ||--o{ e74_identifiers : "has"
     e74_groups ||--o{ e74_names : "has"
-
-    %% =============================================================
-    %% STYLING - Color by CIDOC class
-    %% =============================================================
-
-    classDef e24 fill:#d4edda,stroke:#28a745,stroke-width:2px
-    class e24_human_made_things e24
-
-    classDef e26 fill:#d1ecf1,stroke:#17a2b8,stroke-width:2px
-    class e26_physical_features e26
-
-    classDef e53 fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
-    class e53_places e53
-
-    classDef e74 fill:#cce5ff,stroke:#0066cc,stroke-width:2px
-    class e74_groups,e74_identifiers,e74_names e74
-
-    classDef e55 fill:#fff3cd,stroke:#ffc107,stroke-width:2px
-    class e55_types e55
-
-    classDef e73 fill:#f8f9fa,stroke:#6c757d,stroke-width:1px
-    class e73_information_objects e73
-
-    classDef observation fill:#e2d5f1,stroke:#6f42c1,stroke-width:2px
-    class observations observation
-
-    classDef junction fill:#fce4ec,stroke:#e91e63,stroke-width:1px
-    class e24_e53_locations,e26_e53_locations,e24_e74_ownership junction
