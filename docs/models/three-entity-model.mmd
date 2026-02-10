@@ -10,11 +10,20 @@ config:
 ---
 erDiagram
     E24_PHYSICAL_HUMAN_MADE_THING {
-        string id PK "stm:plantation/slug or stm:building/id"
-        string P1_is_identified_by "Name label"
+        string id PK "stm:plantation/slug"
+        string P1_is_identified_by FK "Links to E41 Appellation"
         string P2_has_type FK "Links to E55 Type"
         string P53_has_location FK "Links to E53 Place"
         string P52_has_current_owner FK "Links to E74 Group"
+    }
+
+    E41_APPELLATION {
+        string id PK "stm:appellation/slug"
+        string P190_has_symbolic_content "The actual name string"
+        string P1i_identifies FK "E24 or E74 (not both)"
+        string P139_has_alternative_form FK "Variant spelling E41"
+        string P128i_is_carried_by FK "E22 source that records it"
+        string P72_has_language "nl sr en"
     }
 
     E26_PHYSICAL_FEATURE {
@@ -34,8 +43,8 @@ erDiagram
 
     E74_GROUP {
         string qid PK "Wikidata Q-ID wd:Qxxxxx"
+        string P1_is_identified_by FK "Links to E41 Appellation"
         string P2_has_type FK "E55 Type plantation-org"
-        string P1_is_identified_by "Standardized Dutch name"
         string P107i_is_current_or_former_member_of FK "Parent org"
     }
 
@@ -80,10 +89,10 @@ erDiagram
         string id PK "obs:qid_year or recordid"
         string observes FK "Links to E74 Group org"
         int observation_year "Year of almanac"
-        string observed_name "Name as in source"
-        string has_owner "eigenaren"
-        string has_administrator "administrateurs"
-        string has_director "directeuren"
+        string observed_name FK "E41 name as in source"
+        string has_owner "eigenaren -> PersonObservation"
+        string has_administrator "administrateurs -> PersonObservation"
+        string has_director "directeuren -> PersonObservation"
         string has_product "Crop type"
         int enslaved_count "slaven"
         boolean is_deserted "verlaten flag"
@@ -108,6 +117,7 @@ erDiagram
     E24_PHYSICAL_HUMAN_MADE_THING }o--|| E55_TYPE : "P2_has_type"
     E24_PHYSICAL_HUMAN_MADE_THING }o--o{ E53_PLACE : "P53_has_former_or_current_location"
     E24_PHYSICAL_HUMAN_MADE_THING }o--o{ E74_GROUP : "P52_has_current_owner"
+    E24_PHYSICAL_HUMAN_MADE_THING }o--o{ E41_APPELLATION : "P1_is_identified_by"
 
     E26_PHYSICAL_FEATURE }o--|| E55_TYPE : "P2_has_type"
     E26_PHYSICAL_FEATURE }o--o{ E53_PLACE : "P53_has_former_or_current_location"
@@ -116,13 +126,17 @@ erDiagram
 
     E74_GROUP }o--|| E55_TYPE : "P2_has_type"
     E74_GROUP }o--o| E74_GROUP : "P107i_is_member_of"
+    E74_GROUP }o--o{ E41_APPELLATION : "P1_is_identified_by"
 
     E24_PHYSICAL_HUMAN_MADE_THING }o--o| E12_PRODUCTION : "P108i_was_produced_by"
     E22_HUMAN_MADE_OBJECT }o--o| E12_PRODUCTION : "P108i_was_produced_by"
     E12_PRODUCTION }o--|| E52_TIME_SPAN : "P4_has_time_span"
 
     E22_HUMAN_MADE_OBJECT ||--|| E36_VISUAL_ITEM : "P128_carries"
+    E22_HUMAN_MADE_OBJECT ||--o{ E41_APPELLATION : "P128_carries"
     E38_IMAGE }o--|| E22_HUMAN_MADE_OBJECT : "P138_represents"
+
+    E41_APPELLATION }o--o{ E41_APPELLATION : "P139_has_alternative_form"
     E36_VISUAL_ITEM }o--o{ E24_PHYSICAL_HUMAN_MADE_THING : "P138_represents"
     E36_VISUAL_ITEM }o--o{ E26_PHYSICAL_FEATURE : "P138_represents"
 

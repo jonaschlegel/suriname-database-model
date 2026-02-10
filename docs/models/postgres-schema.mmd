@@ -51,6 +51,17 @@ erDiagram
         text category "feature organization document"
     }
 
+    e41_appellations {
+        uuid id PK "gen_random_uuid()"
+        text uri UK "stm:appellation/slug"
+        text p190_symbolic_content "The actual name string"
+        text p72_language "nl sr en"
+        uuid p139_alt_form_id FK "Variant of another E41"
+        text p128i_carried_by FK "E22 source that records it"
+        integer source_year "Year inferred from E12"
+        timestamptz created_at "DEFAULT NOW()"
+    }
+
     e22_human_made_objects {
         text id PK "Document/map identifier"
         text p1_label "Title"
@@ -117,12 +128,10 @@ erDiagram
         timestamptz created_at "DEFAULT NOW()"
     }
 
-    e74_names {
+    e1_e41_identified_by {
         uuid id PK "gen_random_uuid()"
-        text organization_qid FK "Links to e74_groups"
-        text name "Historical name variant"
-        text source "map_1860 map_1930 almanakken"
-        integer source_year "Year of source"
+        text entity_uri FK "E24 or E74 entity URI"
+        uuid e41_id FK "Links to e41_appellations"
         boolean is_preferred "DEFAULT FALSE"
         timestamptz created_at "DEFAULT NOW()"
     }
@@ -150,4 +159,9 @@ erDiagram
     e53_places }o--o| e22_human_made_objects : "P70i_documented_in"
 
     e74_groups ||--o{ e74_identifiers : "has"
-    e74_groups ||--o{ e74_names : "has"
+
+    e41_appellations }o--o| e41_appellations : "P139_has_alternative_form"
+    e41_appellations }o--o| e22_human_made_objects : "P128i_is_carried_by"
+    e1_e41_identified_by }o--|| e41_appellations : "e41_id"
+    e1_e41_identified_by }o--o| e24_human_made_things : "entity_uri"
+    e1_e41_identified_by }o--o| e74_groups : "entity_uri"

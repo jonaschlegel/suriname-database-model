@@ -8,15 +8,57 @@
     "geo": "http://www.opengis.net/ont/geosparql#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
     "picom": "https://personsincontext.org/model#",
+    "picot": "https://personsincontext.org/thesaurus#",
     "pnv": "https://w3id.org/pnv#",
+    "prov": "http://www.w3.org/ns/prov#",
     "sdo": "https://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "hdsc": "https://data.colonialheritage.nl/ontology/",
     "ed": "https://lod.enslaved.org/wiki/",
     "Plantation": "stm:Plantation",
-    "PlantationObservation": "stm:PlantationObservation",
+    "OrganizationObservation": "stm:OrganizationObservation",
     "MapDepiction": "stm:MapDepiction",
+    "E24_Physical_Human-Made_Thing": "crm:E24_Physical_Human-Made_Thing",
+    "E41_Appellation": "crm:E41_Appellation",
+    "E74_Group": "crm:E74_Group",
+    "E53_Place": "crm:E53_Place",
+    "E22_Human-Made_Object": "crm:E22_Human-Made_Object",
+    "E36_Visual_Item": "crm:E36_Visual_Item",
+    "E55_Type": "crm:E55_Type",
+    "P1_is_identified_by": {
+      "@id": "crm:P1_is_identified_by",
+      "@type": "@id"
+    },
+    "P1i_identifies": {
+      "@id": "crm:P1i_identifies",
+      "@type": "@id"
+    },
+    "P190_has_symbolic_content": {
+      "@id": "crm:P190_has_symbolic_content",
+      "@type": "xsd:string"
+    },
+    "P139_has_alternative_form": {
+      "@id": "crm:P139_has_alternative_form",
+      "@type": "@id"
+    },
+    "P128_carries": {
+      "@id": "crm:P128_carries",
+      "@type": "@id"
+    },
+    "P128i_is_carried_by": {
+      "@id": "crm:P128i_is_carried_by",
+      "@type": "@id"
+    },
+    "P138_represents": {
+      "@id": "crm:P138_represents",
+      "@type": "@id"
+    },
+    "P72_has_language": {
+      "@id": "crm:P72_has_language",
+      "@type": "@id"
+    },
     "psurId": {
       "@id": "stm:psurId",
       "@type": "xsd:string"
@@ -53,9 +95,18 @@
       "@id": "stm:labelOnMap",
       "@type": "xsd:string"
     },
+    "observationOf": {
+      "@id": "stm:observationOf",
+      "@type": "@id"
+    },
     "observationYear": {
       "@id": "stm:observationYear",
       "@type": "xsd:gYear"
+    },
+    "observedName": {
+      "@id": "stm:observedName",
+      "@type": "@id",
+      "@comment": "E41 Appellation as observed in source"
     },
     "product": {
       "@id": "stm:product",
@@ -88,8 +139,19 @@
     },
     "P52_has_current_owner": {
       "@id": "crm:P52_has_current_owner",
-      "@type": "@id",
-      "@comment": "Ownership relation (reference_std)"
+      "@type": "@id"
+    },
+    "P51_has_former_or_current_owner": {
+      "@id": "crm:P51_has_former_or_current_owner",
+      "@type": "@id"
+    },
+    "P53_has_former_or_current_location": {
+      "@id": "crm:P53_has_former_or_current_location",
+      "@type": "@id"
+    },
+    "P2_has_type": {
+      "@id": "crm:P2_has_type",
+      "@type": "@id"
     },
     "P92i_was_brought_into_existence_by": {
       "@id": "crm:P92i_was_brought_into_existence_by",
@@ -118,17 +180,17 @@
     "hasAdministrator": {
       "@id": "stm:hasAdministrator",
       "@type": "@id",
-      "@comment": "Future: link to Person (administrateurs)"
+      "@comment": "Links to pico:PersonObservation (administrateurs)"
     },
     "hasDirector": {
       "@id": "stm:hasDirector",
       "@type": "@id",
-      "@comment": "Future: link to Person (directeuren)"
+      "@comment": "Links to pico:PersonObservation (directeuren)"
     },
     "hasOwner": {
       "@id": "stm:hasOwner",
       "@type": "@id",
-      "@comment": "Future: link to Person (eigenaren)"
+      "@comment": "Links to pico:PersonObservation (eigenaren)"
     },
     "location": {
       "@id": "stm:location",

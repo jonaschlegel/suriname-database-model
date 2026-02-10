@@ -20,6 +20,14 @@ flowchart TB
     (What the artifact carries)
     Cartography | Tables | Handwriting"]
 
+    E41_MAP["E41 Appellation
+    (Map label identifies E24)
+    P190: printed name"]
+
+    E41_ALM["E41 Appellation
+    (Almanac name identifies E74)
+    P190: handwritten name"]
+
     E12["E12 Production"]
 
     E52["E52 Time-Span
@@ -38,19 +46,17 @@ flowchart TB
 
     E24["E24 Physical Human-Made Thing
     (Plantations, buildings)
-    ← Maps"]
+    stm:plantation/slug"]
 
     E26["E26 Physical Feature
-    (Rivers, creeks)
-    ← Maps"]
+    (Rivers, creeks)"]
 
     E74_ORG["E74 Group
     (Organizations)
-    ← Almanacs"]
+    wd:Q-ID"]
 
     E21_PERSON["E21 Person
-    (Historical persons)
-    ← Registers, Certificates"]
+    (Historical persons)"]
 
     E53["E53 Place
     (Spatial location)"]
@@ -59,13 +65,15 @@ flowchart TB
     %% RELATIONSHIPS
     %% =============================================================
 
-    %% Physical artifact carries visual content
+    %% Physical artifact carries visual content AND names
     E22 -->|"P128 carries"| E36
+    E22 -->|"P128 carries"| E41_MAP
+    E22 -->|"P128 carries"| E41_ALM
 
-    %% Digital scan represents physical (FIXED: P138 not P183i)
+    %% Digital scan represents physical (P138)
     E38 -->|"P138 represents"| E22
 
-    %% Production with time-span
+    %% Production with time-span (gives temporal scope to names)
     E22 -->|"P108i was produced by"| E12
     E12 -->|"P4 has time-span"| E52
     E12 -->|"P14 carried out by"| E21
@@ -77,9 +85,17 @@ flowchart TB
     E36 -->|"P138 represents"| E74_ORG
     E36 -->|"P138 represents"| E21_PERSON
 
+    %% Names identify DIFFERENT entity types depending on source
+    E41_MAP -->|"P1i identifies"| E24
+    E41_ALM -->|"P1i identifies"| E74_ORG
+    E41_MAP ---|"P139 has alt form"| E41_ALM
+
     %% Things/features have locations
     E24 -->|"P53 has location"| E53
     E26 -->|"P53 has location"| E53
+
+    %% Plantation owned by organization (separate entities)
+    E24 -->|"P52 has current owner"| E74_ORG
 
     %% =============================================================
     %% STYLING
@@ -88,6 +104,8 @@ flowchart TB
     classDef e22 fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#856404
     classDef e38 fill:#cce5ff,stroke:#004085,stroke-width:2px,color:#004085
     classDef e36 fill:#e2e3e5,stroke:#6c757d,stroke-width:2px,color:#383d41
+    classDef e41 fill:#ffefd5,stroke:#e67e22,stroke-width:2px,color:#7e4a00
+    classDef e41alm fill:#fff0e0,stroke:#d35400,stroke-width:2px,color:#7e4a00
     classDef e24 fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#155724
     classDef e53 fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#1b5e20
     classDef e26 fill:#b2dfdb,stroke:#00796b,stroke-width:2px,color:#004d40
@@ -99,6 +117,8 @@ flowchart TB
     class E22 e22
     class E38 e38
     class E36 e36
+    class E41_MAP e41
+    class E41_ALM e41alm
     class E24 e24
     class E53 e53
     class E26 e26

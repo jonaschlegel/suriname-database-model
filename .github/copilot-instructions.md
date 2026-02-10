@@ -19,11 +19,13 @@ Before performing ANY task related to the following topics, you MUST read the co
 
 This is the Suriname Time Machine project — a Linked Open Data initiative for historical records from Suriname's colonial archives. Key concepts:
 
-- **Three-entity model**: Land Plot (E53), Physical Site (E24), Organization (sdo:Organization)
+- **E24 Plantation is the main entity** - the physical thing depicted by sources
+- E53 Place = location/geometry of the plantation (via P53)
+- E74/sdo:Organization = who operates the plantation
 - **CIDOC-CRM** for cultural heritage modeling
 - **PICO model** for historical persons
 - **Wikidata Q-IDs** as primary identifiers for organizations
-- **Qualified links** with certainty levels connecting entities
+- **Qualified links** with certainty levels for uncertain matches
 
 ## Data Sources
 
@@ -48,13 +50,14 @@ Primary data lives in `/data/` with these key sources:
 
 ## Key Modeling Decisions (Universal Source Pattern)
 
-Always use these patterns (see SKILL.md Part 8 for full details):
+Always use these patterns (see SKILL.md for full details):
 
-- **Physical sources**: Use E22 Human-Made Object for maps, books, ledgers (NOT E73 Information Object)
-- **Source chain**: E22 Human-Made Object -> P128 carries -> E36 Visual Item -> P138 represents -> E24/E26/E74/E21
-- **Digital reproductions**: E38 Image -> P138 represents -> E22 (NOT P183i)
-- **Production events**: E22 -> P108i was produced by -> E12 Production -> P4 has time-span -> E52 Time-Span
-- **Location principle**: "Maps depict things; things have locations" — E36 does NOT connect directly to E53 Place
+- **E24 Plantation is central**: Sources depict plantations; plantations have locations
+- **Physical sources**: Use E22 Human-Made Object for maps, books, ledgers (NOT E73)
+- **Source chain**: E22 -> P128 carries -> E36 Visual Item -> P138 represents -> E24 Plantation
+- **Location chain**: E24 Plantation -> P53 has location -> E53 Place (geometry)
+- **Digital reproductions**: E38 Image -> P138 represents -> E22
+- **Location principle**: "Maps depict things; things have locations" — E36 does NOT connect to E53 directly
 
 ## Diagram Files
 
