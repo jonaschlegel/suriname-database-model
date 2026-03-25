@@ -1,7 +1,12 @@
 'use client';
 
 import type { AllData } from '@/lib/data';
-import { entityTypeColor, uriLabel } from '@/lib/data';
+import {
+  CRM_CLASS_NAMES,
+  CRM_COLORS,
+  entityTypeColor,
+  uriLabel,
+} from '@/lib/data';
 import type {
   E22Source,
   E24Plantation,
@@ -23,10 +28,24 @@ interface PlantationPanelProps {
 }
 
 function Badge({ type }: { type: string }) {
+  const fullName = CRM_CLASS_NAMES[type] || type;
+  const lightBgTypes = [
+    'E41',
+    'E39',
+    'E55',
+    'E52',
+    'E54',
+    'PROV',
+    'Provenance',
+  ];
   return (
     <span
-      className="inline-block px-1.5 py-0.5 text-[10px] font-bold text-white mr-1.5 uppercase tracking-wide"
-      style={{ backgroundColor: entityTypeColor(type) }}
+      className="inline-block px-1.5 py-0.5 text-[10px] font-bold mr-1.5 uppercase tracking-wide"
+      style={{
+        backgroundColor: CRM_COLORS[type] || entityTypeColor(type),
+        color: lightBgTypes.includes(type) ? '#78716c' : '#fff',
+      }}
+      title={fullName}
     >
       {type}
     </span>
@@ -125,70 +144,83 @@ function WikidataLink({ qid }: { qid: string }) {
   );
 }
 
-/** Determine a human source type label from P2_has_type URI */
-function sourceTypeLabel(src: E22Source): string {
-  const t = src.P2_has_type || '';
-  if (t.includes('almanac')) return 'Almanac';
-  if (t.includes('map')) return 'Map';
-  if (t.includes('register') || t.includes('registry')) return 'Register';
-  return 'Source';
-}
-
-/** Group observations by their hadPrimarySource */
-function groupBySource(
-  observations: OrganizationObservation[],
-  sources: E22Source[],
-  allData: AllData,
-) {
-  const sourceMap = new Map<string, E22Source>();
-  for (const s of sources) sourceMap.set(s['@id'], s);
-
-  const groups = new Map<
-    string,
-    { source: E22Source | null; observations: OrganizationObservation[] }
-  >();
-
-  for (const obs of observations) {
-    const key = obs.hadPrimarySource || '__unknown__';
-    if (!groups.has(key)) {
-      const src = obs.hadPrimarySource
-        ? sourceMap.get(obs.hadPrimarySource) ||
-          (allData.sources[obs.hadPrimarySource] as E22Source | undefined) ||
-          null
-        : null;
-      groups.set(key, { source: src, observations: [] });
-    }
-    groups.get(key)!.observations.push(obs);
-  }
-
-  // Sources that have no observations (e.g. maps, location docs)
-  for (const src of sources) {
-    if (!groups.has(src['@id'])) {
-      groups.set(src['@id'], { source: src, observations: [] });
-    }
-  }
-
-  // Sort groups: sources with year ascending, unknown last
-  return Array.from(groups.entries()).sort(([aKey, a], [bKey, b]) => {
-    if (aKey === '__unknown__') return 1;
-    if (bKey === '__unknown__') return -1;
-    const aYear = a.source?.mapYear || '';
-    const bYear = b.source?.mapYear || '';
-    return aYear.localeCompare(bYear);
-  });
-}
-
-function ObservationCard({ obs }: { obs: OrganizationObservation }) {
+function CrmField({
+  label,
+  crmClass,
+  property,
+  value,
+  mono,
+  children,
+}: {
+  label: string;
+  crmClass: string;
+  property?: string;
+  value?: string | number | boolean | null;
+  mono?: boolean;
+  children?: React.ReactNode;
+}) {
+  const hasValue = children != null || (value != null && value !== '');
+  const color = CRM_COLORS[crmClass] || '#6b7280';
   return (
-    <div className="border-l-2 border-stm-warm-200 pl-3 py-1.5 text-xs hover:border-stm-teal-400 transition-colors">
-      <div className="flex items-center justify-between mb-0.5">
-        <span className="font-semibold text-stm-teal-700">
+    <div className="flex items-start gap-2 text-xs leading-relaxed py-0.5">
+      <span
+        className="inline-block w-1.5 h-1.5 shrink-0 mt-1.5"
+        style={{ backgroundColor: color }}
+        title={CRM_CLASS_NAMES[crmClass] || crmClass}
+      />
+      <span className="text-stm-warm-400 min-w-18 shrink-0">
+        {label}
+        {property && (
+          <span className="block text-[9px] font-mono text-stm-warm-300">
+            {property}
+          </span>
+        )}
+      </span>
+      {hasValue ? (
+        <span
+          className={`text-stm-warm-700 ${mono ? 'font-mono text-[11px]' : ''}`}
+        >
+          {children ||
+            (typeof value === 'boolean'
+              ? value
+                ? 'Yes'
+                : 'No'
+              : String(value))}
+        </span>
+      ) : (
+        <span className="text-stm-warm-300 italic">no data</span>
+      )}
+      <span className="ml-auto text-[9px] font-mono shrink-0" style={{ color }}>
+        {crmClass}
+      </span>
+    </div>
+  );
+}
+
+function TimelineEntry({ obs }: { obs: OrganizationObservation }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="border-l-2 border-stm-warm-200 hover:border-stm-teal-400 transition-colors">
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full text-left pl-3 pr-2 py-1 flex items-center gap-2 text-xs"
+      >
+        <span className="font-semibold text-stm-teal-700 tabular-nums shrink-0 w-8">
           {obs.observationYear}
         </span>
-        <div className="flex gap-1">
+        <span className="text-stm-warm-600 truncate min-w-0">
+          {obs.observedName}
+        </span>
+        <div className="flex items-center gap-1 shrink-0 ml-auto">
           {obs.product && (
             <span className="bg-stm-teal-50 text-stm-teal-700 px-1.5 py-0.5 text-[10px]">
               {obs.product}
+            </span>
+          )}
+          {obs.enslavedCount != null && (
+            <span className="text-stm-warm-400 text-[10px] tabular-nums">
+              {obs.enslavedCount}
             </span>
           )}
           {obs.deserted && (
@@ -196,99 +228,8 @@ function ObservationCard({ obs }: { obs: OrganizationObservation }) {
               verlaten
             </span>
           )}
-        </div>
-      </div>
-      <div className="grid grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 text-stm-warm-600">
-        {obs.observedName && (
-          <>
-            <span className="text-stm-warm-400">Name</span>
-            <span className="font-medium">{obs.observedName}</span>
-          </>
-        )}
-        {obs.hasOwner && (
-          <>
-            <span className="text-stm-warm-400">Owner</span>
-            <span>{obs.hasOwner}</span>
-          </>
-        )}
-        {obs.hasAdministrator && (
-          <>
-            <span className="text-stm-warm-400">Admin</span>
-            <span>{obs.hasAdministrator}</span>
-          </>
-        )}
-        {obs.hasDirector && (
-          <>
-            <span className="text-stm-warm-400">Director</span>
-            <span>{obs.hasDirector}</span>
-          </>
-        )}
-        {obs.enslavedCount != null && (
-          <>
-            <span className="text-stm-warm-400">Enslaved</span>
-            <span className="font-medium">{obs.enslavedCount}</span>
-          </>
-        )}
-        {obs.sizeAkkers != null && (
-          <>
-            <span className="text-stm-warm-400">Size</span>
-            <span>{obs.sizeAkkers} akkers</span>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function SourceGroup({
-  source,
-  observations,
-  appellations,
-}: {
-  source: E22Source | null;
-  observations: OrganizationObservation[];
-  appellations: E41Appellation[];
-}) {
-  const [expanded, setExpanded] = useState(observations.length <= 5);
-  const sorted = [...observations].sort(
-    (a, b) => parseInt(a.observationYear) - parseInt(b.observationYear),
-  );
-  const typeLabel = source ? sourceTypeLabel(source) : 'Unknown';
-
-  // Names from this source
-  const sourceApps = source
-    ? appellations.filter((a) => a.P128i_is_carried_by === source['@id'])
-    : [];
-
-  return (
-    <div className="border border-stm-warm-200 bg-white">
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="w-full text-left px-3 py-2 flex items-center justify-between hover:bg-stm-warm-50/50 transition-colors"
-      >
-        <div className="min-w-0">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-stm-warm-400">
-              {typeLabel}
-            </span>
-            {source?.mapYear && (
-              <span className="text-[10px] text-stm-warm-400">
-                {source.mapYear}
-              </span>
-            )}
-          </div>
-          <p className="text-xs font-medium text-stm-warm-800 truncate">
-            {source?.prefLabel || 'Unknown source'}
-          </p>
-        </div>
-        <div className="flex items-center gap-2 shrink-0">
-          {observations.length > 0 && (
-            <span className="text-[10px] text-stm-warm-400">
-              {observations.length} obs
-            </span>
-          )}
           <svg
-            className={`w-3.5 h-3.5 text-stm-warm-400 transition-transform ${expanded ? 'rotate-180' : ''}`}
+            className={`w-3 h-3 text-stm-warm-400 transition-transform ${expanded ? 'rotate-180' : ''}`}
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
@@ -304,33 +245,77 @@ function SourceGroup({
       </button>
 
       {expanded && (
-        <div className="px-3 pb-2 space-y-1.5">
-          {/* Names found in this source */}
-          {sourceApps.length > 0 && (
-            <div className="text-xs text-stm-warm-500 border-b border-stm-warm-100 pb-1.5 mb-1">
-              {sourceApps.map((app, i) => (
-                <span key={i}>
-                  {i > 0 && ', '}
-                  <span className="text-stm-sepia-700 font-medium">
-                    &ldquo;{app.P190_has_symbolic_content}&rdquo;
-                  </span>
-                </span>
-              ))}
-            </div>
-          )}
-
-          {/* Observations */}
-          {sorted.length > 0 ? (
-            <div className="space-y-1 max-h-72 overflow-y-auto">
-              {sorted.map((obs) => (
-                <ObservationCard key={obs['@id']} obs={obs} />
-              ))}
-            </div>
-          ) : (
-            <p className="text-xs text-stm-warm-400 italic py-1">
-              No observations from this source
-            </p>
-          )}
+        <div className="pl-3 pr-2 pb-2 pt-1 space-y-0">
+          <p className="text-[9px] text-stm-warm-300 font-mono mb-1">
+            E13 Attribute Assignment &mdash; P140 assigned to E74 &mdash; P4 has
+            time-span E52 ({obs.observationYear})
+          </p>
+          <CrmField
+            label="Name"
+            crmClass="E41"
+            property="P141 assigned"
+            value={obs.observedName}
+          />
+          <CrmField
+            label="Product"
+            crmClass="E55"
+            property="P141 assigned"
+            value={obs.product}
+          />
+          <CrmField
+            label="Owner"
+            crmClass="E39"
+            property="P14 carried out by"
+            value={obs.hasOwner}
+          />
+          <CrmField
+            label="Administrator"
+            crmClass="E39"
+            property="P14 carried out by"
+            value={obs.hasAdministrator}
+          />
+          <CrmField
+            label="Director"
+            crmClass="E39"
+            property="P14 carried out by"
+            value={obs.hasDirector}
+          />
+          <CrmField
+            label="Enslaved"
+            crmClass="E55"
+            property="P141 assigned"
+            value={obs.enslavedCount}
+          />
+          <CrmField
+            label="Size"
+            crmClass="E54"
+            property="P43 has dimension"
+            value={obs.sizeAkkers != null ? `${obs.sizeAkkers} akkers` : null}
+          />
+          <CrmField
+            label="Location"
+            crmClass="E53"
+            property="P7 took place at"
+            value={obs.locationStd}
+          />
+          <CrmField
+            label="Deserted"
+            crmClass="E55"
+            property="P141 assigned"
+            value={obs.deserted != null ? (obs.deserted ? 'Yes' : 'No') : null}
+          />
+          <CrmField
+            label="Free residents"
+            crmClass="E55"
+            property="P141 assigned"
+            value={obs.freeResidentsCount}
+          />
+          <CrmField
+            label="Page"
+            crmClass="E22"
+            property="prov:hadPrimarySource"
+            value={obs.pageReference}
+          />
         </div>
       )}
     </div>
@@ -396,8 +381,10 @@ export default function PlantationPanel({
     .map((uri) => data.sources[uri] as E22Source | undefined)
     .filter(Boolean) as E22Source[];
 
-  // Group observations under their source
-  const sourceGroups = groupBySource(observations, sources, data);
+  // Sort observations chronologically
+  const sortedObservations = [...observations].sort(
+    (a, b) => parseInt(a.observationYear) - parseInt(b.observationYear),
+  );
 
   // Provenance records
   const provRecords: { label: string; record: ProvenanceRecord }[] = [];
@@ -476,7 +463,7 @@ export default function PlantationPanel({
         </div>
 
         <div className="divide-y divide-stm-warm-200">
-          {/* Plantation (E24) */}
+          {/* Plantation (E24 Physical Human-Made Thing) */}
           <div>
             <SectionHeader
               id="plantation"
@@ -487,9 +474,36 @@ export default function PlantationPanel({
               refs={sectionRefs}
             />
             {openSections.plantation && (
-              <div className="px-4 pb-3 space-y-0.5">
-                <Field label="Name" value={plantation?.prefLabel} />
-                <Field label="Status" value={plantation?.status} />
+              <div className="px-4 pb-3 space-y-0">
+                <p className="text-[9px] text-stm-warm-300 font-mono mb-1">
+                  E24 Physical Human-Made Thing
+                </p>
+                <CrmField
+                  label="Name"
+                  crmClass="E41"
+                  property="P1 is identified by"
+                  value={plantation?.prefLabel}
+                />
+                <CrmField
+                  label="Status"
+                  crmClass="E55"
+                  property="P2 has type"
+                  value={plantation?.status}
+                />
+                <CrmField
+                  label="Owner"
+                  crmClass="E74"
+                  property="P52 has current owner"
+                  value={organization?.prefLabel}
+                />
+                <CrmField
+                  label="Location"
+                  crmClass="E53"
+                  property="P53 has location"
+                  value={
+                    place?.observedLabel || (place ? `fid-${place.fid}` : null)
+                  }
+                />
                 {plantation?.['stm:depictedOnMap'] && (
                   <div className="mt-1.5">
                     <span className="text-[10px] text-stm-warm-400 uppercase tracking-wider">
@@ -523,19 +537,34 @@ export default function PlantationPanel({
                 refs={sectionRefs}
               />
               {openSections.organization && (
-                <div className="px-4 pb-3 space-y-0.5">
-                  <Field label="Name" value={organization.prefLabel} />
-                  <div className="flex gap-2 text-xs leading-relaxed">
-                    <span className="text-stm-warm-400 min-w-18">Wikidata</span>
+                <div className="px-4 pb-3 space-y-0">
+                  <p className="text-[9px] text-stm-warm-300 font-mono mb-1">
+                    P52 has current owner
+                  </p>
+                  <CrmField
+                    label="Name"
+                    crmClass="E41"
+                    property="P1 is identified by"
+                    value={organization.prefLabel}
+                  />
+                  <CrmField label="Wikidata" crmClass="E74" property="@id" mono>
                     <WikidataLink qid={organization['@id']} />
-                  </div>
-                  <Field label="PSUR ID" value={organization.psurId} mono />
-                  <Field
-                    label="Absorbed"
+                  </CrmField>
+                  <CrmField
+                    label="PSUR ID"
+                    crmClass="E74"
+                    property="stm:psurId"
+                    value={organization.psurId}
+                    mono
+                  />
+                  <CrmField
+                    label="Absorbed into"
+                    crmClass="E74"
+                    property="stm:absorbedInto"
                     value={
                       organization.absorbedInto
                         ? uriLabel(organization.absorbedInto)
-                        : undefined
+                        : null
                     }
                   />
                 </div>
@@ -555,16 +584,37 @@ export default function PlantationPanel({
                 refs={sectionRefs}
               />
               {openSections.place && (
-                <div className="px-4 pb-3 space-y-0.5">
-                  <Field label="Feature" value={place.fid} mono />
-                  <Field label="Map Year" value={place.mapYear} />
-                  <Field label="Label" value={place.observedLabel} />
-                  <Field
+                <div className="px-4 pb-3 space-y-0">
+                  <p className="text-[9px] text-stm-warm-300 font-mono mb-1">
+                    P53 has location
+                  </p>
+                  <CrmField
+                    label="Feature"
+                    crmClass="E53"
+                    property="stm:fid"
+                    value={place.fid}
+                    mono
+                  />
+                  <CrmField
+                    label="Map Year"
+                    crmClass="E52"
+                    property="stm:mapYear"
+                    value={place.mapYear}
+                  />
+                  <CrmField
+                    label="Label"
+                    crmClass="E41"
+                    property="stm:observedLabel"
+                    value={place.observedLabel}
+                  />
+                  <CrmField
                     label="Source"
+                    crmClass="E22"
+                    property="P70i is documented in"
                     value={
                       place.P70i_is_documented_in
                         ? uriLabel(place.P70i_is_documented_in)
-                        : undefined
+                        : null
                     }
                   />
                 </div>
@@ -572,36 +622,69 @@ export default function PlantationPanel({
             </div>
           )}
 
-          {/* Sources & Evidence — observations grouped under their source */}
-          <div>
-            <SectionHeader
-              id="sources"
-              title="Sources & Evidence"
-              badge="E22"
-              open={openSections.sources}
-              onToggle={() => toggle('sources')}
-              refs={sectionRefs}
-              count={sources.length}
-            />
-            {openSections.sources && (
-              <div className="px-3 pb-3 space-y-1.5">
-                {sourceGroups.length > 0 ? (
-                  sourceGroups.map(([key, group]) => (
-                    <SourceGroup
-                      key={key}
-                      source={group.source}
-                      observations={group.observations}
-                      appellations={allApps}
-                    />
-                  ))
-                ) : (
-                  <p className="text-xs text-stm-warm-400 italic px-1 py-2">
-                    No sources linked to this plantation
+          {/* Timeline — annual observations from the Almanakken */}
+          {sortedObservations.length > 0 && (
+            <div>
+              <SectionHeader
+                id="sources"
+                title="Timeline"
+                badge="E13"
+                open={openSections.sources}
+                onToggle={() => toggle('sources')}
+                refs={sectionRefs}
+                count={sortedObservations.length}
+              />
+              {openSections.sources && (
+                <div className="px-3 pb-3">
+                  <p className="text-[10px] text-stm-warm-400 mb-2">
+                    Annual observations from Surinaamse Almanakken
                   </p>
-                )}
-              </div>
-            )}
-          </div>
+                  <div className="space-y-0.5 max-h-128 overflow-y-auto">
+                    {sortedObservations.map((obs) => (
+                      <TimelineEntry key={obs['@id']} obs={obs} />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Sources */}
+          {sources.length > 0 && (
+            <div>
+              <SectionHeader
+                id="sources-ref"
+                title="Sources"
+                badge="E22"
+                open={openSections['sources-ref'] ?? false}
+                onToggle={() => toggle('sources-ref')}
+                refs={sectionRefs}
+                count={sources.length}
+              />
+              {openSections['sources-ref'] && (
+                <div className="px-4 pb-3 space-y-1.5">
+                  {sources.map((src) => (
+                    <div
+                      key={src['@id']}
+                      className="flex items-baseline gap-2 text-xs"
+                    >
+                      <Badge type="E22" />
+                      <div className="min-w-0">
+                        <span className="text-stm-warm-700 font-medium">
+                          {src.prefLabel}
+                        </span>
+                        {src.mapYear && (
+                          <span className="text-stm-warm-400 ml-1">
+                            ({src.mapYear})
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Provenance */}
           {provRecords.length > 0 && (

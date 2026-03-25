@@ -111,18 +111,44 @@ export function uriLabel(uri: string): string {
   return uri;
 }
 
-/** Get entity type color */
+/**
+ * CRITERIA / George Bruseker CIDOC-CRM colour scheme.
+ * Matches the project's own Mermaid diagrams.
+ * See: https://github.com/chin-rcip/CRITERIA
+ */
+export const CRM_COLORS: Record<string, string> = {
+  E24: '#e6956b', // E24 Physical Human-Made Thing (warm brown) -- plantation
+  E22: '#c78e66', // E22 Human-Made Object (brown) -- sources
+  E53: '#94cc7d', // E53 Place (green)
+  E74: '#ffbdca', // E74 Group (pink)
+  E41: '#fef3ba', // E41 Appellation (yellow)
+  E13: '#82ddff', // E13 Attribute Assignment (blue)
+  E39: '#ffe6eb', // E39 Actor -- person roles (light pink)
+  E55: '#d4edda', // E55 Type (light green)
+  E52: '#cce5ff', // E52 Time-Span (light blue)
+  E54: '#e2d9f3', // E54 Dimension (light purple)
+  PROV: '#d4c4fb', // Provenance (lavender)
+  Provenance: '#d4c4fb',
+};
+
+/** Full CIDOC-CRM class names for tooltips */
+export const CRM_CLASS_NAMES: Record<string, string> = {
+  E24: 'E24 Physical Human-Made Thing',
+  E22: 'E22 Human-Made Object',
+  E53: 'E53 Place',
+  E74: 'E74 Group / sdo:Organization',
+  E41: 'E41 Appellation',
+  E13: 'E13 Attribute Assignment',
+  E39: 'E39 Actor',
+  E55: 'E55 Type',
+  E52: 'E52 Time-Span',
+  E54: 'E54 Dimension',
+  PROV: 'prov:ProvenanceRecord',
+};
+
+/** Get entity type color using CRITERIA scheme */
 export function entityTypeColor(typeStr: string): string {
-  const colors: Record<string, string> = {
-    E24: '#3b82f6', // blue
-    E74: '#8b5cf6', // purple
-    E53: '#22c55e', // green
-    E41: '#f59e0b', // amber
-    E22: '#6b7280', // gray
-    Observation: '#14b8a6', // teal
-    Provenance: '#f43f5e', // rose
-  };
-  for (const [key, color] of Object.entries(colors)) {
+  for (const [key, color] of Object.entries(CRM_COLORS)) {
     if (typeStr.includes(key)) return color;
   }
   return '#6b7280';
@@ -136,7 +162,8 @@ export function typeBadge(types: string | string[]): string {
   if (arr.some((t) => t.includes('E53'))) return 'E53';
   if (arr.some((t) => t.includes('E41'))) return 'E41';
   if (arr.some((t) => t.includes('E22'))) return 'E22';
-  if (arr.some((t) => t.includes('Observation'))) return 'OBS';
+  if (arr.some((t) => t.includes('Observation') || t.includes('E13')))
+    return 'E13';
   if (arr.some((t) => t.includes('Provenance'))) return 'PROV';
   return '?';
 }

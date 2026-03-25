@@ -29,17 +29,18 @@ const ENTITIES: EntityDef[] = [
     type: 'E24',
     label: 'Plantation',
     crmClass: 'E24 Physical Human-Made Thing',
-    desc: 'The central entity -- the physical plantation depicted by sources. Connected to locations via P53 and to operating organizations via P52.',
-    color: '#3b82f6',
+    desc: 'The central entity -- the physical plantation depicted by sources. A subclass of E22. Connected to locations via P53 and to operating organizations via P52. Can also model houses and other physical structures.',
+    color: '#e6956b',
     cx: 400,
     cy: 260,
     dataKey: 'plantations',
     properties: [
       { name: 'P1 is identified by', range: 'E41 Appellation' },
       { name: 'skos:prefLabel', range: 'string (@nl)' },
-      { name: 'P2 has type', range: 'PlantationStatus' },
+      { name: 'P2 has type', range: 'E55 Type (plantation, house, ...)' },
       { name: 'P53 has location', range: 'E53 Place' },
       { name: 'P52 has current owner', range: 'E74 Organization' },
+      { name: 'P51 has former or current owner', range: 'E74 Organization' },
       { name: 'stm:depictedOnMap', range: 'MapDepiction' },
       { name: 'prov:wasDerivedFrom', range: 'ProvenanceRecord' },
     ],
@@ -50,7 +51,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Organization',
     crmClass: 'E74 Group / sdo:Organization',
     desc: 'The legal entity that owns or operates the plantation. Identified by Wikidata Q-IDs. Annual observations from the Surinaamse Almanakken are linked to organizations.',
-    color: '#8b5cf6',
+    color: '#ffbdca',
     cx: 700,
     cy: 260,
     dataKey: 'organizations',
@@ -68,7 +69,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Place',
     crmClass: 'E53 Place',
     desc: 'Where the plantation is located. Polygons from the 1930 QGIS map, reprojected from EPSG:31170 to WGS84. Linked to E24 via P53.',
-    color: '#22c55e',
+    color: '#94cc7d',
     cx: 400,
     cy: 460,
     dataKey: 'places',
@@ -85,7 +86,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Appellation',
     crmClass: 'E41 Appellation',
     desc: 'Names as first-class entities. Each source creates its own E41 instance. Map labels identify E24; almanac names identify E74. Linked via P139 has alternative form.',
-    color: '#f59e0b',
+    color: '#fef3ba',
     cx: 400,
     cy: 70,
     dataKey: 'appellations-count',
@@ -102,7 +103,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Source',
     crmClass: 'E22 Human-Made Object',
     desc: 'Physical sources: maps, almanacs, registers. The source carries visual items (E36) and appellations (E41) that represent or identify entities.',
-    color: '#6b7280',
+    color: '#c78e66',
     cx: 100,
     cy: 70,
     dataKey: 'sources',
@@ -114,23 +115,26 @@ const ENTITIES: EntityDef[] = [
     ],
   },
   {
-    id: 'obs',
-    type: 'OBS',
-    label: 'Observation',
-    crmClass: 'stm:OrganizationObservation',
-    desc: 'Annual snapshot from the Surinaamse Almanakken. Records the name, owner, administrator, director, enslaved count, product, and size of a plantation organization for a given year.',
-    color: '#14b8a6',
+    id: 'e13',
+    type: 'E13',
+    label: 'Attribute Assignment',
+    crmClass: 'E13 Attribute Assignment',
+    desc: 'Each annual almanac row is an E13 Attribute Assignment. Records time-varying properties of an organization: name, owner, administrator, director, enslaved count, product, size, and location for a given year.',
+    color: '#82ddff',
     cx: 700,
     cy: 460,
     dataKey: 'observations-count',
     properties: [
-      { name: 'stm:observationOf', range: 'E74 Organization' },
-      { name: 'stm:observationYear', range: 'gYear' },
-      { name: 'stm:observedName', range: 'E41 Appellation' },
-      { name: 'stm:hasOwner', range: 'PersonObservation' },
-      { name: 'stm:hasAdministrator', range: 'PersonObservation' },
-      { name: 'stm:enslavedCount', range: 'integer' },
-      { name: 'stm:hasProduct', range: 'string' },
+      { name: 'P140 assigned attribute to', range: 'E74 Organization' },
+      { name: 'P4 has time-span', range: 'E52 Time-Span (year)' },
+      { name: 'P141 assigned (name)', range: 'E41 Appellation' },
+      { name: 'P141 assigned (product)', range: 'E55 Type' },
+      { name: 'P14 carried out by (owner)', range: 'E39 Actor' },
+      { name: 'P14 carried out by (admin)', range: 'E39 Actor' },
+      { name: 'P14 carried out by (director)', range: 'E39 Actor' },
+      { name: 'P141 assigned (enslaved)', range: 'E55 Type (count)' },
+      { name: 'P43 has dimension (size)', range: 'E54 Dimension (akkers)' },
+      { name: 'P7 took place at', range: 'E53 Place' },
       { name: 'prov:hadPrimarySource', range: 'E22 Source' },
     ],
   },
@@ -168,16 +172,22 @@ const RELATIONS: RelDef[] = [
     desc: 'The source carries this appellation',
   },
   {
-    from: 'obs',
+    from: 'e13',
     to: 'e74',
-    label: 'stm:observationOf',
-    desc: 'This observation records data about the organization',
+    label: 'P140 assigned attribute to',
+    desc: 'This attribute assignment records data about the organization',
   },
   {
     from: 'e22',
     to: 'e24',
     label: 'P138 represents (via E36)',
     desc: 'The source depicts the plantation (through visual item)',
+  },
+  {
+    from: 'e13',
+    to: 'e22',
+    label: 'prov:hadPrimarySource',
+    desc: 'The attribute assignment derives from this source (almanac)',
   },
 ];
 
@@ -396,8 +406,22 @@ function EntityDetail({ entity, count }: { entity: EntityDef; count: number }) {
     <div className="bg-white border border-stm-warm-200 p-6">
       <div className="flex items-start gap-4 mb-4">
         <div
-          className="w-12 h-12 flex items-center justify-center text-white font-bold text-sm shrink-0"
-          style={{ backgroundColor: entity.color }}
+          className="w-12 h-12 flex items-center justify-center font-bold text-sm shrink-0"
+          style={{
+            backgroundColor: entity.color,
+            color: [
+              '#fef3ba',
+              '#ffe6eb',
+              '#ffbdca',
+              '#d4edda',
+              '#cce5ff',
+              '#e2d9f3',
+              '#d4c4fb',
+              '#82ddff',
+            ].includes(entity.color)
+              ? '#78716c'
+              : '#fff',
+          }}
         >
           {entity.type}
         </div>
@@ -467,8 +491,22 @@ function RelationDetail({ relation }: { relation: RelDef }) {
     <div className="bg-stm-sepia-50 border border-stm-sepia-200 p-4 text-sm">
       <div className="flex items-center gap-2 mb-2">
         <span
-          className="w-7 h-7 text-white text-[10px] font-bold flex items-center justify-center"
-          style={{ backgroundColor: from.color }}
+          className="w-7 h-7 text-[10px] font-bold flex items-center justify-center"
+          style={{
+            backgroundColor: from.color,
+            color: [
+              '#fef3ba',
+              '#ffe6eb',
+              '#ffbdca',
+              '#d4edda',
+              '#cce5ff',
+              '#e2d9f3',
+              '#d4c4fb',
+              '#82ddff',
+            ].includes(from.color)
+              ? '#78716c'
+              : '#fff',
+          }}
         >
           {from.type}
         </span>
@@ -489,8 +527,22 @@ function RelationDetail({ relation }: { relation: RelDef }) {
           />
         </svg>
         <span
-          className="w-7 h-7 text-white text-[10px] font-bold flex items-center justify-center"
-          style={{ backgroundColor: to.color }}
+          className="w-7 h-7 text-[10px] font-bold flex items-center justify-center"
+          style={{
+            backgroundColor: to.color,
+            color: [
+              '#fef3ba',
+              '#ffe6eb',
+              '#ffbdca',
+              '#d4edda',
+              '#cce5ff',
+              '#e2d9f3',
+              '#d4c4fb',
+              '#82ddff',
+            ].includes(to.color)
+              ? '#78716c'
+              : '#fff',
+          }}
         >
           {to.type}
         </span>
@@ -521,7 +573,7 @@ function SourcePatternSection() {
           {' -> P128 carries -> '}
           <span className="text-stm-sepia-600">E36 Visual Item</span>
           {' -> P138 represents -> '}
-          <span className="text-entity-e24">E24 Plantation</span>
+          <span style={{ color: '#e6956b' }}>E24 Plantation</span>
         </div>
         <div>
           <span className="text-stm-warm-400">Name chain:</span>{' '}
@@ -533,17 +585,23 @@ function SourcePatternSection() {
         </div>
         <div>
           <span className="text-stm-warm-400">Location:</span>{' '}
-          <span className="text-entity-e24">E24 Plantation</span>
+          <span style={{ color: '#e6956b' }}>E24 Plantation</span>
           {' -> P53 has location -> '}
           <span className="text-entity-e53">E53 Place</span>
           {' (geometry)'}
         </div>
         <div>
           <span className="text-stm-warm-400">Ownership:</span>{' '}
-          <span className="text-entity-e24">E24 Plantation</span>
+          <span style={{ color: '#e6956b' }}>E24 Plantation</span>
           {' -> P52 has current owner -> '}
           <span className="text-entity-e74">E74 Organization</span>
           {' (wd:Q-ID)'}
+        </div>
+        <div>
+          <span className="text-stm-warm-400">Observation:</span>{' '}
+          <span style={{ color: '#82ddff' }}>E13 Attr. Assignment</span>
+          {' -> P140 assigned attribute to -> '}
+          <span className="text-entity-e74">E74 Organization</span>
         </div>
       </div>
     </div>
@@ -644,8 +702,22 @@ export default function ModelPage() {
                 >
                   <div className="flex items-center gap-3 mb-2">
                     <span
-                      className="w-8 h-8 text-white text-[10px] font-bold flex items-center justify-center"
-                      style={{ backgroundColor: ent.color }}
+                      className="w-8 h-8 text-[10px] font-bold flex items-center justify-center"
+                      style={{
+                        backgroundColor: ent.color,
+                        color: [
+                          '#fef3ba',
+                          '#ffe6eb',
+                          '#ffbdca',
+                          '#d4edda',
+                          '#cce5ff',
+                          '#e2d9f3',
+                          '#d4c4fb',
+                          '#82ddff',
+                        ].includes(ent.color)
+                          ? '#78716c'
+                          : '#fff',
+                      }}
                     >
                       {ent.type}
                     </span>
@@ -664,6 +736,102 @@ export default function ModelPage() {
                 </button>
               );
             })}
+          </div>
+        </div>
+
+        {/* Research Questions */}
+        <div className="bg-white border border-stm-warm-200 p-6 mb-10">
+          <h3 className="font-serif text-xl font-bold text-stm-warm-800 mb-2">
+            Research Questions
+          </h3>
+          <p className="text-sm text-stm-warm-500 mb-4">
+            Questions the data model can support. Status indicates whether the
+            current data and connections are sufficient to answer each question.
+          </p>
+          <div className="space-y-3">
+            {[
+              {
+                status: 'green' as const,
+                question: 'What products were grown at a plantation over time?',
+                path: 'E13 -> P141 assigned -> E55 Type (product) + P4 has time-span -> E52',
+              },
+              {
+                status: 'green' as const,
+                question:
+                  'How did the number of enslaved people change per plantation?',
+                path: 'E13 -> P141 assigned -> E55 (enslaved count) + P4 -> E52',
+              },
+              {
+                status: 'green' as const,
+                question:
+                  'Who owned or administered a plantation in a given year?',
+                path: 'E13 -> P14 carried out by -> E39 Actor + P4 -> E52',
+              },
+              {
+                status: 'green' as const,
+                question:
+                  'Which plantations were marked as deserted (verlaten)?',
+                path: 'E13 -> P141 assigned -> E55 (deserted status) + P140 -> E74 -> P52i -> E24 plantation',
+              },
+              {
+                status: 'green' as const,
+                question: 'Where was a plantation located on the 1930 map?',
+                path: 'E24 plantation -> P53 has location -> E53 Place (geometry)',
+              },
+              {
+                status: 'amber' as const,
+                question: 'Did people move between plantations over time?',
+                path: 'Requires entity resolution: same E39 Actor name appearing in multiple E13 assignments across different E74 organizations',
+              },
+              {
+                status: 'amber' as const,
+                question: 'Which organizations merged or were absorbed?',
+                path: 'E74 -> stm:absorbedInto -> E74 (partial data; needs more historical sources)',
+              },
+              {
+                status: 'red' as const,
+                question: 'What were the living conditions of enslaved people?',
+                path: 'Needs connection to slave registers (dataset 05) via PSUR IDs -> E21 Person',
+              },
+              {
+                status: 'red' as const,
+                question:
+                  'How did plantation boundaries change over centuries?',
+                path: 'Needs multiple historical maps with georeferenced polygons per time period',
+              },
+            ].map((q, i) => (
+              <div key={i} className="flex items-start gap-3 text-sm">
+                <span
+                  className={`inline-block w-2 h-2 mt-1.5 shrink-0 ${
+                    q.status === 'green'
+                      ? 'bg-green-500'
+                      : q.status === 'amber'
+                        ? 'bg-amber-500'
+                        : 'bg-red-500'
+                  }`}
+                />
+                <div className="min-w-0">
+                  <p className="text-stm-warm-700 font-medium">{q.question}</p>
+                  <p className="text-[11px] text-stm-warm-400 font-mono mt-0.5">
+                    {q.path}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="flex gap-4 mt-4 text-[11px] text-stm-warm-400">
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block w-2 h-2 bg-green-500" /> Answerable
+              now
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block w-2 h-2 bg-amber-500" /> Needs
+              entity resolution
+            </span>
+            <span className="flex items-center gap-1.5">
+              <span className="inline-block w-2 h-2 bg-red-500" /> Needs new
+              data sources
+            </span>
           </div>
         </div>
 
@@ -705,7 +873,7 @@ export default function ModelPage() {
             </div>
             <div>
               <span className="text-stm-warm-400 inline-block w-28">
-                Observation:
+                Attribution:
               </span>{' '}
               stm:obs/&#123;recordid&#125;
             </div>
