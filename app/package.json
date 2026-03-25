@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm pipeline && next build",
     "start": "next start",
     "generate": "tsx scripts/generate-database.ts",
     "prepare-data": "tsx scripts/prepare-data.ts",
