@@ -167,7 +167,9 @@ export default function EntityGraph({
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
-      className="w-full border border-gray-200 rounded-lg bg-gray-50"
+      className="w-full border border-stm-warm-200 bg-stm-warm-50"
+      role="img"
+      aria-label="Entity relationship graph showing connections between plantation, organization, location, and names"
     >
       {/* Edges */}
       {edges.map((edge, i) => {
@@ -183,14 +185,15 @@ export default function EntityGraph({
               y1={from.y}
               x2={to.x}
               y2={to.y}
-              stroke="#d1d5db"
+              stroke="#c4beb4"
               strokeWidth={1.5}
+              strokeDasharray="4 2"
             />
             <text
               x={mx}
               y={my - 4}
               textAnchor="middle"
-              className="text-[9px] fill-gray-400"
+              className="text-[9px] fill-stm-warm-400"
             >
               {edge.label}
             </text>
@@ -227,7 +230,7 @@ export default function EntityGraph({
             x={node.x}
             y={node.y + 8}
             textAnchor="middle"
-            className="text-[8px] fill-gray-600"
+            className="text-[8px] fill-stm-warm-600"
             style={{ maxWidth: 60 }}
           >
             {(node.label || '').length > 12

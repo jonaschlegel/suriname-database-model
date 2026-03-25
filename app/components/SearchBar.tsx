@@ -31,14 +31,21 @@ export default function SearchBar({ geojson, onSelect }: SearchBarProps) {
           setOpen(true);
         }}
         onFocus={() => setOpen(true)}
-        className="w-full px-3 py-2 rounded-lg border border-gray-300 bg-white shadow-md text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        aria-label="Search plantations by name"
+        aria-autocomplete="list"
+        role="combobox"
+        aria-expanded={open && results.length > 0}
+        className="w-full px-3 py-2 border border-stm-warm-300 bg-white/95 backdrop-blur-sm shadow-md text-sm text-stm-warm-900 placeholder:text-stm-warm-400 focus:outline-none focus:ring-2 focus:ring-stm-sepia-400"
       />
       {open && results.length > 0 && (
-        <ul className="mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-64 overflow-y-auto">
+        <ul
+          className="mt-1 bg-white/98 backdrop-blur-sm border border-stm-warm-200 shadow-lg max-h-64 overflow-y-auto"
+          role="listbox"
+        >
           {results.map((f) => (
-            <li key={f.id}>
+            <li key={f.id} role="option">
               <button
-                className="w-full text-left px-3 py-2 text-sm text-gray-800 hover:bg-blue-50 transition-colors"
+                className="w-full text-left px-3 py-2 text-sm text-stm-warm-800 hover:bg-stm-sepia-50 transition-colors"
                 onClick={() => {
                   onSelect(f);
                   setQuery(f.properties.name);
@@ -47,7 +54,7 @@ export default function SearchBar({ geojson, onSelect }: SearchBarProps) {
               >
                 <span className="font-medium">{f.properties.name}</span>
                 {f.properties.organizationQid && (
-                  <span className="ml-2 text-xs text-gray-400">
+                  <span className="ml-2 text-xs text-stm-warm-400">
                     {f.properties.organizationQid}
                   </span>
                 )}

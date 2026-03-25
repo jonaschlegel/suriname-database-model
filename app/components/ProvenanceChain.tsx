@@ -24,14 +24,16 @@ export default function ProvenanceChain({ record }: ProvenanceChainProps) {
       <div className="flex items-center gap-1.5 flex-wrap">
         {steps.map((step, i) => (
           <div key={step.label} className="flex items-center gap-1.5">
-            <div className="bg-rose-50 border border-rose-200 rounded px-2 py-0.5 text-xs">
-              <span className="text-rose-400 font-medium">{step.label}: </span>
-              <span className="text-rose-700 font-mono text-[11px]">
+            <div className="bg-stm-sepia-50 border border-stm-sepia-200 px-2 py-0.5 text-xs">
+              <span className="text-stm-sepia-400 font-medium">
+                {step.label}:{' '}
+              </span>
+              <span className="text-stm-sepia-700 font-mono text-[11px]">
                 {step.value}
               </span>
             </div>
             {i < steps.length - 1 && (
-              <span className="text-rose-300">&#8594;</span>
+              <span className="text-stm-sepia-300">&#8594;</span>
             )}
           </div>
         ))}

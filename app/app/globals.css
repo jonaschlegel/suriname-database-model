@@ -1,15 +1,91 @@
 @import 'tailwindcss';
 
+/* ──────────────────────────────────────────────────────────
+   Design Tokens — Suriname Time Machine
+   Aligned with surinametijdmachine.org visual identity
+   ────────────────────────────────────────────────────────── */
+@theme {
+  --color-stm-sepia-50: #fdf8f0;
+  --color-stm-sepia-100: #f5ead6;
+  --color-stm-sepia-200: #e8d5b0;
+  --color-stm-sepia-300: #d4b67e;
+  --color-stm-sepia-400: #c0944e;
+  --color-stm-sepia-500: #a67830;
+  --color-stm-sepia-600: #8c6228;
+  --color-stm-sepia-700: #6e4d20;
+  --color-stm-sepia-800: #503818;
+  --color-stm-sepia-900: #3a2810;
+
+  --color-stm-teal-50: #eefcfa;
+  --color-stm-teal-100: #c5f5ee;
+  --color-stm-teal-200: #87e8d8;
+  --color-stm-teal-300: #4dd4be;
+  --color-stm-teal-400: #22b8a0;
+  --color-stm-teal-500: #0f9683;
+  --color-stm-teal-600: #0b7a6b;
+  --color-stm-teal-700: #095e52;
+  --color-stm-teal-800: #074a41;
+  --color-stm-teal-900: #053630;
+
+  --color-stm-warm-50: #faf9f7;
+  --color-stm-warm-100: #f0eeea;
+  --color-stm-warm-200: #ddd9d2;
+  --color-stm-warm-300: #c4beb4;
+  --color-stm-warm-400: #a39b8e;
+  --color-stm-warm-500: #8a8172;
+  --color-stm-warm-600: #6e6658;
+  --color-stm-warm-700: #534c40;
+  --color-stm-warm-800: #3a352c;
+  --color-stm-warm-900: #242019;
+
+  /* Entity type colors (used across badges & graphs) */
+  --color-entity-e24: #3b82f6;
+  --color-entity-e74: #8b5cf6;
+  --color-entity-e53: #22c55e;
+  --color-entity-e41: #f59e0b;
+  --color-entity-e22: #6b7280;
+  --color-entity-obs: #14b8a6;
+  --color-entity-prov: #f43f5e;
+
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
 }
 
+/* Leaflet tooltip */
 .plantation-tooltip {
   font-size: 12px;
   font-weight: 500;
   padding: 2px 6px;
+  border-radius: 0;
+  border-color: var(--color-stm-sepia-300) !important;
+  background: var(--color-stm-sepia-50) !important;
+  color: var(--color-stm-warm-800) !important;
+}
+
+/* Hide Leaflet's default zoom control — zoom is in our toolbar */
+.leaflet-control-zoom {
+  display: none !important;
+}
+
+/* Skip-to-content link (accessibility) */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--color-stm-teal-600);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0;
 }
