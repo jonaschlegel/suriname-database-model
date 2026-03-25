@@ -15,9 +15,11 @@ import proj4 from 'proj4';
 
 // Register Suriname Old TM (Zanderij datum) - EPSG:31170
 // Source data uses central meridian -55.683° (not UTM Zone 21N at -57°)
+// Note: towgs84 datum shift omitted so polygons align with the Allmaps
+// georeferenced overlay of the same 1930 map (which uses its own GCPs).
 proj4.defs(
   'EPSG:31170',
-  '+proj=tmerc +lat_0=0 +lon_0=-55.68333333333 +k=0.9996 +x_0=500000 +y_0=0 +ellps=intl +towgs84=-265,120,-358,0,0,0,0 +units=m +no_defs',
+  '+proj=tmerc +lat_0=0 +lon_0=-55.68333333333 +k=0.9996 +x_0=500000 +y_0=0 +ellps=intl +units=m +no_defs',
 );
 
 const BASE_DIR = join(__dirname, '../..');

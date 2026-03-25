@@ -34,7 +34,7 @@ export default function MapView({
       center: [5.5, -55.2],
       zoom: 8,
       zoomControl: true,
-      zoomAnimationThreshold: 1,
+      zoomAnimation: false,
     });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -44,12 +44,19 @@ export default function MapView({
     }).addTo(map);
 
     // Add 1930 historical map overlay via Allmaps
-    import('@allmaps/leaflet').then(({ WarpedMapLayer }) => {
-      const warpedMapLayer = new WarpedMapLayer(ANNOTATION_URL, {
-        opacity: 0.7,
+    // requestAnimationFrame ensures Leaflet has completed its DOM layout pass
+    // and _leaflet_pos is set on all panes before the WebGL layer accesses them
+    map.whenReady(() => {
+      requestAnimationFrame(() => {
+        import('@allmaps/leaflet').then(({ WarpedMapLayer }) => {
+          if (!mapRef.current) return;
+          const warpedMapLayer = new WarpedMapLayer(ANNOTATION_URL, {
+            opacity: 0.7,
+          });
+          warpedMapLayer.addTo(map);
+          warpedLayerRef.current = warpedMapLayer;
+        });
       });
-      warpedMapLayer.addTo(map);
-      warpedLayerRef.current = warpedMapLayer;
     });
 
     mapRef.current = map;

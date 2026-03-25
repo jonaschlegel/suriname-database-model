@@ -287,9 +287,9 @@ export default function PlantationPanel({
             refs={sectionRefs}
           >
             <div className="space-y-1">
-              {allApps.map((app) => (
+              {allApps.map((app, i) => (
                 <div
-                  key={app['@id']}
+                  key={`${app['@id']}-${i}`}
                   className="flex items-center gap-2 text-xs"
                 >
                   <span className="font-medium text-amber-700">

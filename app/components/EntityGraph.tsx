@@ -1,15 +1,15 @@
 'use client';
 
-import { useMemo } from 'react';
 import { entityTypeColor } from '@/lib/data';
 import type {
-  E24Plantation,
-  E74Organization,
-  E53Place,
-  E41Appellation,
   E22Source,
+  E24Plantation,
+  E41Appellation,
+  E53Place,
+  E74Organization,
   OrganizationObservation,
 } from '@/lib/types';
+import { useMemo } from 'react';
 
 interface EntityGraphProps {
   plantation: E24Plantation | null;
@@ -102,7 +102,7 @@ export default function EntityGraph({
       const offsetX = (i - (maxApps - 1) / 2) * spread;
       nodes.push({
         id: `e41-${i}`,
-        label: app.P190_has_symbolic_content,
+        label: app.P190_has_symbolic_content || '(unnamed)',
         type: 'E41',
         x: cx + offsetX,
         y: cy - 100,
@@ -124,7 +124,7 @@ export default function EntityGraph({
       const src = uniqueSources[i];
       nodes.push({
         id: `e22-${i}`,
-        label: src.mapId || src.prefLabel?.slice(0, 15),
+        label: src.mapId || src.prefLabel?.slice(0, 15) || '(source)',
         type: 'E22',
         x: cx + 180,
         y: cy - 80 + i * 50,
@@ -230,9 +230,9 @@ export default function EntityGraph({
             className="text-[8px] fill-gray-600"
             style={{ maxWidth: 60 }}
           >
-            {node.label.length > 12
-              ? node.label.slice(0, 12) + '...'
-              : node.label}
+            {(node.label || '').length > 12
+              ? (node.label || '').slice(0, 12) + '...'
+              : node.label || ''}
           </text>
         </g>
       ))}
