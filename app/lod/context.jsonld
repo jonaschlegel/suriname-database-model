@@ -217,6 +217,104 @@
     "isEnslaverOf": {
       "@id": "stm:isEnslaverOf",
       "@type": "@id"
+    },
+    "P53_has_location": {
+      "@id": "crm:P53_has_former_or_current_location",
+      "@type": "@id"
+    },
+    "P70i_is_documented_in": {
+      "@id": "crm:P70i_is_documented_in",
+      "@type": "@id"
+    },
+    "P4_has_time-span": {
+      "@id": "crm:P4_has_time-span",
+      "@type": "xsd:gYear"
+    },
+    "mapId": {
+      "@id": "stm:mapId",
+      "@type": "xsd:string"
+    },
+    "mapYear": {
+      "@id": "stm:mapYear",
+      "@type": "xsd:gYear"
+    },
+    "fid": {
+      "@id": "stm:fid",
+      "@type": "xsd:integer"
+    },
+    "observedLabel": {
+      "@id": "stm:observedLabel",
+      "@type": "xsd:string"
+    },
+    "absorbedInto": {
+      "@id": "stm:absorbedInto",
+      "@type": "@id"
+    },
+    "mergedInto": {
+      "@id": "stm:mergedInto",
+      "@type": "@id"
+    },
+    "pageReference": {
+      "@id": "stm:pageReference",
+      "@type": "xsd:string"
+    },
+    "sizeAkkers": {
+      "@id": "stm:sizeAkkers",
+      "@type": "xsd:integer"
+    },
+    "locationStd": {
+      "@id": "stm:locationStd",
+      "@type": "xsd:string"
+    },
+    "wasDerivedFrom": {
+      "@id": "prov:wasDerivedFrom",
+      "@type": "@id"
+    },
+    "hadPrimarySource": {
+      "@id": "prov:hadPrimarySource",
+      "@type": "@id"
+    },
+    "generatedAtTime": {
+      "@id": "prov:generatedAtTime",
+      "@type": "xsd:dateTime"
+    },
+    "sourceFile": {
+      "@id": "stm:sourceFile",
+      "@type": "xsd:string"
+    },
+    "sourceColumn": {
+      "@id": "stm:sourceColumn",
+      "@type": "xsd:string"
+    },
+    "sourceRow": {
+      "@id": "stm:sourceRow",
+      "@type": "xsd:string"
+    },
+    "transformedBy": {
+      "@id": "stm:transformedBy",
+      "@type": "xsd:string"
+    },
+    "modelEntity": {
+      "@id": "stm:modelEntity",
+      "@type": "xsd:string"
+    },
+    "schemaTable": {
+      "@id": "stm:schemaTable",
+      "@type": "xsd:string"
+    },
+    "linkedVia": {
+      "@id": "stm:linkedVia",
+      "@type": "xsd:string"
+    },
+    "ProvenanceRecord": "stm:ProvenanceRecord",
+    "E26_Physical_Feature": "crm:E26_Physical_Feature",
+    "sameAs": {
+      "@id": "sdo:sameAs",
+      "@type": "@id"
+    },
+    "closeMatch": {
+      "@id": "skos:closeMatch",
+      "@type": "@id"
     }
   }
 }
