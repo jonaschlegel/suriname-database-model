@@ -32,6 +32,8 @@
     "E53_Place": "crm:E53_Place",
     "E55_Type": "crm:E55_Type",
     "E74_Group": "crm:E74_Group",
+    "E12_Production": "crm:E12_Production",
+    "E38_Image": "crm:E38_Image",
     "P1_is_identified_by": {
       "@id": "crm:P1_is_identified_by",
       "@type": "@id"
@@ -122,6 +124,30 @@
     },
     "P141_assigned": {
       "@id": "crm:P141_assigned",
+      "@type": "@id"
+    },
+    "P7_took_place_at": {
+      "@id": "crm:P7_took_place_at",
+      "@type": "xsd:string"
+    },
+    "P14_carried_out_by": {
+      "@id": "crm:P14_carried_out_by",
+      "@type": "xsd:string"
+    },
+    "P108_has_produced": {
+      "@id": "crm:P108_has_produced",
+      "@type": "@id"
+    },
+    "P108i_was_produced_by": {
+      "@id": "crm:P108i_was_produced_by",
+      "@type": "@id"
+    },
+    "P50_has_current_keeper": {
+      "@id": "crm:P50_has_current_keeper",
+      "@type": "xsd:string"
+    },
+    "contentUrl": {
+      "@id": "sdo:contentUrl",
       "@type": "@id"
     },
     "P190_has_symbolic_content": {

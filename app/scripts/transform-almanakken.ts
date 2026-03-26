@@ -70,6 +70,13 @@ export interface SourceRow {
   type: string;
   year: string;
   source_url: string;
+  maker: string;
+  publisher: string;
+  publication_place: string;
+  holding_archive: string;
+  handle_url: string;
+  iiif_manifest: string;
+  iiif_info_url: string;
 }
 
 export interface AlmanakkenTransformResult {
@@ -216,6 +223,13 @@ export function transformAlmanakken(): AlmanakkenTransformResult {
     type: 'almanac',
     year,
     source_url: '',
+    maker: 'Koloniaal Bestuur van Suriname',
+    publisher: 'Koloniaal Bestuur van Suriname',
+    publication_place: 'Paramaribo',
+    holding_archive: '',
+    handle_url: '',
+    iiif_manifest: '',
+    iiif_info_url: '',
   }));
 
   console.log(`  Observations:     ${observations.length}`);

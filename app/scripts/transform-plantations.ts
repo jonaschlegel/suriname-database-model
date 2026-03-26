@@ -90,6 +90,13 @@ export interface SourceRow {
   type: string;
   year: string;
   source_url: string;
+  maker: string;
+  publisher: string;
+  publication_place: string;
+  holding_archive: string;
+  handle_url: string;
+  iiif_manifest: string;
+  iiif_info_url: string;
 }
 
 export interface PlantationTransformResult {
@@ -291,23 +298,41 @@ export function transformPlantations(): PlantationTransformResult {
     }
   }
 
-  // Static E22 sources for the two maps
+  // Static E22 sources for the two maps (metadata from 10-historic-maps-metadata.tsv)
   const sources: SourceRow[] = [
     {
       uri: `${STM}source/map-1930`,
       id: 'MAP_1930',
-      label: 'Plantation Map of Suriname (1930)',
+      label: 'Kaart van Suriname (1930)',
       type: 'map',
       year: '1930',
       source_url: '',
+      maker:
+        'Louis August Bakhuis, W. de Quant, Johan François Adriaan Cateau van Rosevelt, Jan Felix Adriaan Eugeen van Lansberge, Ministerie van Koloniën (Den Haag)',
+      publisher: 'Departement van Koloniën',
+      publication_place: 'Den Haag',
+      holding_archive: 'UB Leiden',
+      handle_url: 'http://hdl.handle.net/1887.1/item:2015734',
+      iiif_manifest: 'http://hdl.handle.net/1887.1/item:2015734',
+      iiif_info_url: '',
     },
     {
       uri: `${STM}source/map-1860-79`,
       id: 'MAP_1860-79',
-      label: 'Plantation Map of Suriname (1860-1879)',
+      label: 'Kaart van Suriname (1860-1879)',
       type: 'map',
       year: '1870',
       source_url: '',
+      maker:
+        'Johan François Adriaan Cateau van Rosevelt, Jan Felix Adriaan Eugeen van Lansberge',
+      publisher: '',
+      publication_place: '',
+      holding_archive: 'UB Leiden',
+      handle_url: 'http://hdl.handle.net/1887.1/item:2016077',
+      iiif_manifest:
+        'https://digitalcollections.universiteitleiden.nl/iiif_manifest/item%3A2017249/manifest',
+      iiif_info_url:
+        'https://digitalcollections.universiteitleiden.nl/iiif/2/item%3A2016077%7EJP2%7E35b1a5e9d45727b8dcb9652f727764f66275fd83c4b3e9df67295745c321aa4d%7Edigitalc/info.json',
     },
   ];
 

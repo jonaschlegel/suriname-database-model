@@ -129,7 +129,7 @@ const ENTITIES: EntityDef[] = [
     type: 'E22',
     label: 'Source',
     crmClass: 'E22 Human-Made Object',
-    desc: 'Physical sources: maps, almanacs, registers. The source carries visual items (E36) and appellations (E41) that represent or identify entities. Production date provides temporal scope for names. Digital reproductions are modeled as E38 Image.',
+    desc: 'Physical sources: maps, almanacs, registers. The source carries visual items (E36) and appellations (E41) that represent or identify entities. Each source has an E12 Production event recording who made it, where, and when. Digital reproductions are modeled as E38 Image.',
     color: '#c78e66',
     cx: 200,
     cy: 100,
@@ -138,6 +138,7 @@ const ENTITIES: EntityDef[] = [
       { name: 'P128 carries', range: 'E36 Visual Item' },
       { name: 'P128 carries', range: 'E41 Appellation' },
       { name: 'P2 has type', range: 'E55 Type (map / almanac / register)' },
+      { name: 'P108i was produced by', range: 'E12 Production' },
       { name: 'stm:mapId', range: 'string' },
       { name: 'stm:mapYear', range: 'gYear' },
       { name: 'skos:prefLabel', range: 'string' },
@@ -192,7 +193,7 @@ const ENTITIES: EntityDef[] = [
     type: 'E38',
     label: 'Image',
     crmClass: 'E38 Image',
-    desc: 'Digital reproduction (IIIF scan) of a physical source. Not yet implemented in the current dataset. Will link scanned map sheets and almanac pages to their physical originals.',
+    desc: 'Digital reproduction (IIIF scan) of a physical source. Links scanned map sheets and almanac pages to their physical originals via P138 represents. The holding archive (P50) and IIIF content URL track where the digital object is kept and accessible.',
     color: '#b89470',
     cx: 60,
     cy: 260,
@@ -200,8 +201,10 @@ const ENTITIES: EntityDef[] = [
     structural: true,
     properties: [
       { name: 'P138 represents', range: 'E22 Human-Made Object' },
-      { name: 'P2 has type', range: 'E55 Type (scan, photo, ...)' },
-      { name: 'dcterms:format', range: 'MIME type (image/tiff, ...)' },
+      { name: 'P50 has current keeper', range: 'string (archive name)' },
+      { name: 'sdo:contentUrl', range: 'IIIF info.json URL' },
+      { name: 'sdo:sameAs', range: 'IIIF manifest URL' },
+      { name: 'dcterms:identifier', range: 'Handle URL' },
     ],
   },
   {
@@ -209,7 +212,7 @@ const ENTITIES: EntityDef[] = [
     type: 'E52',
     label: 'Time-Span',
     crmClass: 'E52 Time-Span',
-    desc: 'Temporal extent of an E13 observation. Almanac years span ~1750-1863. Map dates (stm:mapYear) provide temporal scope for E41 names. E12 Production events for sources are not yet modeled.',
+    desc: 'Temporal extent of an E13 observation or E12 production event. Almanac years span ~1750-1863. E12 Production events for sources carry the date of creation, making colonial provenance explicit.',
     color: '#cce5ff',
     cx: 810,
     cy: 450,
@@ -270,6 +273,24 @@ const ENTITIES: EntityDef[] = [
       { name: 'P90 has value', range: 'xsd:decimal' },
       { name: 'P91 has unit', range: 'E58 Measurement Unit ("akkers")' },
       { name: 'rdfs:label', range: 'string' },
+    ],
+  },
+  {
+    id: 'e12',
+    type: 'E12',
+    label: 'Production',
+    crmClass: 'E12 Production',
+    desc: 'The production event of a physical source (E22). Records who made the source (P14), where it was produced (P7), and when (P4). For maps, makers are Dutch colonial cartographers and publishers like Departement van Kolonien in Den Haag. For almanacs, the Koloniaal Bestuur van Suriname in Paramaribo. This makes colonial provenance explicit in the data graph.',
+    color: '#f0c87a',
+    cx: 60,
+    cy: 30,
+    dataKey: '',
+    structural: true,
+    properties: [
+      { name: 'P108 has produced', range: 'E22 Human-Made Object' },
+      { name: 'P14 carried out by', range: 'string (maker name)' },
+      { name: 'P7 took place at', range: 'string (publication place)' },
+      { name: 'P4 has time-span', range: 'E52 Time-Span' },
     ],
   },
 ];
@@ -365,6 +386,18 @@ const RELATIONS: RelDef[] = [
     label: 'P7 took place at',
     desc: 'Location text from almanac (e.g. "Boven-Commewijne") -- not yet linked to geometry',
   },
+  {
+    from: 'e12',
+    to: 'e22',
+    label: 'P108 has produced',
+    desc: 'This production event created the source (map, almanac)',
+  },
+  {
+    from: 'e12',
+    to: 'e52',
+    label: 'P4 has time-span',
+    desc: 'When the source was produced (publication year)',
+  },
 ];
 
 /* ─── Data fetching ────────────────────────────────────────────── */
@@ -450,7 +483,7 @@ function SchemaGraph({
         textAnchor="middle"
         className="text-sm font-bold fill-stm-warm-700"
       >
-        Suriname Time Machine -- CIDOC-CRM Entity Model (12 classes, 15
+        Suriname Time Machine -- CIDOC-CRM Entity Model (13 classes, 17
         relations)
       </text>
 

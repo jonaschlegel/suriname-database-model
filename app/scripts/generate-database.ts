@@ -61,6 +61,9 @@ function buildContext(): Record<string, unknown> {
     E53_Place: 'crm:E53_Place',
     E55_Type: 'crm:E55_Type',
     E74_Group: 'crm:E74_Group',
+    // E12 Production + E38 Image
+    E12_Production: 'crm:E12_Production',
+    E38_Image: 'crm:E38_Image',
     // CIDOC-CRM properties
     P1_is_identified_by: { '@id': 'crm:P1_is_identified_by', '@type': '@id' },
     P1i_identifies: { '@id': 'crm:P1i_identifies', '@type': '@id' },
@@ -102,6 +105,23 @@ function buildContext(): Record<string, unknown> {
       '@type': '@id',
     },
     P141_assigned: { '@id': 'crm:P141_assigned', '@type': '@id' },
+    // E12 Production properties
+    P7_took_place_at: { '@id': 'crm:P7_took_place_at', '@type': 'xsd:string' },
+    P14_carried_out_by: {
+      '@id': 'crm:P14_carried_out_by',
+      '@type': 'xsd:string',
+    },
+    P108_has_produced: { '@id': 'crm:P108_has_produced', '@type': '@id' },
+    P108i_was_produced_by: {
+      '@id': 'crm:P108i_was_produced_by',
+      '@type': '@id',
+    },
+    // E38 Image properties
+    P50_has_current_keeper: {
+      '@id': 'crm:P50_has_current_keeper',
+      '@type': 'xsd:string',
+    },
+    contentUrl: { '@id': 'sdo:contentUrl', '@type': '@id' },
     P190_has_symbolic_content: {
       '@id': 'crm:P190_has_symbolic_content',
       '@type': 'xsd:string',
@@ -196,6 +216,8 @@ function buildE22Sources(
     }
     if (s.year) entity.mapYear = s.year;
     if (s.source_url) entity.sameAs = s.source_url;
+    // P108i: inverse link to E12 Production event
+    entity.P108i_was_produced_by = `${STM}production/${s.id.toLowerCase()}`;
     return entity;
   });
 }
@@ -483,6 +505,40 @@ function buildE52TimeSpans(years: Set<string>): Record<string, unknown>[] {
     }));
 }
 
+function buildE12Productions(sources: SourceRow[]): Record<string, unknown>[] {
+  return sources.map((s) => {
+    const entity: Record<string, unknown> = {
+      '@id': `${STM}production/${s.id.toLowerCase()}`,
+      '@type': ['E12_Production'],
+      prefLabel: `Production of ${s.label}`,
+      P108_has_produced: s.uri,
+    };
+    if (s.maker) entity.P14_carried_out_by = s.maker;
+    if (s.publication_place) entity.P7_took_place_at = s.publication_place;
+    if (s.year) entity.P4_has_time_span = `${STM}timespan/${s.year}`;
+    return entity;
+  });
+}
+
+function buildE38Images(sources: SourceRow[]): Record<string, unknown>[] {
+  const entities: Record<string, unknown>[] = [];
+  for (const s of sources) {
+    if (!s.iiif_info_url && !s.iiif_manifest) continue;
+    const entity: Record<string, unknown> = {
+      '@id': `${STM}image/${s.id.toLowerCase()}`,
+      '@type': ['E38_Image'],
+      prefLabel: `Digital scan of ${s.label}`,
+      P138_represents: s.uri,
+    };
+    if (s.iiif_info_url) entity.contentUrl = s.iiif_info_url;
+    if (s.iiif_manifest) entity.sameAs = s.iiif_manifest;
+    if (s.holding_archive) entity.P50_has_current_keeper = s.holding_archive;
+    if (s.handle_url) entity['dcterms:identifier'] = s.handle_url;
+    entities.push(entity);
+  }
+  return entities;
+}
+
 function buildObservations(obs: ObservationRow[]): {
   entities: Record<string, unknown>[];
   provenance: Record<string, unknown>[];
@@ -723,6 +779,14 @@ function main() {
   const e52TimeSpans = buildE52TimeSpans(obsResult.observationYears);
   console.log(`  E52 Time-Spans:     ${e52TimeSpans.length}`);
 
+  // E12 Production events: who made each source, where, when
+  const e12Productions = buildE12Productions(allSources);
+  console.log(`  E12 Productions:    ${e12Productions.length}`);
+
+  // E38 Image entities: IIIF digital reproductions
+  const e38Images = buildE38Images(allSources);
+  console.log(`  E38 Images:         ${e38Images.length}`);
+
   const allProv = [
     ...e24Result.provenance,
     ...e74Result.provenance,
@@ -740,6 +804,8 @@ function main() {
     ...e36Entities,
     ...e55Types,
     ...e52TimeSpans,
+    ...e12Productions,
+    ...e38Images,
     ...obsResult.entities,
     ...allProv,
   ];
@@ -832,6 +898,34 @@ function main() {
   const e24WithP2 = e24Result.entities.filter((e) => e.P2_has_type).length;
   console.log(
     `  E24 with P2 type (E55): ${e24WithP2}/${e24Result.entities.length}`,
+  );
+
+  const e22WithP108i = e22.filter((e) => e.P108i_was_produced_by).length;
+  console.log(`  E22 with P108i (produced by): ${e22WithP108i}/${e22.length}`);
+
+  const e12WithP108 = e12Productions.filter((e) => e.P108_has_produced).length;
+  console.log(
+    `  E12 with P108 (has produced): ${e12WithP108}/${e12Productions.length}`,
+  );
+
+  const e12WithP14 = e12Productions.filter((e) => e.P14_carried_out_by).length;
+  console.log(
+    `  E12 with P14 (carried out by): ${e12WithP14}/${e12Productions.length}`,
+  );
+
+  const e12WithP7 = e12Productions.filter((e) => e.P7_took_place_at).length;
+  console.log(
+    `  E12 with P7 (took place at): ${e12WithP7}/${e12Productions.length}`,
+  );
+
+  const e38WithContent = e38Images.filter((e) => e.contentUrl).length;
+  console.log(
+    `  E38 with IIIF contentUrl: ${e38WithContent}/${e38Images.length}`,
+  );
+
+  const e38WithP50 = e38Images.filter((e) => e.P50_has_current_keeper).length;
+  console.log(
+    `  E38 with P50 (current keeper): ${e38WithP50}/${e38Images.length}`,
   );
 
   const features = geojson.features as {
