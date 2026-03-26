@@ -2,6 +2,24 @@
 
 import { useState, useEffect, useMemo } from 'react';
 
+/* ─── Helpers ──────────────────────────────────────────────────── */
+
+/** Colors that need dark text for contrast */
+const LIGHT_BG = new Set([
+  '#fef3ba',
+  '#ffe6eb',
+  '#ffbdca',
+  '#d4edda',
+  '#cce5ff',
+  '#e2d9f3',
+  '#d4c4fb',
+  '#82ddff',
+]);
+
+function badgeTextColor(bg: string): string {
+  return LIGHT_BG.has(bg) ? '#78716c' : '#fff';
+}
+
 /* ─── Schema definition ────────────────────────────────────────── */
 interface EntityDef {
   id: string;
@@ -13,6 +31,7 @@ interface EntityDef {
   cx: number;
   cy: number;
   dataKey: string;
+  structural?: boolean;
   properties: { name: string; range: string }[];
 }
 
@@ -24,6 +43,7 @@ interface RelDef {
 }
 
 const ENTITIES: EntityDef[] = [
+  /* ── Data-backed entities ────────────────────────────────────── */
   {
     id: 'e24',
     type: 'E24',
@@ -31,16 +51,17 @@ const ENTITIES: EntityDef[] = [
     crmClass: 'E24 Physical Human-Made Thing',
     desc: 'The central entity -- the physical plantation depicted by sources. A subclass of E22. Connected to locations via P53 and to operating organizations via P52. Can also model houses and other physical structures.',
     color: '#e6956b',
-    cx: 400,
-    cy: 260,
+    cx: 380,
+    cy: 330,
     dataKey: 'plantations',
     properties: [
       { name: 'P1 is identified by', range: 'E41 Appellation' },
       { name: 'skos:prefLabel', range: 'string (@nl)' },
       { name: 'P2 has type', range: 'E55 Type (plantation, house, ...)' },
-      { name: 'P53 has location', range: 'E53 Place' },
-      { name: 'P52 has current owner', range: 'E74 Organization' },
+      { name: 'P53 has location', range: 'E53 Place (polygon geometry)' },
+      { name: 'P52 has current owner', range: 'E74 Organization (via Q-ID)' },
       { name: 'P51 has former or current owner', range: 'E74 Organization' },
+      { name: 'stm:mergedInto', range: 'E24 Plantation (merger target)' },
       { name: 'stm:depictedOnMap', range: 'MapDepiction' },
       { name: 'prov:wasDerivedFrom', range: 'ProvenanceRecord' },
     ],
@@ -50,15 +71,16 @@ const ENTITIES: EntityDef[] = [
     type: 'E74',
     label: 'Organization',
     crmClass: 'E74 Group / sdo:Organization',
-    desc: 'The legal entity that owns or operates the plantation. Identified by Wikidata Q-IDs. Annual observations from the Surinaamse Almanakken are linked to organizations.',
+    desc: 'The legal entity that owns or operates the plantation. Identified by Wikidata Q-IDs. Separated from E24 to model the distinction between the physical place and its legal operator. Annual observations (E13) record time-varying properties.',
     color: '#ffbdca',
-    cx: 700,
-    cy: 260,
+    cx: 720,
+    cy: 290,
     dataKey: 'organizations',
     properties: [
       { name: 'P1 is identified by', range: 'E41 Appellation' },
       { name: 'skos:prefLabel', range: 'string (@nl)' },
       { name: 'sdo:additionalType', range: 'wd:Q188913' },
+      { name: 'skos:closeMatch', range: 'psur:{ID} (cross-reference)' },
       { name: 'stm:absorbedInto', range: 'E74 Organization' },
       { name: 'stm:psurId', range: 'string' },
     ],
@@ -68,16 +90,20 @@ const ENTITIES: EntityDef[] = [
     type: 'E53',
     label: 'Place',
     crmClass: 'E53 Place',
-    desc: 'Where the plantation is located. Polygons from the 1930 QGIS map, reprojected from EPSG:31170 to WGS84. Linked to E24 via P53.',
+    desc: 'Spatial location of the plantation. Polygons digitized from the 1930 Bos & Weyerman map in QGIS. Source CRS is EPSG:31170 (Suriname Old TM), reprojected to WGS84 (EPSG:4326) using datum shift +towgs84=-265,120,-358,0,0,0,0. Geometry stored as GeoSPARQL wktLiteral.',
     color: '#94cc7d',
-    cx: 400,
-    cy: 460,
+    cx: 150,
+    cy: 530,
     dataKey: 'places',
     properties: [
       { name: 'stm:fid', range: 'integer (QGIS feature ID)' },
       { name: 'stm:mapYear', range: 'gYear' },
       { name: 'stm:observedLabel', range: 'string' },
-      { name: 'geo:hasGeometry / geo:asWKT', range: 'wktLiteral' },
+      { name: 'stm:sourceCRS', range: 'EPSG:31170 (Suriname Old TM)' },
+      { name: 'stm:centroid', range: 'POINT (WGS84 lon/lat)' },
+      { name: 'geo:hasGeometry', range: 'geo:Geometry' },
+      { name: 'geo:asWKT', range: 'wktLiteral (POLYGON)' },
+      { name: 'P70i is documented in', range: 'E22 Source (map)' },
     ],
   },
   {
@@ -85,14 +111,15 @@ const ENTITIES: EntityDef[] = [
     type: 'E41',
     label: 'Appellation',
     crmClass: 'E41 Appellation',
-    desc: 'Names as first-class entities. Each source creates its own E41 instance. Map labels identify E24; almanac names identify E74. Linked via P139 has alternative form.',
+    desc: 'Names as first-class entities. Each source creates its own E41 instance. Map labels identify E24; almanac names identify E74. Temporal scope is inferred from the E22 source production date. Linked via P139 has alternative form.',
     color: '#fef3ba',
-    cx: 400,
-    cy: 70,
+    cx: 620,
+    cy: 100,
     dataKey: 'appellations-count',
     properties: [
       { name: 'P190 has symbolic content', range: 'string' },
       { name: 'P139 has alternative form', range: 'E41 Appellation' },
+      { name: 'P1i identifies', range: 'E24 Plantation or E74 Organization' },
       { name: 'P128i is carried by', range: 'E22 Source' },
       { name: 'P72 has language', range: 'E56 Language' },
     ],
@@ -102,13 +129,15 @@ const ENTITIES: EntityDef[] = [
     type: 'E22',
     label: 'Source',
     crmClass: 'E22 Human-Made Object',
-    desc: 'Physical sources: maps, almanacs, registers. The source carries visual items (E36) and appellations (E41) that represent or identify entities.',
+    desc: 'Physical sources: maps, almanacs, registers. The source carries visual items (E36) and appellations (E41) that represent or identify entities. Production date provides temporal scope for names. Digital reproductions are modeled as E38 Image.',
     color: '#c78e66',
-    cx: 100,
-    cy: 70,
+    cx: 200,
+    cy: 100,
     dataKey: 'sources',
     properties: [
-      { name: 'P128 carries', range: 'E36 Visual Item / E41 Appellation' },
+      { name: 'P128 carries', range: 'E36 Visual Item' },
+      { name: 'P128 carries', range: 'E41 Appellation' },
+      { name: 'P2 has type', range: 'E55 Type (map / almanac / register)' },
       { name: 'stm:mapId', range: 'string' },
       { name: 'stm:mapYear', range: 'gYear' },
       { name: 'skos:prefLabel', range: 'string' },
@@ -117,25 +146,130 @@ const ENTITIES: EntityDef[] = [
   {
     id: 'e13',
     type: 'E13',
-    label: 'Attribute Assignment',
+    label: 'Attr. Assignment',
     crmClass: 'E13 Attribute Assignment',
-    desc: 'Each annual almanac row is an E13 Attribute Assignment. Records time-varying properties of an organization: name, owner, administrator, director, enslaved count, product, size, and location for a given year.',
+    desc: 'Each annual almanac row is an E13 Attribute Assignment. Records time-varying properties of an organization: name, owner, administrator, director, enslaved count, product, size, location, and deserted status for a given year. Coverage spans ~1750-1863.',
     color: '#82ddff',
-    cx: 700,
-    cy: 460,
+    cx: 580,
+    cy: 510,
     dataKey: 'observations-count',
     properties: [
       { name: 'P140 assigned attribute to', range: 'E74 Organization' },
       { name: 'P4 has time-span', range: 'E52 Time-Span (year)' },
       { name: 'P141 assigned (name)', range: 'E41 Appellation' },
       { name: 'P141 assigned (product)', range: 'E55 Type' },
-      { name: 'P14 carried out by (owner)', range: 'E39 Actor' },
-      { name: 'P14 carried out by (admin)', range: 'E39 Actor' },
-      { name: 'P14 carried out by (director)', range: 'E39 Actor' },
+      { name: 'P141 assigned (deserted)', range: 'E55 Type (verlaten)' },
       { name: 'P141 assigned (enslaved)', range: 'E55 Type (count)' },
+      { name: 'P141 assigned (free residents)', range: 'E55 Type (count)' },
+      { name: 'P14 carried out by (eigenaar)', range: 'E39 Actor' },
+      { name: 'P14 carried out by (administrateur)', range: 'E39 Actor' },
+      { name: 'P14 carried out by (directeur)', range: 'E39 Actor' },
       { name: 'P43 has dimension (size)', range: 'E54 Dimension (akkers)' },
-      { name: 'P7 took place at', range: 'E53 Place' },
+      { name: 'P7 took place at', range: 'E53 Place (text, not geo)' },
+      { name: 'stm:pageReference', range: 'string (almanac page)' },
       { name: 'prov:hadPrimarySource', range: 'E22 Source' },
+    ],
+  },
+  /* ── Structural entities (not directly data-backed) ─────────── */
+  {
+    id: 'e36',
+    type: 'E36',
+    label: 'Visual Item',
+    crmClass: 'E36 Visual Item',
+    desc: 'The visual content carried by a source. A map (E22) carries a visual item (E36) that represents the physical plantation (E24). This intermediary class enables the principle: "maps depict things; things have locations."',
+    color: '#d4a574',
+    cx: 380,
+    cy: 160,
+    dataKey: '',
+    structural: true,
+    properties: [
+      { name: 'P138 represents', range: 'E24 Physical Human-Made Thing' },
+      { name: 'P128i is carried by', range: 'E22 Human-Made Object' },
+    ],
+  },
+  {
+    id: 'e38',
+    type: 'E38',
+    label: 'Image',
+    crmClass: 'E38 Image',
+    desc: 'Digital reproduction (IIIF scan) of a physical source. Not yet implemented in the current dataset. Will link scanned map sheets and almanac pages to their physical originals.',
+    color: '#b89470',
+    cx: 60,
+    cy: 260,
+    dataKey: '',
+    structural: true,
+    properties: [
+      { name: 'P138 represents', range: 'E22 Human-Made Object' },
+      { name: 'P2 has type', range: 'E55 Type (scan, photo, ...)' },
+      { name: 'dcterms:format', range: 'MIME type (image/tiff, ...)' },
+    ],
+  },
+  {
+    id: 'e52',
+    type: 'E52',
+    label: 'Time-Span',
+    crmClass: 'E52 Time-Span',
+    desc: 'Temporal extent of an E13 observation. Almanac years span ~1750-1863. Map dates (stm:mapYear) provide temporal scope for E41 names. E12 Production events for sources are not yet modeled.',
+    color: '#cce5ff',
+    cx: 810,
+    cy: 450,
+    dataKey: '',
+    structural: true,
+    properties: [
+      { name: 'P82 at some time within', range: 'xsd:gYear' },
+      { name: 'P81 ongoing throughout', range: 'xsd:gYear' },
+      { name: 'rdfs:label', range: 'string (e.g. "1820")' },
+    ],
+  },
+  {
+    id: 'e39',
+    type: 'E39',
+    label: 'Actor',
+    crmClass: 'E39 Actor',
+    desc: 'People from almanac columns: eigenaren (owners), administrateurs, and directeurs. Currently stored as name strings. Entity resolution is needed to link identical persons across years and plantations. PICO-compatible modeling.',
+    color: '#ffe6eb',
+    cx: 870,
+    cy: 580,
+    dataKey: '',
+    structural: true,
+    properties: [
+      { name: 'P1 is identified by', range: 'E41 Appellation' },
+      { name: 'pico:hasRole', range: 'picot:owner / admin / director' },
+      { name: 'rdfs:label', range: 'string' },
+    ],
+  },
+  {
+    id: 'e55',
+    type: 'E55',
+    label: 'Type',
+    crmClass: 'E55 Type',
+    desc: 'Controlled vocabulary terms: products (sugar, coffee, cocoa, cotton), plantation status (deserted), source types (map/almanac/register), certainty levels for qualified links. Mapped to SKOS concepts.',
+    color: '#d4edda',
+    cx: 500,
+    cy: 660,
+    dataKey: '',
+    structural: true,
+    properties: [
+      { name: 'skos:prefLabel', range: 'string' },
+      { name: 'skos:inScheme', range: 'ConceptScheme' },
+      { name: 'skos:broader', range: 'E55 Type' },
+    ],
+  },
+  {
+    id: 'e54',
+    type: 'E54',
+    label: 'Dimension',
+    crmClass: 'E54 Dimension',
+    desc: 'Physical measurements. Size in akkers (Surinamese land unit) as recorded in the almanac. The akker is approximately 0.43 hectares.',
+    color: '#e2d9f3',
+    cx: 280,
+    cy: 660,
+    dataKey: '',
+    structural: true,
+    properties: [
+      { name: 'P90 has value', range: 'xsd:decimal' },
+      { name: 'P91 has unit', range: 'E58 Measurement Unit ("akkers")' },
+      { name: 'rdfs:label', range: 'string' },
     ],
   },
 ];
@@ -151,13 +285,13 @@ const RELATIONS: RelDef[] = [
     from: 'e24',
     to: 'e53',
     label: 'P53 has location',
-    desc: 'The plantation is located at this place',
+    desc: 'The plantation is located at this place (polygon geometry from 1930 map)',
   },
   {
     from: 'e24',
     to: 'e41',
     label: 'P1 is identified by',
-    desc: 'The plantation is identified by this name (from map)',
+    desc: 'The plantation is identified by this name (from map label)',
   },
   {
     from: 'e74',
@@ -169,25 +303,67 @@ const RELATIONS: RelDef[] = [
     from: 'e22',
     to: 'e41',
     label: 'P128 carries',
-    desc: 'The source carries this appellation',
+    desc: 'The source carries this appellation (name text)',
+  },
+  {
+    from: 'e22',
+    to: 'e36',
+    label: 'P128 carries',
+    desc: 'The source (map) carries a visual item that represents the plantation',
+  },
+  {
+    from: 'e36',
+    to: 'e24',
+    label: 'P138 represents',
+    desc: 'The visual item represents the physical plantation -- the key link in the universal source pattern',
+  },
+  {
+    from: 'e38',
+    to: 'e22',
+    label: 'P138 represents',
+    desc: 'The digital scan (IIIF image) represents the physical source object',
   },
   {
     from: 'e13',
     to: 'e74',
-    label: 'P140 assigned attribute to',
+    label: 'P140 assigned attr. to',
     desc: 'This attribute assignment records data about the organization',
-  },
-  {
-    from: 'e22',
-    to: 'e24',
-    label: 'P138 represents (via E36)',
-    desc: 'The source depicts the plantation (through visual item)',
   },
   {
     from: 'e13',
     to: 'e22',
     label: 'prov:hadPrimarySource',
     desc: 'The attribute assignment derives from this source (almanac)',
+  },
+  {
+    from: 'e13',
+    to: 'e52',
+    label: 'P4 has time-span',
+    desc: 'The observation has a temporal extent (the almanac year)',
+  },
+  {
+    from: 'e13',
+    to: 'e39',
+    label: 'P14 carried out by',
+    desc: 'People involved: eigenaar, administrateur, directeur',
+  },
+  {
+    from: 'e13',
+    to: 'e55',
+    label: 'P141 assigned',
+    desc: 'Type values assigned: product, deserted status, enslaved count',
+  },
+  {
+    from: 'e13',
+    to: 'e54',
+    label: 'P43 has dimension',
+    desc: 'Physical measurements: size in akkers (Surinamese land unit)',
+  },
+  {
+    from: 'e13',
+    to: 'e53',
+    label: 'P7 took place at',
+    desc: 'Location text from almanac (e.g. "Boven-Commewijne") -- not yet linked to geometry',
   },
 ];
 
@@ -248,13 +424,13 @@ function SchemaGraph({
   hoveredRelation: number | null;
   onHoverRelation: (idx: number | null) => void;
 }) {
-  const width = 820;
-  const height = 540;
+  const width = 1020;
+  const height = 720;
 
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
-      className="w-full max-w-4xl mx-auto"
+      className="w-full max-w-5xl mx-auto"
       role="img"
       aria-label="CIDOC-CRM entity relationship diagram showing the Suriname Time Machine data model"
     >
@@ -262,7 +438,6 @@ function SchemaGraph({
       <rect
         width={width}
         height={height}
-        rx="12"
         fill="#faf9f7"
         stroke="#ddd9d2"
         strokeWidth="1"
@@ -275,8 +450,36 @@ function SchemaGraph({
         textAnchor="middle"
         className="text-sm font-bold fill-stm-warm-700"
       >
-        Suriname Time Machine - CIDOC-CRM Entity Model
+        Suriname Time Machine -- CIDOC-CRM Entity Model (12 classes, 15
+        relations)
       </text>
+
+      {/* Legend */}
+      <g transform="translate(20, 695)">
+        <circle
+          cx="0"
+          cy="0"
+          r="8"
+          fill="white"
+          stroke="#c78e66"
+          strokeWidth="2"
+        />
+        <text x="14" y="4" className="text-[9px] fill-stm-warm-500">
+          Data-backed
+        </text>
+        <circle
+          cx="110"
+          cy="0"
+          r="6"
+          fill="white"
+          stroke="#999"
+          strokeWidth="1.5"
+          strokeDasharray="4 2"
+        />
+        <text x="122" y="4" className="text-[9px] fill-stm-warm-500">
+          Structural (inferred)
+        </text>
+      </g>
 
       {/* Relations */}
       {RELATIONS.map((rel, i) => {
@@ -292,7 +495,10 @@ function SchemaGraph({
         const len = Math.sqrt(dx * dx + dy * dy) || 1;
         const nx = -dy / len;
         const ny = dx / len;
-        const labelOffset = 12;
+        const labelOffset = 14;
+
+        const labelText = rel.label;
+        const labelWidth = labelText.length * 5 + 10;
 
         return (
           <g
@@ -310,6 +516,15 @@ function SchemaGraph({
               strokeWidth={isHighlighted ? 2.5 : 1.5}
               strokeDasharray={isHighlighted ? undefined : '6 3'}
             />
+            {/* White background for label readability */}
+            <rect
+              x={mx + nx * labelOffset - labelWidth / 2}
+              y={my + ny * labelOffset - 7}
+              width={labelWidth}
+              height={14}
+              fill="#faf9f7"
+              fillOpacity="0.9"
+            />
             <text
               x={mx + nx * labelOffset}
               y={my + ny * labelOffset}
@@ -317,7 +532,7 @@ function SchemaGraph({
               dominantBaseline="middle"
               className={`text-[9px] ${isHighlighted ? 'fill-stm-sepia-700 font-semibold' : 'fill-stm-warm-400'}`}
             >
-              {rel.label}
+              {labelText}
             </text>
           </g>
         );
@@ -326,7 +541,11 @@ function SchemaGraph({
       {/* Entity nodes */}
       {ENTITIES.map((ent) => {
         const isSelected = selectedEntity === ent.id;
-        const count = counts[ent.dataKey as keyof EntityCounts] ?? 0;
+        const isStructural = ent.structural;
+        const r = isStructural ? 28 : 36;
+        const count = ent.dataKey
+          ? (counts[ent.dataKey as keyof EntityCounts] ?? 0)
+          : null;
         return (
           <g
             key={ent.id}
@@ -334,7 +553,7 @@ function SchemaGraph({
             onClick={() => onSelect(ent.id)}
             role="button"
             tabIndex={0}
-            aria-label={`${ent.label} (${ent.type}): ${count.toLocaleString()} entities`}
+            aria-label={`${ent.label} (${ent.type})${count !== null ? `: ${count.toLocaleString()} entities` : ' (structural)'}`}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') onSelect(ent.id);
             }}
@@ -344,33 +563,34 @@ function SchemaGraph({
               <circle
                 cx={ent.cx}
                 cy={ent.cy}
-                r="48"
+                r={r + 10}
                 fill={ent.color}
-                fillOpacity={0.1}
+                fillOpacity={0.12}
               />
             )}
             {/* Node */}
             <circle
               cx={ent.cx}
               cy={ent.cy}
-              r="38"
+              r={r}
               fill="white"
               stroke={ent.color}
               strokeWidth={isSelected ? 3 : 2}
+              strokeDasharray={isStructural ? '6 3' : undefined}
             />
             <circle
               cx={ent.cx}
               cy={ent.cy}
-              r="38"
+              r={r}
               fill={ent.color}
               fillOpacity={0.08}
             />
             {/* Type label */}
             <text
               x={ent.cx}
-              y={ent.cy - 10}
+              y={ent.cy - (isStructural ? 6 : 10)}
               textAnchor="middle"
-              className="text-[11px] font-bold"
+              className={`${isStructural ? 'text-[10px]' : 'text-[11px]'} font-bold`}
               fill={ent.color}
             >
               {ent.type}
@@ -378,21 +598,23 @@ function SchemaGraph({
             {/* Name */}
             <text
               x={ent.cx}
-              y={ent.cy + 4}
+              y={ent.cy + (isStructural ? 6 : 4)}
               textAnchor="middle"
-              className="text-[10px] fill-stm-warm-600"
+              className={`${isStructural ? 'text-[8px]' : 'text-[10px]'} fill-stm-warm-600`}
             >
               {ent.label}
             </text>
-            {/* Count */}
-            <text
-              x={ent.cx}
-              y={ent.cy + 18}
-              textAnchor="middle"
-              className="text-[9px] fill-stm-warm-400"
-            >
-              {count.toLocaleString()}
-            </text>
+            {/* Count or structural marker */}
+            {!isStructural && count !== null && (
+              <text
+                x={ent.cx}
+                y={ent.cy + 18}
+                textAnchor="middle"
+                className="text-[9px] fill-stm-warm-400"
+              >
+                {count.toLocaleString()}
+              </text>
+            )}
           </g>
         );
       })}
@@ -401,7 +623,13 @@ function SchemaGraph({
 }
 
 /* ─── Entity Detail Panel ──────────────────────────────────────── */
-function EntityDetail({ entity, count }: { entity: EntityDef; count: number }) {
+function EntityDetail({
+  entity,
+  count,
+}: {
+  entity: EntityDef;
+  count: number | null;
+}) {
   return (
     <div className="bg-white border border-stm-warm-200 p-6">
       <div className="flex items-start gap-4 mb-4">
@@ -409,18 +637,10 @@ function EntityDetail({ entity, count }: { entity: EntityDef; count: number }) {
           className="w-12 h-12 flex items-center justify-center font-bold text-sm shrink-0"
           style={{
             backgroundColor: entity.color,
-            color: [
-              '#fef3ba',
-              '#ffe6eb',
-              '#ffbdca',
-              '#d4edda',
-              '#cce5ff',
-              '#e2d9f3',
-              '#d4c4fb',
-              '#82ddff',
-            ].includes(entity.color)
-              ? '#78716c'
-              : '#fff',
+            color: badgeTextColor(entity.color),
+            border: entity.structural
+              ? '2px dashed rgba(0,0,0,0.15)'
+              : undefined,
           }}
         >
           {entity.type}
@@ -440,9 +660,15 @@ function EntityDetail({ entity, count }: { entity: EntityDef; count: number }) {
       </p>
 
       <div className="flex items-center gap-3 mb-5">
-        <span className="bg-stm-warm-100 text-stm-warm-700 px-3 py-1 text-sm font-semibold">
-          {count.toLocaleString()} entities
-        </span>
+        {entity.structural ? (
+          <span className="bg-stm-warm-100 text-stm-warm-500 px-3 py-1 text-sm italic">
+            Structural class (inferred from data)
+          </span>
+        ) : (
+          <span className="bg-stm-warm-100 text-stm-warm-700 px-3 py-1 text-sm font-semibold">
+            {(count ?? 0).toLocaleString()} entities
+          </span>
+        )}
       </div>
 
       <div>
@@ -464,7 +690,7 @@ function EntityDetail({ entity, count }: { entity: EntityDef; count: number }) {
             <tbody>
               {entity.properties.map((prop, i) => (
                 <tr
-                  key={prop.name}
+                  key={i}
                   className={i % 2 === 0 ? 'bg-white' : 'bg-stm-warm-50/50'}
                 >
                   <td className="px-3 py-1.5 font-mono text-stm-sepia-700">
@@ -494,18 +720,7 @@ function RelationDetail({ relation }: { relation: RelDef }) {
           className="w-7 h-7 text-[10px] font-bold flex items-center justify-center"
           style={{
             backgroundColor: from.color,
-            color: [
-              '#fef3ba',
-              '#ffe6eb',
-              '#ffbdca',
-              '#d4edda',
-              '#cce5ff',
-              '#e2d9f3',
-              '#d4c4fb',
-              '#82ddff',
-            ].includes(from.color)
-              ? '#78716c'
-              : '#fff',
+            color: badgeTextColor(from.color),
           }}
         >
           {from.type}
@@ -530,18 +745,7 @@ function RelationDetail({ relation }: { relation: RelDef }) {
           className="w-7 h-7 text-[10px] font-bold flex items-center justify-center"
           style={{
             backgroundColor: to.color,
-            color: [
-              '#fef3ba',
-              '#ffe6eb',
-              '#ffbdca',
-              '#d4edda',
-              '#cce5ff',
-              '#e2d9f3',
-              '#d4c4fb',
-              '#82ddff',
-            ].includes(to.color)
-              ? '#78716c'
-              : '#fff',
+            color: badgeTextColor(to.color),
           }}
         >
           {to.type}
@@ -552,12 +756,12 @@ function RelationDetail({ relation }: { relation: RelDef }) {
   );
 }
 
-/* ─── Source Pattern Section ───────────────────────────────────── */
+/* ─── Connection Chains Section ────────────────────────────────── */
 function SourcePatternSection() {
   return (
     <div className="bg-white border border-stm-warm-200 p-6">
       <h3 className="font-serif text-xl font-bold text-stm-warm-800 mb-3">
-        Universal Source Pattern
+        Connection Chains
       </h3>
       <p className="text-sm text-stm-warm-600 leading-relaxed mb-4">
         All information flows through sources. Maps, almanacs, and registers are
@@ -566,42 +770,230 @@ function SourcePatternSection() {
         physical plantations (E24). The key principle:{' '}
         <strong>maps depict things; things have locations</strong>.
       </p>
-      <div className="bg-stm-warm-50 p-4 font-mono text-xs text-stm-warm-600 space-y-2">
+      <div className="bg-stm-warm-50 p-4 font-mono text-xs text-stm-warm-600 space-y-2.5">
         <div>
-          <span className="text-stm-warm-400">Source chain:</span>{' '}
-          <span className="text-entity-e22">E22 Map</span>
-          {' -> P128 carries -> '}
-          <span className="text-stm-sepia-600">E36 Visual Item</span>
-          {' -> P138 represents -> '}
+          <span className="text-stm-warm-400">Source:</span>{' '}
+          <span style={{ color: '#c78e66' }}>E22 Map</span>
+          {' -> P128 -> '}
+          <span style={{ color: '#d4a574' }}>E36 Visual Item</span>
+          {' -> P138 -> '}
           <span style={{ color: '#e6956b' }}>E24 Plantation</span>
         </div>
         <div>
-          <span className="text-stm-warm-400">Name chain:</span>{' '}
-          <span className="text-entity-e22">E22 Almanac</span>
-          {' -> P128 carries -> '}
-          <span className="text-entity-e41">E41 Name</span>
-          {' -> P1i identifies -> '}
-          <span className="text-entity-e74">E74 Organization</span>
+          <span className="text-stm-warm-400">Name:</span>{' '}
+          <span style={{ color: '#c78e66' }}>E22 Almanac</span>
+          {' -> P128 -> '}
+          <span style={{ color: '#b5a200' }}>E41 Name</span>
+          {' -> P1i -> '}
+          <span style={{ color: '#d4829a' }}>E74 Organization</span>
         </div>
         <div>
           <span className="text-stm-warm-400">Location:</span>{' '}
           <span style={{ color: '#e6956b' }}>E24 Plantation</span>
-          {' -> P53 has location -> '}
-          <span className="text-entity-e53">E53 Place</span>
-          {' (geometry)'}
+          {' -> P53 -> '}
+          <span style={{ color: '#6aad55' }}>E53 Place</span>
+          {' -> geo:hasGeometry -> geo:asWKT -> POLYGON(...)'}
         </div>
         <div>
           <span className="text-stm-warm-400">Ownership:</span>{' '}
           <span style={{ color: '#e6956b' }}>E24 Plantation</span>
-          {' -> P52 has current owner -> '}
-          <span className="text-entity-e74">E74 Organization</span>
+          {' -> P52 -> '}
+          <span style={{ color: '#d4829a' }}>E74 Organization</span>
           {' (wd:Q-ID)'}
         </div>
         <div>
-          <span className="text-stm-warm-400">Observation:</span>{' '}
-          <span style={{ color: '#82ddff' }}>E13 Attr. Assignment</span>
-          {' -> P140 assigned attribute to -> '}
-          <span className="text-entity-e74">E74 Organization</span>
+          <span className="text-stm-warm-400">Time:</span>{' '}
+          <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
+          {' -> P4 -> '}
+          <span style={{ color: '#6ba3cc' }}>E52 Time-Span</span>
+          {' (year) + P140 -> '}
+          <span style={{ color: '#d4829a' }}>E74</span>
+          {' = "what happened when"'}
+        </div>
+        <div>
+          <span className="text-stm-warm-400">People:</span>{' '}
+          <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
+          {' -> P14 -> '}
+          <span style={{ color: '#cc8e99' }}>E39 Actor</span>
+          {' + pico:hasRole -> picot:owner/admin/director'}
+        </div>
+        <div>
+          <span className="text-stm-warm-400">Measurement:</span>{' '}
+          <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
+          {' -> P43 -> '}
+          <span style={{ color: '#9b8abd' }}>E54 Dimension</span>
+          {' (size in akkers)'}
+        </div>
+        <div>
+          <span className="text-stm-warm-400">Types:</span>{' '}
+          <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
+          {' -> P141 -> '}
+          <span style={{ color: '#5e9e52' }}>E55 Type</span>
+          {' (product / deserted / enslaved count)'}
+        </div>
+        <div>
+          <span className="text-stm-warm-400">Digital:</span>{' '}
+          <span style={{ color: '#b89470' }}>E38 Image</span>
+          {' -> P138 -> '}
+          <span style={{ color: '#c78e66' }}>E22 Source</span>
+          {' (IIIF scan of physical source)'}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Spatial Model Section ───────────────────────────────────── */
+function SpatialModelSection() {
+  return (
+    <div className="bg-white border border-stm-warm-200 p-6">
+      <h3 className="font-serif text-xl font-bold text-stm-warm-800 mb-3">
+        Spatial Model
+      </h3>
+      <p className="text-sm text-stm-warm-600 leading-relaxed mb-4">
+        Plantation locations are digitized as polygons from the 1930 Bos &
+        Weyerman map using QGIS. The source coordinate reference system is{' '}
+        <strong>EPSG:31170</strong> (Suriname Old TM), which must be reprojected
+        to <strong>WGS84 (EPSG:4326)</strong> for web display.
+      </p>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 className="text-sm font-semibold text-stm-warm-700 mb-2">
+            CRS Reprojection Pipeline
+          </h4>
+          <div className="bg-stm-warm-50 p-4 font-mono text-xs text-stm-warm-600 space-y-1.5">
+            <div>
+              <span className="text-stm-warm-400">Source CRS:</span> EPSG:31170
+              (Suriname Old TM)
+            </div>
+            <div>
+              <span className="text-stm-warm-400">Datum shift:</span>{' '}
+              +towgs84=-265,120,-358,0,0,0,0
+            </div>
+            <div>
+              <span className="text-stm-warm-400">Target CRS:</span> EPSG:4326
+              (WGS84)
+            </div>
+            <div>
+              <span className="text-stm-warm-400">Projection:</span> Transverse
+              Mercator
+            </div>
+            <div>
+              <span className="text-stm-warm-400">Central meridian:</span>{' '}
+              -55.68333
+            </div>
+            <div>
+              <span className="text-stm-warm-400">False easting:</span> 500,000
+              m
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 className="text-sm font-semibold text-stm-warm-700 mb-2">
+            GeoSPARQL Storage
+          </h4>
+          <div className="bg-stm-warm-50 p-4 font-mono text-xs text-stm-warm-600 space-y-1.5">
+            <div className="mb-2">
+              <span style={{ color: '#e6956b' }}>E24</span>
+              {' -> P53 -> '}
+              <span style={{ color: '#6aad55' }}>E53 Place</span>
+            </div>
+            <div className="ml-4">
+              <span style={{ color: '#6aad55' }}>E53</span>
+              {' -> geo:hasGeometry -> geo:Geometry'}
+            </div>
+            <div className="ml-8">
+              {'-> geo:asWKT -> '}
+              <span className="text-stm-sepia-600">
+                &quot;POLYGON((...))&quot;^^geo:wktLiteral
+              </span>
+            </div>
+            <div className="mt-2 text-stm-warm-500">
+              Centroids computed for Leaflet map markers
+            </div>
+          </div>
+          <div className="mt-3">
+            <h4 className="text-sm font-semibold text-stm-warm-700 mb-2">
+              E13 Location (text only)
+            </h4>
+            <p className="text-xs text-stm-warm-500">
+              Almanac P7 &quot;took place at&quot; values are text strings (e.g.
+              &quot;Boven-Commewijne&quot;, &quot;Beneden-Suriname&quot;). These
+              are <strong>not yet linked</strong> to E53 polygon geometries.
+              Georeferencing almanac location strings to map polygons is a
+              future research task.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Temporal Model Section ──────────────────────────────────── */
+function TemporalModelSection() {
+  return (
+    <div className="bg-white border border-stm-warm-200 p-6">
+      <h3 className="font-serif text-xl font-bold text-stm-warm-800 mb-3">
+        Temporal Model
+      </h3>
+      <p className="text-sm text-stm-warm-600 leading-relaxed mb-4">
+        Time is modeled through E52 Time-Span linked to E13 observations. Each
+        almanac row is tied to a specific year. Map dates provide temporal scope
+        for names.
+      </p>
+      <div className="grid md:grid-cols-2 gap-6">
+        <div>
+          <h4 className="text-sm font-semibold text-stm-warm-700 mb-2">
+            Observation Time
+          </h4>
+          <div className="bg-stm-warm-50 p-4 font-mono text-xs text-stm-warm-600 space-y-1.5">
+            <div>
+              <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
+              {' -> P4 has time-span -> '}
+              <span style={{ color: '#6ba3cc' }}>E52</span>
+            </div>
+            <div className="ml-4">
+              <span style={{ color: '#6ba3cc' }}>E52</span>
+              {' -> P82 at some time within -> xsd:gYear'}
+            </div>
+            <div className="mt-3 text-stm-warm-500">
+              Almanac coverage: ~1750-1863
+            </div>
+            <div className="text-stm-warm-500">
+              Each E13 records one year of observation
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4 className="text-sm font-semibold text-stm-warm-700 mb-2">
+            Name Dating
+          </h4>
+          <div className="bg-stm-warm-50 p-4 font-mono text-xs text-stm-warm-600 space-y-1.5">
+            <div>
+              <span style={{ color: '#c78e66' }}>E22 Source</span>
+              {' -> stm:mapYear -> xsd:gYear'}
+            </div>
+            <div className="mt-1 text-stm-warm-500">
+              The production date of the source provides temporal scope for the
+              E41 names it carries.
+            </div>
+            <div className="mt-3 font-sans text-stm-warm-500">
+              Map sources: 1930 (primary, QGIS polygons), 1860-79 (historical
+              name labels)
+            </div>
+          </div>
+          <div className="mt-3">
+            <h4 className="text-sm font-semibold text-stm-warm-700 mb-2">
+              Not Yet Modeled
+            </h4>
+            <p className="text-xs text-stm-warm-500">
+              <strong>E12 Production</strong> events for sources (when was the
+              map drawn?), <strong>E5 Event</strong> for plantation lifecycle
+              (founded, abandoned, merged). These would enable richer temporal
+              queries but require additional historical research.
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -646,7 +1038,8 @@ export default function ModelPage() {
             The Suriname Time Machine uses CIDOC-CRM to model cultural heritage
             entities. Click any node in the graph to see its properties and
             relationships. Hover over connections to highlight the CIDOC-CRM
-            property linking two entities.
+            property linking two entities. Dashed nodes are structural classes
+            inferred from the data model but not directly stored as entities.
           </p>
         </div>
 
@@ -668,25 +1061,41 @@ export default function ModelPage() {
           </div>
         )}
 
-        {/* Entity detail */}
+        {/* Entity detail + Connection chains */}
         <div className="grid lg:grid-cols-2 gap-6 mb-10">
           {selectedDef && (
             <EntityDetail
               entity={selectedDef}
-              count={counts[selectedDef.dataKey as keyof EntityCounts] ?? 0}
+              count={
+                selectedDef.dataKey
+                  ? (counts[selectedDef.dataKey as keyof EntityCounts] ?? 0)
+                  : null
+              }
             />
           )}
           <SourcePatternSection />
         </div>
 
+        {/* Spatial + Temporal models */}
+        <div className="grid lg:grid-cols-2 gap-6 mb-10">
+          <SpatialModelSection />
+          <TemporalModelSection />
+        </div>
+
         {/* All entities quick reference */}
         <div className="mb-10">
-          <h2 className="font-serif text-2xl font-bold text-stm-warm-800 mb-4">
+          <h2 className="font-serif text-2xl font-bold text-stm-warm-800 mb-2">
             All Entity Types
           </h2>
+          <p className="text-sm text-stm-warm-500 mb-4">
+            6 data-backed classes with entity counts, 6 structural classes
+            inferred from the model.
+          </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {ENTITIES.map((ent) => {
-              const count = counts[ent.dataKey as keyof EntityCounts] ?? 0;
+              const count = ent.dataKey
+                ? (counts[ent.dataKey as keyof EntityCounts] ?? 0)
+                : null;
               return (
                 <button
                   key={ent.id}
@@ -705,18 +1114,10 @@ export default function ModelPage() {
                       className="w-8 h-8 text-[10px] font-bold flex items-center justify-center"
                       style={{
                         backgroundColor: ent.color,
-                        color: [
-                          '#fef3ba',
-                          '#ffe6eb',
-                          '#ffbdca',
-                          '#d4edda',
-                          '#cce5ff',
-                          '#e2d9f3',
-                          '#d4c4fb',
-                          '#82ddff',
-                        ].includes(ent.color)
-                          ? '#78716c'
-                          : '#fff',
+                        color: badgeTextColor(ent.color),
+                        border: ent.structural
+                          ? '2px dashed rgba(0,0,0,0.15)'
+                          : undefined,
                       }}
                     >
                       {ent.type}
@@ -725,9 +1126,15 @@ export default function ModelPage() {
                       <span className="font-semibold text-stm-warm-800 text-sm">
                         {ent.label}
                       </span>
-                      <span className="text-stm-warm-400 text-xs ml-2">
-                        {count.toLocaleString()}
-                      </span>
+                      {count !== null ? (
+                        <span className="text-stm-warm-400 text-xs ml-2">
+                          {count.toLocaleString()}
+                        </span>
+                      ) : (
+                        <span className="text-stm-warm-400 text-xs ml-2 italic">
+                          structural
+                        </span>
+                      )}
                     </div>
                   </div>
                   <p className="text-xs text-stm-warm-500 line-clamp-2">
@@ -771,12 +1178,17 @@ export default function ModelPage() {
                 status: 'green' as const,
                 question:
                   'Which plantations were marked as deserted (verlaten)?',
-                path: 'E13 -> P141 assigned -> E55 (deserted status) + P140 -> E74 -> P52i -> E24 plantation',
+                path: 'E13 -> P141 assigned -> E55 (deserted status) + P140 -> E74 -> P52i -> E24',
               },
               {
                 status: 'green' as const,
                 question: 'Where was a plantation located on the 1930 map?',
-                path: 'E24 plantation -> P53 has location -> E53 Place (geometry)',
+                path: 'E24 -> P53 -> E53 Place -> geo:hasGeometry -> geo:asWKT',
+              },
+              {
+                status: 'green' as const,
+                question: 'What was the size of a plantation in akkers?',
+                path: 'E13 -> P43 -> E54 Dimension (P90 has value + P91 has unit)',
               },
               {
                 status: 'amber' as const,
@@ -787,6 +1199,11 @@ export default function ModelPage() {
                 status: 'amber' as const,
                 question: 'Which organizations merged or were absorbed?',
                 path: 'E74 -> stm:absorbedInto -> E74 (partial data; needs more historical sources)',
+              },
+              {
+                status: 'amber' as const,
+                question: 'Can almanac locations be linked to map polygons?',
+                path: 'E13 P7 text -> gazetteer resolution -> E53 Place (geo:asWKT). Needs NLP + historical gazetteer',
               },
               {
                 status: 'red' as const,
