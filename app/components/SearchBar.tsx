@@ -6,9 +6,14 @@ import { useMemo, useState } from 'react';
 interface SearchBarProps {
   geojson: GeoJSONCollection | null;
   onSelect: (feature: GeoJSONFeature) => void;
+  onHighlightName?: (name: string) => void;
 }
 
-export default function SearchBar({ geojson, onSelect }: SearchBarProps) {
+export default function SearchBar({
+  geojson,
+  onSelect,
+  onHighlightName,
+}: SearchBarProps) {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -29,6 +34,12 @@ export default function SearchBar({ geojson, onSelect }: SearchBarProps) {
         onChange={(e) => {
           setQuery(e.target.value);
           setOpen(true);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && query.length >= 2 && onHighlightName) {
+            onHighlightName(query);
+            setOpen(false);
+          }
         }}
         onFocus={() => setOpen(true)}
         aria-label="Search plantations by name"

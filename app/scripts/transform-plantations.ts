@@ -159,6 +159,7 @@ export function transformPlantations(): PlantationTransformResult {
   const e41: E41Row[] = [];
   const mapLinks: MapLink[] = [];
   const seenQids = new Set<string>();
+  const seenSlugs = new Set<string>();
 
   for (const p of rows) {
     const fid = (p.fid ?? '').trim();
@@ -172,7 +173,11 @@ export function transformPlantations(): PlantationTransformResult {
     const psurId2 = (p.psur_id2 ?? '').trim();
     const psurId3 = (p.psur_id3 ?? '').trim();
 
-    const slug = label ? slugify(label) : `fid-${fid}`;
+    let slug = label ? slugify(label) : `fid-${fid}`;
+    if (seenSlugs.has(slug)) {
+      slug = `${slug}-fid-${fid}`;
+    }
+    seenSlugs.add(slug);
     const hasQid = !!qid;
     const hasPsur = !!psurId;
     const hasLabel = !!label;

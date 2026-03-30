@@ -14,6 +14,7 @@ export default function ExplorePage() {
   const [selectedFeature, setSelectedFeature] = useState<GeoJSONFeature | null>(
     null,
   );
+  const [highlightedName, setHighlightedName] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,10 +25,17 @@ export default function ExplorePage() {
 
   const handleSelectPlantation = useCallback((feature: GeoJSONFeature) => {
     setSelectedFeature(feature);
+    setHighlightedName(feature.properties.name);
+  }, []);
+
+  const handleHighlightName = useCallback((name: string) => {
+    setHighlightedName(name);
+    setSelectedFeature(null);
   }, []);
 
   const handleClose = useCallback(() => {
     setSelectedFeature(null);
+    setHighlightedName(null);
   }, []);
 
   /* Keyboard shortcut: Escape closes panel */
@@ -62,8 +70,10 @@ export default function ExplorePage() {
         selectedPlantationUri={
           selectedFeature?.properties.plantationUri || null
         }
+        highlightedName={highlightedName}
         panelOpen={!!selectedFeature}
         onSelectPlantation={handleSelectPlantation}
+        onHighlightName={handleHighlightName}
       />
 
       {/* Detail panel overlays the map from the right */}

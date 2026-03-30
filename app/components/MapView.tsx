@@ -24,23 +24,35 @@ L.DomUtil.getPosition = function (el: HTMLElement): L.Point {
 interface MapViewProps {
   geojson: GeoJSONCollection | null;
   selectedPlantationUri: string | null;
+  highlightedName: string | null;
   panelOpen: boolean;
   onSelectPlantation: (feature: GeoJSONFeature) => void;
+  onHighlightName: (name: string) => void;
 }
 
 export default function MapView({
   geojson,
   selectedPlantationUri,
+  highlightedName,
   panelOpen,
   onSelectPlantation,
+  onHighlightName,
 }: MapViewProps) {
   const mapRef = useRef<L.Map | null>(null);
   const layerRef = useRef<L.GeoJSON | null>(null);
   const warpedLayerRef = useRef<L.Layer | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const selectedUriRef = useRef(selectedPlantationUri);
+  const highlightedNameRef = useRef(highlightedName);
+  const onSelectRef = useRef(onSelectPlantation);
   const [opacity, setOpacity] = useState(0.7);
   const [overlayVisible, setOverlayVisible] = useState(true);
   const [toolbarOpen, setToolbarOpen] = useState(true);
+
+  // Keep callback ref in sync
+  useEffect(() => {
+    onSelectRef.current = onSelectPlantation;
+  });
 
   // Initialize map
   useEffect(() => {
@@ -86,7 +98,7 @@ export default function MapView({
     };
   }, []);
 
-  // Add/update GeoJSON layer
+  // Add/update GeoJSON layer — recreate only when data changes
   useEffect(() => {
     if (!mapRef.current || !geojson) return;
 
@@ -97,13 +109,36 @@ export default function MapView({
     const layer = L.geoJSON(geojson as unknown as GeoJSON.GeoJsonObject, {
       style: (feature) => {
         const props = feature?.properties;
-        const isSelected = props?.plantationUri === selectedPlantationUri;
+        const isSelected = props?.plantationUri === selectedUriRef.current;
+        const isHighlighted =
+          !isSelected &&
+          !!highlightedNameRef.current &&
+          props?.name
+            ?.toLowerCase()
+            .includes(highlightedNameRef.current.toLowerCase());
         const isBuilt = props?.status === 'built';
+        if (isSelected) {
+          return {
+            fillColor: '#c0944e',
+            fillOpacity: 0.55,
+            color: '#8c6228',
+            weight: 3,
+          };
+        }
+        if (isHighlighted) {
+          return {
+            fillColor: '#e07850',
+            fillOpacity: 0.45,
+            color: '#a04020',
+            weight: 2,
+            dashArray: '6 3',
+          };
+        }
         return {
-          fillColor: isSelected ? '#c0944e' : isBuilt ? '#a67830' : '#a39b8e',
-          fillOpacity: isSelected ? 0.55 : 0.25,
-          color: isSelected ? '#8c6228' : isBuilt ? '#6e4d20' : '#6e6658',
-          weight: isSelected ? 3 : 1,
+          fillColor: isBuilt ? '#a67830' : '#a39b8e',
+          fillOpacity: 0.25,
+          color: isBuilt ? '#6e4d20' : '#6e6658',
+          weight: 1,
         };
       },
       onEachFeature: (feature, featureLayer) => {
@@ -114,19 +149,19 @@ export default function MapView({
         });
 
         featureLayer.on('click', () => {
-          onSelectPlantation(feature as unknown as GeoJSONFeature);
+          onSelectRef.current(feature as unknown as GeoJSONFeature);
         });
 
         featureLayer.on('mouseover', (e) => {
           const target = e.target as L.Path;
-          if (props.plantationUri !== selectedPlantationUri) {
+          if (props.plantationUri !== selectedUriRef.current) {
             target.setStyle({ fillOpacity: 0.5, weight: 2 });
           }
         });
 
         featureLayer.on('mouseout', (e) => {
           const target = e.target as L.Path;
-          if (props.plantationUri !== selectedPlantationUri) {
+          if (props.plantationUri !== selectedUriRef.current) {
             layer.resetStyle(target);
           }
         });
@@ -135,7 +170,18 @@ export default function MapView({
 
     layer.addTo(mapRef.current);
     layerRef.current = layer;
-  }, [geojson, selectedPlantationUri, onSelectPlantation]);
+  }, [geojson]);
+
+  // Restyle features when selection or highlight changes (no layer recreation)
+  useEffect(() => {
+    selectedUriRef.current = selectedPlantationUri;
+    highlightedNameRef.current = highlightedName;
+    if (layerRef.current) {
+      layerRef.current.eachLayer((l) => {
+        layerRef.current!.resetStyle(l as L.Path);
+      });
+    }
+  }, [selectedPlantationUri, highlightedName]);
 
   // Sync overlay opacity
   useEffect(() => {
@@ -165,6 +211,39 @@ export default function MapView({
       }
     });
   }, [selectedPlantationUri, panelOpen]);
+
+  // Fly to all highlighted features when name is highlighted without selection
+  useEffect(() => {
+    if (
+      !mapRef.current ||
+      !layerRef.current ||
+      !highlightedName ||
+      selectedPlantationUri
+    )
+      return;
+
+    let combinedBounds: L.LatLngBounds | null = null;
+    layerRef.current.eachLayer((layer) => {
+      const feature = (layer as L.GeoJSON & { feature?: GeoJSONFeature })
+        .feature;
+      if (
+        feature?.properties?.name
+          ?.toLowerCase()
+          .includes(highlightedName.toLowerCase())
+      ) {
+        const bounds = (layer as L.Polygon).getBounds();
+        combinedBounds = combinedBounds
+          ? combinedBounds.extend(bounds)
+          : bounds;
+      }
+    });
+    if (combinedBounds) {
+      mapRef.current.flyToBounds(combinedBounds, {
+        padding: [50, 50],
+        maxZoom: 13,
+      });
+    }
+  }, [highlightedName, selectedPlantationUri]);
 
   function handleZoomIn() {
     mapRef.current?.zoomIn();
@@ -242,7 +321,11 @@ export default function MapView({
             <div className="w-px h-6 bg-stm-warm-200" />
 
             {/* Search */}
-            <SearchInput geojson={geojson} onSelect={onSelectPlantation} />
+            <SearchInput
+              geojson={geojson}
+              onSelect={onSelectPlantation}
+              onHighlightName={onHighlightName}
+            />
 
             {/* Divider */}
             <div className="w-px h-6 bg-stm-warm-200" />
@@ -260,6 +343,10 @@ export default function MapView({
               <div className="flex items-center gap-1.5">
                 <span className="w-3.5 h-2.5 border-2 border-stm-sepia-600 bg-stm-sepia-300 opacity-80 inline-block" />
                 <span className="text-stm-warm-600">Selected</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3.5 h-2.5 border border-dashed border-[#a04020] bg-[#e07850] opacity-70 inline-block" />
+                <span className="text-stm-warm-600">Highlighted</span>
               </div>
             </div>
 
@@ -320,9 +407,11 @@ export default function MapView({
 function SearchInput({
   geojson,
   onSelect,
+  onHighlightName,
 }: {
   geojson: GeoJSONCollection | null;
   onSelect: (feature: GeoJSONFeature) => void;
+  onHighlightName: (name: string) => void;
 }) {
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
@@ -344,6 +433,12 @@ function SearchInput({
         onChange={(e) => {
           setQuery(e.target.value);
           setOpen(true);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && query.length >= 2) {
+            onHighlightName(query);
+            setOpen(false);
+          }
         }}
         onFocus={() => setOpen(true)}
         onBlur={() => setTimeout(() => setOpen(false), 200)}
