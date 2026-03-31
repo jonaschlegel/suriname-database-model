@@ -42,9 +42,9 @@ flowchart LR
     fid=1572"]
 
     E24["E24 Plantation
-    stm:plantation/nieuw-java"]
+    plantation/nieuw-java"]
     E53["E53 Place
-    stm:place/1930/fid-1572"]
+    place/1930/fid-1572"]
     E41a["E41 Appellation
     label_1930"]
     E41b["E41 Appellation
@@ -79,7 +79,7 @@ flowchart LR
 ### `fid` --- Feature ID
 
 > **Sample:** `1572`, `2099`, `2600`
-> **Model target:** `E53 Place` --- `stm:fid` (literal integer); used in URI `stm:place/1930/fid-{fid}`
+> **Model target:** `E53 Place` --- `P48 has preferred identifier` (E42 Identifier, QGIS fid); used in URI `place/1930/fid-{fid}`
 > **Coverage:** 1,597 / 1,597 (100%)
 
 **Verdict: Works.** Every polygon has an `fid` assigned by QGIS. The value is auto-generated and unique within the layer. It becomes both a property on the E53 Place and the slug in the URI. No issues.
@@ -105,7 +105,7 @@ flowchart LR
 **Verdict: Works with caveat.** The Q-ID is the key that links the QGIS polygon (via E24) to the Wikidata organization (E74). The mapping is the cornerstone of the entire linking strategy:
 
 ```
-E24 stm:plantation/{slug} --P52 has current owner--> E74 wd:{Q-ID}
+E24 plantation/{slug} --P52 has current owner--> E74 wd:{Q-ID}
 ```
 
 The caveat is significant: **536 polygons (34%) have no Q-ID**. These are polygons traced from the 1930 map that have not yet been matched to a Wikidata entity. For these, we can still create:
@@ -166,17 +166,17 @@ When both labels exist and differ (spelling variation over 60+ years), P139 capt
 ### `qid_alt` --- Alternative Wikidata Q-ID
 
 > **Sample:** `Q124832140` (on row for "Aan De Vier Kinderen"), mostly empty
-> **Model target:** `E74 Organization` --- `stm:absorbedInto` (merger network); and/or `P51 has former or current owner`
+> **Model target:** `E74 Organization` --- `P99i was dissolved by` (E68 Dissolution, merger network); and/or `P51 has former or current owner`
 > **Coverage:** 230 / 1,597 (14%)
 
 **Verdict: Works with caveat.** This column records a _second_ Q-ID for cases where the polygon represents a plantation that merged with or was absorbed by another. In the model, the primary `qid` is the "current" organization (P52), and `qid_alt` is either:
 
 1. A former owner/operator (P51), or
-2. An organization that was absorbed into the primary (`stm:absorbedInto`)
+2. An organization that was dissolved into the primary (`P99i was dissolved by` -> E68 Dissolution)
 
-The SKILL.md mapping says: _"P51 former owner, stm:absorbedInto qid"_. This is slightly ambiguous --- should every `qid_alt` produce both a P51 triple and an `stm:absorbedInto` triple? Or is context needed to determine which?
+The SKILL.md mapping says: _"P51 former owner, P99i was dissolved by"_. This is slightly ambiguous --- should every `qid_alt` produce both a P51 triple and a dissolution event? Or is context needed to determine which?
 
-**Recommendation:** Treat `qid_alt` as `stm:absorbedInto` by default (the alternative organization was absorbed into the primary). The P51 triple is then inferred: if an organization was absorbed, the plantation had a former owner. This avoids generating P51 triples without temporal qualification.
+**Recommendation:** Treat `qid_alt` as `P99i was dissolved by` by default (the alternative organization was dissolved into the primary). The P51 triple is then inferred: if an organization was dissolved, the plantation had a former owner. This avoids generating P51 triples without temporal qualification.
 
 ---
 
@@ -196,18 +196,18 @@ As the SKILL.md notes: the PSUR link is _"flawed"_ because it conflates organiza
 
 ## QGIS Summary Scorecard
 
-| Column             | Target Entity         | Coverage | Verdict                                     |
-| ------------------ | --------------------- | -------- | ------------------------------------------- |
-| `fid`              | E53 Place             | 100%     | Works                                       |
-| `coords`           | E53 Place (geo:asWKT) | 100%     | Works (reproject to WGS84)                  |
-| `qid`              | E74 via P52           | 66%      | Works (34% unlinked)                        |
-| `plantation_label` | E24 skos:prefLabel    | 67%      | Works                                       |
-| `label_1930`       | E41 Appellation       | 65%      | Works (check overlap with plantation_label) |
-| `label_1860-79`    | E41 Appellation       | 65%      | Works                                       |
-| `qid_alt`          | E74 stm:absorbedInto  | 14%      | Works (clarify P51 vs absorbedInto)         |
-| `psur_id`          | E74 skos:closeMatch   | 28%      | Works (flawed link, by design)              |
-| `psur_id2`         | E74 skos:closeMatch   | 1%       | Works (merger cases only)                   |
-| `psur_id3`         | E74 skos:closeMatch   | 0.1%     | Works (rare triple-merger)                  |
+| Column             | Target Entity                   | Coverage | Verdict                                     |
+| ------------------ | ------------------------------- | -------- | ------------------------------------------- |
+| `fid`              | E53 Place                       | 100%     | Works                                       |
+| `coords`           | E53 Place (geo:asWKT)           | 100%     | Works (reproject to WGS84)                  |
+| `qid`              | E74 via P52                     | 66%      | Works (34% unlinked)                        |
+| `plantation_label` | E24 skos:prefLabel              | 67%      | Works                                       |
+| `label_1930`       | E41 Appellation                 | 65%      | Works (check overlap with plantation_label) |
+| `label_1860-79`    | E41 Appellation                 | 65%      | Works                                       |
+| `qid_alt`          | E74 P99i was dissolved by (E68) | 14%      | Works (clarify P51 vs dissolution)          |
+| `psur_id`          | E74 skos:closeMatch             | 28%      | Works (flawed link, by design)              |
+| `psur_id2`         | E74 skos:closeMatch             | 1%       | Works (merger cases only)                   |
+| `psur_id3`         | E74 skos:closeMatch             | 0.1%     | Works (rare triple-merger)                  |
 
 **Overall assessment:** The QGIS mapping is clean. The main concern is completeness (34% of polygons unlinked), not model structure. Every column has a well-defined target entity and property. The only question mark is the overlap between `label_1930` and `plantation_label`.
 
@@ -218,7 +218,7 @@ As the SKILL.md notes: the PSUR link is _"flawed"_ because it conflates organiza
 **File:** `data/06-almanakken - Plantations Surinaamse Almanakken/Plantations Surinaamse Almanakken v1.0.csv`
 **Rows:** 23,003 | **Columns:** 63 | **Delimiter:** comma
 
-The Almanakken is the time-series backbone --- 23,000 annual snapshots of plantation organizations. Each row becomes an `stm:OrganizationObservation`. The columns below are those marked "Crucial for Linking" or "Primary Information: Yes" in the [data-sources documentation](../data-sources/06-almanakken.md).
+The Almanakken is the time-series backbone --- 23,000 annual snapshots of plantation organizations. Each row becomes an `E13 Attribute Assignment`. The columns below are those marked "Crucial for Linking" or "Primary Information: Yes" in the [data-sources documentation](../data-sources/06-almanakken.md).
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4ea'}}}%%
@@ -226,8 +226,8 @@ flowchart TB
     CSV["Almanakken CSV row
     recordid=1818-28-1"]
 
-    OBS["stm:OrganizationObservation
-    stm:obs/1818-28-1"]
+    OBS["E13 Attribute Assignment
+    obs/1818-28-1"]
     E74["E74 Organization
     wd:Q59116947"]
     E41["E41 Appellation
@@ -241,11 +241,12 @@ flowchart TB
     CSV -.->|creates| E41
     CSV -.->|creates| PERSON
 
-    OBS -->|"stm:observationOf"| E74
-    OBS -->|"stm:observationYear"| YEAR["1818"]
+    OBS -->|"P140 assigned attribute to"| E74
+    OBS -->|"P4 has time-span"| YEAR["E52 Time-Span: 1818"]
     OBS -->|"prov:hadPrimarySource"| E22
     E74 -->|"P1 identified by"| E41
-    OBS -->|"stm:hasOwner"| PERSON
+    OBS -->|"P14 carried out by
+    (P14.1 role: picot:owner)"| PERSON
 
     classDef crm_E39_Actor fill:#ffbdca,stroke:#000000,color:#000000
     classDef crm_E41_Appellation fill:#fef3ba,stroke:#000000,color:#000000
@@ -268,7 +269,7 @@ These columns establish _which_ plantation an observation refers to and how it c
 ### `recordid` --- Record Identifier
 
 > **Sample:** `1818-28-1`, `1829-56-300`, `1846-81-591`
-> **Model target:** Observation URI --- `stm:obs/{recordid}`
+> **Model target:** Observation URI --- `obs/{recordid}`
 > **Coverage:** 23,003 / 23,003 (100%)
 
 **Verdict: Works.** The record ID encodes `{year}-{page}-{sequence}` and is unique. It becomes the URI slug for the observation. This is the primary identifier for provenance --- when someone asks "where did this statement come from?", the answer traces to a specific page in a specific almanac edition.
@@ -278,7 +279,7 @@ These columns establish _which_ plantation an observation refers to and how it c
 ### `year` --- Observation Year
 
 > **Sample:** `1818`, `1829`, `1846`
-> **Model target:** `stm:OrganizationObservation` --- `stm:observationYear` (xsd:gYear)
+> **Model target:** `E13 Attribute Assignment` --- `P4 has time-span` (E52 Time-Span)
 > **Coverage:** 23,003 / 23,003 (100%)
 
 **Verdict: Works.** Every row has a year. This is the temporal anchor of the observation pattern. It is what lets us say "in 1818, the owner was X" vs "in 1845, the owner was Y" without contradiction.
@@ -288,14 +289,14 @@ These columns establish _which_ plantation an observation refers to and how it c
 ### `plantation_id` --- Wikidata Q-Identifier
 
 > **Sample:** `Q59116947` (Leonsberg), `Q59115397` (Concordia), `Q124832564` (De Goede Vriend)
-> **Model target:** `stm:OrganizationObservation` --- `stm:observationOf` --> `wd:{Q-ID}` (E74 Organization)
+> **Model target:** `E13 Attribute Assignment` --- `P140 assigned attribute to` --> `wd:{Q-ID}` (E74 Organization)
 > **Coverage:** 22,996 / 23,003 (99.97%)
 
 **Verdict: Works.** This is the link from the observation to the organization. Nearly every row has a Q-ID --- only 7 rows lack one. This is the column that, when matched against the QGIS `qid` column, connects the almanac time series to the map polygon:
 
 ```
-Almanakken: stm:obs/1818-28-1 --stm:observationOf--> wd:Q59116947
-QGIS:      stm:plantation/leonsberg --P52 has current owner--> wd:Q59116947
+Almanakken: obs/1818-28-1 --P140 assigned attribute to--> wd:Q59116947
+QGIS:      plantation/leonsberg --P52 has current owner--> wd:Q59116947
 ```
 
 The 99.97% coverage means the Almanakken side of the linkage is essentially complete. The bottleneck is on the QGIS side (66% have Q-IDs).
@@ -342,10 +343,10 @@ As TvO notes: _"when linking with PSUR it is best to also include [split/partof 
 ### `page` --- Almanac Page
 
 > **Sample:** `28`, `56`, `81`
-> **Model target:** `stm:OrganizationObservation` --- `stm:pageReference` (string)
+> **Model target:** `E13 Attribute Assignment` --- `P3 has note` (page reference)
 > **Coverage:** 22,999 / 23,003 (100%)
 
-**Verdict: Works.** Page reference for provenance. Currently a convenience string. As TvO notes, DBNL does not yet provide IIIF, but if it does in the future, this could become a IIIF canvas URI. The model's `stm:pageReference` is intentionally untyped to accommodate both.
+**Verdict: Works.** Page reference for provenance. Currently a convenience string. As TvO notes, DBNL does not yet provide IIIF, but if it does in the future, this could become a IIIF canvas URI. The model's `P3 has note` is intentionally untyped to accommodate both.
 
 ---
 
@@ -356,10 +357,10 @@ These columns are the values that change year to year --- the reason we need the
 ### `eigenaren` --- Owners
 
 > **Sample:** `Abraham de Leon`, `Isaak Monsanto.`, empty (many rows)
-> **Model target:** `stm:OrganizationObservation` --- `stm:hasOwner` --> `PersonObservation` (picot:owner role)
+> **Model target:** `E13 Attribute Assignment` --- `P14 carried out by` --> `PersonObservation` (P14.1 role: picot:owner)
 > **Coverage:** 13,049 / 23,003 (57%)
 
-**Verdict: Works with caveat.** The owner field contains one or more person names in a single string, sometimes comma-separated, sometimes with punctuation quirks (note the period after "Monsanto."). Each name becomes a `PersonObservation` with `pico:hasRole picot:owner`, linked to the `stm:OrganizationObservation` for that year.
+**Verdict: Works with caveat.** The owner field contains one or more person names in a single string, sometimes comma-separated, sometimes with punctuation quirks (note the period after "Monsanto."). Each name becomes a `PersonObservation` with `pico:hasRole picot:owner`, linked to the `E13 Attribute Assignment` for that year via `P14 carried out by`.
 
 The caveats:
 
@@ -372,21 +373,21 @@ The caveats:
 ### `administrateurs` --- Administrators
 
 > **Sample:** `Abraham de Leon`, multi-name strings
-> **Model target:** `stm:OrganizationObservation` --- `stm:hasAdministrator` --> `PersonObservation` (picot:administrator role)
+> **Model target:** `E13 Attribute Assignment` --- `P14 carried out by` --> `PersonObservation` (P14.1 role: picot:administrator)
 > **Coverage:** 2,071 / 23,003 (9%)
 
 **Verdict: Works with caveat.** Same parsing challenge as `eigenaren`. The low coverage (9%) is because earlier almanac editions used a different structure --- the `administrateurs_in_Europa` and `administrateurs_in_Suriname` columns were used in later editions instead.
 
-**Issue to flag:** The 9% coverage for `administrateurs` combined with 71% for `admin_europa` (16,452 rows) and 26% for `admin_suriname` (5,943 rows) suggests the data is split across three columns by era. The model (SKILL.md) only maps `administrateurs` to `stm:hasAdministrator`. The Europa/Suriname variants are not in the mapping table.
+**Issue to flag:** The 9% coverage for `administrateurs` combined with 71% for `admin_europa` (16,452 rows) and 26% for `admin_suriname` (5,943 rows) suggests the data is split across three columns by era. The model (SKILL.md) only maps `administrateurs` to `P14 carried out by` with role qualifier. The Europa/Suriname variants are not in the mapping table.
 
-**Recommendation:** Add `administrateurs_in_Europa` and `administrateurs_in_Suriname` as additional sources for the `stm:hasAdministrator` --> `PersonObservation` mapping. Tag the PersonObservation with a location qualifier (Europe vs Suriname) to preserve the distinction.
+**Recommendation:** Add `administrateurs_in_Europa` and `administrateurs_in_Suriname` as additional sources for the `P14 carried out by` --> `PersonObservation` mapping. Tag the PersonObservation with a location qualifier (Europe vs Suriname) to preserve the distinction.
 
 ---
 
 ### `directeuren` --- Directors
 
 > **Sample:** person name strings
-> **Model target:** `stm:OrganizationObservation` --- `stm:hasDirector` --> `PersonObservation` (picot:director role)
+> **Model target:** `E13 Attribute Assignment` --- `P14 carried out by` --> `PersonObservation` (P14.1 role: picot:director)
 > **Coverage:** 11,993 / 23,003 (52%)
 
 **Verdict: Works.** Reasonable coverage for the on-site plantation manager. Same name-parsing considerations as above, but this is a single-column mapping with no era-split ambiguity.
@@ -396,14 +397,14 @@ The caveats:
 ### `slaven` --- Number of Enslaved People
 
 > **Sample:** integer values, many empty
-> **Model target:** `stm:OrganizationObservation` --- `stm:enslavedCount` (xsd:integer)
+> **Model target:** `E13 Attribute Assignment` --- `P141 assigned` (E54 Dimension: enslaved count)
 > **Coverage:** 1,535 / 23,003 (7%)
 
 **Verdict: Works with caveat.** The mapping is straightforward --- one integer property on the observation. But the 7% coverage is startlingly low. This is because enslaved population counts only appear in 1834+ editions of the almanac.
 
 TvO notes that v2.0 adds a `slaves_norm` column (normalized integer) and a `slaves_shared_with` column (Q-ID of plantation sharing the workforce). The `slaves_shared_with` column introduces a new structural relationship that the current model does not account for.
 
-**Recommendation for v2.0:** Add `stm:sharedWorkforceWith` property linking to a second E74, to model the shared-enslaved-population relationship. This is semantically different from `stm:absorbedInto` (a merger) --- it describes an operational arrangement, not an identity change.
+**Recommendation for v2.0:** Add a property linking to a second E74, to model the shared-enslaved-population relationship. This is semantically different from dissolution (`P99i was dissolved by`) --- it describes an operational arrangement, not an identity change.
 
 ---
 
@@ -432,7 +433,7 @@ This is a case where the colonial administrative source accidentally preserved c
 ### `product_std` --- Product Type
 
 > **Sample:** `koffie`, `suiker`, `katoen`
-> **Model target:** `stm:OrganizationObservation` --- `stm:hasProduct` (string or SKOS concept)
+> **Model target:** `E13 Attribute Assignment` --- `P141 assigned` (E55 Type: product)
 > **Coverage:** 15,800 / 23,003 (69%)
 
 **Verdict: Works.** Standardized product names with good coverage. Currently modeled as a string property. Could be upgraded to link to a SKOS vocabulary of colonial plantation products (coffee, sugar, cotton, cacao, etc.) for richer querying. This is a nice-to-have, not a blocker.
@@ -442,7 +443,7 @@ This is a case where the colonial administrative source accidentally preserved c
 ### `loc_std` --- Standardized Location
 
 > **Sample:** `Suriname`, `Boven-Commewijne`, `Orelana Kreek`
-> **Model target:** `stm:OrganizationObservation` --- `stm:locationStd` (string)
+> **Model target:** `E13 Attribute Assignment` --- `P7 took place at` (E53 Place, string)
 > **Coverage:** 23,001 / 23,003 (100%)
 
 **Verdict: Works with caveat.** Near-perfect coverage. The model treats this as a string on the observation --- not as an E53 Place. This is intentional: the almanac location description is a _river/district name_, not a geometry. The actual geometry comes from the QGIS polygon.
@@ -454,13 +455,13 @@ The caveat: these location strings could eventually link to a topology of Surina
 ### `deserted` --- Plantation Deserted Status
 
 > **Sample:** `verlaten`, `vervallen`, various Dutch terms
-> **Model target:** `stm:OrganizationObservation` --- `stm:isDeserted` (boolean or `E55 Type` PlantationStatus)
+> **Model target:** `E13 Attribute Assignment` --- `P141 assigned` (E55 Type: deserted status)
 > **Coverage:** 2,294 / 23,003 (10%)
 
-**Verdict: Works with caveat.** The model maps this to `stm:isDeserted` as a boolean, but the actual CSV values are Dutch text strings (`verlaten`, `vervallen`), not true/false. Two options:
+**Verdict: Works with caveat.** The model maps this to a status type, but the actual CSV values are Dutch text strings (`verlaten`, `vervallen`), not true/false. Two options:
 
 1. **Boolean coercion:** Treat any non-empty value as `true`, empty as `false` (or unknown).
-2. **E55 Type mapping:** Map the Dutch terms to `stm:PlantationStatus_Abandoned` vocabulary terms, preserving the distinction between `verlaten` (abandoned) and `vervallen` (dilapidated).
+2. **E55 Type mapping:** Map the Dutch terms to `type/plantation-status/abandoned` vocabulary terms, preserving the distinction between `verlaten` (abandoned) and `vervallen` (dilapidated).
 
 **Recommendation:** Option 2. The E55 PlantationStatus vocabulary already exists in the model, and the distinction between "abandoned" and "dilapidated" may be historically significant.
 
@@ -469,7 +470,7 @@ The caveat: these location strings could eventually link to a topology of Surina
 ### `size_std` --- Size in Akkers
 
 > **Sample:** integer values (akkers/acres)
-> **Model target:** `stm:OrganizationObservation` --- `stm:sizeAkkers` (xsd:integer)
+> **Model target:** `E13 Attribute Assignment` --- `P43 has dimension` (E54 Dimension: akkers)
 > **Coverage:** 4,264 / 23,003 (19%)
 
 **Verdict: Works.** Straightforward numeric property. TvO notes it can change over time (plantations grew or shrank), which is exactly why it belongs on the observation rather than on the E24 or E74 directly. The 19% coverage reflects that size information was not consistently recorded across all edition years.
@@ -489,17 +490,17 @@ These columns encode mergers, splits, part-of relationships, and cross-reference
 ### `split1_id` through `split5_id` --- Merged Plantation Q-IDs
 
 > **Sample:** Q-IDs of component plantations
-> **Model target:** `E74 Organization` --- `stm:absorbedInto` targeting the primary `plantation_id`
+> **Model target:** `E74 Organization` --- `P99i was dissolved by` (E68 Dissolution) targeting the primary `plantation_id`
 > **Coverage:** split1_id: 729 / 23,003 (3%)
 
 **Verdict: Needs adjustment.** This is the most structurally complex column group, and the mismatch between label coverage (34%) and ID coverage (3%) is the critical issue.
 
 7,764 rows (34%) have a `split1_lab` (the _name_ of a merged component), but only 729 (3%) have a `split1_id` (the _Q-ID_ of that component). That means for 7,035 rows, we know that a plantation was merged with another but cannot identify the component by Q-ID --- we only have a name string.
 
-The model maps `split_id` values to `stm:absorbedInto`:
+The model maps `split_id` values to dissolution events:
 
 ```
-wd:Q-split1 --stm:absorbedInto--> wd:Q-primary
+wd:Q-split1 --P99i was dissolved by--> E68 Dissolution --P14 carried out by--> wd:Q-primary
 ```
 
 This works when the Q-ID is present. When only the label is available, we have an unresolved reference. The current model has no way to represent "this organization probably absorbed a plantation called 'Porto Bello' but we don't know its Q-ID."
@@ -508,8 +509,8 @@ This works when the Q-ID is present. When only the label is available, we have a
 
 **Recommendation:**
 
-1. When `split_id` is present: emit `stm:absorbedInto` triple as designed.
-2. When only `split_lab` is present: create an E41 Appellation with the label, attached to the observation as `stm:absorbedPartLabel` (new property), flagged for resolution.
+1. When `split_id` is present: emit `P99i was dissolved by` -> E68 Dissolution triple as designed.
+2. When only `split_lab` is present: create an E41 Appellation with the label, attached to the observation, flagged for resolution.
 
 ---
 
@@ -532,12 +533,12 @@ With only 82 rows, this is rare but important for structural completeness. P107i
 ### `reference_std_id` / `reference_std_lab` --- Reference Plantation
 
 > **Sample:** Q-IDs and labels of plantations that "own" or are otherwise linked to this one
-> **Model target:** `stm:OrganizationObservation` --- `stm:referencedBy` --> `wd:{Q-ID}`
+> **Model target:** `E13 Attribute Assignment` --- `crm:P67_refers_to` --> `wd:{Q-ID}`
 > **Coverage:** reference_std_id: 3,205 / 23,003 (14%)
 
-**Verdict: Works with caveat.** TvO explains this is _"a plantation that owns the plantation mentioned in this record"_ --- a form of inter-plantation ownership. The model uses `stm:referencedBy` which is admittedly vague.
+**Verdict: Works with caveat.** TvO explains this is _"a plantation that owns the plantation mentioned in this record"_ --- a form of inter-plantation ownership. The model uses `crm:P67_refers_to` which is admittedly generic.
 
-**Recommendation:** Consider a more specific property, such as `stm:ownedByPlantation`, to distinguish this from generic references. The relationship is directional and ownership-based, which `stm:referencedBy` does not capture.
+**Recommendation:** Consider a more specific subproperty to distinguish this from generic references. The relationship is directional and ownership-based, which `P67 refers to` does not fully capture.
 
 ---
 
@@ -548,7 +549,7 @@ Columns marked "Primary Information" but not "Crucial for Linking."
 ### `function` --- Plantation Function/Purpose
 
 > **Sample:** `kerkplaats`, `militaire post`, Dutch text
-> **Model target:** `stm:OrganizationObservation` --- `stm:function` (free text, deferred priority)
+> **Model target:** `E13 Attribute Assignment` --- `P3 has note` (free text, deferred priority)
 > **Coverage:** 13,258 / 23,003 (58%)
 
 **Verdict: Works.** Modeled as free text on the observation. High coverage suggests this is actually quite information-rich. Could be upgraded to an E55 Type vocabulary in the future ("military post", "church plantation", etc.), but free text is the right first step.
@@ -558,7 +559,7 @@ Columns marked "Primary Information" but not "Crucial for Linking."
 ### `additional_info` --- Additional Information
 
 > **Sample:** Dutch text about workforce or plantation use
-> **Model target:** `stm:OrganizationObservation` --- `stm:additionalInfo` (free text, deferred priority)
+> **Model target:** `E13 Attribute Assignment` --- `P3 has note` (free text, deferred priority)
 > **Coverage:** 1,776 / 23,003 (8%)
 
 **Verdict: Works.** Free text annotation. Low coverage, but the content may be historically rich. No model issues.
@@ -576,7 +577,7 @@ These columns are NOT flagged as essential in the data-sources documentation but
 
 These have _higher_ coverage than `administrateurs` (9%). The later almanac editions split the administrator role by location. Ignoring them loses 71% of all administrator data.
 
-**Must add to model.** Map both to `stm:hasAdministrator` PersonObservation, with an additional qualifier for geographic scope (Europe/Suriname).
+**Must add to model.** Map both to `P14 carried out by` PersonObservation (P14.1 role: picot:administrator), with an additional qualifier for geographic scope (Europe/Suriname).
 
 ### `blank-officier` --- Overseer
 
@@ -596,31 +597,31 @@ High coverage, but TvO says _"No, needs to be further normalised."_ Skip for now
 
 ## Almanakken Summary Scorecard
 
-| Column                    | Target Entity                | Coverage | Verdict                                           |
-| ------------------------- | ---------------------------- | -------- | ------------------------------------------------- |
-| `recordid`                | Observation URI              | 100%     | Works                                             |
-| `year`                    | stm:observationYear          | 100%     | Works                                             |
-| `plantation_id`           | E74 via stm:observationOf    | 99.97%   | Works                                             |
-| `plantation_std`          | E41 Appellation              | 99.9%    | Works                                             |
-| `plantation_org`          | E41 Appellation (P139)       | 99.9%    | Works                                             |
-| `psur_id`                 | E74 skos:closeMatch          | 95%      | Works (caveat: merger complexity)                 |
-| `page`                    | stm:pageReference            | 100%     | Works                                             |
-| `eigenaren`               | PersonObservation (owner)    | 57%      | Works (caveat: name parsing, legal entities)      |
-| `administrateurs`         | PersonObservation (admin)    | 9%       | Works (but see Europa/Suriname split)             |
-| `directeuren`             | PersonObservation (director) | 52%      | Works                                             |
-| `slaven`                  | stm:enslavedCount            | 7%       | Works (v2.0 adds slaves_norm)                     |
-| `namen_totslaafgemaakten` | E41 Appellation (srn)        | 14%      | Works (PROMINENT placement)                       |
-| `product_std`             | stm:hasProduct               | 69%      | Works                                             |
-| `loc_std`                 | stm:locationStd              | 100%     | Works                                             |
-| `deserted`                | stm:isDeserted / E55 Type    | 10%      | Needs adjustment (text, not boolean)              |
-| `size_std`                | stm:sizeAkkers               | 19%      | Works                                             |
-| `split1_id`               | stm:absorbedInto             | 3%       | Needs adjustment (label coverage 34%, ID only 3%) |
-| `partof_lab/id`           | P107i is member of           | 0.4%     | Works                                             |
-| `reference_std_id`        | stm:referencedBy             | 14%      | Works (consider renaming property)                |
-| `function`                | stm:function                 | 58%      | Works                                             |
-| `additional_info`         | stm:additionalInfo           | 8%       | Works                                             |
-| `admin_europa`            | NOT MAPPED                   | 71%      | Must add                                          |
-| `admin_suriname`          | NOT MAPPED                   | 26%      | Must add                                          |
+| Column                    | Target Entity                 | Coverage | Verdict                                           |
+| ------------------------- | ----------------------------- | -------- | ------------------------------------------------- |
+| `recordid`                | Observation URI               | 100%     | Works                                             |
+| `year`                    | P4 has time-span (E52)        | 100%     | Works                                             |
+| `plantation_id`           | E74 via P140 assigned attr.   | 99.97%   | Works                                             |
+| `plantation_std`          | E41 Appellation               | 99.9%    | Works                                             |
+| `plantation_org`          | E41 Appellation (P139)        | 99.9%    | Works                                             |
+| `psur_id`                 | E74 skos:closeMatch           | 95%      | Works (caveat: merger complexity)                 |
+| `page`                    | P3 has note                   | 100%     | Works                                             |
+| `eigenaren`               | PersonObservation (owner)     | 57%      | Works (caveat: name parsing, legal entities)      |
+| `administrateurs`         | PersonObservation (admin)     | 9%       | Works (but see Europa/Suriname split)             |
+| `directeuren`             | PersonObservation (director)  | 52%      | Works                                             |
+| `slaven`                  | P141 assigned (E54 Dimension) | 7%       | Works (v2.0 adds slaves_norm)                     |
+| `namen_totslaafgemaakten` | E41 Appellation (srn)         | 14%      | Works (PROMINENT placement)                       |
+| `product_std`             | P141 assigned (E55 Type)      | 69%      | Works                                             |
+| `loc_std`                 | P7 took place at (E53)        | 100%     | Works                                             |
+| `deserted`                | P141 assigned / E55 Type      | 10%      | Needs adjustment (text, not boolean)              |
+| `size_std`                | P43 has dimension (E54)       | 19%      | Works                                             |
+| `split1_id`               | P99i was dissolved by (E68)   | 3%       | Needs adjustment (label coverage 34%, ID only 3%) |
+| `partof_lab/id`           | P107i is member of            | 0.4%     | Works                                             |
+| `reference_std_id`        | crm:P67_refers_to             | 14%      | Works (consider more specific subproperty)        |
+| `function`                | P3 has note                   | 58%      | Works                                             |
+| `additional_info`         | P3 has note                   | 8%       | Works                                             |
+| `admin_europa`            | NOT MAPPED                    | 71%      | Must add                                          |
+| `admin_suriname`          | NOT MAPPED                    | 26%      | Must add                                          |
 
 ---
 
@@ -643,7 +644,7 @@ flowchart LR
 
     QGIS -->|"creates"| E24
     E24 -->|"P52"| E74
-    OBS -->|"stm:observationOf"| E74
+    OBS -->|"P140 assigned attribute to"| E74
 
     classDef crm_E18_Physical_Thing fill:#c78e66,stroke:#000000,color:#000000
     classDef crm_E39_Actor fill:#ffbdca,stroke:#000000,color:#000000
@@ -667,17 +668,17 @@ This is not a model problem --- it is a data-completion problem. The model will 
 
 Based on this audit, the following adjustments are recommended:
 
-1. **Add `administrateurs_in_Europa` and `administrateurs_in_Suriname`** to the SKILL.md mapping table, mapping both to `stm:hasAdministrator` PersonObservation with a geographic qualifier.
+1. **Add `administrateurs_in_Europa` and `administrateurs_in_Suriname`** to the SKILL.md mapping table, mapping both to `P14 carried out by` PersonObservation (P14.1 role: picot:administrator) with a geographic qualifier.
 
 2. **Resolve `deserted` column type** --- map Dutch text values to E55 PlantationStatus vocabulary terms instead of coercing to boolean.
 
-3. **Handle unresolved `split_lab` references** --- create a fallback pattern for the 7,035 rows where a merged-component name exists but no Q-ID. Consider `stm:absorbedPartLabel` as an interim property.
+3. **Handle unresolved `split_lab` references** --- create a fallback pattern for the 7,035 rows where a merged-component name exists but no Q-ID. Consider an interim `rdfs:label` on the E68 Dissolution event.
 
 4. **Clarify `label_1930` vs `plantation_label`** overlap in the QGIS CSV --- determine whether these are always identical or can diverge.
 
-5. **Consider renaming `stm:referencedBy`** to something more specific like `stm:ownedByPlantation` to capture the directional ownership relationship.
+5. **Consider refining `crm:P67_refers_to`** to a more specific subproperty to capture the directional ownership relationship between plantations.
 
-6. **Plan for v2.0 columns** --- `slaves_norm`, `slaves_shared_with`, `sranantongo_naam`. The `slaves_shared_with` column introduces a new structural relationship (`stm:sharedWorkforceWith`?) not yet in the model.
+6. **Plan for v2.0 columns** --- `slaves_norm`, `slaves_shared_with`, `sranantongo_naam`. The `slaves_shared_with` column introduces a new structural relationship not yet in the model.
 
 7. **Coordinate reprojection** --- ensure QGIS coordinates are reprojected from UTM 21N to WGS84 before RDF serialization.
 

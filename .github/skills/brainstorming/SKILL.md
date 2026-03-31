@@ -1,3 +1,8 @@
+---
+name: brainstorming
+description: 'New features, creative work, design decisions — explore intent, requirements, and design before implementation'
+---
+
 # Brainstorming Ideas Into Designs
 
 > **IMPORTANT:** Use this skill BEFORE any creative work — creating features, building components, adding scripts, or modifying the data model. Explore intent, requirements, and design before implementation.

@@ -8,7 +8,7 @@ config:
 erDiagram
     e24_human_made_things {
         uuid id PK "gen_random_uuid()"
-        text uri UK "stm:plantation/slug"
+        text uri UK "plantation/slug"
         text p1_label "Name P1_is_identified_by"
         text p2_type_id FK "Links to e55_types"
         text p52_owner_qid FK "Links to e74_groups"
@@ -18,7 +18,7 @@ erDiagram
 
     e26_physical_features {
         uuid id PK "gen_random_uuid()"
-        text uri UK "stm:feature/slug"
+        text uri UK "feature/slug"
         text p1_label "Name Suriname River"
         text p2_type_id FK "Links to e55_types"
         timestamptz created_at "DEFAULT NOW()"
@@ -26,7 +26,7 @@ erDiagram
 
     e53_places {
         uuid id PK "gen_random_uuid()"
-        text uri UK "stm:place/fid"
+        text uri UK "place/fid"
         integer fid "QGIS feature ID"
         text p168_geometry "PostGIS Polygon/Line"
         integer observed_year "Year of map observation"
@@ -53,7 +53,7 @@ erDiagram
 
     e41_appellations {
         uuid id PK "gen_random_uuid()"
-        text uri UK "stm:appellation/slug"
+        text uri UK "appellation/slug"
         text p190_symbolic_content "The actual name string"
         text p72_language "nl sr en"
         uuid p139_alt_form_id FK "Variant of another E41"

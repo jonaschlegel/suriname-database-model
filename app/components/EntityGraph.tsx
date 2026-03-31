@@ -145,7 +145,7 @@ function buildGraph(
     const src = shownSources[i];
     nodes.push({
       id: `e22-src-${i}`,
-      label: src.mapId || src.prefLabel?.slice(0, 18) || '(source)',
+      label: src.prefLabel?.slice(0, 18) || src.mapId || '(source)',
       type: 'E22',
       section: 'sources-ref',
       color: CRM_COLORS.E22,
@@ -175,6 +175,28 @@ function buildGraph(
     });
     if (organization) {
       links.push({ source: 'e13', target: 'e74', label: 'P140 assigned to' });
+    }
+
+    // E52 Time-Span — temporal extent of observations
+    nodes.push({
+      id: 'e52',
+      label: 'Time-Span',
+      type: 'E52',
+      section: 'sources',
+      color: CRM_COLORS.E52,
+      radius: 16,
+      x: CX + 60,
+      y: CY + 140,
+    });
+    links.push({ source: 'e13', target: 'e52', label: 'P4 has time-span' });
+
+    // E13 -> E22 source link (almanac as primary source)
+    if (shownSources.length > 0) {
+      links.push({
+        source: 'e13',
+        target: `e22-src-0`,
+        label: 'prov:hadPrimarySource',
+      });
     }
   }
 

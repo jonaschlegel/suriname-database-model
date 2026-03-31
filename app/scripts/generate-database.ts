@@ -25,7 +25,7 @@ import {
 } from './transform-plantations';
 
 const LOD_DIR = join(__dirname, '../lod');
-const STM = 'https://suriname-timemachine.org/ontology/';
+const BASE = 'https://data.suriname-timemachine.org/';
 const WD = 'http://www.wikidata.org/entity/';
 
 mkdirSync(LOD_DIR, { recursive: true });
@@ -35,7 +35,7 @@ mkdirSync(LOD_DIR, { recursive: true });
 function buildContext(): Record<string, unknown> {
   return {
     '@vocab': 'https://schema.org/',
-    stm: STM,
+    base: BASE,
     wd: WD,
     wdt: 'http://www.wikidata.org/prop/direct/',
     crm: 'http://www.cidoc-crm.org/cidoc-crm/',
@@ -49,9 +49,9 @@ function buildContext(): Record<string, unknown> {
     picom: 'https://personsincontext.org/model#',
     picot: 'https://personsincontext.org/thesaurus#',
     // CIDOC-CRM type aliases
-    Plantation: 'stm:Plantation',
-    OrganizationObservation: 'stm:OrganizationObservation',
-    ProvenanceRecord: 'stm:ProvenanceRecord',
+    Plantation: 'crm:E24_Physical_Human-Made_Thing',
+    OrganizationObservation: 'crm:E13_Attribute_Assignment',
+    ProvenanceRecord: 'prov:Entity',
     E13_Attribute_Assignment: 'crm:E13_Attribute_Assignment',
     E22_Human_Made_Object: 'crm:E22_Human-Made_Object',
     E24_Physical_Human_Made_Thing: 'crm:E24_Physical_Human-Made_Thing',
@@ -147,46 +147,52 @@ function buildContext(): Record<string, unknown> {
       '@id': 'dcterms:description',
       '@type': 'xsd:string',
     },
-    // STM ontology
-    status: { '@id': 'stm:status', '@type': 'xsd:string' },
-    psurId: { '@id': 'stm:psurId', '@type': 'xsd:string' },
-    fid: { '@id': 'stm:fid', '@type': 'xsd:integer' },
-    mapYear: { '@id': 'stm:mapYear', '@type': 'xsd:gYear' },
-    observedLabel: { '@id': 'stm:observedLabel', '@type': 'xsd:string' },
-    geometrySource: { '@id': 'stm:geometrySource', '@type': '@id' },
-    absorbedInto: { '@id': 'stm:absorbedInto', '@type': '@id' },
-    mergedInto: { '@id': 'stm:mergedInto', '@type': '@id' },
-    observationOf: { '@id': 'stm:observationOf', '@type': '@id' },
-    observationYear: { '@id': 'stm:observationYear', '@type': 'xsd:gYear' },
-    observedName: { '@id': 'stm:observedName', '@type': 'xsd:string' },
-    enslavedCount: { '@id': 'stm:enslavedCount', '@type': 'xsd:integer' },
-    product: { '@id': 'stm:product', '@type': 'xsd:string' },
-    deserted: { '@id': 'stm:deserted', '@type': 'xsd:boolean' },
-    hasOwner: { '@id': 'stm:hasOwner', '@type': 'xsd:string' },
-    hasAdministrator: { '@id': 'stm:hasAdministrator', '@type': 'xsd:string' },
-    hasDirector: { '@id': 'stm:hasDirector', '@type': 'xsd:string' },
-    locationStd: { '@id': 'stm:locationStd', '@type': 'xsd:string' },
-    sizeAkkers: { '@id': 'stm:sizeAkkers', '@type': 'xsd:integer' },
+    // Mapped properties (CRM/PROV/DC equivalents)
+    status: { '@id': 'crm:P2_has_type', '@type': 'xsd:string' },
+    psurId: { '@id': 'crm:P1_is_identified_by', '@type': 'xsd:string' },
+    fid: { '@id': 'crm:P48_has_preferred_identifier', '@type': 'xsd:integer' },
+    mapYear: { '@id': 'crm:P4_has_time-span', '@type': 'xsd:gYear' },
+    observedLabel: { '@id': 'crm:P1_is_identified_by', '@type': 'xsd:string' },
+    geometrySource: { '@id': 'prov:wasDerivedFrom', '@type': '@id' },
+    absorbedInto: { '@id': 'crm:P99i_was_dissolved_by', '@type': '@id' },
+    mergedInto: { '@id': 'crm:P124_transformed', '@type': '@id' },
+    observationOf: { '@id': 'crm:P140_assigned_attribute_to', '@type': '@id' },
+    observationYear: { '@id': 'crm:P4_has_time-span', '@type': 'xsd:gYear' },
+    observedName: { '@id': 'crm:P141_assigned', '@type': 'xsd:string' },
+    enslavedCount: { '@id': 'crm:P43_has_dimension', '@type': 'xsd:integer' },
+    product: { '@id': 'crm:P141_assigned', '@type': 'xsd:string' },
+    deserted: { '@id': 'crm:P141_assigned', '@type': 'xsd:boolean' },
+    hasOwner: { '@id': 'crm:P14_carried_out_by', '@type': 'xsd:string' },
+    hasAdministrator: {
+      '@id': 'crm:P14_carried_out_by',
+      '@type': 'xsd:string',
+    },
+    hasDirector: { '@id': 'crm:P14_carried_out_by', '@type': 'xsd:string' },
+    locationStd: { '@id': 'crm:P7_took_place_at', '@type': 'xsd:string' },
+    sizeAkkers: { '@id': 'crm:P43_has_dimension', '@type': 'xsd:integer' },
     freeResidentsCount: {
-      '@id': 'stm:freeResidentsCount',
+      '@id': 'crm:P43_has_dimension',
       '@type': 'xsd:integer',
     },
-    pageReference: { '@id': 'stm:pageReference', '@type': 'xsd:string' },
+    pageReference: { '@id': 'crm:P3_has_note', '@type': 'xsd:string' },
     // Provenance
     wasDerivedFrom: { '@id': 'prov:wasDerivedFrom', '@type': '@id' },
     hadPrimarySource: { '@id': 'prov:hadPrimarySource', '@type': '@id' },
     generatedAtTime: { '@id': 'prov:generatedAtTime', '@type': 'xsd:dateTime' },
-    sourceFile: { '@id': 'stm:sourceFile', '@type': 'xsd:string' },
-    sourceColumn: { '@id': 'stm:sourceColumn', '@type': 'xsd:string' },
-    sourceRow: { '@id': 'stm:sourceRow', '@type': 'xsd:string' },
-    transformedBy: { '@id': 'stm:transformedBy', '@type': 'xsd:string' },
-    modelEntity: { '@id': 'stm:modelEntity', '@type': 'xsd:string' },
-    schemaTable: { '@id': 'stm:schemaTable', '@type': 'xsd:string' },
-    linkedVia: { '@id': 'stm:linkedVia', '@type': 'xsd:string' },
+    sourceFile: { '@id': 'prov:hadPrimarySource', '@type': 'xsd:string' },
+    sourceColumn: { '@id': 'dcterms:description', '@type': 'xsd:string' },
+    sourceRow: { '@id': 'dcterms:identifier', '@type': 'xsd:string' },
+    transformedBy: { '@id': 'prov:wasGeneratedBy', '@type': 'xsd:string' },
+    modelEntity: { '@id': 'dcterms:conformsTo', '@type': 'xsd:string' },
+    schemaTable: { '@id': 'dcterms:isPartOf', '@type': 'xsd:string' },
+    linkedVia: { '@id': 'rdfs:comment', '@type': 'xsd:string' },
     // Map depiction
-    labelOnMap: { '@id': 'stm:labelOnMap', '@type': 'xsd:string' },
-    mapId: { '@id': 'stm:mapId', '@type': 'xsd:string' },
-    hasPolygon: { '@id': 'stm:hasPolygon', '@type': 'xsd:boolean' },
+    labelOnMap: {
+      '@id': 'crm:P190_has_symbolic_content',
+      '@type': 'xsd:string',
+    },
+    mapId: { '@id': 'crm:P48_has_preferred_identifier', '@type': 'xsd:string' },
+    hasPolygon: { '@id': 'geo:sfContains', '@type': 'xsd:boolean' },
   };
 }
 
@@ -202,7 +208,7 @@ function buildE22Sources(
       '@id': s.uri,
       '@type': ['E22_Human_Made_Object'],
       prefLabel: s.label,
-      P2_has_type: `${STM}type/source-type/${s.type}`,
+      P2_has_type: `${BASE}type/source-type/${s.type}`,
       mapId: s.id,
     };
 
@@ -217,7 +223,7 @@ function buildE22Sources(
     if (s.year) entity.mapYear = s.year;
     if (s.source_url) entity.sameAs = s.source_url;
     // P108i: inverse link to E12 Production event
-    entity.P108i_was_produced_by = `${STM}production/${s.id.toLowerCase()}`;
+    entity.P108i_was_produced_by = `${BASE}production/${s.id.toLowerCase()}`;
     return entity;
   });
 }
@@ -242,7 +248,7 @@ function buildE24Plantations(
 
     // CRM alignment: P2 has type -> E55 Type (plantation status)
     if (p.status) {
-      entity.P2_has_type = `${STM}type/plantation-status/${p.status.toLowerCase()}`;
+      entity.P2_has_type = `${BASE}type/plantation-status/${p.status.toLowerCase()}`;
     }
 
     if (p.prefLabel) entity.prefLabel = p.prefLabel;
@@ -259,8 +265,8 @@ function buildE24Plantations(
 
     const maps = mapLinkIndex.get(p.uri) ?? [];
     if (maps.length > 0) {
-      // Keep stm:depictedOnMap for frontend compatibility
-      entity['stm:depictedOnMap'] = maps.map((m) => ({
+      // depictedOnMap for frontend compatibility
+      entity['depictedOnMap'] = maps.map((m) => ({
         mapId: m.map_id,
         labelOnMap: m.label_on_map,
         hasPolygon: m.has_polygon === 'true',
@@ -271,7 +277,7 @@ function buildE24Plantations(
         ...new Set(
           maps.map((m) => {
             const slug = p.uri.split('/').pop() ?? 'unknown';
-            return `${STM}visual-item/${m.map_id}-${slug}`;
+            return `${BASE}visual-item/${m.map_id}-${slug}`;
           }),
         ),
       ];
@@ -279,7 +285,7 @@ function buildE24Plantations(
         e36Uris.length === 1 ? e36Uris[0] : e36Uris;
     }
 
-    const provId = `${STM}provenance/e24-${p.slug}`;
+    const provId = `${BASE}provenance/e24-${p.slug}`;
     entity.wasDerivedFrom = provId;
     provenance.push({
       '@id': provId,
@@ -333,7 +339,7 @@ function buildE74Organizations(
       entity.absorbedInto = `${WD}${o.absorbed_into_qid}`;
     entity.sameAs = o.uri;
 
-    const provId = `${STM}provenance/e74-${o.qid}`;
+    const provId = `${BASE}provenance/e74-${o.qid}`;
     entity.wasDerivedFrom = provId;
     provenance.push({
       '@id': provId,
@@ -345,7 +351,7 @@ function buildE74Organizations(
       transformedBy: 'scripts/transform-plantations.ts',
       modelEntity: 'E74_Group',
       schemaTable: 'e74_groups',
-      linkedVia: 'P52i_is_current_owner_of -> stm:plantation/{slug}',
+      linkedVia: 'P52i_is_current_owner_of -> plantation/{slug}',
     });
 
     entities.push(entity);
@@ -381,7 +387,7 @@ function buildE53Places(places: E53Row[]): {
 
     if (pl.source_uri) entity.P70i_is_documented_in = pl.source_uri;
 
-    const provId = `${STM}provenance/e53-fid-${pl.fid}`;
+    const provId = `${BASE}provenance/e53-fid-${pl.fid}`;
     entity.wasDerivedFrom = provId;
     provenance.push({
       '@id': provId,
@@ -429,7 +435,7 @@ function buildE36VisualItems(mapLinks: MapLink[]): Record<string, unknown>[] {
   const entities: Record<string, unknown>[] = [];
   for (const m of mapLinks) {
     const slug = m.plantation_uri.split('/').pop() ?? 'unknown';
-    const id = `${STM}visual-item/${m.map_id}-${slug}`;
+    const id = `${BASE}visual-item/${m.map_id}-${slug}`;
     if (seen.has(id)) continue;
     seen.add(id);
     entities.push({
@@ -481,12 +487,12 @@ function buildE55Types(): Record<string, unknown>[] {
 
   return types.map((t) => {
     const entity: Record<string, unknown> = {
-      '@id': `${STM}type/${t.id}`,
+      '@id': `${BASE}type/${t.id}`,
       '@type': ['E55_Type'],
       prefLabel: t.label,
     };
     if (t.broader) {
-      entity['skos:broader'] = `${STM}type/${t.broader}`;
+      entity['skos:broader'] = `${BASE}type/${t.broader}`;
     }
     return entity;
   });
@@ -497,7 +503,7 @@ function buildE52TimeSpans(years: Set<string>): Record<string, unknown>[] {
     .filter(Boolean)
     .sort()
     .map((year) => ({
-      '@id': `${STM}timespan/${year}`,
+      '@id': `${BASE}timespan/${year}`,
       '@type': ['E52_Time_Span'],
       prefLabel: year,
       P82a_begin_of_the_begin: `${year}-01-01`,
@@ -508,14 +514,14 @@ function buildE52TimeSpans(years: Set<string>): Record<string, unknown>[] {
 function buildE12Productions(sources: SourceRow[]): Record<string, unknown>[] {
   return sources.map((s) => {
     const entity: Record<string, unknown> = {
-      '@id': `${STM}production/${s.id.toLowerCase()}`,
+      '@id': `${BASE}production/${s.id.toLowerCase()}`,
       '@type': ['E12_Production'],
       prefLabel: `Production of ${s.label}`,
       P108_has_produced: s.uri,
     };
     if (s.maker) entity.P14_carried_out_by = s.maker;
     if (s.publication_place) entity.P7_took_place_at = s.publication_place;
-    if (s.year) entity.P4_has_time_span = `${STM}timespan/${s.year}`;
+    if (s.year) entity.P4_has_time_span = `${BASE}timespan/${s.year}`;
     return entity;
   });
 }
@@ -525,7 +531,7 @@ function buildE38Images(sources: SourceRow[]): Record<string, unknown>[] {
   for (const s of sources) {
     if (!s.iiif_info_url && !s.iiif_manifest) continue;
     const entity: Record<string, unknown> = {
-      '@id': `${STM}image/${s.id.toLowerCase()}`,
+      '@id': `${BASE}image/${s.id.toLowerCase()}`,
       '@type': ['E38_Image'],
       prefLabel: `Digital scan of ${s.label}`,
       P138_represents: s.uri,
@@ -550,13 +556,13 @@ function buildObservations(obs: ObservationRow[]): {
   const observationYears = new Set<string>();
 
   for (const o of obs) {
-    // Dual-type: stm:OrganizationObservation + crm:E13_Attribute_Assignment
+    // Type: E13_Attribute_Assignment
     const entity: Record<string, unknown> = {
       '@id': o.uri,
-      '@type': ['OrganizationObservation', 'E13_Attribute_Assignment'],
+      '@type': ['E13_Attribute_Assignment'],
     };
 
-    // Original stm: properties (backward compat)
+    // CRM properties
     if (o.organization_uri) {
       entity.observationOf = o.organization_uri;
       // CRM alignment: P140 assigned attribute to
@@ -566,7 +572,7 @@ function buildObservations(obs: ObservationRow[]): {
       entity.observationYear = o.observation_year;
       observationYears.add(o.observation_year);
       // CRM alignment: P4 has time-span -> E52
-      entity.P4_has_time_span = `${STM}timespan/${o.observation_year}`;
+      entity.P4_has_time_span = `${BASE}timespan/${o.observation_year}`;
     }
     if (o.observed_name) entity.observedName = o.observed_name;
     if (o.owner) entity.hasOwner = o.owner;
@@ -590,10 +596,10 @@ function buildObservations(obs: ObservationRow[]): {
     if (o.page_reference) entity.pageReference = o.page_reference;
     if (o.source_uri) entity.hadPrimarySource = o.source_uri;
     if (o.split1_id) entity.mergedInto = `${WD}${o.split1_id}`;
-    if (o.partof_id) entity['stm:partOfOrganization'] = `${WD}${o.partof_id}`;
+    if (o.partof_id) entity['parentOrganization'] = `${WD}${o.partof_id}`;
 
     const year = o.observation_year;
-    const provId = `${STM}provenance/obs-almanac-${year}`;
+    const provId = `${BASE}provenance/obs-almanac-${year}`;
     entity.wasDerivedFrom = provId;
 
     if (year && !seenYears.has(year)) {
@@ -726,7 +732,7 @@ function main() {
   // Index E36 by source URI
   for (const m of allMapLinks) {
     const slug = m.plantation_uri.split('/').pop() ?? 'unknown';
-    const e36Uri = `${STM}visual-item/${m.map_id}-${slug}`;
+    const e36Uri = `${BASE}visual-item/${m.map_id}-${slug}`;
     const list = e36BySource.get(m.map_uri) ?? [];
     list.push(e36Uri);
     e36BySource.set(m.map_uri, list);
@@ -814,7 +820,7 @@ function main() {
   // Write JSON-LD
   const database = {
     '@context': buildContext(),
-    '@id': `${STM}database`,
+    '@id': `${BASE}database`,
     '@type': 'sdo:Dataset',
     'sdo:name': 'Suriname Time Machine - Linked Open Data',
     'sdo:description':

@@ -282,7 +282,7 @@ function TimelineEntry({ obs }: { obs: OrganizationObservation }) {
           />
           <CrmField
             label="Enslaved"
-            crmClass="E55"
+            crmClass="E54"
             property="P141 assigned"
             value={obs.enslavedCount}
           />
@@ -306,7 +306,7 @@ function TimelineEntry({ obs }: { obs: OrganizationObservation }) {
           />
           <CrmField
             label="Free residents"
-            crmClass="E55"
+            crmClass="E54"
             property="P141 assigned"
             value={obs.freeResidentsCount}
           />
@@ -504,13 +504,13 @@ export default function PlantationPanel({
                     place?.observedLabel || (place ? `fid-${place.fid}` : null)
                   }
                 />
-                {plantation?.['stm:depictedOnMap'] && (
+                {plantation?.['depictedOnMap'] && (
                   <div className="mt-1.5">
                     <span className="text-[10px] text-stm-warm-400 uppercase tracking-wider">
-                      Depicted on maps
+                      P138i has representation
                     </span>
                     <div className="flex gap-1 mt-1 flex-wrap">
-                      {plantation['stm:depictedOnMap'].map((m, i) => (
+                      {plantation['depictedOnMap'].map((m, i) => (
                         <span
                           key={i}
                           className="bg-white text-stm-sepia-700 border border-stm-sepia-200 px-1.5 py-0.5 text-[10px]"
@@ -552,15 +552,15 @@ export default function PlantationPanel({
                   </CrmField>
                   <CrmField
                     label="PSUR ID"
-                    crmClass="E74"
-                    property="stm:psurId"
+                    crmClass="E42"
+                    property="P1 is identified by (E42 PSUR)"
                     value={organization.psurId}
                     mono
                   />
                   <CrmField
-                    label="Absorbed into"
-                    crmClass="E74"
-                    property="stm:absorbedInto"
+                    label="Dissolved by"
+                    crmClass="E68"
+                    property="P99i was dissolved by"
                     value={
                       organization.absorbedInto
                         ? uriLabel(organization.absorbedInto)
@@ -589,22 +589,22 @@ export default function PlantationPanel({
                     P53 has location
                   </p>
                   <CrmField
-                    label="Feature"
-                    crmClass="E53"
-                    property="stm:fid"
+                    label="Feature ID"
+                    crmClass="E42"
+                    property="P48 has preferred identifier"
                     value={place.fid}
                     mono
                   />
                   <CrmField
                     label="Map Year"
                     crmClass="E52"
-                    property="stm:mapYear"
+                    property="P4 has time-span (via E12)"
                     value={place.mapYear}
                   />
                   <CrmField
                     label="Label"
                     crmClass="E41"
-                    property="stm:observedLabel"
+                    property="P1 is identified by"
                     value={place.observedLabel}
                   />
                   <CrmField

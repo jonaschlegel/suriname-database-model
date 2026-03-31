@@ -10,7 +10,7 @@ config:
 ---
 erDiagram
     E24_PHYSICAL_HUMAN_MADE_THING {
-        string id PK "stm:plantation/slug"
+        string id PK "plantation/slug"
         string P1_is_identified_by FK "Links to E41 Appellation"
         string P2_has_type FK "Links to E55 Type"
         string P53_has_location FK "Links to E53 Place"
@@ -18,7 +18,7 @@ erDiagram
     }
 
     E41_APPELLATION {
-        string id PK "stm:appellation/slug"
+        string id PK "appellation/slug"
         string P190_has_symbolic_content "The actual name string"
         string P1i_identifies FK "E24 or E74 (not both)"
         string P139_has_alternative_form FK "Variant spelling E41"
@@ -27,14 +27,14 @@ erDiagram
     }
 
     E26_PHYSICAL_FEATURE {
-        string id PK "stm:feature/slug"
+        string id PK "feature/slug"
         string P1_is_identified_by "Name Suriname River"
         string P2_has_type FK "Links to E55 Type"
         string P53_has_location FK "Links to E53 Place"
     }
 
     E53_PLACE {
-        string id PK "stm:place/fid or geometry-based"
+        string id PK "place/fid or geometry-based"
         int fid "QGIS feature ID if from map"
         string P168_place_is_defined_by "WKT Polygon Line"
         int observed_year "Year of map observation"
@@ -96,9 +96,9 @@ erDiagram
         string has_product "Crop type"
         int enslaved_count "slaven"
         boolean is_deserted "verlaten flag"
-        string location_std "stm:locationStd string"
-        int size_akkers "stm:sizeAkkers"
-        string page_reference "stm:pageReference"
+        string location_std "P7 took place at (E53 Place)"
+        int size_akkers "P43 has dimension (E54)"
+        string page_reference "P3 has note"
         string P70i_is_documented_in FK "Source document"
     }
 

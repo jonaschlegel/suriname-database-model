@@ -5,8 +5,8 @@ flowchart TB
     subgraph CIDOC_CRM["CIDOC-CRM Domain"]
         direction TB
         E74["E74 Group<br/>(Organization)<br/>wd:Q-ID"]
-        E24["E24 Physical Human-Made Thing<br/>(Plantation)<br/>stm:plantation/slug"]
-        E53["E53 Place<br/>stm:place/fid"]
+        E24["E24 Physical Human-Made Thing<br/>(Plantation)<br/>plantation/slug"]
+        E53["E53 Place<br/>place/fid"]
         E41_MAP["E41 Appellation<br/>Map label (identifies E24)"]
         E41_ALM["E41 Appellation<br/>Almanac name (identifies E74)"]
 
@@ -48,17 +48,17 @@ flowchart TB
 
     subgraph OBSERVATION_LAYER["Temporal Observations (Almanakken)"]
         direction TB
-        OBS1["Observation 1823<br/>eigenaren | administrateurs | directeuren"]
-        OBS2["Observation 1847<br/>eigenaren | administrateurs | directeuren"]
+        OBS1["E13 Attribute Assignment 1823<br/>eigenaren | administrateurs | directeuren"]
+        OBS2["E13 Attribute Assignment 1847<br/>eigenaren | administrateurs | directeuren"]
         OBS3["Slave Register Entry 1863"]
 
-        OBS1 -->|"observes"| PERSON_OBS
-        OBS2 -->|"observes"| PERSON_OBS
+        OBS1 -->|"P14 carried out by"| PERSON_OBS
+        OBS2 -->|"P14 carried out by"| PERSON_OBS
         OBS3 -->|"observes enslaved person"| PERSON_OBS
     end
 
-    OBS1 -->|"stm:observationOf"| E74
-    OBS2 -->|"stm:observationOf"| E74
+    OBS1 -->|"P140 assigned attribute to"| E74
+    OBS2 -->|"P140 assigned attribute to"| E74
 
     %% Source carries almanac names
     SOURCE -->|"P128 carries"| E41_ALM

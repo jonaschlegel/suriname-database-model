@@ -44,9 +44,9 @@ Step-by-step record of every modeling decision, change, and planned extension. E
 
 **Enables:** Tracking ownership transfers over time. Answering: _who owned plantation X in year Y?_ (L03), _trace organizational mergers_ (temporal changes section).
 
-### Step 2.2 -- P52 has current owner (not custom stm:operatedBy)
+### Step 2.2 -- P52 has current owner (not custom operatedBy)
 
-**What:** Use standard CIDOC-CRM `P52 has current owner` and `P51 has former or current owner` to connect E24 to E74, instead of a custom `stm:operatedBy` property.
+**What:** Use standard CIDOC-CRM `P52 has current owner` and `P51 has former or current owner` to connect E24 to E74, instead of a custom `operatedBy` property.
 
 **Why:** P52 is the correct CIDOC-CRM property for this relationship (E18 Physical Thing -> E39 Actor). Using standard properties means interoperability with other CIDOC-CRM datasets and no need to maintain custom vocabulary documentation.
 
@@ -100,7 +100,7 @@ E41a --P139 has alternative form--> E41b
 
 ### Step 4.1 -- OrganizationObservation for time-varying data
 
-**What:** Each Almanakken row becomes an `stm:OrganizationObservation` with `stm:observationOf` pointing to E74 (via Q-ID) and `stm:observationYear` from the `year` column.
+**What:** Each Almanakken row becomes an `E13 Attribute Assignment` with `P140 assigned attribute to` pointing to E74 (via Q-ID) and `P4 has time-span` from the `year` column.
 
 **Why:** The Almanakken contain ~22,000 annual snapshots. Each row is an observation at a point in time, not a permanent fact. The plantation named "Geijersvlijt" had different owners, different numbers of enslaved people, and different products in different years. The observation pattern preserves this temporal dimension.
 
@@ -127,16 +127,16 @@ E41a --P139 has alternative form--> E41b
 - `split1_lab`, `split1_id` .. `split5_lab`, `split5_id` -- plantations that have been merged into this one (this plantation "has parts")
 - `partof_lab`, `part_of_id` -- this plantation is part of a larger merged combination
 
-**Rationale:** These columns capture a critical part of Surinamese plantation history -- mergers, splits, and absorptions. The SKILL.md already models `stm:mergedInto` and `stm:absorbedInto` but doesn't map _which CSV columns_ drive this. Without this mapping, a significant part of the plantation network is invisible.
+**Rationale:** These columns capture a critical part of Surinamese plantation history -- mergers, splits, and absorptions. The SKILL.md models `P99i was dissolved by` (E68 Dissolution) and `P124i was transformed by` (E81 Transformation) but doesn't map _which CSV columns_ drive this. Without this mapping, a significant part of the plantation network is invisible.
 
 **Modeling approach (proposed):**
 
 ```
-E74 (split1_id) --stm:absorbedInto--> E74 (plantation_id)   [has parts]
+E74 (split1_id) --P99i was dissolved by--> E68 Dissolution --P14 carried out by--> E74 (plantation_id)   [has parts]
 E74 (plantation_id) --P107i is member of--> E74 (part_of_id) [part of larger combination]
 ```
 
-Using `P107i is current or former member of` (CIDOC-CRM standard for group membership) rather than custom `stm:partOf`. When a plantation organization becomes part of a larger merged combination, it is organizational membership -- one E74 group belongs to a larger E74 group.
+Using `P107i is current or former member of` (CIDOC-CRM standard for group membership) rather than a custom `partOf` property. When a plantation organization becomes part of a larger merged combination, it is organizational membership -- one E74 group belongs to a larger E74 group.
 
 **Enables:** Answering: plantation network reconstruction, understanding why PSUR IDs may link to a component plantation rather than the combined one.
 
@@ -155,7 +155,7 @@ Using `P107i is current or former member of` (CIDOC-CRM standard for group membe
 **Modeling approach (proposed):**
 
 ```
-E74 (plantation_id) --stm:referencedBy--> E74 (reference_std_id)
+E74 (plantation_id) --crm:P67_refers_to--> E74 (reference_std_id)
 ```
 
 **Enables:** Following reference chains for linking. If plantation A has no direct PSUR link, but its reference plantation B does, we can trace the path.
@@ -205,7 +205,7 @@ Using `skos:closeMatch` (not `owl:sameAs` or `skos:exactMatch`) because the matc
 ```
 E24 polygon --P52--> E74 (qid, primary org)
 E24 polygon --P51--> E74 (qid_alt, former org, now absorbed)
-E74 (qid_alt) --stm:absorbedInto--> E74 (qid)
+E74 (qid_alt) --P99i was dissolved by--> E68 Dissolution --P14 carried out by--> E74 (qid)
 ```
 
 **Enables:** Tracing plantation identity through mergers. Answering: _link plantation across maps from different years_ (X06).
@@ -216,7 +216,7 @@ E74 (qid_alt) --stm:absorbedInto--> E74 (qid)
 
 ### Step 6.1 -- Product type on observations
 
-**What:** Map `product_std` to `stm:hasProduct` on OrganizationObservation.
+**What:** Map `product_std` to `P141 assigned` (E55 Type) on E13 Attribute Assignment.
 
 **Already in:** SKILL.md Observation properties. **Missing from:** CSV mapping table.
 
@@ -226,7 +226,7 @@ E74 (qid_alt) --stm:absorbedInto--> E74 (qid)
 
 ### Step 6.2 -- Deserted flag
 
-**What:** Map `deserted` to `stm:isDeserted` (boolean) on OrganizationObservation.
+**What:** Map `deserted` to `P141 assigned` (E55 Type: deserted status) on E13 Attribute Assignment.
 
 **Already in:** three-entity-model.mmd (`is_deserted` on OBSERVATION). **Missing from:** SKILL.md CSV mapping.
 
@@ -246,7 +246,7 @@ E74 (qid_alt) --stm:absorbedInto--> E74 (qid)
 
 ### Step 6.4 -- Plantation size
 
-**What:** Map `size_std` to `stm:sizeAkkers` on OrganizationObservation.
+**What:** Map `size_std` to `P43 has dimension` (E54 Dimension) on E13 Attribute Assignment.
 
 **Rationale:** Size in akkers is recorded per year. It changes when plantations merge or split. Useful for analysis but not critical for linking. Can help disambiguate plantations with similar names but different sizes.
 
@@ -259,8 +259,8 @@ E74 (qid_alt) --stm:absorbedInto--> E74 (qid)
 **Modeling approach (proposed):**
 
 ```
-Observation --prov:hadPrimarySource--> stm:source/almanac-{year}
-stm:source/almanac-{year} --stm:pageReference--> "28"
+Observation --prov:hadPrimarySource--> source/almanac-{year}
+source/almanac-{year} --P3 has note--> "28"
 ```
 
 ### Step 6.6 -- Function and additional info
@@ -275,7 +275,7 @@ stm:source/almanac-{year} --stm:pageReference--> "28"
 
 ### Step 7.1 -- Enslaved count (basic)
 
-**What:** `slaven` column -> `stm:enslavedCount` on OrganizationObservation. Already mapped in SKILL.md.
+**What:** `slaven` column -> `P141 assigned` (E54 Dimension: enslaved count) on E13 Attribute Assignment. Already mapped in SKILL.md.
 
 ### Step 7.2 -- Detailed population breakdown (deferred)
 
@@ -323,7 +323,7 @@ The comprehensive flowchart in `data-source-mapping.mmd` shows how every CSV col
 
 Every edge is annotated with:
 
-1. The **CIDOC-CRM property** (or custom stm:/skos: property) used
+1. The **CIDOC-CRM property** used
 2. A parenthetical **rationale** explaining why that property was chosen
 
 ### Entity color key (CRITERIA / George Bruseker)
@@ -371,5 +371,5 @@ Example -- Geijersvlijt:
 | P70i is documented in              | E1 -> E31               | Provenance link to source          |
 | geo:asWKT                          | geo:Geometry -> literal | GeoSPARQL spatial encoding         |
 | skos:closeMatch                    | concept -> concept      | PSUR ID approximate link           |
-| stm:observationOf                  | Observation -> E74      | Annual snapshot of org             |
-| stm:absorbedInto                   | E74 -> E74              | Plantation merger                  |
+| P140 assigned attribute to         | E13 -> E74              | Annual snapshot of org             |
+| P99i was dissolved by              | E74 -> E68              | Plantation org dissolution         |

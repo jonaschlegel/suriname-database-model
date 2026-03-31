@@ -16,31 +16,31 @@ CIDOC-CRM solves this with _events_. But the Almanakken are not describing event
 
 ## Layer 8 --- The Observation Pattern
 
-**Entities:** OrganizationObservation (custom `stm:` class)
+**Entities:** E13 Attribute Assignment
 **Relationships:**
 
-- `Observation --stm:observationOf--> E74 Group`
-- `Observation --stm:observationYear--> year`
+- `E13 --P140 assigned attribute to--> E74 Group`
+- `E13 --P4 has time-span--> E52 Time-Span (year)`
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4ea'}}}%%
 flowchart TB
-    OBS["stm:OrganizationObservation
-    stm:obs/1818-28-1
+    OBS["E13 Attribute Assignment
+    obs/1818-28-1
     (one almanac row)"]
 
     E74_ORG["E74 Group
     (Organization)
     wd:Q59116947"]
 
-    YEAR["1818
-    (xsd:gYear)"]
+    YEAR["E52 Time-Span
+    1818"]
 
     SOURCE["E22 Human-Made Object
     (Almanac of 1818)"]
 
-    OBS -->|"stm:observationOf"| E74_ORG
-    OBS -->|"stm:observationYear"| YEAR
+    OBS -->|"P140 assigned attribute to"| E74_ORG
+    OBS -->|"P4 has time-span"| YEAR
     OBS -->|"prov:hadPrimarySource"| SOURCE
 
     classDef crm_E39_Actor fill:#ffbdca,stroke:#000000,color:#000000
@@ -52,18 +52,13 @@ flowchart TB
     class SOURCE crm_E18_Physical_Thing
 ```
 
-### Why a custom class instead of CIDOC-CRM events?
+### Why E13 Attribute Assignment?
 
-CIDOC-CRM's E13 Attribute Assignment could technically model this --- each observation is an act of assigning an attribute. But E13 is heavy: it requires documenting who made the assertion, when, and with what authority. For 23,000 rows of almanac data that all follow the same pattern (a clerk copied numbers from a ledger into a book), the overhead is not justified.
+Each almanac row is an act of recording attributes of a plantation organization at a specific point in time. CIDOC-CRM models this precisely as E13 Attribute Assignment --- an activity of making assertions about properties of an entity.
 
-Instead, we use `stm:OrganizationObservation` --- a lightweight observation entity that:
+E13 connects to the entity being described via `P140 assigned attribute to`, and the values being recorded via `P141 assigned`. The year of observation is modeled through `P4 has time-span` pointing to an E52 Time-Span. The almanac source itself is linked via `prov:hadPrimarySource`.
 
-- Points to the E74 it observes (via `stm:observationOf`)
-- Records the year (via `stm:observationYear`)
-- Carries all the time-varying properties from that row
-- Links back to the source (via `prov:hadPrimarySource`)
-
-This is a pragmatic design choice. If we later need E13-level provenance for specific observations (e.g., a disputed ownership claim), we can promote individual observations to full E13 instances. But for the bulk of the data, the lightweight pattern is sufficient.
+Using E13 keeps the model purely within CIDOC-CRM. While E13 can support full provenance (who made the assertion, with what authority), for the bulk almanac data we use it in a lightweight manner --- the 23,000 rows all follow the same pattern (a clerk copied numbers from a ledger into a book), so the E22 source reference via `prov:hadPrimarySource` provides sufficient provenance. If we later need detailed provenance for specific observations (e.g., a disputed ownership claim), the E13 structure already supports it without migration.
 
 ### What the observation carries
 
@@ -72,38 +67,38 @@ Each observation holds the properties that change year by year:
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4ea'}}}%%
 flowchart TB
-    OBS["stm:OrganizationObservation
-    stm:obs/1818-28-1"]
+    OBS["E13 Attribute Assignment
+    obs/1818-28-1"]
 
     NAME["E41 Appellation
     'Leonsberg'
     (name as recorded that year)"]
 
     PRODUCT["koffie
-    (stm:hasProduct)"]
+    (E55 Type, product)"]
 
     COUNT["250
-    (stm:enslavedCount)"]
+    (E54 Dimension, enslaved count)"]
 
     SIZE["500
-    (stm:sizeAkkers)"]
+    (E54 Dimension, size in akkers)"]
 
     DESERTED["false
-    (stm:isDeserted)"]
+    (E55 Type, status)"]
 
     LOC["Suriname rechts
-    (stm:locationStd)"]
+    (E53 Place, location)"]
 
     PAGE["28
-    (stm:pageReference)"]
+    (P3 has note, page reference)"]
 
-    OBS -->|"stm:observedName"| NAME
-    OBS -->|"stm:hasProduct"| PRODUCT
-    OBS -->|"stm:enslavedCount"| COUNT
-    OBS -->|"stm:sizeAkkers"| SIZE
-    OBS -->|"stm:isDeserted"| DESERTED
-    OBS -->|"stm:locationStd"| LOC
-    OBS -->|"stm:pageReference"| PAGE
+    OBS -->|"P141 assigned"| NAME
+    OBS -->|"P141 assigned"| PRODUCT
+    OBS -->|"P141 assigned"| COUNT
+    OBS -->|"P43 has dimension"| SIZE
+    OBS -->|"P141 assigned"| DESERTED
+    OBS -->|"P7 took place at"| LOC
+    OBS -->|"P3 has note"| PAGE
 
     classDef crm_E2_Temporal_Entity fill:#82ddff,stroke:#000000,color:#000000
     classDef crm_E41_Appellation fill:#fef3ba,stroke:#000000,color:#000000
@@ -114,7 +109,7 @@ flowchart TB
     class PRODUCT,COUNT,SIZE,DESERTED,LOC,PAGE literal
 ```
 
-The name recorded in the observation (`stm:observedName`) is itself an E41 Appellation --- a name as it appeared in that specific year's almanac. This preserves spelling variations across years.
+The name recorded in the observation (`P141 assigned`) is itself an E41 Appellation --- a name as it appeared in that specific year's almanac. This preserves spelling variations across years.
 
 ---
 
@@ -123,15 +118,13 @@ The name recorded in the observation (`stm:observedName`) is itself an E41 Appel
 **Entities:** PersonObservation (PICO model)
 **Relationships:**
 
-- `Observation --stm:hasOwner--> PersonObservation`
-- `Observation --stm:hasAdministrator--> PersonObservation`
-- `Observation --stm:hasDirector--> PersonObservation`
+- `E13 --P14 carried out by--> PersonObservation` (with P14.1 role)
 - `PersonObservation --pico:hasRole--> Role`
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4ea'}}}%%
 flowchart TB
-    OBS["stm:OrganizationObservation
+    OBS["E13 Attribute Assignment
     1818, Q59116947"]
 
     PO_OWNER["PersonObservation
@@ -150,10 +143,10 @@ flowchart TB
     Leonsberg
     wd:Q59116947"]
 
-    OBS -->|"stm:observationOf"| E74_ORG
-    OBS -->|"stm:hasOwner"| PO_OWNER
-    OBS -->|"stm:hasDirector"| PO_DIR
-    OBS -->|"stm:hasAdministrator"| PO_ADMIN
+    OBS -->|"P140 assigned attribute to"| E74_ORG
+    OBS -->|"P14 carried out by<br/>(P14.1 role: picot:owner)"| PO_OWNER
+    OBS -->|"P14 carried out by<br/>(P14.1 role: picot:director)"| PO_DIR
+    OBS -->|"P14 carried out by<br/>(P14.1 role: picot:administrator)"| PO_ADMIN
 
     classDef crm_E2_Temporal_Entity fill:#82ddff,stroke:#000000,color:#000000
     classDef crm_E39_Actor fill:#ffbdca,stroke:#000000,color:#000000
@@ -210,10 +203,10 @@ A single `eigenaren` field may contain: `"J.H. Franke, E.G. Veldwijk en de Curat
 
 **Relationships:**
 
-- `E74 --stm:absorbedInto--> E74` (organization absorbed by another)
-- `E24 --stm:mergedInto--> E24` (physical plantation merged)
+- `E74 --P99i was dissolved by--> E68 Dissolution` (organization dissolved by successor)
+- `E24 --P124i was transformed by--> E81 Transformation` (physical plantation merged)
 - `E74 --P107i is member of--> E74` (part-of relationship)
-- `E74 --stm:referencedBy--> E74` (inter-plantation reference)
+- `E74 --crm:P67_refers_to--> E74` (inter-plantation reference)
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4ea'}}}%%
@@ -240,16 +233,16 @@ flowchart TB
         (reference_std_id)"]
     end
 
-    SPLIT1 -->|"stm:absorbedInto"| MAIN
-    SPLIT2 -->|"stm:absorbedInto"| MAIN
+    SPLIT1 -->|"P99i was dissolved by<br/>(E68 Dissolution)"| MAIN
+    SPLIT2 -->|"P99i was dissolved by<br/>(E68 Dissolution)"| MAIN
     MAIN -->|"P107i is member of"| PARENT
-    MAIN -->|"stm:referencedBy"| REF
+    MAIN -->|"crm:P67_refers_to"| REF
 
     classDef crm_E39_Actor fill:#ffbdca,stroke:#000000,color:#000000
     class SPLIT1,SPLIT2,MAIN,PARENT,REF crm_E39_Actor
 ```
 
-### Mergers: stm:absorbedInto
+### Mergers: P99i was dissolved by (E68 Dissolution)
 
 Surinamese plantation history is full of mergers. Small coffee plantations were absorbed by larger sugar plantations as the coffee economy declined. The Almanakken track this through the `split` columns:
 
@@ -258,17 +251,18 @@ Surinamese plantation history is full of mergers. Small coffee plantations were 
 When `split1_id = Q59115689` on the row for `plantation_id = Q4392658`, it means:
 
 ```
-E74 Q59115689 (Heystvliet) --stm:absorbedInto--> E74 Q4392658 (Geijersvlijt)
+E74 Q59115689 (Heystvliet) --P99i was dissolved by--> E68 Dissolution
+E68 Dissolution --P14 carried out by--> E74 Q4392658 (Geijersvlijt, successor)
 ```
 
-The absorbed organization's Q-ID still exists in Wikidata but is marked as having been absorbed. This matters for PSUR linking --- a PSUR ID might reference the absorbed plantation, not the surviving one. Without tracking the absorption, that link would break.
+The dissolved organization's Q-ID still exists in Wikidata but is marked as having been dissolved. This matters for PSUR linking --- a PSUR ID might reference the dissolved plantation, not the surviving one. Without tracking the dissolution, that link would break.
 
-On the QGIS side, the `qid_alt` column captures the same phenomenon: a polygon has a primary Q-ID (`qid`) and an alternative Q-ID (`qid_alt`) for the absorbed entity:
+On the QGIS side, the `qid_alt` column captures the same phenomenon: a polygon has a primary Q-ID (`qid`) and an alternative Q-ID (`qid_alt`) for the dissolved entity:
 
 ```
 E24 polygon --P52 has current owner--> E74 (qid, surviving org)
-E24 polygon --P51 has former or current owner--> E74 (qid_alt, absorbed org)
-E74 (qid_alt) --stm:absorbedInto--> E74 (qid)
+E24 polygon --P51 has former or current owner--> E74 (qid_alt, dissolved org)
+E74 (qid_alt) --P99i was dissolved by--> E68 Dissolution --P14 carried out by--> E74 (qid)
 ```
 
 ### Part-of: P107i is member of
@@ -281,12 +275,12 @@ E74 (plantation_id) --P107i is member of--> E74 (part_of_id)
 
 We use CIDOC-CRM's standard `P107 has current or former member` (inverse: `P107i is current or former member of`) because this is organizational membership --- one E74 group belongs to a larger E74 group around. This is standard CRM for nested organizations.
 
-### References: stm:referencedBy
+### References: crm:P67_refers_to
 
 Some almanac entries say "see Plantation X" or indicate that plantation A is owned by or related to plantation B. The `reference_std_id` / `reference_std_lab` columns capture this:
 
 ```
-E74 (plantation_id) --stm:referencedBy--> E74 (reference_std_id)
+E74 (plantation_id) --crm:P67_refers_to--> E74 (reference_std_id)
 ```
 
 This is a weaker link than absorption or membership --- it indicates a reference relationship that may be ownership, administrative connection, or simply that the almanac clerk pointed researchers to another entry for more information. The reference network is valuable for linking when direct PSUR matches fail: if plantation A references plantation B, and B has a PSUR ID, we may be able to trace A through B.
@@ -299,21 +293,21 @@ This is a weaker link than absorption or membership --- it indicates a reference
 **Relationships:**
 
 - `E24 --P2 has type--> E55 PlantationStatus`
-- `stm:link --stm:linkCertainty--> E55 Certainty`
+- `E13 Attribute Assignment --crm:P2_has_type--> E55 Certainty`
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4ea'}}}%%
 flowchart LR
     E24["E24 Plantation"]
     STATUS["E55 Type
-    stm:PlantationStatus_Built"]
+    type/plantation-status/built"]
 
-    LINK["stm:link/geijersvlijt_Q4392658"]
+    LINK["link/geijersvlijt_Q4392658"]
     CERT["E55 Type
-    stm:Certainty_Certain"]
+    type/certainty/certain"]
 
     E24 -->|"P2 has type"| STATUS
-    LINK -->|"stm:linkCertainty"| CERT
+    LINK -->|"crm:P2_has_type"| CERT
 
     classDef crm_E18_Physical_Thing fill:#c78e66,stroke:#000000,color:#000000
     classDef crm_E55_Type fill:#fab565,stroke:#000000,color:#000000
@@ -328,12 +322,12 @@ flowchart LR
 
 Not every polygon on the 1930 map was an active plantation. Some were planned but never built. Some were abandoned ruins. E55 Type gives us a controlled vocabulary:
 
-| Status                           | Meaning                             | How determined                                                 |
-| -------------------------------- | ----------------------------------- | -------------------------------------------------------------- |
-| `stm:PlantationStatus_Built`     | Physically constructed and operated | Has almanac records, appears on maps with structures           |
-| `stm:PlantationStatus_Planned`   | Plan only, never built              | Appears on maps but no almanac records, no operational data    |
-| `stm:PlantationStatus_Abandoned` | Ceased operations                   | Almanac says "verlaten" (deserted), or no entries after a date |
-| `stm:PlantationStatus_Unknown`   | Cannot determine                    | Insufficient evidence                                          |
+| Status                             | Meaning                             | How determined                                                 |
+| ---------------------------------- | ----------------------------------- | -------------------------------------------------------------- |
+| `type/plantation-status/built`     | Physically constructed and operated | Has almanac records, appears on maps with structures           |
+| `type/plantation-status/planned`   | Plan only, never built              | Appears on maps but no almanac records, no operational data    |
+| `type/plantation-status/abandoned` | Ceased operations                   | Almanac says "verlaten" (deserted), or no entries after a date |
+| `type/plantation-status/unknown`   | Cannot determine                    | Insufficient evidence                                          |
 
 The `deserted` column in the Almanakken (2,294 rows with values) provides direct evidence for abandonment. But a plantation can be abandoned and then reactivated --- so the status is also time-dependent and ideally lives on the observation, not just on E24.
 
@@ -342,11 +336,11 @@ The `deserted` column in the Almanakken (2,294 rows with values) provides direct
 When connecting an E24 Plantation (from QGIS) to an E74 Organization (via Q-ID), the match may be uncertain. Qualified links capture this:
 
 ```
-stm:link/geijersvlijt_Q4392658
-    stm:plantation  stm:plantation/geijersvlijt
-    stm:organization  wd:Q4392658
-    stm:linkCertainty  stm:Certainty_Certain
-    stm:linkEvidence  "Exact name match on 1930 map and Wikidata label"
+link/geijersvlijt_Q4392658
+    crm:P140_assigned_attribute_to  plantation/geijersvlijt
+    crm:P141_assigned  wd:Q4392658
+    crm:P2_has_type  type/certainty/certain
+    crm:P3_has_note  "Exact name match on 1930 map and Wikidata label"
 ```
 
 Three levels:
@@ -377,12 +371,12 @@ flowchart LR
     (QGIS polygon
     fid 1572)"]
 
-    ALM["stm:OrganizationObservation
+    ALM["E13 Attribute Assignment
     (Almanakken row)"]
 
     E74_ORG ---|"skos:closeMatch"| PSUR
     E24 -->|"P52 has current owner"| E74_ORG
-    ALM -->|"stm:observationOf"| E74_ORG
+    ALM -->|"P140 assigned attribute to"| E74_ORG
 
     classDef crm_E39_Actor fill:#ffbdca,stroke:#000000,color:#000000
     classDef crm_E18_Physical_Thing fill:#c78e66,stroke:#000000,color:#000000
@@ -414,11 +408,11 @@ Consider this scenario:
 - But by 1930, Geijersvlijt had absorbed "Kl. Suzanna'sdal" (Q131349015)
 - The QGIS polygon for Geijersvlijt also carries `psur_id2` for the absorbed plantation
 
-Without the merger network (Layer 10), you cannot know that PSUR0118 connects through an absorption chain. The `skos:closeMatch` on E74, combined with `stm:absorbedInto`, gives us the full picture:
+Without the merger network (Layer 10), you cannot know that PSUR0118 connects through a dissolution chain. The `skos:closeMatch` on E74, combined with `P99i was dissolved by`, gives us the full picture:
 
 ```
 E74 Q4392658 (Geijersvlijt) --skos:closeMatch--> psur:PSUR0118
-E74 Q131349015 (Kl. Suzanna'sdal) --stm:absorbedInto--> E74 Q4392658
+E74 Q131349015 (Kl. Suzanna'sdal) --P99i was dissolved by--> E68 Dissolution --P14 carried out by--> E74 Q4392658
 E74 Q131349015 --skos:closeMatch--> psur:PSUR02xx (if assigned)
 ```
 
@@ -446,16 +440,16 @@ flowchart TB
     end
 
     subgraph "Observation Pattern (temporal)"
-        OBS["stm:Observation
+        OBS["E13 Attribute Assignment
         year: 1818"]
         PO["PersonObservation
         'Abraham de Leon'
         role: owner"]
-        SPLIT["E74 Absorbed org"]
+        SPLIT["E74 Dissolved org"]
 
-        OBS -->|"stm:observationOf"| E74_ORG
-        OBS -->|"stm:hasOwner"| PO
-        SPLIT -->|"stm:absorbedInto"| E74_ORG
+        OBS -->|"P140 assigned attribute to"| E74_ORG
+        OBS -->|"P14 carried out by<br/>(P14.1 role: picot:owner)"| PO
+        SPLIT -->|"P99i was dissolved by<br/>(E68 Dissolution)"| E74_ORG
     end
 
     subgraph "External linking"
@@ -484,8 +478,8 @@ flowchart TB
 The E74 Organization is the meeting point. Everything connects through it:
 
 - The plantation (E24) is owned by it (P52)
-- The observations describe it (stm:observationOf)
-- The people relate to it (via observation roles)
+- The observations describe it (P140 assigned attribute to)
+- The people relate to it (via P14 carried out by, with role qualifiers)
 - The PSUR links identify it (skos:closeMatch)
-- Absorbed organizations merge into it (stm:absorbedInto)
+- Dissolved organizations connect to it (P99i was dissolved by -> E68 Dissolution)
 - The Q-ID is its permanent identifier, shared across datasets

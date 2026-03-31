@@ -14,14 +14,14 @@ A **plantation** is modeled with multiple types on the same entity:
 wd:Q59115309
     a crm:E24_Physical_Human-Made_Thing,  # Physical built thing
       sdo:Organization,                     # Legal/economic entity (PICO alignment)
-      stm:Plantation ;                      # Domain-specific type
+      crm:E24_Physical_Human-Made_Thing ;    # Physical built thing (domain type)
 ```
 
 This approach:
 
 - Uses **CIDOC-CRM E24** for the physical/geographical aspect
 - Uses **Schema.org Organization** for PICO model compatibility (person affiliation)
-- Uses **stm:Plantation** as a convenience class for domain queries
+- Uses **crm:E24_Physical_Human-Made_Thing** as the primary physical type for domain queries
 
 ### Why E24_Physical_Human-Made_Thing?
 
@@ -59,15 +59,15 @@ Using E24 gives us access to useful properties:
 
 ### Properties
 
-| Property                 | Ontology   | Purpose                                              |
-| ------------------------ | ---------- | ---------------------------------------------------- |
-| `skos:prefLabel`         | SKOS       | Current/latest known name                            |
-| `skos:altLabel`          | SKOS       | Historical name variants                             |
-| `stm:psurId`             | Custom     | Slave Register identifier                            |
-| `stm:status`             | Custom     | Physical status (built, abandoned, planned, unknown) |
-| `geo:hasGeometry`        | GeoSPARQL  | Polygon coordinates                                  |
-| `stm:depictedOnMap`      | Custom     | Links to historic map depictions                     |
-| `sdo:parentOrganization` | Schema.org | Merger relationship                                  |
+| Property                       | Ontology   | Purpose                                              |
+| ------------------------------ | ---------- | ---------------------------------------------------- |
+| `skos:prefLabel`               | SKOS       | Current/latest known name                            |
+| `skos:altLabel`                | SKOS       | Historical name variants                             |
+| `crm:P1_is_identified_by`      | CRM        | PSUR register identifier (E42)                       |
+| `crm:P2_has_type`              | CRM        | Physical status (built, abandoned, planned, unknown) |
+| `geo:hasGeometry`              | GeoSPARQL  | Polygon coordinates                                  |
+| `crm:P138i_has_representation` | CRM        | Links to historic map depictions (E36)               |
+| `sdo:parentOrganization`       | Schema.org | Merger relationship                                  |
 
 ## Generated Files
 
@@ -124,31 +124,33 @@ We extend PICO by adding:
 
 - `crm:E24_Physical_Human-Made_Thing` for spatial/physical properties
 - `geo:hasGeometry` for GIS integration
-- `stm:PlantationObservation` for time-series data (Almanakken)
+- `crm:E13_Attribute_Assignment` for time-series data (Almanakken)
 
 ## Example Output
 
 ### Turtle
 
 ```turtle
-wd:Q59115309
-    a crm:E24_Physical_Human-Made_Thing,
-      sdo:Organization,
-      stm:Plantation ;
-    sdo:additionalType wd:Q188913 ;
-    stm:psurId "PSUR0041" ;
+plantation/breedevoort
+    a crm:E24_Physical_Human-Made_Thing ;
+    crm:P2_has_type type/plantation-status/built ;
     skos:prefLabel "Breedevoort"@nl ;
-    stm:status "built" ;
-    geo:hasGeometry [
-        a geo:Geometry ;
-        geo:asWKT "Polygon ((...))"^^geo:wktLiteral ;
-        stm:geometrySource stm:MAP_1930
-    ] ;
-    stm:depictedOnMap [
-        stm:mapId "MAP_1930" ;
-        stm:labelOnMap "Breedevoort"
-    ] ;
-    sdo:sameAs <http://www.wikidata.org/entity/Q59115309> .
+    crm:P52_has_current_owner wd:Q59115309 ;
+    crm:P53_has_location [
+        a crm:E53_Place ;
+        crm:P48_has_preferred_identifier "fid-1572" ;
+        geo:hasGeometry [
+            a geo:Geometry ;
+            geo:asWKT "Polygon ((...))"^^geo:wktLiteral
+        ]
+    ] .
+
+wd:Q59115309
+    a crm:E74_Group, sdo:Organization ;
+    sdo:additionalType wd:Q188913 ;
+    crm:P48_has_preferred_identifier "Q59115309" ;
+    crm:P1_is_identified_by [ a crm:E42_Identifier ; crm:P190_has_symbolic_content "PSUR0041" ] ;
+    skos:prefLabel "Breedevoort"@nl .
 ```
 
 ### JSON-LD
@@ -156,16 +158,17 @@ wd:Q59115309
 ```json
 {
   "@context": "https://raw.githubusercontent.com/.../context.jsonld",
-  "@id": "http://www.wikidata.org/entity/Q59115309",
-  "@type": [
-    "crm:E24_Physical_Human-Made_Thing",
-    "sdo:Organization",
-    "stm:Plantation"
-  ],
-  "additionalType": "http://www.wikidata.org/entity/Q188913",
+  "@id": "plantation/breedevoort",
+  "@type": "crm:E24_Physical_Human-Made_Thing",
+  "P2_has_type": "type/plantation-status/built",
   "prefLabel": "Breedevoort",
-  "status": "built",
-  "psurId": "PSUR0041"
+  "P52_has_current_owner": {
+    "@id": "http://www.wikidata.org/entity/Q59115309",
+    "@type": ["crm:E74_Group", "sdo:Organization"],
+    "additionalType": "http://www.wikidata.org/entity/Q188913",
+    "P48_has_preferred_identifier": "Q59115309",
+    "P1_is_identified_by": { "@type": "crm:E42_Identifier", "P190": "PSUR0041" }
+  }
 }
 ```
 

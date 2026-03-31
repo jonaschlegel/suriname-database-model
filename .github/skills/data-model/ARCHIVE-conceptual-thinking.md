@@ -273,7 +273,7 @@ This avoids losing temporal context when properties change over time.
 
 For organization part-whole relationships:
 
-**Why not use CIDOC-CRM P46?** P46 is for physical composition (E18 Physical Thing). Organizations are not physical things in our model, so we use custom properties: `stm:hasParts`, `stm:partOf`, `stm:absorbedInto`.
+**Why not use CIDOC-CRM P46?** P46 is for physical composition (E18 Physical Thing). Organizations are not physical things in our model. We now use `P99i was dissolved by` (E68 Dissolution) for absorbed organizations, `P107 has current or former member` for part-of relationships, and `P124i was transformed by` (E81 Transformation) for physical plantation mergers.
 
 ---
 

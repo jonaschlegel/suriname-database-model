@@ -66,11 +66,11 @@ flowchart TB
 
         E24["E24 Physical Human-Made Thing
         THE PLANTATION
-        URI: stm:plantation/slug"]
+        URI: plantation/slug"]
 
         E53["E53 Place
         Location / geometry
-        URI: stm:place/year/fid-N"]
+        URI: place/year/fid-N"]
 
         E74["E74 Group / sdo:Organization
         Legal entity operating plantation
@@ -100,9 +100,9 @@ flowchart TB
         Standardized name
         Modern normalization"]
 
-        OBS["OrganizationObservation
+        OBS["crm:E13_Attribute_Assignment
         Annual snapshot from Almanakken
-        URI: stm:obs/recordid"]
+        URI: obs/recordid"]
 
         POBS["PersonObservation
         Raw name from source
@@ -120,7 +120,8 @@ flowchart TB
     %% Geometry and physical plantation from map digitization
     %% =============================================================
 
-    Q_fid -->|"stm:fid"| E53
+    Q_fid -->|"P48 has preferred identifier
+    (E42 Identifier: QGIS fid)"| E53
     Q_coords -->|"geo:hasGeometry / geo:asWKT
     (GeoSPARQL for spatial data)"| E53
 
@@ -147,8 +148,9 @@ flowchart TB
     %% =============================================================
 
     A_recordid -->|"URI identifier"| OBS
-    A_year -->|"stm:observationYear"| OBS
-    A_plantation_id -->|"stm:observationOf
+    A_year -->|"P4 has time-span
+    (E52 Time-Span)"| OBS
+    A_plantation_id -->|"P140 assigned attribute to
     (Q-ID links to same E74)"| E74
 
     A_plantation_org -->|"P190 has symbolic content
@@ -156,33 +158,38 @@ flowchart TB
     A_plantation_std -->|"P190 has symbolic content
     (modern standardized form)"| E41_STD
 
-    A_slaven -->|"stm:enslavedCount"| OBS
-    A_product -->|"stm:hasProduct"| OBS
-    A_deserted -->|"stm:isDeserted"| OBS
-    A_loc_std -->|"stm:locationStd
-    (string for now; future E53)"| OBS
-    A_size -->|"stm:sizeAkkers"| OBS
-    A_page -->|"stm:pageReference
+    A_slaven -->|"P141 assigned
+    (E54 Dimension: enslaved count)"| OBS
+    A_product -->|"P141 assigned
+    (E55 Type: product)"| OBS
+    A_deserted -->|"P141 assigned
+    (E55 Type: deserted status)"| OBS
+    A_loc_std -->|"P7 took place at
+    (E53 Place; string for now)"| OBS
+    A_size -->|"P43 has dimension
+    (E54 Dimension: size in akkers)"| OBS
+    A_page -->|"P3 has note
     (provenance; future IIIF link)"| OBS
 
-    A_eigenaren -->|"stm:hasOwner
-    (picot:owner role)"| POBS
-    A_administrateurs -->|"stm:hasAdministrator
-    (picot:administrator role)"| POBS
-    A_directeuren -->|"stm:hasDirector
-    (picot:director role)"| POBS
+    A_eigenaren -->|"P14 carried out by
+    (P14.1 role: picot:owner)"| POBS
+    A_administrateurs -->|"P14 carried out by
+    (P14.1 role: picot:administrator)"| POBS
+    A_directeuren -->|"P14 carried out by
+    (P14.1 role: picot:director)"| POBS
 
     A_psur -->|"skos:closeMatch
     (same caveats as QGIS psur)"| E74
 
-    A_split -->|"stm:absorbedInto
-    (split orgs merged into this one)"| E74
+    A_split -->|"P99i was dissolved by
+    (E68 Dissolution: split orgs
+    dissolved into this one)"| E74
 
     A_partof -->|"P107i is member of
     (CIDOC-CRM: org belongs to
     larger group)"| E74_PARENT
 
-    A_ref -->|"stm:referencedBy
+    A_ref -->|"crm:P67_refers_to
     (almanac cross-reference)"| E74_REF
 
     %% =============================================================
@@ -218,16 +225,17 @@ flowchart TB
 
     E22_ALM -->|"P128 carries"| E41_ALM
 
-    OBS -->|"stm:observationOf"| E74
+    OBS -->|"P140 assigned attribute to"| E74
     OBS -->|"prov:hadPrimarySource"| E22_ALM
 
     POBS -->|"pico:hasRole"| ROLES["picot:owner
     picot:administrator
     picot:director"]
 
-    OBS -->|"has PersonObservation"| POBS
+    OBS -->|"P14 carried out by"| POBS
 
-    E74_ALT -->|"stm:absorbedInto"| E74
+    E74_ALT -->|"P99i was dissolved by
+    (E68 Dissolution)"| E74
 
     %% =============================================================
     %% Q-ID LINKING KEY

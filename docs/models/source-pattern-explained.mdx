@@ -392,7 +392,7 @@ P52 connects the physical plantation to the organization that owns or operates i
 Why separate them? Because they change independently:
 
 - A plantation can change owners. The land, the buildings, the canals --- the E24 --- remain the same. But the E74 connected through P52 changes.
-- An organization can absorb another organization (`stm:absorbedInto`). The E74 entities merge, but the E24 might keep its physical boundaries.
+- An organization can be dissolved when absorbed by another organization (`P99i was dissolved by` -> E68 Dissolution). The E74 entities merge, but the E24 might keep its physical boundaries.
 - A plantation can be abandoned. The E24 still exists (you can still see its remains), but no E74 currently operates it.
 
 The Q-ID (Wikidata identifier) lives on the E74, serving as the linking key between our different data sources --- the same `wd:Q4392658` appears in both the QGIS CSV and the Almanakken dataset, connecting them through the organization they both describe.
@@ -440,7 +440,7 @@ flowchart TB
 
     E24["E24 Physical Human-Made Thing
     (Plantations, buildings)
-    stm:plantation/slug"]
+    plantation/slug"]
 
     E26["E26 Physical Feature
     (Rivers, creeks)"]

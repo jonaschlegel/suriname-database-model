@@ -1,8 +1,11 @@
 // Entity types matching the JSON-LD database structure
+// JS property keys are kept for data pipeline compatibility.
+// CRM mappings are documented in comments.
 
+/** P138i has representation — maps depicting this plantation (via E22->P128->E36->P138->E24 chain) */
 export interface MapDepiction {
-  mapId: string;
-  labelOnMap: string;
+  mapId: string; // P48 has preferred identifier -> E42 Identifier
+  labelOnMap: string; // P1 is identified by -> E41 Appellation
   hasPolygon?: boolean;
   P70i_is_documented_in?: string;
 }
@@ -11,24 +14,24 @@ export interface E24Plantation {
   '@id': string;
   '@type': string[];
   status: string;
-  prefLabel: string;
+  prefLabel: string; // rdfs:label
   P52_has_current_owner?: string;
   P51_has_former_or_current_owner?: string;
   P53_has_location?: string;
   P1_is_identified_by?: string | string[];
-  'stm:depictedOnMap'?: MapDepiction[];
-  wasDerivedFrom?: string;
+  depictedOnMap?: MapDepiction[]; // CRM: P138i has representation (via E36 Visual Item)
+  wasDerivedFrom?: string; // prov:wasDerivedFrom
 }
 
 export interface E74Organization {
   '@id': string;
   '@type': string[];
-  additionalType?: string;
-  prefLabel: string;
-  psurId?: string;
-  absorbedInto?: string;
+  additionalType?: string; // sdo:additionalType -> wd:Q188913
+  prefLabel: string; // rdfs:label
+  psurId?: string; // CRM: P1 is identified by -> E42 Identifier (PSUR register ID)
+  absorbedInto?: string; // CRM: P99i was dissolved by -> E68 Dissolution (successor E74)
   sameAs?: string;
-  wasDerivedFrom?: string;
+  wasDerivedFrom?: string; // prov:wasDerivedFrom
 }
 
 export interface Geometry {
@@ -40,12 +43,12 @@ export interface Geometry {
 export interface E53Place {
   '@id': string;
   '@type': string[];
-  fid: number;
-  mapYear: string;
-  observedLabel?: string;
-  hasGeometry?: Geometry;
+  fid: number; // CRM: P48 has preferred identifier -> E42 Identifier (QGIS feature ID)
+  mapYear: string; // Derivable from E22 source -> E12 Production -> P4 has time-span -> E52
+  observedLabel?: string; // CRM: P1 is identified by -> E41 Appellation (map label)
+  hasGeometry?: Geometry; // geo:hasGeometry
   P70i_is_documented_in?: string;
-  wasDerivedFrom?: string;
+  wasDerivedFrom?: string; // prov:wasDerivedFrom
 }
 
 export interface E41Appellation {
@@ -56,37 +59,38 @@ export interface E41Appellation {
   P128i_is_carried_by?: string;
   P1i_identifies?: string;
   P139_has_alternative_form?: string;
-  mapYear?: string;
+  mapYear?: string; // Derivable from E22 source -> E12 Production -> P4 has time-span
 }
 
 export interface E22Source {
   '@id': string;
   '@type': string[];
-  prefLabel: string;
+  prefLabel: string; // rdfs:label
   P2_has_type?: string;
-  mapId?: string;
-  mapYear?: string;
+  mapId?: string; // CRM: P48 has preferred identifier -> E42 Identifier
+  mapYear?: string; // Derivable from P108i was produced by -> E12 -> P4 has time-span
   sameAs?: string;
 }
 
+/** E13 Attribute Assignment — annual observation from Almanakken */
 export interface OrganizationObservation {
   '@id': string;
   '@type': string[];
-  observationOf: string;
-  observationYear: string;
-  observedName?: string;
-  hasOwner?: string;
-  hasAdministrator?: string;
-  hasDirector?: string;
-  product?: string;
-  enslavedCount?: number;
-  deserted?: boolean;
-  locationStd?: string;
-  sizeAkkers?: number;
-  freeResidentsCount?: number;
-  pageReference?: string;
-  hadPrimarySource?: string;
-  wasDerivedFrom?: string;
+  observationOf: string; // CRM: P140 assigned attribute to -> E74
+  observationYear: string; // CRM: P4 has time-span -> E52
+  observedName?: string; // CRM: P141 assigned -> E41 Appellation
+  hasOwner?: string; // CRM: P14 carried out by (P14.1 picot:owner)
+  hasAdministrator?: string; // CRM: P14 carried out by (P14.1 picot:administrator)
+  hasDirector?: string; // CRM: P14 carried out by (P14.1 picot:director)
+  product?: string; // CRM: P141 assigned -> E55 Type
+  enslavedCount?: number; // CRM: P141 assigned -> E54 Dimension
+  deserted?: boolean; // CRM: P141 assigned -> E55 Type (verlaten)
+  locationStd?: string; // CRM: P7 took place at -> E53 Place (text)
+  sizeAkkers?: number; // CRM: P43 has dimension -> E54 Dimension (akkers)
+  freeResidentsCount?: number; // CRM: P141 assigned -> E54 Dimension
+  pageReference?: string; // CRM: P3 has note (almanac page reference)
+  hadPrimarySource?: string; // prov:hadPrimarySource
+  wasDerivedFrom?: string; // prov:wasDerivedFrom
 }
 
 export interface ProvenanceRecord {
@@ -102,10 +106,10 @@ export interface ProvenanceRecord {
 }
 
 export interface GeoJSONFeatureProperties {
-  fid: number;
+  fid: number; // CRM: P48 has preferred identifier -> E42 Identifier
   name: string;
   status: string;
-  mapYear: string;
+  mapYear: string; // Derivable from E22 source production date
   plantationUri: string;
   organizationQid?: string;
   placeUri: string;
