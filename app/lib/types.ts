@@ -83,11 +83,9 @@ export interface OrganizationObservation {
   hasAdministrator?: string; // CRM: P14 carried out by (P14.1 picot:administrator)
   hasDirector?: string; // CRM: P14 carried out by (P14.1 picot:director)
   product?: string; // CRM: P141 assigned -> E55 Type
-  enslavedCount?: number; // CRM: P141 assigned -> E54 Dimension
-  deserted?: boolean; // CRM: P141 assigned -> E55 Type (verlaten)
+  deserted?: boolean; // CRM: E17 Type Assignment (P41 classified E24, P42 assigned E55 abandoned)
   locationStd?: string; // CRM: P7 took place at -> E53 Place (text)
   sizeAkkers?: number; // CRM: P43 has dimension -> E54 Dimension (akkers)
-  freeResidentsCount?: number; // CRM: P141 assigned -> E54 Dimension
   pageReference?: string; // CRM: P3 has note (almanac page reference)
   hadPrimarySource?: string; // prov:hadPrimarySource
   wasDerivedFrom?: string; // prov:wasDerivedFrom

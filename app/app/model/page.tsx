@@ -72,7 +72,6 @@ const ENTITIES: EntityDef[] = [
         name: 'P138i has representation',
         range: 'E36 Visual Item (via source)',
       },
-      { name: 'prov:wasDerivedFrom', range: 'ProvenanceRecord' },
     ],
   },
   {
@@ -171,7 +170,7 @@ const ENTITIES: EntityDef[] = [
     type: 'E13',
     label: 'Attr. Assignment',
     crmClass: 'E13 Attribute Assignment',
-    desc: 'Each almanac row is an E13 Attribute Assignment -- not a source. The Almanakken is one E22 (the entire bound book/series); each CSV row is a separate E13 recording one year of observation about one organization. Properties: name, owner, administrator, director, enslaved count, product, size, location, and deserted status. Coverage spans ~1750-1863.',
+    desc: 'Each almanac row is an E13 Attribute Assignment -- not a source. The Almanakken is one E22 (the entire bound book/series); each CSV row is a separate E13 recording one year of observation about one organization. Properties: name, owner, administrator, director, product, size, location. Person-related data (enslaved counts) deferred to PICO integration. Plantation classification (verlaten) handled via E17 Type Assignment. Coverage spans ~1750-1863.',
     color: '#82ddff',
     cx: 580,
     cy: 510,
@@ -181,12 +180,6 @@ const ENTITIES: EntityDef[] = [
       { name: 'P4 has time-span', range: 'E52 Time-Span (year)' },
       { name: 'P141 assigned (name)', range: 'E41 Appellation' },
       { name: 'P141 assigned (product)', range: 'E55 Type' },
-      { name: 'P141 assigned (deserted)', range: 'E55 Type (verlaten)' },
-      { name: 'P141 assigned (enslaved)', range: 'E54 Dimension (count)' },
-      {
-        name: 'P141 assigned (free residents)',
-        range: 'E54 Dimension (count)',
-      },
       { name: 'P14 carried out by (eigenaar)', range: 'E39 Actor' },
       { name: 'P14 carried out by (administrateur)', range: 'E39 Actor' },
       { name: 'P14 carried out by (directeur)', range: 'E39 Actor' },
@@ -197,6 +190,24 @@ const ENTITIES: EntityDef[] = [
     ],
   },
   /* ── Structural entities (not directly data-backed) ─────────── */
+  {
+    id: 'e17',
+    type: 'E17',
+    label: 'Type Assignment',
+    crmClass: 'E17 Type Assignment',
+    desc: 'Classifies a plantation as abandoned (verlaten) when an almanac row marks it as deserted. A subclass of E13 Attribute Assignment with specific properties P41 classified (targeting E24 Plantation) and P42 assigned (targeting E55 Type). Inherits P4 has time-span and prov:hadPrimarySource from E13.',
+    color: '#f0a0a0',
+    cx: 400,
+    cy: 490,
+    dataKey: '',
+    structural: true,
+    properties: [
+      { name: 'P41 classified', range: 'E24 Plantation' },
+      { name: 'P42 assigned', range: 'E55 Type (plantation-status/abandoned)' },
+      { name: 'P4 has time-span', range: 'E52 Time-Span (year)' },
+      { name: 'prov:hadPrimarySource', range: 'E22 Source (almanac)' },
+    ],
+  },
   {
     id: 'e36',
     type: 'E36',
@@ -271,7 +282,7 @@ const ENTITIES: EntityDef[] = [
     type: 'E55',
     label: 'Type',
     crmClass: 'E55 Type',
-    desc: 'Controlled vocabulary terms: products (sugar, coffee, cocoa, cotton), plantation status (deserted/verlaten), source types (map/almanac/register), certainty levels for qualified links. Managed as an authority list (thesaurus/taxonomy TBD).',
+    desc: 'Controlled vocabulary terms: products (sugar, coffee, cocoa, cotton), plantation status (abandoned/verlaten via E17 Type Assignment), source types (map/almanac/register), certainty levels for qualified links. Managed as an authority list (thesaurus/taxonomy TBD).',
     color: '#d4edda',
     cx: 500,
     cy: 660,
@@ -288,7 +299,7 @@ const ENTITIES: EntityDef[] = [
     type: 'E54',
     label: 'Dimension',
     crmClass: 'E54 Dimension',
-    desc: 'Physical measurements. Size in akkers (Surinamese land unit) as recorded in the almanac. The akker is approximately 0.43 hectares. Also used for enslaved person counts and free resident counts from almanac observations.',
+    desc: 'Physical measurements. Size in akkers (Surinamese land unit) as recorded in the almanac. The akker is approximately 0.43 hectares.',
     color: '#e2d9f3',
     cx: 280,
     cy: 660,
@@ -539,6 +550,30 @@ const RELATIONS: RelDef[] = [
     to: 'e41',
     label: 'P141 assigned',
     desc: 'The observed plantation name for this year (E41 Appellation)',
+  },
+  {
+    from: 'e17',
+    to: 'e24',
+    label: 'P41 classified',
+    desc: 'E17 Type Assignment classifies the physical plantation (E24) as abandoned when marked verlaten',
+  },
+  {
+    from: 'e17',
+    to: 'e55',
+    label: 'P42 assigned',
+    desc: 'The type assigned to the plantation: plantation-status/abandoned (verlaten)',
+  },
+  {
+    from: 'e17',
+    to: 'e52',
+    label: 'P4 has time-span',
+    desc: 'When the classification was observed (almanac year)',
+  },
+  {
+    from: 'e17',
+    to: 'e22',
+    label: 'prov:hadPrimarySource',
+    desc: 'The source (almanac) that records the deserted status',
   },
 ];
 
@@ -1004,7 +1039,7 @@ function SourcePatternSection() {
           <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
           {' -> P141 -> '}
           <span style={{ color: '#5e9e52' }}>E55 Type</span>
-          {' (product / deserted / enslaved count)'}
+          {' (product / deserted)'}
         </div>
         <div>
           <span className="text-stm-warm-400">Digital:</span>{' '}
@@ -1375,10 +1410,10 @@ export default function ModelPage() {
                 path: 'E13 -> P141 assigned -> E55 Type (product) + P4 has time-span -> E52',
               },
               {
-                status: 'green' as const,
+                status: 'red' as const,
                 question:
                   'How did the number of enslaved people change per plantation?',
-                path: 'E13 -> P141 assigned -> E55 (enslaved count) + P4 -> E52',
+                path: 'Deferred -- requires PICO integration for person-level modeling (not simple E54 counts)',
               },
               {
                 status: 'green' as const,
@@ -1390,7 +1425,7 @@ export default function ModelPage() {
                 status: 'green' as const,
                 question:
                   'Which plantations were marked as deserted (verlaten)?',
-                path: 'E13 -> P141 assigned -> E55 (deserted status) + P140 -> E74 -> P52i -> E24',
+                path: 'E17 Type Assignment -> P41 classified -> E24 + P42 assigned -> E55 (abandoned)',
               },
               {
                 status: 'green' as const,

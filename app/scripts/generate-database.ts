@@ -159,7 +159,6 @@ function buildContext(): Record<string, unknown> {
     observationOf: { '@id': 'crm:P140_assigned_attribute_to', '@type': '@id' },
     observationYear: { '@id': 'crm:P4_has_time-span', '@type': 'xsd:gYear' },
     observedName: { '@id': 'crm:P141_assigned', '@type': 'xsd:string' },
-    enslavedCount: { '@id': 'crm:P43_has_dimension', '@type': 'xsd:integer' },
     product: { '@id': 'crm:P141_assigned', '@type': 'xsd:string' },
     deserted: { '@id': 'crm:P141_assigned', '@type': 'xsd:boolean' },
     hasOwner: { '@id': 'crm:P14_carried_out_by', '@type': 'xsd:string' },
@@ -170,10 +169,6 @@ function buildContext(): Record<string, unknown> {
     hasDirector: { '@id': 'crm:P14_carried_out_by', '@type': 'xsd:string' },
     locationStd: { '@id': 'crm:P7_took_place_at', '@type': 'xsd:string' },
     sizeAkkers: { '@id': 'crm:P43_has_dimension', '@type': 'xsd:integer' },
-    freeResidentsCount: {
-      '@id': 'crm:P43_has_dimension',
-      '@type': 'xsd:integer',
-    },
     pageReference: { '@id': 'crm:P3_has_note', '@type': 'xsd:string' },
     // Provenance
     wasDerivedFrom: { '@id': 'prov:wasDerivedFrom', '@type': '@id' },
@@ -579,19 +574,11 @@ function buildObservations(obs: ObservationRow[]): {
     if (o.administrator) entity.hasAdministrator = o.administrator;
     if (o.director) entity.hasDirector = o.director;
     if (o.product) entity.product = o.product;
-    if (o.enslaved_count) {
-      const n = parseInt(o.enslaved_count);
-      if (!isNaN(n)) entity.enslavedCount = n;
-    }
     if (o.is_deserted) entity.deserted = true;
     if (o.location_std) entity.locationStd = o.location_std;
     if (o.size_akkers) {
       const n = parseInt(o.size_akkers);
       if (!isNaN(n)) entity.sizeAkkers = n;
-    }
-    if (o.free_residents) {
-      const n = parseInt(o.free_residents);
-      if (!isNaN(n)) entity.freeResidentsCount = n;
     }
     if (o.page_reference) entity.pageReference = o.page_reference;
     if (o.source_uri) entity.hadPrimarySource = o.source_uri;

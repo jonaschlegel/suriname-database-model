@@ -218,11 +218,6 @@ function TimelineEntry({ obs }: { obs: OrganizationObservation }) {
               {obs.product}
             </span>
           )}
-          {obs.enslavedCount != null && (
-            <span className="text-stm-warm-400 text-[10px] tabular-nums">
-              {obs.enslavedCount}
-            </span>
-          )}
           {obs.deserted && (
             <span className="bg-red-50 text-red-600 px-1.5 py-0.5 text-[10px]">
               verlaten
@@ -281,12 +276,6 @@ function TimelineEntry({ obs }: { obs: OrganizationObservation }) {
             value={obs.hasDirector}
           />
           <CrmField
-            label="Enslaved"
-            crmClass="E54"
-            property="P141 assigned"
-            value={obs.enslavedCount}
-          />
-          <CrmField
             label="Size"
             crmClass="E54"
             property="P43 has dimension"
@@ -300,15 +289,9 @@ function TimelineEntry({ obs }: { obs: OrganizationObservation }) {
           />
           <CrmField
             label="Deserted"
-            crmClass="E55"
-            property="P141 assigned"
+            crmClass="E17"
+            property="P42 assigned"
             value={obs.deserted != null ? (obs.deserted ? 'Yes' : 'No') : null}
-          />
-          <CrmField
-            label="Free residents"
-            crmClass="E54"
-            property="P141 assigned"
-            value={obs.freeResidentsCount}
           />
           <CrmField
             label="Page"

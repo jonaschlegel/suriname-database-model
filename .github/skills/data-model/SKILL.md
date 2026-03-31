@@ -35,6 +35,7 @@ flowchart TB
     E53[E53 Place<br/>location/geometry]
     ORG[E74 Group / sdo:Organization<br/>legal entity]
     E13_OBS[E13 Attribute Assignment<br/>time-varying data]
+    E17[E17 Type Assignment<br/>plantation classification]
 
     E22 -->|P128 carries| E36
     E22 -->|P128 carries| E41_MAP
@@ -48,16 +49,18 @@ flowchart TB
     E24 -->|P53 has location| E53
     E24 -->|P52 has current owner| ORG
     E13_OBS -->|P140 assigned attr. to| ORG
+    E17 -->|P41 classified| E24
 ```
 
-| Entity       | Class                         | Role                                       |
-| ------------ | ----------------------------- | ------------------------------------------ |
-| Plantation   | E24 Physical Human-Made Thing | Main entity - the physical plantation      |
-| Location     | E53 Place                     | Where the plantation is (geometry)         |
-| Organization | E74 Group / sdo:Organization  | Who owns/operates it (separate entity)     |
-| Appellation  | E41 Appellation               | Name of plantation/organization            |
-| Source       | E22 Human-Made Object         | Map, book, ledger depicting the plantation |
-| Observation  | E13 Attribute Assignment      | Annual snapshot from Almanakken            |
+| Entity         | Class                         | Role                                               |
+| -------------- | ----------------------------- | -------------------------------------------------- |
+| Plantation     | E24 Physical Human-Made Thing | Main entity - the physical plantation              |
+| Location       | E53 Place                     | Where the plantation is (geometry)                 |
+| Organization   | E74 Group / sdo:Organization  | Who owns/operates it (separate entity)             |
+| Appellation    | E41 Appellation               | Name of plantation/organization                    |
+| Source         | E22 Human-Made Object         | Map, book, ledger depicting the plantation         |
+| Observation    | E13 Attribute Assignment      | Annual snapshot from Almanakken                    |
+| Classification | E17 Type Assignment           | Classifies E24 plantation status (subclass of E13) |
 
 ## E24 and E74: Separate Entities
 
@@ -182,13 +185,28 @@ crm:P141_assigned              - E41 Appellation (observed name)
 crm:P14_carried_out_by         - E39 Actor (eigenaar, P14.1 role)
 crm:P14_carried_out_by         - E39 Actor (administrateur, P14.1 role)
 crm:P14_carried_out_by         - E39 Actor (directeur, P14.1 role)
-crm:P141_assigned              - E54 Dimension (enslaved count)
 crm:P141_assigned              - E55 Type (product)
 crm:P43_has_dimension           - E54 Dimension (size in akkers)
 crm:P7_took_place_at           - E53 Place (location text)
 crm:P3_has_note                - page reference (provenance)
 prov:hadPrimarySource           - E22 Source (almanac)
 ```
+
+> **Deferred -- person-related data**: Enslaved counts (`slaven` column) and free resident counts (`vrije_bewoners`) are NOT modeled as E54 Dimension values on E13. These require proper person-level modeling via PICO (PersonObservation / PersonReconstruction) before implementation. See `docs/concepts/pico-model.md`.
+
+### Classification (E17 Type Assignment)
+
+When an almanac row marks a plantation as "verlaten" (deserted), this is modeled as an **E17 Type Assignment** -- a CIDOC-CRM subclass of E13 specifically for classifying entities. E17 targets the **E24 Plantation** (the physical thing), not the E74 Organization.
+
+```
+E17 Type Assignment
+    crm:P41_classified             - E24 Plantation (the physical thing)
+    crm:P42_assigned               - E55 Type (type/plantation-status/abandoned)
+    crm:P4_has_time-span           - E52 Time-Span (year from almanac)
+    prov:hadPrimarySource           - E22 Source (almanac)
+```
+
+E17 inherits P4 (time-span) and prov:hadPrimarySource from E13. The target type `type/plantation-status/abandoned` is defined in the Type Vocabularies section below.
 
 ## Data Source Mapping
 
@@ -209,31 +227,32 @@ prov:hadPrimarySource           - E22 Source (almanac)
 
 ### Almanakken CSV -> Observation + Appellation
 
-| CSV Column        | Property                             | Priority |
-| ----------------- | ------------------------------------ | -------- |
-| recordid          | URI                                  | core     |
-| year              | P4 has time-span -> E52 (year)       | core     |
-| plantation_id     | P140 assigned attribute to (Q-ID)    | core     |
-| plantation_org    | E41 Appellation (P190, P1 on E74)    | core     |
-| plantation_std    | E41 Appellation (standardized)       | core     |
-| eigenaren         | P14 carried out by (picot:owner)     | core     |
-| administrateurs   | P14 carried out by (picot:admin)     | core     |
-| directeuren       | P14 carried out by (picot:director)  | core     |
-| slaven            | P141 assigned -> E54 Dimension       | core     |
-| psur_id           | P1 -> E42 Identifier (PSUR)          | linking  |
-| product_std       | P141 assigned -> E55 Type            | primary  |
-| deserted          | P141 assigned -> E55 Type (verlaten) | primary  |
-| loc_std           | P7 took place at -> E53 (text)       | primary  |
-| size_std          | P43 has dimension -> E54 (akkers)    | primary  |
-| page              | P3 has note (page reference)         | useful   |
-| split1_id..5_id   | P99i -> E68 Dissolution (merger)     | linking  |
-| split1_lab..5_lab | labels for merged plantations        | linking  |
-| partof_lab        | P107i label                          | linking  |
-| part_of_id        | P107i is member of (Q-ID)            | linking  |
-| reference_std_id  | P67 refers to (Q-ID)                 | linking  |
-| reference_std_lab | label for reference plantation       | linking  |
-| function          | P2 has type (free text)              | deferred |
-| additional_info   | P3 has note (free text)              | deferred |
+| CSV Column        | Property                                                    | Priority |
+| ----------------- | ----------------------------------------------------------- | -------- |
+| recordid          | URI                                                         | core     |
+| year              | P4 has time-span -> E52 (year)                              | core     |
+| plantation_id     | P140 assigned attribute to (Q-ID)                           | core     |
+| plantation_org    | E41 Appellation (P190, P1 on E74)                           | core     |
+| plantation_std    | E41 Appellation (standardized)                              | core     |
+| eigenaren         | P14 carried out by (picot:owner)                            | core     |
+| administrateurs   | P14 carried out by (picot:admin)                            | core     |
+| directeuren       | P14 carried out by (picot:director)                         | core     |
+| slaven            | _(deferred -- requires PICO integration)_                   | deferred |
+| psur_id           | P1 -> E42 Identifier (PSUR)                                 | linking  |
+| product_std       | P141 assigned -> E55 Type                                   | primary  |
+| deserted          | E17: P41 classified -> E24, P42 assigned -> E55 (abandoned) | primary  |
+| loc_std           | P7 took place at -> E53 (text)                              | primary  |
+| size_std          | P43 has dimension -> E54 (akkers)                           | primary  |
+| page              | P3 has note (page reference)                                | useful   |
+| split1_id..5_id   | P99i -> E68 Dissolution (merger)                            | linking  |
+| split1_lab..5_lab | labels for merged plantations                               | linking  |
+| partof_lab        | P107i label                                                 | linking  |
+| part_of_id        | P107i is member of (Q-ID)                                   | linking  |
+| reference_std_id  | P67 refers to (Q-ID)                                        | linking  |
+| reference_std_lab | label for reference plantation                              | linking  |
+| vrije_bewoners    | _(deferred -- requires PICO integration)_                   | deferred |
+| function          | P2 has type (free text)                                     | deferred |
+| additional_info   | P3 has note (free text)                                     | deferred |
 
 ## Linking Plantations to Organizations
 
@@ -277,6 +296,19 @@ For uncertain links, use qualified link entity:
 - `type/certainty/certain` - confirmed match
 - `type/certainty/probable` - likely match
 - `type/certainty/uncertain` - tentative
+
+## External Vocabularies
+
+All non-CRM vocabularies used in this model are published standards. Links provided for transparency.
+
+| Prefix             | Full Name                  | Status                                                | Specification                                                     | Properties Used                                                        |
+| ------------------ | -------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `prov:`            | W3C PROV Ontology          | W3C Recommendation (2013)                             | https://www.w3.org/TR/prov-o/                                     | `wasDerivedFrom`, `hadPrimarySource` -- source provenance              |
+| `dcterms:`         | Dublin Core Metadata Terms | DCMI Recommendation / ISO 15836-2:2019                | https://www.dublincore.org/specifications/dublin-core/dcmi-terms/ | `conformsTo` (CRS), `identifier`                                       |
+| `sdo:`             | Schema.org                 | Community standard (Google, Microsoft, Yahoo, Yandex) | https://schema.org/                                               | `contentUrl` (IIIF), `sameAs` (Wikidata), `additionalType`             |
+| `geo:`             | OGC GeoSPARQL              | OGC Standard                                          | https://www.ogc.org/standard/geosparql/                           | `hasGeometry`, `asWKT`, `hasCentroid`                                  |
+| `rdfs:`            | RDF Schema                 | W3C Recommendation                                    | https://www.w3.org/TR/rdf-schema/                                 | `label` (display names)                                                |
+| `pico:` / `picot:` | PICO Model (HDSC)          | Academic research model (not a W3C/ISO standard)      | Historical Data Science Center publication                        | `picot:owner`, `picot:administrator`, `picot:director` -- person roles |
 
 ## Temporal Changes
 

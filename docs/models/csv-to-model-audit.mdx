@@ -120,10 +120,10 @@ But we cannot create the P52 link to E74, and these polygons will not connect to
 ### `plantation_label` --- Display Label
 
 > **Sample:** `Nieuw Java`, `Destombesburg`, `Aan De Vier Kinderen`
-> **Model target:** `E24 Plantation` --- `skos:prefLabel` (display convenience)
+> **Model target:** `E24 Plantation` --- `rdfs:label` (display convenience)
 > **Coverage:** 1,063 / 1,597 (67%)
 
-**Verdict: Works.** This is the human-readable display label for the plantation. The model treats `skos:prefLabel` as a convenience alongside the formal E41 chain. Coverage is close to the Q-ID coverage (1,063 vs 1,062) --- almost exactly the rows that have been identified get a display label. When present, it is used as the `{name-slug}` in URI patterns.
+**Verdict: Works.** This is the human-readable display label for the plantation. The model treats `rdfs:label` as a convenience alongside the formal E41 chain. Coverage is close to the Q-ID coverage (1,063 vs 1,062) --- almost exactly the rows that have been identified get a display label.
 
 ---
 
@@ -201,7 +201,7 @@ As the SKILL.md notes: the PSUR link is _"flawed"_ because it conflates organiza
 | `fid`              | E53 Place                       | 100%     | Works                                       |
 | `coords`           | E53 Place (geo:asWKT)           | 100%     | Works (reproject to WGS84)                  |
 | `qid`              | E74 via P52                     | 66%      | Works (34% unlinked)                        |
-| `plantation_label` | E24 skos:prefLabel              | 67%      | Works                                       |
+| `plantation_label` | E24 rdfs:label                  | 67%      | Works                                       |
 | `label_1930`       | E41 Appellation                 | 65%      | Works (check overlap with plantation_label) |
 | `label_1860-79`    | E41 Appellation                 | 65%      | Works                                       |
 | `qid_alt`          | E74 P99i was dissolved by (E68) | 14%      | Works (clarify P51 vs dissolution)          |
@@ -309,7 +309,7 @@ The 99.97% coverage means the Almanakken side of the linkage is essentially comp
 > **Model target:** `E41 Appellation` --- `P190 has symbolic content` (standardized form); `P1i identifies` E74 Organization
 > **Coverage:** 22,970 / 23,003 (99.9%)
 
-**Verdict: Works.** This is the standardized (modern-spelling) form of the plantation name. In the model, it creates an E41 Appellation instance identifying the E74 organization. Since this is a _standardized_ name, it is also used as the `skos:prefLabel` on E74.
+**Verdict: Works.** This is the standardized (modern-spelling) form of the plantation name. In the model, it creates an E41 Appellation instance identifying the E74 organization. Since this is a _standardized_ name, it is also used as the `rdfs:label` on E74.
 
 ---
 
