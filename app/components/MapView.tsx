@@ -3,10 +3,100 @@
 import 'leaflet/dist/leaflet.css';
 import type { GeoJSONCollection, GeoJSONFeature } from '@/lib/types';
 import L from 'leaflet';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-const ANNOTATION_URL =
-  'https://surinametijdmachine.org/iiif/mapathon/kaart-van-suriname-1930.json';
+interface OverlayConfig {
+  id: string;
+  label: string;
+  annotationUrl: string;
+  defaultEnabled: boolean;
+}
+
+const OVERLAY_CONFIGS: OverlayConfig[] = [
+  {
+    id: '1930-plantation',
+    label: '1930 Plantation Map',
+    annotationUrl:
+      'https://surinametijdmachine.org/iiif/mapathon/kaart-van-suriname-1930.json',
+    defaultEnabled: true,
+  },
+  {
+    id: 'moseberg-sheet2-1801',
+    label: 'Moseberg Specialkaart Sheet 2 (1801)',
+    annotationUrl: 'https://annotations.allmaps.org/maps/e0aa5e7cc7db6914',
+    defaultEnabled: false,
+  },
+  {
+    id: 'moseberg-sheet1-1801',
+    label: 'Moseberg Specialkaart Sheet 1 (1801)',
+    annotationUrl: 'https://annotations.allmaps.org/maps/3fba2200df3c3238',
+    defaultEnabled: false,
+  },
+  {
+    id: 'leiden-map',
+    label: 'Leiden Map',
+    annotationUrl: 'https://annotations.allmaps.org/maps/ae8e71fd2a418647',
+    defaultEnabled: false,
+  },
+  {
+    id: 'suriname-sheet10',
+    label: 'Kaart van Suriname Sheet 10',
+    annotationUrl: 'https://annotations.allmaps.org/maps/1d7e4a0bd68f039c',
+    defaultEnabled: false,
+  },
+  {
+    id: 'plantages-acaribo',
+    label: 'Plantages Acaribo / Waterlandt',
+    annotationUrl: 'https://annotations.allmaps.org/maps/6875d89dfd2c9ca3',
+    defaultEnabled: false,
+  },
+  {
+    id: 'suriname-sheet15',
+    label: 'Suriname Sheet 15',
+    annotationUrl: 'https://annotations.allmaps.org/maps/8ec98ae6c0d3d026',
+    defaultEnabled: false,
+  },
+  {
+    id: 'suriname-sheet12',
+    label: 'Suriname Sheet 12',
+    annotationUrl: 'https://annotations.allmaps.org/maps/b47e3f6dd466fdbf',
+    defaultEnabled: false,
+  },
+  {
+    id: 'suriname-sheet14',
+    label: 'Suriname Sheet 14',
+    annotationUrl: 'https://annotations.allmaps.org/maps/c97e6355090dc3ff',
+    defaultEnabled: false,
+  },
+  {
+    id: 'suriname-sheet2',
+    label: 'Suriname Sheet 2',
+    annotationUrl: 'https://annotations.allmaps.org/maps/509483f1a7a3062e',
+    defaultEnabled: false,
+  },
+  {
+    id: 'suriname-sheet5',
+    label: 'Suriname Sheet 5',
+    annotationUrl: 'https://annotations.allmaps.org/maps/5a318015b1228204',
+    defaultEnabled: false,
+  },
+  {
+    id: 'suriname-sheet20',
+    label: 'Kaart van Suriname Sheet 20',
+    annotationUrl: 'https://annotations.allmaps.org/maps/22175ded421abf79',
+    defaultEnabled: false,
+  },
+  {
+    id: 'leiden-overview',
+    label: 'Leiden Overview Map',
+    annotationUrl: 'https://annotations.allmaps.org/maps/d76dd411d74219c1',
+    defaultEnabled: false,
+  },
+];
+
+const DEFAULT_ENABLED = new Set(
+  OVERLAY_CONFIGS.filter((c) => c.defaultEnabled).map((c) => c.id),
+);
 
 // Monkey-patch L.DomUtil.getPosition so that _leaflet_pos is never
 // undefined.  Allmaps' WebGL renderer continuously reads _leaflet_pos
@@ -40,14 +130,18 @@ export default function MapView({
 }: MapViewProps) {
   const mapRef = useRef<L.Map | null>(null);
   const layerRef = useRef<L.GeoJSON | null>(null);
-  const warpedLayerRef = useRef<L.Layer | null>(null);
+  const warpedLayersRef = useRef<Map<string, L.Layer>>(new Map());
   const containerRef = useRef<HTMLDivElement>(null);
   const selectedUriRef = useRef(selectedPlantationUri);
   const highlightedNameRef = useRef(highlightedName);
   const onSelectRef = useRef(onSelectPlantation);
   const [opacity, setOpacity] = useState(0.7);
-  const [overlayVisible, setOverlayVisible] = useState(true);
+  const [enabledOverlays, setEnabledOverlays] = useState<Set<string>>(
+    () => new Set(DEFAULT_ENABLED),
+  );
+  const [layersOpen, setLayersOpen] = useState(false);
   const [toolbarOpen, setToolbarOpen] = useState(true);
+  const layersDropdownRef = useRef<HTMLDivElement>(null);
 
   // Keep callback ref in sync
   useEffect(() => {
@@ -71,31 +165,80 @@ export default function MapView({
       maxZoom: 18,
     }).addTo(map);
 
-    // Add 1930 historical map overlay via Allmaps.
-    // The monkey-patch on L.DomUtil.getPosition (above) ensures that
-    // _leaflet_pos is always defined, so we can add the layer directly.
-    map.whenReady(() => {
-      import('@allmaps/leaflet')
-        .then(({ WarpedMapLayer }) => {
-          if (!mapRef.current) return;
-          const warpedMapLayer = new WarpedMapLayer(ANNOTATION_URL, {
-            opacity: 0.7,
-          });
-          warpedMapLayer.addTo(map);
-          warpedLayerRef.current = warpedMapLayer;
-        })
-        .catch(() => {
-          // Allmaps module failed to load — map still usable
-        });
-    });
-
     mapRef.current = map;
 
     return () => {
+      // Remove all warped layers
+      warpedLayersRef.current.forEach((layer) => {
+        layer.remove();
+      });
+      warpedLayersRef.current.clear();
       map.remove();
       mapRef.current = null;
-      warpedLayerRef.current = null;
     };
+  }, []);
+
+  // Toggle overlay callback — creates/destroys WarpedMapLayer lazily
+  const toggleOverlay = useCallback(
+    (id: string, annotationUrl: string) => {
+      setEnabledOverlays((prev) => {
+        const next = new Set(prev);
+        if (next.has(id)) {
+          // Remove existing layer
+          const layer = warpedLayersRef.current.get(id);
+          if (layer) {
+            layer.remove();
+            warpedLayersRef.current.delete(id);
+          }
+          next.delete(id);
+        } else {
+          // Create new layer lazily
+          next.add(id);
+          const map = mapRef.current;
+          if (map) {
+            import('@allmaps/leaflet')
+              .then(({ WarpedMapLayer }) => {
+                if (!mapRef.current || !next.has(id)) return;
+                const warpedMapLayer = new WarpedMapLayer(annotationUrl, {
+                  opacity,
+                });
+                warpedMapLayer.addTo(map);
+                warpedLayersRef.current.set(id, warpedMapLayer);
+              })
+              .catch(() => {
+                // Allmaps module failed to load
+              });
+          }
+        }
+        return next;
+      });
+    },
+    [opacity],
+  );
+
+  // Initialize default-enabled overlays once map is ready
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    map.whenReady(() => {
+      OVERLAY_CONFIGS.forEach((config) => {
+        if (config.defaultEnabled && !warpedLayersRef.current.has(config.id)) {
+          import('@allmaps/leaflet')
+            .then(({ WarpedMapLayer }) => {
+              if (!mapRef.current) return;
+              const warpedMapLayer = new WarpedMapLayer(config.annotationUrl, {
+                opacity: 0.7,
+              });
+              warpedMapLayer.addTo(map);
+              warpedLayersRef.current.set(config.id, warpedMapLayer);
+            })
+            .catch(() => {
+              // Allmaps module failed to load — map still usable
+            });
+        }
+      });
+    });
   }, []);
 
   // Add/update GeoJSON layer — recreate only when data changes
@@ -183,16 +326,17 @@ export default function MapView({
     }
   }, [selectedPlantationUri, highlightedName]);
 
-  // Sync overlay opacity
+  // Sync overlay opacity across all active layers
   useEffect(() => {
-    const layer = warpedLayerRef.current;
-    if (!layer) return;
-    if ('setOpacity' in layer) {
-      (layer as unknown as { setOpacity: (o: number) => void }).setOpacity(
-        overlayVisible ? opacity : 0,
-      );
-    }
-  }, [opacity, overlayVisible]);
+    warpedLayersRef.current.forEach((layer, id) => {
+      if ('setOpacity' in layer) {
+        const visible = enabledOverlays.has(id);
+        (layer as unknown as { setOpacity: (o: number) => void }).setOpacity(
+          visible ? opacity : 0,
+        );
+      }
+    });
+  }, [opacity, enabledOverlays]);
 
   // Fly to selected plantation — pad right side when panel is open
   useEffect(() => {
@@ -251,6 +395,21 @@ export default function MapView({
   function handleZoomOut() {
     mapRef.current?.zoomOut();
   }
+
+  // Close layers dropdown on click outside
+  useEffect(() => {
+    if (!layersOpen) return;
+    function handleClick(e: MouseEvent) {
+      if (
+        layersDropdownRef.current &&
+        !layersDropdownRef.current.contains(e.target as Node)
+      ) {
+        setLayersOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [layersOpen]);
 
   return (
     <div className="relative w-full h-full">
@@ -353,29 +512,83 @@ export default function MapView({
             {/* Divider */}
             <div className="w-px h-6 bg-stm-warm-200" />
 
-            {/* Overlay toggle */}
-            <div className="flex items-center gap-2">
-              <label className="flex items-center gap-1.5 cursor-pointer text-xs">
-                <input
-                  type="checkbox"
-                  checked={overlayVisible}
-                  onChange={(e) => setOverlayVisible(e.target.checked)}
-                  className="accent-stm-sepia-600"
-                  aria-label="Toggle 1930 map overlay"
-                />
-                <span className="font-medium text-stm-warm-700">1930 Map</span>
-              </label>
-              {overlayVisible && (
-                <input
-                  type="range"
-                  min={0}
-                  max={1}
-                  step={0.05}
-                  value={opacity}
-                  onChange={(e) => setOpacity(parseFloat(e.target.value))}
-                  className="w-20 accent-stm-sepia-600"
-                  aria-label="Map overlay opacity"
-                />
+            {/* Overlay layers dropdown */}
+            <div className="relative" ref={layersDropdownRef}>
+              <button
+                onClick={() => setLayersOpen((v) => !v)}
+                className={`flex items-center gap-1.5 text-xs font-medium px-2 py-1 transition-colors ${
+                  layersOpen
+                    ? 'bg-stm-sepia-100 text-stm-sepia-800'
+                    : 'text-stm-warm-700 hover:bg-stm-warm-100'
+                }`}
+                aria-label="Toggle map layers panel"
+                aria-expanded={layersOpen}
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                >
+                  <path
+                    d="M7 2L1 5l6 3 6-3-6-3zM1 9l6 3 6-3M1 7l6 3 6-3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                Layers
+                {enabledOverlays.size > 0 && (
+                  <span className="ml-0.5 bg-stm-sepia-600 text-white text-[10px] leading-none px-1 py-0.5 rounded-full">
+                    {enabledOverlays.size}
+                  </span>
+                )}
+              </button>
+
+              {layersOpen && (
+                <div className="absolute top-full left-0 mt-1 w-72 bg-white border border-stm-warm-200 shadow-lg z-10">
+                  {/* Shared opacity slider */}
+                  <div className="px-3 py-2 border-b border-stm-warm-100 flex items-center gap-2">
+                    <span className="text-xs text-stm-warm-600 whitespace-nowrap">
+                      Opacity
+                    </span>
+                    <input
+                      type="range"
+                      min={0}
+                      max={1}
+                      step={0.05}
+                      value={opacity}
+                      onChange={(e) => setOpacity(parseFloat(e.target.value))}
+                      className="flex-1 accent-stm-sepia-600"
+                      aria-label="Map overlay opacity"
+                    />
+                    <span className="text-[10px] text-stm-warm-400 w-7 text-right">
+                      {Math.round(opacity * 100)}%
+                    </span>
+                  </div>
+
+                  {/* Map checkboxes */}
+                  <ul className="max-h-64 overflow-y-auto py-1">
+                    {OVERLAY_CONFIGS.map((config) => (
+                      <li key={config.id}>
+                        <label className="flex items-center gap-2 px-3 py-1.5 hover:bg-stm-warm-50 cursor-pointer text-xs">
+                          <input
+                            type="checkbox"
+                            checked={enabledOverlays.has(config.id)}
+                            onChange={() =>
+                              toggleOverlay(config.id, config.annotationUrl)
+                            }
+                            className="accent-stm-sepia-600"
+                          />
+                          <span className="text-stm-warm-800 truncate">
+                            {config.label}
+                          </span>
+                        </label>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
             </div>
 
