@@ -5,11 +5,22 @@ import type { GeoJSONCollection, GeoJSONFeature } from '@/lib/types';
 import L from 'leaflet';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+const TRANSFORMATION_LABELS: Record<string, string> = {
+  helmert: 'Helmert',
+  polynomial: 'Polynomial 1',
+  polynomial2: 'Polynomial 2',
+  polynomial3: 'Polynomial 3',
+  thinPlateSpline: 'Thin Plate Spline',
+  projective: 'Projective',
+};
+
 interface OverlayConfig {
   id: string;
   label: string;
   annotationUrl: string;
   defaultEnabled: boolean;
+  transformation: string;
+  gcpCount: number | string;
 }
 
 const OVERLAY_CONFIGS: OverlayConfig[] = [
@@ -19,78 +30,104 @@ const OVERLAY_CONFIGS: OverlayConfig[] = [
     annotationUrl:
       'https://surinametijdmachine.org/iiif/mapathon/kaart-van-suriname-1930.json',
     defaultEnabled: true,
+    transformation: 'thinPlateSpline',
+    gcpCount: '2-4/sheet',
   },
   {
     id: 'moseberg-sheet2-1801',
     label: 'Moseberg Specialkaart Sheet 2 (1801)',
     annotationUrl: 'https://annotations.allmaps.org/maps/e0aa5e7cc7db6914',
     defaultEnabled: false,
+    transformation: 'polynomial',
+    gcpCount: '40+',
   },
   {
     id: 'moseberg-sheet1-1801',
     label: 'Moseberg Specialkaart Sheet 1 (1801)',
     annotationUrl: 'https://annotations.allmaps.org/maps/3fba2200df3c3238',
     defaultEnabled: false,
+    transformation: 'polynomial',
+    gcpCount: '40+',
   },
   {
     id: 'leiden-map',
     label: 'Leiden Map',
     annotationUrl: 'https://annotations.allmaps.org/maps/ae8e71fd2a418647',
     defaultEnabled: false,
+    transformation: 'helmert',
+    gcpCount: '60+',
   },
   {
     id: 'suriname-sheet10',
     label: 'Kaart van Suriname Sheet 10',
     annotationUrl: 'https://annotations.allmaps.org/maps/1d7e4a0bd68f039c',
     defaultEnabled: false,
+    transformation: 'thinPlateSpline',
+    gcpCount: 10,
   },
   {
     id: 'plantages-acaribo',
     label: 'Plantages Acaribo / Waterlandt',
     annotationUrl: 'https://annotations.allmaps.org/maps/6875d89dfd2c9ca3',
     defaultEnabled: false,
+    transformation: 'polynomial',
+    gcpCount: 4,
   },
   {
     id: 'suriname-sheet15',
     label: 'Suriname Sheet 15',
     annotationUrl: 'https://annotations.allmaps.org/maps/8ec98ae6c0d3d026',
     defaultEnabled: false,
+    transformation: 'polynomial',
+    gcpCount: 5,
   },
   {
     id: 'suriname-sheet12',
     label: 'Suriname Sheet 12',
     annotationUrl: 'https://annotations.allmaps.org/maps/b47e3f6dd466fdbf',
     defaultEnabled: false,
+    transformation: 'polynomial',
+    gcpCount: 4,
   },
   {
     id: 'suriname-sheet14',
     label: 'Suriname Sheet 14',
     annotationUrl: 'https://annotations.allmaps.org/maps/c97e6355090dc3ff',
     defaultEnabled: false,
+    transformation: 'polynomial',
+    gcpCount: 3,
   },
   {
     id: 'suriname-sheet2',
     label: 'Suriname Sheet 2',
     annotationUrl: 'https://annotations.allmaps.org/maps/509483f1a7a3062e',
     defaultEnabled: false,
+    transformation: 'polynomial',
+    gcpCount: 6,
   },
   {
     id: 'suriname-sheet5',
     label: 'Suriname Sheet 5',
     annotationUrl: 'https://annotations.allmaps.org/maps/5a318015b1228204',
     defaultEnabled: false,
+    transformation: 'polynomial',
+    gcpCount: 5,
   },
   {
     id: 'suriname-sheet20',
     label: 'Kaart van Suriname Sheet 20',
     annotationUrl: 'https://annotations.allmaps.org/maps/22175ded421abf79',
     defaultEnabled: false,
+    transformation: 'thinPlateSpline',
+    gcpCount: 5,
   },
   {
     id: 'leiden-overview',
     label: 'Leiden Overview Map',
     annotationUrl: 'https://annotations.allmaps.org/maps/d76dd411d74219c1',
     defaultEnabled: false,
+    transformation: 'thinPlateSpline',
+    gcpCount: '40+',
   },
 ];
 
@@ -136,6 +173,8 @@ export default function MapView({
   const highlightedNameRef = useRef(highlightedName);
   const onSelectRef = useRef(onSelectPlantation);
   const [opacity, setOpacity] = useState(0.7);
+  const opacityRef = useRef(opacity);
+  opacityRef.current = opacity;
   const [enabledOverlays, setEnabledOverlays] = useState<Set<string>>(
     () => new Set(DEFAULT_ENABLED),
   );
@@ -179,42 +218,45 @@ export default function MapView({
   }, []);
 
   // Toggle overlay callback — creates/destroys WarpedMapLayer lazily
-  const toggleOverlay = useCallback(
-    (id: string, annotationUrl: string) => {
-      setEnabledOverlays((prev) => {
-        const next = new Set(prev);
-        if (next.has(id)) {
-          // Remove existing layer
-          const layer = warpedLayersRef.current.get(id);
-          if (layer) {
-            layer.remove();
-            warpedLayersRef.current.delete(id);
-          }
-          next.delete(id);
-        } else {
-          // Create new layer lazily
-          next.add(id);
-          const map = mapRef.current;
-          if (map) {
-            import('@allmaps/leaflet')
-              .then(({ WarpedMapLayer }) => {
-                if (!mapRef.current || !next.has(id)) return;
-                const warpedMapLayer = new WarpedMapLayer(annotationUrl, {
-                  opacity,
-                });
-                warpedMapLayer.addTo(map);
-                warpedLayersRef.current.set(id, warpedMapLayer);
-              })
-              .catch(() => {
-                // Allmaps module failed to load
-              });
-          }
+  const toggleOverlay = useCallback((id: string, annotationUrl: string) => {
+    setEnabledOverlays((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        // Remove existing layer
+        const layer = warpedLayersRef.current.get(id);
+        if (layer) {
+          layer.remove();
+          warpedLayersRef.current.delete(id);
         }
-        return next;
-      });
-    },
-    [opacity],
-  );
+        next.delete(id);
+      } else {
+        // Create new layer lazily
+        next.add(id);
+        const map = mapRef.current;
+        if (map) {
+          import('@allmaps/leaflet')
+            .then(({ WarpedMapLayer }) => {
+              if (!mapRef.current || !next.has(id)) return;
+              const warpedMapLayer = new WarpedMapLayer(annotationUrl);
+              warpedMapLayer.addTo(map);
+              warpedLayersRef.current.set(id, warpedMapLayer);
+              // Apply current opacity from ref
+              if ('setOpacity' in warpedMapLayer) {
+                (
+                  warpedMapLayer as unknown as {
+                    setOpacity: (o: number) => void;
+                  }
+                ).setOpacity(opacityRef.current);
+              }
+            })
+            .catch(() => {
+              // Allmaps module failed to load
+            });
+        }
+      }
+      return next;
+    });
+  }, []);
 
   // Initialize default-enabled overlays once map is ready
   useEffect(() => {
@@ -227,11 +269,17 @@ export default function MapView({
           import('@allmaps/leaflet')
             .then(({ WarpedMapLayer }) => {
               if (!mapRef.current) return;
-              const warpedMapLayer = new WarpedMapLayer(config.annotationUrl, {
-                opacity: 0.7,
-              });
+              const warpedMapLayer = new WarpedMapLayer(config.annotationUrl);
               warpedMapLayer.addTo(map);
               warpedLayersRef.current.set(config.id, warpedMapLayer);
+              // Apply current opacity from ref
+              if ('setOpacity' in warpedMapLayer) {
+                (
+                  warpedMapLayer as unknown as {
+                    setOpacity: (o: number) => void;
+                  }
+                ).setOpacity(opacityRef.current);
+              }
             })
             .catch(() => {
               // Allmaps module failed to load — map still usable
@@ -547,7 +595,7 @@ export default function MapView({
               </button>
 
               {layersOpen && (
-                <div className="absolute top-full left-0 mt-1 w-72 bg-white border border-stm-warm-200 shadow-lg z-10">
+                <div className="absolute top-full left-0 mt-1 w-80 bg-white border border-stm-warm-200 shadow-lg z-10">
                   {/* Shared opacity slider */}
                   <div className="px-3 py-2 border-b border-stm-warm-100 flex items-center gap-2">
                     <span className="text-xs text-stm-warm-600 whitespace-nowrap">
@@ -568,25 +616,40 @@ export default function MapView({
                     </span>
                   </div>
 
-                  {/* Map checkboxes */}
-                  <ul className="max-h-64 overflow-y-auto py-1">
-                    {OVERLAY_CONFIGS.map((config) => (
-                      <li key={config.id}>
-                        <label className="flex items-center gap-2 px-3 py-1.5 hover:bg-stm-warm-50 cursor-pointer text-xs">
-                          <input
-                            type="checkbox"
-                            checked={enabledOverlays.has(config.id)}
-                            onChange={() =>
-                              toggleOverlay(config.id, config.annotationUrl)
-                            }
-                            className="accent-stm-sepia-600"
-                          />
-                          <span className="text-stm-warm-800 truncate">
-                            {config.label}
-                          </span>
-                        </label>
-                      </li>
-                    ))}
+                  {/* Map checkboxes with info */}
+                  <ul className="max-h-80 overflow-y-auto py-1">
+                    {OVERLAY_CONFIGS.map((config) => {
+                      const isEnabled = enabledOverlays.has(config.id);
+                      return (
+                        <li key={config.id}>
+                          <label className="flex items-center gap-2 px-3 py-1.5 hover:bg-stm-warm-50 cursor-pointer text-xs">
+                            <input
+                              type="checkbox"
+                              checked={isEnabled}
+                              onChange={() =>
+                                toggleOverlay(config.id, config.annotationUrl)
+                              }
+                              className="accent-stm-sepia-600"
+                            />
+                            <span className="text-stm-warm-800 truncate flex-1">
+                              {config.label}
+                            </span>
+                          </label>
+                          {isEnabled && (
+                            <div className="flex items-center gap-2 px-3 pb-1 pl-8 text-[10px] text-stm-warm-400">
+                              <span title="Transformation type">
+                                {TRANSFORMATION_LABELS[config.transformation] ??
+                                  config.transformation}
+                              </span>
+                              <span>·</span>
+                              <span title="Ground control points">
+                                {config.gcpCount} GCPs
+                              </span>
+                            </div>
+                          )}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               )}
