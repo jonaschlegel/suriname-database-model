@@ -350,33 +350,58 @@ export default function PlaceEditor({
           />
         </div>
 
-        {/* Location Description + Place Type row */}
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <label className="block text-sm font-medium text-stm-warm-700 mb-1">
-              Location Description
-            </label>
-            <input
-              type="text"
-              value={draft.locationDescription || ''}
-              onChange={(e) =>
-                update('locationDescription', e.target.value || null)
-              }
-              disabled={!canEdit}
-              placeholder="e.g. Suriname, regterhand"
-              className="w-full px-3 py-2 border border-stm-warm-200 rounded text-sm bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none disabled:bg-stm-warm-50"
-            />
+        {/* Location Description + Original + Place Type */}
+        <div className="space-y-3">
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm font-medium text-stm-warm-700 mb-1">
+                Location
+                <span className="text-stm-warm-400 font-normal">
+                  {' '}
+                  (standardized)
+                </span>
+              </label>
+              <input
+                type="text"
+                value={draft.locationDescription || ''}
+                onChange={(e) =>
+                  update('locationDescription', e.target.value || null)
+                }
+                disabled={!canEdit}
+                placeholder="e.g. Suriname"
+                className="w-full px-3 py-2 border border-stm-warm-200 rounded text-sm bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none disabled:bg-stm-warm-50"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-stm-warm-700 mb-1">
+                Place Type / Product
+              </label>
+              <input
+                type="text"
+                value={draft.placeType || ''}
+                onChange={(e) => update('placeType', e.target.value || null)}
+                disabled={!canEdit}
+                placeholder="e.g. koffie, suiker"
+                className="w-full px-3 py-2 border border-stm-warm-200 rounded text-sm bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none disabled:bg-stm-warm-50"
+              />
+            </div>
           </div>
           <div>
             <label className="block text-sm font-medium text-stm-warm-700 mb-1">
-              Place Type / Product
+              Location Description
+              <span className="text-stm-warm-400 font-normal">
+                {' '}
+                (original from source)
+              </span>
             </label>
             <input
               type="text"
-              value={draft.placeType || ''}
-              onChange={(e) => update('placeType', e.target.value || null)}
+              value={draft.locationDescriptionOriginal || ''}
+              onChange={(e) =>
+                update('locationDescriptionOriginal', e.target.value || null)
+              }
               disabled={!canEdit}
-              placeholder="e.g. koffie, suiker"
+              placeholder="e.g. Rivier Suriname, regterhand"
               className="w-full px-3 py-2 border border-stm-warm-200 rounded text-sm bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none disabled:bg-stm-warm-50"
             />
           </div>

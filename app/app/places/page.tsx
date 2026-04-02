@@ -59,6 +59,7 @@ function emptyPlace(): GazetteerPlace {
     psurIds: [],
     district: null,
     locationDescription: null,
+    locationDescriptionOriginal: null,
     placeType: null,
     modifiedBy: null,
     modifiedAt: null,
@@ -464,7 +465,7 @@ export default function PlacesPage() {
 
           <div className="px-4 sm:px-6 lg:px-8 pb-4 max-w-350 mx-auto">
             <table className="w-full text-sm border-collapse">
-              <thead>
+              <thead className="sticky top-0 z-10 bg-white">
                 <tr className="text-left text-xs text-stm-warm-500 border-b border-stm-warm-200">
                   {(
                     [
@@ -551,7 +552,7 @@ export default function PlacesPage() {
                     {/* PSUR */}
                     <td className="py-1.5 px-2 text-stm-warm-500 font-mono text-xs">
                       {place.psurIds.length > 0 ? (
-                        place.psurIds[0]
+                        place.psurIds.join(', ')
                       ) : (
                         <span className="text-stm-warm-200">--</span>
                       )}

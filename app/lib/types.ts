@@ -150,6 +150,7 @@ export interface GazetteerPlace {
   psurIds: string[];
   district: string | null;
   locationDescription: string | null;
+  locationDescriptionOriginal: string | null;
   placeType: string | null;
   modifiedBy: string | null;
   modifiedAt: string | null;

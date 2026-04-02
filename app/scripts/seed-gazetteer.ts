@@ -36,6 +36,7 @@ interface GazetteerPlace {
   psurIds: string[];
   district: string | null;
   locationDescription: string | null;
+  locationDescriptionOriginal: string | null;
   placeType: string | null;
   modifiedBy: string | null;
   modifiedAt: string | null;
@@ -116,11 +117,14 @@ const almRows = parse(almContent, {
   trim: true,
 });
 
-// Build per-QID aggregates: most common district, loc_std, product
+// Build per-QID aggregates: most common district, loc_std, loc_org, product, label, psur
 interface AlmAggregate {
   districts: Map<string, number>;
   locations: Map<string, number>;
+  locationsOriginal: Map<string, number>;
   products: Map<string, number>;
+  labels: Map<string, number>;
+  psurIds: Set<string>;
 }
 const almByQid = new Map<string, AlmAggregate>();
 
@@ -131,7 +135,10 @@ for (const row of almRows as Record<string, string>[]) {
   const qid = (row['plantation_id'] || '').trim();
   const d = (row['district_of_divisie'] || '').trim();
   const l = (row['loc_std'] || '').trim();
+  const lOrg = (row['loc_org'] || '').trim();
   const prod = (row['product_std'] || '').trim();
+  const label = (row['plantation_std'] || '').trim();
+  const psur = (row['psur_id'] || '').trim();
 
   if (d) allDistricts.add(d);
   if (l) allLocations.add(l);
@@ -140,12 +147,23 @@ for (const row of almRows as Record<string, string>[]) {
 
   let agg = almByQid.get(qid);
   if (!agg) {
-    agg = { districts: new Map(), locations: new Map(), products: new Map() };
+    agg = {
+      districts: new Map(),
+      locations: new Map(),
+      locationsOriginal: new Map(),
+      products: new Map(),
+      labels: new Map(),
+      psurIds: new Set(),
+    };
     almByQid.set(qid, agg);
   }
   if (d) agg.districts.set(d, (agg.districts.get(d) || 0) + 1);
   if (l) agg.locations.set(l, (agg.locations.get(l) || 0) + 1);
+  if (lOrg)
+    agg.locationsOriginal.set(lOrg, (agg.locationsOriginal.get(lOrg) || 0) + 1);
   if (prod) agg.products.set(prod, (agg.products.get(prod) || 0) + 1);
+  if (label) agg.labels.set(label, (agg.labels.get(label) || 0) + 1);
+  if (psur) agg.psurIds.add(psur);
 }
 
 console.log(`  ${almByQid.size} unique Q-IDs in almanakken`);
@@ -216,6 +234,7 @@ for (const name of Array.from(allDistricts).sort()) {
     psurIds: [],
     district: null,
     locationDescription: null,
+    locationDescriptionOriginal: null,
     placeType: null,
     modifiedBy: null,
     modifiedAt: null,
@@ -247,6 +266,7 @@ for (const name of Array.from(allLocations).sort()) {
     psurIds: [],
     district: null,
     locationDescription: null,
+    locationDescriptionOriginal: null,
     placeType: null,
     modifiedBy: null,
     modifiedAt: null,
@@ -292,6 +312,7 @@ for (const place of Object.values(placesRaw)) {
   let districtName: string | null = null;
   let districtId: string | null = null;
   let locationDescription: string | null = null;
+  let locationDescriptionOriginal: string | null = null;
   let placeType: string | null = null;
 
   if (qid) {
@@ -304,6 +325,7 @@ for (const place of Object.values(placesRaw)) {
       }
       locationDescription = mostCommon(agg.locations);
       if (locationDescription) linkedLocDesc++;
+      locationDescriptionOriginal = mostCommon(agg.locationsOriginal);
       placeType = mostCommon(agg.products);
       if (placeType) linkedProduct++;
     }
@@ -332,17 +354,75 @@ for (const place of Object.values(placesRaw)) {
     psurIds,
     district: districtName,
     locationDescription,
+    locationDescriptionOriginal,
     placeType,
     modifiedBy: null,
     modifiedAt: null,
   });
 }
 
-console.log(`  ${Object.keys(placesRaw).length} plantation places`);
+console.log(`  ${Object.keys(placesRaw).length} plantation places (from QGIS)`);
 console.log(`  ${linkedDistricts} linked to districts`);
 console.log(`  ${linkedLocDesc} with location descriptions`);
 console.log(`  ${linkedProduct} with product/place types`);
 console.log(`  ${linkedPsur} with PSUR IDs`);
+
+// ── 4. Almanakken-only plantations (Q-IDs not in QGIS) ─────────────
+
+console.log('Processing almanakken-only plantations...');
+const qidsInQgis = new Set<string>();
+for (const place of Object.values(placesRaw)) {
+  const plantation = plantationByPlace.get(place['@id'] as string);
+  const ownerUri = plantation?.['P52_has_current_owner'] as string | undefined;
+  const qid = ownerUri?.startsWith('http://www.wikidata.org/entity/')
+    ? ownerUri.replace('http://www.wikidata.org/entity/', '')
+    : null;
+  if (qid) qidsInQgis.add(qid);
+}
+
+let almOnlyCount = 0;
+let almOnlyWithPsur = 0;
+for (const [qid, agg] of almByQid) {
+  if (qidsInQgis.has(qid)) continue; // already covered by QGIS
+
+  const prefLabel = mostCommon(agg.labels) || qid;
+  const districtName = mostCommon(agg.districts);
+  const districtId = districtName
+    ? districtIdMap.get(districtName) || null
+    : null;
+  const locationDescription = mostCommon(agg.locations);
+  const locationDescriptionOriginal = mostCommon(agg.locationsOriginal);
+  const placeType = mostCommon(agg.products);
+  const psurIds = Array.from(agg.psurIds);
+  if (psurIds.length > 0) almOnlyWithPsur++;
+
+  const sources = ['almanakken'];
+  if (psurIds.length > 0) sources.push('slave-registers');
+
+  gazetteer.push({
+    id: nextId('stm'),
+    type: 'plantation',
+    prefLabel,
+    altLabels: [],
+    broader: districtId,
+    description: 'Plantation from Surinaamse Almanakken (no QGIS geometry)',
+    location: { lat: null, lng: null, wkt: null, crs: 'EPSG:4326' },
+    sources,
+    wikidataQid: qid,
+    fid: null,
+    psurIds,
+    district: districtName,
+    locationDescription,
+    locationDescriptionOriginal,
+    placeType,
+    modifiedBy: null,
+    modifiedAt: null,
+  });
+  almOnlyCount++;
+}
+
+console.log(`  ${almOnlyCount} almanakken-only plantations added`);
+console.log(`  ${almOnlyWithPsur} with PSUR IDs`);
 
 // ── Sort and write ─────────────────────────────────────────────────
 
