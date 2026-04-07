@@ -26,7 +26,7 @@ flowchart TB
     subgraph Sources
         E22[E22 Human-Made Object<br/>map, almanac, register]
         E36[E36 Visual Item<br/>content]
-        E38[E38 Image<br/>IIIF scan]
+        E36_IMG[E36 Visual Item<br/>IIIF scan]
         E41_MAP[E41 Appellation<br/>map label]
     E41_ALM[E41 Appellation<br/>almanac name]
     end
@@ -41,7 +41,7 @@ flowchart TB
     E22 -->|P128 carries| E41_MAP
     E22 -->|P128 carries| E41_ALM
     E36 -->|P138 represents| E25
-    E38 -->|P138 represents| E22
+    E36_IMG -->|P138 represents| E22
 
     E25 -->|P1 is identified by| E41_MAP
     ORG -->|P1 is identified by| E41_ALM
@@ -113,7 +113,7 @@ E22 Almanac ──P128 carries──> E41b (almanac name) ──P1i identifies�
 
 E41a ──P139 has alternative form──> E41b
 
-E38 Image (scan) ──P138 represents──> E22
+E36 Visual Item (scan) ──P138 represents──> E22
 E25 ──P53 has location──> E53 Place
 E25 ──P52 has current owner──> E74
 ```

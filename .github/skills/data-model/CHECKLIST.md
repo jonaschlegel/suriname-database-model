@@ -67,4 +67,4 @@ Quick reference for validating plantation data entities.
 - [ ] `crm:P128_carries` linking to E36 Visual Item
 - [ ] `crm:P128_carries` linking to E41 Appellation
 - [ ] E36 uses `crm:P138_represents` to E25 Plantation (NOT to E53 directly)
-- [ ] Digital scans: E38 Image `crm:P138_represents` the E22
+- [ ] Digital scans: E36 Visual Item `crm:P138_represents` the E22

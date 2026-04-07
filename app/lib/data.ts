@@ -133,7 +133,6 @@ export const CRM_COLORS: Record<string, string> = {
   E24: '#e6956b', // E24 Physical Human-Made Thing (warm brown) -- legacy alias
   E22: '#c78e66', // E22 Human-Made Object (brown) -- sources
   E36: '#d4a574', // E36 Visual Item (tan)
-  E38: '#b89470', // E38 Image (dark tan)
   E53: '#94cc7d', // E53 Place (green)
   E74: '#ffbdca', // E74 Group (pink)
   E41: '#fef3ba', // E41 Appellation (yellow)
@@ -153,7 +152,6 @@ export const CRM_CLASS_NAMES: Record<string, string> = {
   E24: 'E24 Physical Human-Made Thing',
   E22: 'E22 Human-Made Object',
   E36: 'E36 Visual Item',
-  E38: 'E38 Image',
   E53: 'E53 Place',
   E74: 'E74 Group / sdo:Organization',
   E41: 'E41 Appellation',

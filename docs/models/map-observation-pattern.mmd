@@ -9,8 +9,8 @@ flowchart TB
         P2 has type: historic-map"]
     end
 
-    subgraph DIGITAL_LAYER ["E38 Image (Digital Scan)"]
-        E38["E38 Image
+    subgraph DIGITAL_LAYER ["E36 Visual Item (Digital Scan)"]
+        E36_IMG["E36 Visual Item
         IIIF scan of the map
         P138 represents: E22"]
     end
@@ -49,7 +49,7 @@ flowchart TB
     end
 
     E22 -->|"P128 carries"| E36
-    E38 -->|"P138 represents"| E22
+    E36_IMG -->|"P138 represents"| E22
     E22 -->|"P108i was produced by"| E12
     E12 -->|"P4 has time-span"| E52
 
@@ -70,7 +70,7 @@ flowchart TB
     end
 
     classDef e22 fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#856404
-    classDef e38 fill:#cce5ff,stroke:#004085,stroke-width:2px,color:#004085
+    classDef e36img fill:#cce5ff,stroke:#004085,stroke-width:2px,color:#004085
     classDef e36 fill:#e2e3e5,stroke:#6c757d,stroke-width:2px,color:#383d41
     classDef e25 fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#155724
     classDef e26 fill:#b2dfdb,stroke:#00796b,stroke-width:2px,color:#004d40
@@ -79,7 +79,7 @@ flowchart TB
     classDef insight fill:#fff5f5,stroke:#dc3545,stroke-width:2px
 
     class E22 e22
-    class E38 e38
+    class E36_IMG e36img
     class E36 e36
     class E25 e25
     class E26 e26

@@ -68,9 +68,8 @@ function buildContext(): Record<string, unknown> {
     E53_Place: 'crm:E53_Place',
     E55_Type: 'crm:E55_Type',
     E74_Group: 'crm:E74_Group',
-    // E12 Production + E38 Image
+    // E12 Production
     E12_Production: 'crm:E12_Production',
-    E38_Image: 'crm:E38_Image',
     // CIDOC-CRM properties
     P1_is_identified_by: { '@id': 'crm:P1_is_identified_by', '@type': '@id' },
     P1i_identifies: { '@id': 'crm:P1i_identifies', '@type': '@id' },
@@ -123,7 +122,7 @@ function buildContext(): Record<string, unknown> {
       '@id': 'crm:P108i_was_produced_by',
       '@type': '@id',
     },
-    // E38 Image properties
+    // E36 Visual Item (digital reproduction) properties
     P50_has_current_keeper: {
       '@id': 'crm:P50_has_current_keeper',
       '@type': 'xsd:string',
@@ -626,13 +625,13 @@ function buildE12Productions(sources: SourceRow[]): Record<string, unknown>[] {
   });
 }
 
-function buildE38Images(sources: SourceRow[]): Record<string, unknown>[] {
+function buildE36Images(sources: SourceRow[]): Record<string, unknown>[] {
   const entities: Record<string, unknown>[] = [];
   for (const s of sources) {
     if (!s.iiif_info_url && !s.iiif_manifest) continue;
     const entity: Record<string, unknown> = {
       '@id': `${BASE}image/${s.id.toLowerCase()}`,
-      '@type': ['E38_Image'],
+      '@type': ['E36_Visual_Item'],
       prefLabel: `Digital scan of ${s.label}`,
       P138_represents: s.uri,
     };
@@ -949,9 +948,9 @@ function main() {
   const e12Productions = buildE12Productions(allSources);
   console.log(`  E12 Productions:    ${e12Productions.length}`);
 
-  // E38 Image entities: IIIF digital reproductions
-  const e38Images = buildE38Images(allSources);
-  console.log(`  E38 Images:         ${e38Images.length}`);
+  // E36 Visual Item entities: IIIF digital reproductions
+  const e36Images = buildE36Images(allSources);
+  console.log(`  E36 Images:         ${e36Images.length}`);
 
   const allProv = [
     ...e25Result.provenance,
@@ -975,7 +974,7 @@ function main() {
     ...e55Types,
     ...e52TimeSpans,
     ...e12Productions,
-    ...e38Images,
+    ...e36Images,
     ...obsResult.entities,
     ...allProv,
   ];
@@ -1099,14 +1098,14 @@ function main() {
     `  E12 with P7 (took place at): ${e12WithP7}/${e12Productions.length}`,
   );
 
-  const e38WithContent = e38Images.filter((e) => e.contentUrl).length;
+  const e36WithContent = e36Images.filter((e) => e.contentUrl).length;
   console.log(
-    `  E38 with IIIF contentUrl: ${e38WithContent}/${e38Images.length}`,
+    `  E36 with IIIF contentUrl: ${e36WithContent}/${e36Images.length}`,
   );
 
-  const e38WithP50 = e38Images.filter((e) => e.P50_has_current_keeper).length;
+  const e36WithP50 = e36Images.filter((e) => e.P50_has_current_keeper).length;
   console.log(
-    `  E38 with P50 (current keeper): ${e38WithP50}/${e38Images.length}`,
+    `  E36 with P50 (current keeper): ${e36WithP50}/${e36Images.length}`,
   );
 
   const polygonFeatures = (

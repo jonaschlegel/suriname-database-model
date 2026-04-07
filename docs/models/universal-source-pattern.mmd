@@ -12,7 +12,7 @@ flowchart TB
     (Physical source artifact)
     Map | Book | Ledger | Document"]
 
-    E38["E38 Image
+    E36_IMG["E36 Visual Item
     (Digital reproduction)
     IIIF scan"]
 
@@ -71,7 +71,7 @@ flowchart TB
     E22 -->|"P128 carries"| E41_ALM
 
     %% Digital scan represents physical (P138)
-    E38 -->|"P138 represents"| E22
+    E36_IMG -->|"P138 represents"| E22
 
     %% Production with time-span (gives temporal scope to names)
     E22 -->|"P108i was produced by"| E12
@@ -113,7 +113,7 @@ flowchart TB
     classDef crm_E52_Time_Span fill:#86bcc8,stroke:#000000,color:#000000
 
     class E22 crm_E18_Physical_Thing
-    class E38 crm_E28_Conceptual_Object
+    class E36_IMG crm_E28_Conceptual_Object
     class E36 crm_E28_Conceptual_Object
     class E41_MAP crm_E41_Appellation
     class E41_ALM crm_E41_Appellation

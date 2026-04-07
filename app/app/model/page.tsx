@@ -165,7 +165,7 @@ const ENTITIES: EntityDef[] = [
     type: 'E22',
     label: 'Source',
     crmClass: 'E22 Human-Made Object',
-    desc: 'Physical sources: maps, almanacs, registers. The source carries visual items (E36) and appellations (E41) that represent or identify entities. Each source has an E12 Production event recording who made it, where, and when. Digital reproductions are modeled as E38 Image. The Almanakken (Surinaamse Almanakken) is modeled as a single E22 for the entire series.',
+    desc: 'Physical sources: maps, almanacs, registers. The source carries visual items (E36) and appellations (E41) that represent or identify entities. Each source has an E12 Production event recording who made it, where, and when. Digital reproductions (IIIF scans) are also modeled as E36 Visual Item, linked via P138 represents. The Almanakken (Surinaamse Almanakken) is modeled as a single E22 for the entire series.',
     color: '#c78e66',
     cx: 200,
     cy: 100,
@@ -230,7 +230,7 @@ const ENTITIES: EntityDef[] = [
     type: 'E36',
     label: 'Visual Item',
     crmClass: 'E36 Visual Item',
-    desc: 'The visual content carried by a source. A map (E22) carries a visual item (E36) that represents the physical plantation (E25). This intermediary class enables the principle: "maps depict things; things have locations."',
+    desc: 'The visual content carried by a source. A map (E22) carries a visual item (E36) that represents the physical plantation (E25). This intermediary class enables the principle: "maps depict things; things have locations." Digital reproductions (IIIF scans) are also E36 Visual Items that represent the physical source (E22) via P138.',
     color: '#d4a574',
     cx: 380,
     cy: 160,
@@ -238,26 +238,10 @@ const ENTITIES: EntityDef[] = [
     structural: true,
     properties: [
       { name: 'P138 represents', range: 'E25 Human-Made Feature' },
+      { name: 'P138 represents', range: 'E22 Human-Made Object (digital scan)' },
       { name: 'P128i is carried by', range: 'E22 Human-Made Object' },
-    ],
-  },
-  {
-    id: 'e38',
-    type: 'E38',
-    label: 'Image',
-    crmClass: 'E38 Image',
-    desc: 'Digital reproduction (IIIF scan) of a physical source. Links scanned map sheets and almanac pages to their physical originals via P138 represents. The holding archive (P50) and IIIF content URL track where the digital object is kept and accessible.',
-    color: '#b89470',
-    cx: 60,
-    cy: 260,
-    dataKey: '',
-    structural: true,
-    properties: [
-      { name: 'P138 represents', range: 'E22 Human-Made Object' },
       { name: 'P50 has current keeper', range: 'string (archive name)' },
       { name: 'sdo:contentUrl', range: 'IIIF info.json URL' },
-      { name: 'sdo:sameAs', range: 'IIIF manifest URL' },
-      { name: 'dcterms:identifier', range: 'Handle URL' },
     ],
   },
   {
@@ -467,7 +451,7 @@ const RELATIONS: RelDef[] = [
     desc: 'The visual item represents the physical plantation -- the key link in the universal source pattern',
   },
   {
-    from: 'e38',
+    from: 'e36',
     to: 'e22',
     label: 'P138 represents',
     desc: 'The digital scan (IIIF image) represents the physical source object',
@@ -1084,7 +1068,7 @@ function SourcePatternSection() {
         </div>
         <div>
           <span className="text-stm-warm-400">Digital:</span>{' '}
-          <span style={{ color: '#b89470' }}>E38 Image</span>
+          <span style={{ color: '#d4a574' }}>E36 Visual Item</span>
           {' -> P138 -> '}
           <span style={{ color: '#c78e66' }}>E22 Source</span>
           {' (IIIF scan of physical source)'}

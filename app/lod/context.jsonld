@@ -34,7 +34,6 @@
     "E55_Type": "crm:E55_Type",
     "E74_Group": "crm:E74_Group",
     "E12_Production": "crm:E12_Production",
-    "E38_Image": "crm:E38_Image",
     "P1_is_identified_by": {
       "@id": "crm:P1_is_identified_by",
       "@type": "@id"

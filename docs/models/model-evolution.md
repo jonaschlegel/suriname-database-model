@@ -24,7 +24,7 @@ Step-by-step record of every modeling decision, change, and planned extension. E
 
 ### Step 1.3 -- E22 Human-Made Object for sources
 
-**What:** Physical sources (maps, books, ledgers) are E22 Human-Made Object. They carry content via `P128 carries` E36 Visual Item. Digital scans are E38 Image that `P138 represents` the E22.
+**What:** Physical sources (maps, books, ledgers) are E22 Human-Made Object. They carry content via `P128 carries` E36 Visual Item. Digital scans are also E36 Visual Item that `P138 represents` the E22.
 
 **Why:** A colonial map is a physical artifact, not just "information." Modeling it as E22 preserves its materiality (who made it, where it is kept, when it was produced). E36 is what the map _shows_ (the cartographic content), and that content represents E25 plantations.
 
@@ -338,7 +338,7 @@ Colors follow the standard CIDOC-CRM visualization scheme proposed by George Bru
 | #fef3ba    | E41 Appellation        | E41 MAP / ALM / STD (names)     |
 | #82ddff    | E2 Temporal Entity     | E12 Production, Observations    |
 | #86bcc8    | E52 Time-Span          | E52 Time-Span                   |
-| #fddc34    | E28 Conceptual Object  | E36 Visual Item, E38 Image      |
+| #fddc34    | E28 Conceptual Object  | E36 Visual Item                 |
 | #fab565    | E55 Type               | E55 Type                        |
 | #ffe6eb    | E39 Actor (instance)   | PersonObservation (PICO)        |
 | #f8f9fa    | (non-CRM)              | CSV source columns              |

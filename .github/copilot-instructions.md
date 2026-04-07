@@ -56,7 +56,7 @@ Always use these patterns (see SKILL.md for full details):
 - **Physical sources**: Use E22 Human-Made Object for maps, books, ledgers (NOT E73)
 - **Source chain**: E22 -> P128 carries -> E36 Visual Item -> P138 represents -> E25 Plantation
 - **Location chain**: E25 Plantation -> P53 has location -> E53 Place (geometry)
-- **Digital reproductions**: E38 Image -> P138 represents -> E22
+- **Digital reproductions**: E36 Visual Item -> P138 represents -> E22
 - **Location principle**: "Maps depict things; things have locations" — E36 does NOT connect to E53 directly
 
 ## Diagram Files

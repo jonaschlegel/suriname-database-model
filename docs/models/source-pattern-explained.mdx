@@ -39,28 +39,28 @@ The distinction between vessel and content is fundamental to what comes next.
 
 ## Layer 2 --- The Digital Reproduction
 
-**Relationship:** `E38 Image --P138 represents--> E22 Human-Made Object`
+**Relationship:** `E36 Visual Item --P138 represents--> E22 Human-Made Object`
 
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#e8f4ea'}}}%%
 flowchart LR
-    E38["E38 Image
+    E36_IMG["E36 Visual Item
     (Digital reproduction)
     IIIF scan"]
     E22["E22 Human-Made Object
     (Physical source)"]
 
-    E38 -->|"P138 represents"| E22
+    E36_IMG -->|"P138 represents"| E22
 
     classDef crm_E18_Physical_Thing fill:#c78e66,stroke:#000000,color:#000000
     classDef crm_E28_Conceptual_Object fill:#fddc34,stroke:#000000,color:#000000
     class E22 crm_E18_Physical_Thing
-    class E38 crm_E28_Conceptual_Object
+    class E36_IMG crm_E28_Conceptual_Object
 ```
 
 The IIIF scan that appears on your screen is not the map. It _represents_ the map.
 
-E38 Image is a subclass of E36 Visual Item, which itself is a subclass of E73 Information Object --- it lives in the conceptual realm. The scan is a pattern of pixels that was mechanically derived from the physical artifact by a scanner or camera, but it is an entirely different kind of entity.
+E36 Visual Item is a subclass of E73 Information Object --- it lives in the conceptual realm. The scan is a pattern of pixels that was mechanically derived from the physical artifact by a scanner or camera, but it is an entirely different kind of entity.
 
 P138 _represents_ is the CRM property that bridges these worlds.
 
@@ -69,9 +69,9 @@ P138 _represents_ is the CRM property that bridges these worlds.
 >
 > _"This property is also used for the relationship between an original and a digitisation of the original by the use of techniques such as digital photography, flatbed or infrared scanning. Digitisation is here seen as a process with a mechanical, causal component rendering the spatial distribution of structural and optical properties of the original."_
 
-The word _represents_ is deliberately weaker than "is identical to." Every digitization involves choices: resolution, color calibration, cropping, lighting angle. Two different scans of the same map will produce two different E38 instances, both representing the same E22. This asymmetry matters for scholarly work --- when a researcher zooms into a scan and reads a faded plantation name, they need to know that what they see already passed through a layer of mechanical interpretation.
+The word _represents_ is deliberately weaker than "is identical to." Every digitization involves choices: resolution, color calibration, cropping, lighting angle. Two different scans of the same map will produce two different E36 instances, both representing the same E22. This asymmetry matters for scholarly work --- when a researcher zooms into a scan and reads a faded plantation name, they need to know that what they see already passed through a layer of mechanical interpretation.
 
-The arrow points from E38 to E22, not the other way around. The map does not "have" a scan; the scan "represents" the map. This preserves the primacy of the physical source.
+The arrow points from E36 to E22, not the other way around. The map does not "have" a scan; the scan "represents" the map. This preserves the primacy of the physical source.
 
 ---
 
@@ -410,7 +410,7 @@ flowchart TB
     (Physical source artifact)
     Map | Book | Ledger | Document"]
 
-    E38["E38 Image
+    E36_IMG["E36 Visual Item
     (Digital reproduction)
     IIIF scan"]
 
@@ -461,7 +461,7 @@ flowchart TB
     E22 -->|"P128 carries"| E41_ALM
 
     %% Layer 2: Digital scan represents physical
-    E38 -->|"P138 represents"| E22
+    E36_IMG -->|"P138 represents"| E22
 
     %% Layer 4: Production event
     E22 -->|"P108i was produced by"| E12
@@ -494,7 +494,7 @@ flowchart TB
     classDef crm_E52_Time_Span fill:#86bcc8,stroke:#000000,color:#000000
 
     class E22 crm_E18_Physical_Thing
-    class E38 crm_E28_Conceptual_Object
+    class E36_IMG crm_E28_Conceptual_Object
     class E36 crm_E28_Conceptual_Object
     class E41_MAP crm_E41_Appellation
     class E41_ALM crm_E41_Appellation
@@ -510,7 +510,7 @@ flowchart TB
 
 Read the pattern as a sentence:
 
-> A **physical source** (E22), **produced** (E12) at a **time** (E52) by **someone** (E21/E74), **carries** (P128) **visual content** (E36) and **names** (E41). The content **represents** (P138) real-world **things** (E25, E26, E74, E21). The names **identify** (P1i) those things. And those things **have locations** (P53 to E53) and **owners** (P52 to E74). A **digital scan** (E38) **represents** (P138) the physical source, giving us access to everything it carries.
+> A **physical source** (E22), **produced** (E12) at a **time** (E52) by **someone** (E21/E74), **carries** (P128) **visual content** (E36) and **names** (E41). The content **represents** (P138) real-world **things** (E25, E26, E74, E21). The names **identify** (P1i) those things. And those things **have locations** (P53 to E53) and **owners** (P52 to E74). A **digital scan** (E36) **represents** (P138) the physical source, giving us access to everything it carries.
 
 Every link exists for a reason. Every separation between entities preserves a distinction that matters for the historical record of Suriname.
 
@@ -540,7 +540,7 @@ The diagrams use the [CRITERIA](https://github.com/chin-rcip/CRITERIA) color sch
 | Color                  | CRM Superclass        | Examples in our model                   |
 | ---------------------- | --------------------- | --------------------------------------- |
 | Brown (#c78e66)        | E18 Physical Thing    | E22 Source, E25 Plantation, E26 Feature |
-| Yellow (#fddc34)       | E28 Conceptual Object | E36 Visual Item, E38 Image              |
+| Yellow (#fddc34)       | E28 Conceptual Object | E36 Visual Item                         |
 | Light yellow (#fef3ba) | E41 Appellation       | Map labels, almanac names               |
 | Green (#94cc7d)        | E53 Place             | Spatial locations                       |
 | Pink (#ffbdca)         | E39 Actor             | Persons, organizations, publishers      |

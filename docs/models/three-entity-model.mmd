@@ -79,7 +79,7 @@ erDiagram
         string P138_represents FK "What it depicts E25 E26 E74 E21"
     }
 
-    E38_IMAGE {
+    E36_IMAGE {
         string id PK "Digital reproduction IIIF scan"
         string iiif_url "IIIF Info URL"
         string P138_represents FK "Links to E22 it reproduces"
@@ -137,7 +137,7 @@ erDiagram
 
     E22_HUMAN_MADE_OBJECT ||--|| E36_VISUAL_ITEM : "P128_carries"
     E22_HUMAN_MADE_OBJECT ||--o{ E41_APPELLATION : "P128_carries"
-    E38_IMAGE }o--|| E22_HUMAN_MADE_OBJECT : "P138_represents"
+    E36_IMAGE }o--|| E22_HUMAN_MADE_OBJECT : "P138_represents"
 
     E41_APPELLATION }o--o{ E41_APPELLATION : "P139_has_alternative_form"
     E36_VISUAL_ITEM }o--o{ E25_HUMAN_MADE_FEATURE : "P138_represents"
