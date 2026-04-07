@@ -70,6 +70,7 @@ export default function ExplorePage() {
         selectedPlantationUri={
           selectedFeature?.properties.plantationUri ??
           selectedFeature?.properties.featureUri ??
+          selectedFeature?.properties.placeUri ??
           null
         }
         highlightedName={highlightedName}

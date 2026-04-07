@@ -1,6 +1,7 @@
 'use client';
 
 import type { GazetteerPlace } from '@/lib/types';
+import { usePlaceTypes } from '@/lib/thesaurus';
 import dynamic from 'next/dynamic';
 import { useCallback, useState } from 'react';
 
@@ -14,16 +15,9 @@ interface PlaceEditorProps {
   onCancel: () => void;
 }
 
-const PLACE_TYPES: GazetteerPlace['type'][] = [
-  'plantation',
-  'district',
-  'river',
-  'creek',
-  'settlement',
-];
-
 const SOURCE_OPTIONS = [
   'map-1930',
+  'map-1882',
   'almanakken',
   'slave-registers',
   'wikidata',
@@ -37,6 +31,7 @@ export default function PlaceEditor({
   onSave,
   onCancel,
 }: PlaceEditorProps) {
+  const { labels, crmBadges, biasTypes, allTypes } = usePlaceTypes();
   const [draft, setDraft] = useState<GazetteerPlace>({ ...place });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -156,12 +151,21 @@ export default function PlaceEditor({
               disabled={!canEdit}
               className="w-full px-3 py-2 border border-stm-warm-200 rounded text-sm bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none disabled:bg-stm-warm-50"
             >
-              {PLACE_TYPES.map((t) => (
-                <option key={t} value={t}>
-                  {t.charAt(0).toUpperCase() + t.slice(1)}
-                </option>
-              ))}
+              {allTypes.map((t) => {
+                const label = labels[t] || t;
+                const badge = crmBadges[t] || '';
+                return (
+                  <option key={t} value={t}>
+                    {label} ({badge})
+                  </option>
+                );
+              })}
             </select>
+            {biasTypes[draft.type] && (
+              <p className="mt-1 text-[10px] text-amber-600">
+                {biasTypes[draft.type].editorialNote}
+              </p>
+            )}
           </div>
 
           <div>

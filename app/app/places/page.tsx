@@ -1,7 +1,9 @@
 'use client';
 
 import PlaceEditor from '@/components/PlaceEditor';
+import ThesaurusEditor from '@/components/ThesaurusEditor';
 import type { GazetteerPlace } from '@/lib/types';
+import { usePlaceTypes } from '@/lib/thesaurus';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 interface AuthState {
@@ -9,25 +11,9 @@ interface AuthState {
   canEdit: boolean;
 }
 
-const TYPE_FILTERS = [
-  { value: 'all', label: 'All' },
-  { value: 'plantation', label: 'Plantations' },
-  { value: 'district', label: 'Districts' },
-  { value: 'river', label: 'Rivers' },
-  { value: 'creek', label: 'Creeks' },
-  { value: 'settlement', label: 'Settlements' },
-] as const;
-
-const TYPE_BADGE_COLORS: Record<string, string> = {
-  plantation: 'bg-stm-sepia-100 text-stm-sepia-700',
-  district: 'bg-stm-teal-100 text-stm-teal-700',
-  river: 'bg-blue-100 text-blue-700',
-  creek: 'bg-sky-100 text-sky-700',
-  settlement: 'bg-amber-100 text-amber-700',
-};
-
 const DATASET_FILTERS = [
   { key: 'map-1930', label: 'Map 1930' },
+  { key: 'map-1882', label: 'Map 1882' },
   { key: 'almanakken', label: 'Almanakken' },
   { key: 'wikidata', label: 'Wikidata' },
 ] as const;
@@ -78,6 +64,14 @@ function SortArrow({ active, dir }: { active: boolean; dir: SortDir }) {
 }
 
 export default function PlacesPage() {
+  const { labels, colors, allTypes } = usePlaceTypes();
+  const typeFilters = useMemo(
+    () => [
+      { value: 'all', label: 'All' },
+      ...allTypes.map((t) => ({ value: t, label: labels[t] ? `${labels[t]}s` : t })),
+    ],
+    [allTypes, labels],
+  );
   const [places, setPlaces] = useState<GazetteerPlace[]>([]);
   const [loading, setLoading] = useState(true);
   const [auth, setAuth] = useState<AuthState>({ user: null, canEdit: false });
@@ -87,6 +81,7 @@ export default function PlacesPage() {
   const [isCreating, setIsCreating] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey>('prefLabel');
   const [sortDir, setSortDir] = useState<SortDir>('asc');
+  const [activeView, setActiveView] = useState<'places' | 'vocabulary'>('places');
   const [datasetFilters, setDatasetFilters] = useState<
     Map<DatasetKey, DatasetFilterMode>
   >(new Map());
@@ -104,9 +99,12 @@ export default function PlacesPage() {
 
   // Load gazetteer data
   useEffect(() => {
-    fetch('/data/places-gazetteer.json')
+    fetch('/data/places-gazetteer.jsonld')
       .then((r) => r.json())
-      .then(setPlaces)
+      .then((data) => {
+        const entries = data['@graph'] || data;
+        setPlaces(Array.isArray(entries) ? entries : []);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -207,14 +205,7 @@ export default function PlacesPage() {
   }, [places, selectedId, isCreating]);
 
   const typeCounts = useMemo(() => {
-    const counts: Record<string, number> = {
-      all: places.length,
-      plantation: 0,
-      district: 0,
-      river: 0,
-      creek: 0,
-      settlement: 0,
-    };
+    const counts: Record<string, number> = { all: places.length };
     for (const p of places) counts[p.type] = (counts[p.type] || 0) + 1;
     return counts;
   }, [places]);
@@ -270,7 +261,7 @@ export default function PlacesPage() {
 
   return (
     <div className="h-full flex flex-col bg-stm-warm-50 overflow-hidden">
-      {/* Top bar: auth + search */}
+      {/* Top bar: auth + tabs */}
       <div className="border-b border-stm-warm-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center justify-between gap-4">
@@ -278,9 +269,28 @@ export default function PlacesPage() {
               <h1 className="text-xl font-serif font-bold text-stm-warm-800">
                 Suriname Gazetteer
               </h1>
-              <p className="text-sm text-stm-warm-500">
-                {places.length} places -- authority list for Suriname locations
-              </p>
+              <div className="flex items-center gap-1 mt-1">
+                <button
+                  onClick={() => setActiveView('places')}
+                  className={`px-2.5 py-0.5 text-xs font-medium rounded transition-colors ${
+                    activeView === 'places'
+                      ? 'bg-stm-sepia-600 text-white'
+                      : 'bg-stm-warm-100 text-stm-warm-500 hover:bg-stm-warm-200'
+                  }`}
+                >
+                  Places ({places.length})
+                </button>
+                <button
+                  onClick={() => setActiveView('vocabulary')}
+                  className={`px-2.5 py-0.5 text-xs font-medium rounded transition-colors ${
+                    activeView === 'vocabulary'
+                      ? 'bg-stm-sepia-600 text-white'
+                      : 'bg-stm-warm-100 text-stm-warm-500 hover:bg-stm-warm-200'
+                  }`}
+                >
+                  Vocabulary
+                </button>
+              </div>
             </div>
 
             {/* Auth */}
@@ -328,6 +338,14 @@ export default function PlacesPage() {
         </div>
       </div>
 
+      {activeView === 'vocabulary' ? (
+        <div className="flex-1 overflow-auto">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <ThesaurusEditor canEdit={auth.canEdit} />
+          </div>
+        </div>
+      ) : (
+      <>
       {/* Search + filters */}
       <div className="border-b border-stm-warm-100 bg-white/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
@@ -354,7 +372,7 @@ export default function PlacesPage() {
 
             {/* Type filter buttons */}
             <div className="flex gap-1">
-              {TYPE_FILTERS.map(({ value, label }) => (
+              {typeFilters.map(({ value, label }) => (
                 <button
                   key={value}
                   onClick={() => setTypeFilter(value)}
@@ -529,12 +547,13 @@ export default function PlacesPage() {
                     {/* Type */}
                     <td className="py-1.5 px-2">
                       <span
-                        className={`inline-block px-1.5 py-0.5 text-[10px] font-medium rounded ${
-                          TYPE_BADGE_COLORS[place.type] ||
-                          'bg-stm-warm-100 text-stm-warm-600'
-                        }`}
+                        className="inline-block px-1.5 py-0.5 text-[10px] font-medium rounded"
+                        style={{
+                          backgroundColor: (colors[place.type] || '#888') + '20',
+                          color: colors[place.type] || '#888',
+                        }}
                       >
-                        {place.type}
+                        {labels[place.type] || place.type}
                       </span>
                     </td>
 
@@ -667,6 +686,8 @@ export default function PlacesPage() {
           </div>
         )}
       </div>
+      </>
+      )}
     </div>
   );
 }

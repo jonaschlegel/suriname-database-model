@@ -163,6 +163,11 @@ export const CRM_CLASS_NAMES: Record<string, string> = {
   PROV: 'prov:ProvenanceRecord',
 };
 
+// Place-type metadata (colors, labels, CRM badges, colonial bias notes)
+// is now sourced from the Geographical Features Thesaurus:
+//   data/place-types-thesaurus.jsonld
+// Use usePlaceTypes() from lib/thesaurus.ts to access these values.
+
 /** Get entity type color using CRITERIA scheme */
 export function entityTypeColor(typeStr: string): string {
   for (const [key, color] of Object.entries(CRM_COLORS)) {

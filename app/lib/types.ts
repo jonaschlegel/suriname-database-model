@@ -120,21 +120,21 @@ export interface GeoJSONFeatureProperties {
   fid: number; // CRM: P48 has preferred identifier -> E42 Identifier
   name: string;
   status: string;
-  featureType: string; // 'plantation' | 'river' | 'creek'
+  featureType: string; // PlaceType — granular place type
   mapYear: string; // Derivable from E22 source production date
   plantationUri?: string;
   featureUri?: string;
   organizationQid?: string;
   mainBodyWater?: string;
-  placeUri: string;
+  placeUri?: string;
 }
 
 export interface GeoJSONFeature {
   type: 'Feature';
   id: string;
   geometry: {
-    type: 'Polygon' | 'LineString';
-    coordinates: number[][][] | number[][];
+    type: 'Polygon' | 'LineString' | 'Point';
+    coordinates: number[][][] | number[][] | number[];
   };
   properties: GeoJSONFeatureProperties;
 }
@@ -146,10 +146,30 @@ export interface GeoJSONCollection {
   features: GeoJSONFeature[];
 }
 
+/** All valid gazetteer place types */
+export type PlaceType =
+  | 'plantation'
+  | 'district'
+  | 'river'
+  | 'creek'
+  | 'settlement'
+  | 'military-post'
+  | 'station'
+  | 'indigenous-village'
+  | 'maroon-village'
+  | 'town'
+  | 'road'
+  | 'railroad';
+
+// PLACE_TYPE_CRM and COLONIAL_BIAS_TYPES are now sourced from the
+// Geographical Features Thesaurus: data/place-types-thesaurus.jsonld
+// Use usePlaceTypes() from lib/thesaurus.ts to access these values.
+// For server-side / Node scripts, read the thesaurus file directly.
+
 /** Place gazetteer entry — authority record for a named place */
 export interface GazetteerPlace {
   id: string;
-  type: 'plantation' | 'district' | 'river' | 'creek' | 'settlement';
+  type: PlaceType;
   prefLabel: string;
   altLabels: string[];
   broader: string | null;

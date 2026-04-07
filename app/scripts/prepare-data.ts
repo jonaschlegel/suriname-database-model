@@ -150,18 +150,118 @@ writeJSON('appellations-by-entity.json', appellationsByEntity);
 writeJSON('observations-by-org.json', observationsByOrg);
 writeJSON('provenance.json', provenanceIndex);
 
-// Copy GeoJSON
+// Copy GeoJSON and merge gazetteer features
 const geojsonSrc = join(LOD_DIR, 'map-features.geojson');
 if (existsSync(geojsonSrc)) {
-  copyFileSync(geojsonSrc, join(OUT_DIR, 'map-features.geojson'));
-  console.log('  Copied map-features.geojson');
+  const geojson = JSON.parse(readFileSync(geojsonSrc, 'utf-8'));
+
+  // Merge additional features from gazetteer (places.csv, military posts, roads, railroad)
+  const gazetteerPath = join(__dirname, '../../data/places-gazetteer.jsonld');
+  if (existsSync(gazetteerPath)) {
+    const gazetteerData = JSON.parse(readFileSync(gazetteerPath, 'utf-8'));
+    const entries = gazetteerData['@graph'] || [];
+    let added = 0;
+
+    // Existing feature types in geojson are 'plantation', 'river', 'creek'
+    // Add features for types NOT already in the pipeline
+    const pipelineTypes = new Set(['plantation', 'river', 'creek']);
+
+    for (const entry of entries as Record<string, unknown>[]) {
+      const type = entry.type as string;
+      if (pipelineTypes.has(type)) continue;
+
+      const loc = entry.location as {
+        lat: number | null;
+        lng: number | null;
+        wkt: string | null;
+      } | null;
+      if (!loc) continue;
+
+      // LineString features (roads, railroad) — use WKT if available
+      if (loc.wkt && (type === 'road' || type === 'railroad')) {
+        const match = loc.wkt.match(/LineString\s*\((.+?)\)/i);
+        if (match) {
+          const coords: number[][] = [];
+          for (const pair of match[1].split(',')) {
+            const parts = pair.trim().split(/\s+/);
+            if (parts.length >= 2) {
+              const lon = parseFloat(parts[0]);
+              const lat = parseFloat(parts[1]);
+              if (!isNaN(lon) && !isNaN(lat)) coords.push([lon, lat]);
+            }
+          }
+          if (coords.length >= 2) {
+            geojson.features.push({
+              type: 'Feature',
+              id: `${type}-${entry.fid || entry.id}`,
+              geometry: { type: 'LineString', coordinates: coords },
+              properties: {
+                fid: entry.fid ?? null,
+                name: entry.prefLabel || '',
+                placeUri: (entry['@id'] as string) || `stm:place/${entry.id}`,
+                status: 'infrastructure',
+                featureType: type,
+                mapYear: '1930',
+              },
+            });
+            added++;
+          }
+        }
+        continue;
+      }
+
+      // Point features — use lat/lng
+      if (loc.lat != null && loc.lng != null) {
+        geojson.features.push({
+          type: 'Feature',
+          id: `${type}-${entry.fid || entry.id}`,
+          geometry: {
+            type: 'Point',
+            coordinates: [loc.lng, loc.lat],
+          },
+          properties: {
+            fid: entry.fid ?? null,
+            name: entry.prefLabel || '',
+            placeUri: (entry['@id'] as string) || `stm:place/${entry.id}`,
+            status: 'named',
+            featureType: type,
+            mapYear: (entry.sources as string[])?.includes('map-1882')
+              ? '1882'
+              : '1930',
+          },
+        });
+        added++;
+      }
+    }
+    console.log(`  Merged ${added} gazetteer features into map-features.geojson`);
+  }
+
+  writeFileSync(
+    join(OUT_DIR, 'map-features.geojson'),
+    JSON.stringify(geojson),
+  );
+  console.log('  Wrote map-features.geojson');
 }
 
 // Copy places gazetteer (if it exists in data root)
-const gazetteerSrc = join(__dirname, '../../data/places-gazetteer.json');
+const gazetteerSrc = join(__dirname, '../../data/places-gazetteer.jsonld');
 if (existsSync(gazetteerSrc)) {
-  copyFileSync(gazetteerSrc, join(OUT_DIR, 'places-gazetteer.json'));
-  console.log('  Copied places-gazetteer.json');
+  copyFileSync(gazetteerSrc, join(OUT_DIR, 'places-gazetteer.jsonld'));
+  console.log('  Copied places-gazetteer.jsonld');
+} else {
+  // Fallback: try old .json format
+  const gazetteerSrcJson = join(__dirname, '../../data/places-gazetteer.json');
+  if (existsSync(gazetteerSrcJson)) {
+    copyFileSync(gazetteerSrcJson, join(OUT_DIR, 'places-gazetteer.json'));
+    console.log('  Copied places-gazetteer.json (legacy format)');
+  }
+}
+
+// Copy place-types thesaurus
+const thesaurusSrc = join(__dirname, '../../data/place-types-thesaurus.jsonld');
+if (existsSync(thesaurusSrc)) {
+  copyFileSync(thesaurusSrc, join(OUT_DIR, 'place-types-thesaurus.jsonld'));
+  console.log('  Copied place-types-thesaurus.jsonld');
 }
 
 console.log('\nDone! Data files ready in public/data/');
