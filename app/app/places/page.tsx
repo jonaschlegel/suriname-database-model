@@ -273,7 +273,7 @@ export default function PlacesPage() {
           <div className="flex items-center justify-between gap-4">
             <div>
               <h1 className="text-xl font-serif font-bold text-stm-warm-800">
-                Places Gazetteer
+                Suriname Gazetteer
               </h1>
               <p className="text-sm text-stm-warm-500">
                 {places.length} places -- authority list for Suriname locations

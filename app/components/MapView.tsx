@@ -17,7 +17,8 @@ const TRANSFORMATION_LABELS: Record<string, string> = {
 interface OverlayConfig {
   id: string;
   label: string;
-  annotationUrl: string;
+  annotationUrl?: string;
+  annotationUrls?: string[];
   defaultEnabled: boolean;
   transformation: string;
   gcpCount: number | string;
@@ -27,8 +28,26 @@ const OVERLAY_CONFIGS: OverlayConfig[] = [
   {
     id: '1930-plantation',
     label: '1930 Plantation Map',
-    annotationUrl: 'https://annotations.allmaps.org/manifests/5178b46e14dc211e',
+    annotationUrls: [
+      'https://annotations.allmaps.org/maps/d9191cafde1831f0', // sheet 3
+      'https://annotations.allmaps.org/maps/dc967c11ce9e86b3', // sheet 4
+      'https://annotations.allmaps.org/maps/edaf1bbc8b86f0bf', // sheet 5
+      'https://annotations.allmaps.org/maps/9eac27facff8687f', // sheet 6
+      'https://annotations.allmaps.org/maps/5e0b6889ed3816d9', // sheet 7
+      'https://annotations.allmaps.org/maps/aacef031cb456d2a', // sheet 8
+      'https://annotations.allmaps.org/maps/4d07f0d3bf9fc347', // sheet 9
+      // sheet 10 (1d7e4a0bd68f039c) excluded — smaller size, fewer GCPs, causes overlap
+      'https://annotations.allmaps.org/maps/ddd8d3ca24e1916a', // sheet 11
+    ],
     defaultEnabled: true,
+    transformation: 'thinPlateSpline',
+    gcpCount: '10-80/sheet',
+  },
+  {
+    id: '1930-plantation-onemanifest',
+    label: '1930 Plantation Map (One Manifest)',
+    annotationUrl: 'https://annotations.allmaps.org/manifests/5178b46e14dc211e',
+    defaultEnabled: false,
     transformation: 'thinPlateSpline',
     gcpCount: 'unknown',
   },
@@ -150,6 +169,7 @@ const DEFAULT_ENABLED = new Set(
 // safe fallback of Point(0,0).
 const _origGetPosition = L.DomUtil.getPosition;
 L.DomUtil.getPosition = function (el: HTMLElement): L.Point {
+  if (!el) return new L.Point(0, 0);
   if (!(el as unknown as Record<string, unknown>)._leaflet_pos) {
     (el as unknown as Record<string, unknown>)._leaflet_pos = new L.Point(0, 0);
   }
@@ -175,7 +195,7 @@ export default function MapView({
 }: MapViewProps) {
   const mapRef = useRef<L.Map | null>(null);
   const layerRef = useRef<L.GeoJSON | null>(null);
-  const warpedLayersRef = useRef<Map<string, L.Layer>>(new Map());
+  const warpedLayersRef = useRef<Map<string, L.Layer[]>>(new Map());
   const containerRef = useRef<HTMLDivElement>(null);
   const selectedUriRef = useRef(selectedPlantationUri);
   const highlightedNameRef = useRef(highlightedName);
@@ -216,8 +236,8 @@ export default function MapView({
 
     return () => {
       // Remove all warped layers
-      warpedLayersRef.current.forEach((layer) => {
-        layer.remove();
+      warpedLayersRef.current.forEach((layers) => {
+        layers.forEach((l) => l.remove());
       });
       warpedLayersRef.current.clear();
       map.remove();
@@ -226,29 +246,42 @@ export default function MapView({
   }, []);
 
   // Toggle overlay callback — creates/destroys WarpedMapLayer lazily
-  const toggleOverlay = useCallback((id: string, annotationUrl: string) => {
+  const toggleOverlay = useCallback((id: string, config: OverlayConfig) => {
     setEnabledOverlays((prev) => {
       const next = new Set(prev);
       if (next.has(id)) {
-        // Remove existing layer
-        const layer = warpedLayersRef.current.get(id);
-        if (layer) {
-          layer.remove();
+        // Remove existing layers
+        const layers = warpedLayersRef.current.get(id);
+        if (layers) {
+          layers.forEach((l) => l.remove());
           warpedLayersRef.current.delete(id);
         }
         next.delete(id);
       } else {
-        // Create new layer lazily
+        // Create new layers lazily
         next.add(id);
         const map = mapRef.current;
         if (map) {
           import('@allmaps/leaflet')
-            .then(({ WarpedMapLayer }) => {
+            .then(async ({ WarpedMapLayer }) => {
               if (!mapRef.current || !next.has(id)) return;
-              const warpedMapLayer = new WarpedMapLayer(annotationUrl);
+              // Create a single WarpedMapLayer and add all annotations to it
+              // (matches reference site pattern: one layer, multiple sheets)
+              const urls =
+                config.annotationUrls ??
+                (config.annotationUrl ? [config.annotationUrl] : []);
+              if (urls.length === 0) return;
+              const warpedMapLayer = new WarpedMapLayer(urls[0]);
               warpedMapLayer.addTo(map);
-              warpedLayersRef.current.set(id, warpedMapLayer);
-              // Apply current opacity from ref
+              for (const url of urls.slice(1)) {
+                await (
+                  warpedMapLayer as unknown as {
+                    addGeoreferenceAnnotationByUrl: (
+                      u: string,
+                    ) => Promise<unknown>;
+                  }
+                ).addGeoreferenceAnnotationByUrl(url);
+              }
               if ('setOpacity' in warpedMapLayer) {
                 (
                   warpedMapLayer as unknown as {
@@ -256,6 +289,7 @@ export default function MapView({
                   }
                 ).setOpacity(opacityRef.current);
               }
+              warpedLayersRef.current.set(id, [warpedMapLayer]);
             })
             .catch(() => {
               // Allmaps module failed to load
@@ -275,12 +309,23 @@ export default function MapView({
       OVERLAY_CONFIGS.forEach((config) => {
         if (config.defaultEnabled && !warpedLayersRef.current.has(config.id)) {
           import('@allmaps/leaflet')
-            .then(({ WarpedMapLayer }) => {
+            .then(async ({ WarpedMapLayer }) => {
               if (!mapRef.current) return;
-              const warpedMapLayer = new WarpedMapLayer(config.annotationUrl);
+              const urls =
+                config.annotationUrls ??
+                (config.annotationUrl ? [config.annotationUrl] : []);
+              if (urls.length === 0) return;
+              const warpedMapLayer = new WarpedMapLayer(urls[0]);
               warpedMapLayer.addTo(map);
-              warpedLayersRef.current.set(config.id, warpedMapLayer);
-              // Apply current opacity from ref
+              for (const url of urls.slice(1)) {
+                await (
+                  warpedMapLayer as unknown as {
+                    addGeoreferenceAnnotationByUrl: (
+                      u: string,
+                    ) => Promise<unknown>;
+                  }
+                ).addGeoreferenceAnnotationByUrl(url);
+              }
               if ('setOpacity' in warpedMapLayer) {
                 (
                   warpedMapLayer as unknown as {
@@ -288,6 +333,7 @@ export default function MapView({
                   }
                 ).setOpacity(opacityRef.current);
               }
+              warpedLayersRef.current.set(config.id, [warpedMapLayer]);
             })
             .catch(() => {
               // Allmaps module failed to load — map still usable
@@ -384,12 +430,14 @@ export default function MapView({
 
   // Sync overlay opacity across all active layers
   useEffect(() => {
-    warpedLayersRef.current.forEach((layer, id) => {
-      if ('setOpacity' in layer) {
-        const visible = enabledOverlays.has(id);
-        (layer as unknown as { setOpacity: (o: number) => void }).setOpacity(
-          visible ? opacity : 0,
-        );
+    warpedLayersRef.current.forEach((layers, id) => {
+      const visible = enabledOverlays.has(id);
+      for (const layer of layers) {
+        if ('setOpacity' in layer) {
+          (layer as unknown as { setOpacity: (o: number) => void }).setOpacity(
+            visible ? opacity : 0,
+          );
+        }
       }
     });
   }, [opacity, enabledOverlays]);
@@ -634,9 +682,7 @@ export default function MapView({
                             <input
                               type="checkbox"
                               checked={isEnabled}
-                              onChange={() =>
-                                toggleOverlay(config.id, config.annotationUrl)
-                              }
+                              onChange={() => toggleOverlay(config.id, config)}
                               className="accent-stm-sepia-600"
                             />
                             <span className="text-stm-warm-800 truncate flex-1">
