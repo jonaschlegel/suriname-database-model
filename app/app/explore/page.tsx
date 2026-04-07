@@ -68,7 +68,9 @@ export default function ExplorePage() {
       <MapView
         geojson={data?.geojson || null}
         selectedPlantationUri={
-          selectedFeature?.properties.plantationUri || null
+          selectedFeature?.properties.plantationUri ??
+          selectedFeature?.properties.featureUri ??
+          null
         }
         highlightedName={highlightedName}
         panelOpen={!!selectedFeature}

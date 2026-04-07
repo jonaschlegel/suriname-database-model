@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { href: '/explore', label: 'Explore Map' },
   { href: '/places', label: 'Places' },
   { href: '/model', label: 'Data Model' },
+  { href: '/vocabulary', label: 'Vocabulary' },
 ] as const;
 
 export default function Navigation() {

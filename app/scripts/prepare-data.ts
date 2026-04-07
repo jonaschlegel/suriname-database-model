@@ -24,6 +24,7 @@ console.log(`  ${graph.length} entities loaded`);
 
 // Classify entities by type
 const plantations: Record<string, unknown>[] = [];
+const physicalFeatures: Record<string, unknown>[] = [];
 const organizations: Record<string, unknown>[] = [];
 const places: Record<string, unknown>[] = [];
 const appellations: Record<string, unknown>[] = [];
@@ -39,6 +40,8 @@ for (const entity of graph) {
 
   if (typeSet.has('Plantation')) {
     plantations.push(entity);
+  } else if (typeSet.has('E26_Physical_Feature')) {
+    physicalFeatures.push(entity);
   } else if (typeSet.has('E74_Group')) {
     organizations.push(entity);
   } else if (typeSet.has('E53_Place')) {
@@ -47,7 +50,7 @@ for (const entity of graph) {
     appellations.push(entity);
   } else if (typeSet.has('E22_Human_Made_Object')) {
     sources.push(entity);
-  } else if (typeSet.has('OrganizationObservation')) {
+  } else if (typeSet.has('E13_Attribute_Assignment')) {
     observations.push(entity);
   } else if (typeSet.has('ProvenanceRecord')) {
     provenance.push(entity);
@@ -55,6 +58,7 @@ for (const entity of graph) {
 }
 
 console.log(`  Plantations: ${plantations.length}`);
+console.log(`  Physical Features: ${physicalFeatures.length}`);
 console.log(`  Organizations: ${organizations.length}`);
 console.log(`  Places: ${places.length}`);
 console.log(`  Appellations: ${appellations.length}`);
@@ -68,6 +72,12 @@ console.log(`  Provenance: ${provenance.length}`);
 const plantationIndex: Record<string, unknown> = {};
 for (const p of plantations) {
   plantationIndex[p['@id'] as string] = p;
+}
+
+// Physical feature index: keyed by @id (E26 rivers/creeks)
+const physicalFeatureIndex: Record<string, unknown> = {};
+for (const f of physicalFeatures) {
+  physicalFeatureIndex[f['@id'] as string] = f;
 }
 
 // Organization index: keyed by @id (wd:Q...)
@@ -132,6 +142,7 @@ function writeJSON(filename: string, data: unknown) {
 
 console.log('\nWriting indexed data files...');
 writeJSON('plantations.json', plantationIndex);
+writeJSON('physical-features.json', physicalFeatureIndex);
 writeJSON('organizations.json', orgIndex);
 writeJSON('places.json', placeIndex);
 writeJSON('sources.json', sourceIndex);

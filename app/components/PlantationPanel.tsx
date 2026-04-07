@@ -9,7 +9,7 @@ import {
 } from '@/lib/data';
 import type {
   E22Source,
-  E24Plantation,
+  E25Plantation,
   E41Appellation,
   E53Place,
   E74Organization,
@@ -321,12 +321,83 @@ export default function PlantationPanel({
 
   if (!feature || !data) return null;
 
+  // E26 Physical Feature (river/creek) — simple detail view
+  if (feature.geometry.type === 'LineString') {
+    const props = feature.properties;
+    const featureUri = props.featureUri ?? '';
+    const physicalFeature = data.physicalFeatures?.[featureUri];
+    return (
+      <div className="absolute top-0 right-0 w-105 h-full bg-stm-warm-50 shadow-xl z-1001 flex flex-col border-l border-stm-warm-300">
+        <div className="px-4 py-3 border-b border-stm-warm-300 bg-white">
+          <div className="flex items-start justify-between">
+            <div className="min-w-0 pr-2">
+              <h2 className="text-base font-bold text-stm-warm-900 font-serif leading-tight">
+                {props.name || 'Unknown'}
+              </h2>
+              <p className="text-[11px] text-stm-warm-400 font-mono mt-0.5">
+                E26 Physical Feature
+              </p>
+            </div>
+            <button
+              onClick={onClose}
+              className="w-7 h-7 flex items-center justify-center hover:bg-stm-warm-100 text-stm-warm-400 hover:text-stm-warm-600 transition-colors shrink-0"
+              aria-label="Close detail panel"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 14 14"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              >
+                <path d="M2 2l10 10M12 2L2 12" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div className="flex-1 overflow-y-auto px-4 py-3 space-y-0">
+          <CrmField
+            label="Type"
+            crmClass="E55"
+            property="P2 has type"
+            value={props.featureType}
+          />
+          {props.mainBodyWater && (
+            <CrmField
+              label="Main body"
+              crmClass="E26"
+              property="mainBodyWater"
+              value={props.mainBodyWater}
+            />
+          )}
+          {physicalFeature?.prefLabel && (
+            <CrmField
+              label="Preferred name"
+              crmClass="E41"
+              property="P1 is identified by"
+              value={physicalFeature.prefLabel}
+            />
+          )}
+          <CrmField
+            label="Feature URI"
+            crmClass="E26"
+            property="@id"
+            value={featureUri}
+            mono
+          />
+        </div>
+      </div>
+    );
+  }
+
   const toggle = (id: string) =>
     setOpenSections((s) => ({ ...s, [id]: !s[id] }));
 
   const props = feature.properties;
-  const plantation = data.plantations[props.plantationUri] as
-    | E24Plantation
+  const plantationUri = props.plantationUri!;
+  const plantation = data.plantations[plantationUri] as
+    | E25Plantation
     | undefined;
   const orgUri = props.organizationQid
     ? `http://www.wikidata.org/entity/${props.organizationQid}`
@@ -338,8 +409,8 @@ export default function PlantationPanel({
     ? (data.places[props.placeUri] as E53Place | undefined)
     : undefined;
 
-  // Appellations for both E24 and E74
-  const plantationApps = (data.appellations[props.plantationUri] ||
+  // Appellations for both E25 and E74
+  const plantationApps = (data.appellations[plantationUri] ||
     []) as E41Appellation[];
   const orgApps = orgUri
     ? ((data.appellations[orgUri] || []) as E41Appellation[])
@@ -375,7 +446,7 @@ export default function PlantationPanel({
     const p = data.provenance[plantation.wasDerivedFrom] as
       | ProvenanceRecord
       | undefined;
-    if (p) provRecords.push({ label: 'Plantation (E24)', record: p });
+    if (p) provRecords.push({ label: 'Plantation (E25)', record: p });
   }
   if (organization?.wasDerivedFrom) {
     const p = data.provenance[organization.wasDerivedFrom] as
@@ -405,7 +476,7 @@ export default function PlantationPanel({
               {props.name || 'Unknown'}
             </h2>
             <p className="text-[11px] text-stm-warm-400 font-mono mt-0.5">
-              {uriLabel(props.plantationUri)}
+              {uriLabel(plantationUri)}
             </p>
           </div>
           <button
@@ -446,12 +517,12 @@ export default function PlantationPanel({
         </div>
 
         <div className="divide-y divide-stm-warm-200">
-          {/* Plantation (E24 Physical Human-Made Thing) */}
+          {/* Plantation (E25 Human-Made Feature) */}
           <div>
             <SectionHeader
               id="plantation"
               title="Plantation"
-              badge="E24"
+              badge="E25"
               open={openSections.plantation}
               onToggle={() => toggle('plantation')}
               refs={sectionRefs}
@@ -459,7 +530,7 @@ export default function PlantationPanel({
             {openSections.plantation && (
               <div className="px-4 pb-3 space-y-0">
                 <p className="text-[9px] text-stm-warm-300 font-mono mb-1">
-                  E24 Physical Human-Made Thing
+                  E25 Human-Made Feature
                 </p>
                 <CrmField
                   label="Name"

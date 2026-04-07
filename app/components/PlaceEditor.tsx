@@ -18,6 +18,7 @@ const PLACE_TYPES: GazetteerPlace['type'][] = [
   'plantation',
   'district',
   'river',
+  'creek',
   'settlement',
 ];
 

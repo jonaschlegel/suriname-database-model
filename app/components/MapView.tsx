@@ -354,13 +354,42 @@ export default function MapView({
     const layer = L.geoJSON(geojson as unknown as GeoJSON.GeoJsonObject, {
       style: (feature) => {
         const props = feature?.properties;
-        const isSelected = props?.plantationUri === selectedUriRef.current;
+        const geomType = feature?.geometry?.type;
+        const featureIdentifier = props?.plantationUri ?? props?.featureUri;
+        const isSelected = featureIdentifier === selectedUriRef.current;
         const isHighlighted =
           !isSelected &&
           !!highlightedNameRef.current &&
           props?.name
             ?.toLowerCase()
             .includes(highlightedNameRef.current.toLowerCase());
+
+        // LineString features (rivers/creeks)
+        if (geomType === 'LineString') {
+          const isCreek = props?.featureType === 'creek';
+          if (isSelected) {
+            return {
+              color: '#1a6fa0',
+              weight: isCreek ? 3 : 4,
+              opacity: 0.9,
+            };
+          }
+          if (isHighlighted) {
+            return {
+              color: '#e07850',
+              weight: isCreek ? 2.5 : 3.5,
+              opacity: 0.8,
+              dashArray: '6 3',
+            };
+          }
+          return {
+            color: isCreek ? '#6baed6' : '#3182bd',
+            weight: isCreek ? 1.5 : 2.5,
+            opacity: 0.7,
+          };
+        }
+
+        // Polygon features (plantations)
         const isBuilt = props?.status === 'built';
         if (isSelected) {
           return {
@@ -397,16 +426,21 @@ export default function MapView({
           onSelectRef.current(feature as unknown as GeoJSONFeature);
         });
 
+        const featureIdentifier = props?.plantationUri ?? props?.featureUri;
         featureLayer.on('mouseover', (e) => {
           const target = e.target as L.Path;
-          if (props.plantationUri !== selectedUriRef.current) {
-            target.setStyle({ fillOpacity: 0.5, weight: 2 });
+          if (featureIdentifier !== selectedUriRef.current) {
+            target.setStyle(
+              feature.geometry?.type === 'LineString'
+                ? { opacity: 0.9, weight: 3.5 }
+                : { fillOpacity: 0.5, weight: 2 },
+            );
           }
         });
 
         featureLayer.on('mouseout', (e) => {
           const target = e.target as L.Path;
-          if (props.plantationUri !== selectedUriRef.current) {
+          if (featureIdentifier !== selectedUriRef.current) {
             layer.resetStyle(target);
           }
         });
@@ -449,7 +483,9 @@ export default function MapView({
     layerRef.current.eachLayer((layer) => {
       const feature = (layer as L.GeoJSON & { feature?: GeoJSONFeature })
         .feature;
-      if (feature?.properties?.plantationUri === selectedPlantationUri) {
+      const featureIdentifier =
+        feature?.properties?.plantationUri ?? feature?.properties?.featureUri;
+      if (featureIdentifier === selectedPlantationUri) {
         const bounds = (layer as L.Polygon).getBounds();
         mapRef.current!.flyToBounds(bounds, {
           padding: [50, 50],
@@ -611,6 +647,14 @@ export default function MapView({
                 <span className="w-3.5 h-2.5 border border-dashed border-[#a04020] bg-[#e07850] opacity-70 inline-block" />
                 <span className="text-stm-warm-600">Highlighted</span>
               </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3.5 h-0.5 bg-[#3182bd] inline-block" />
+                <span className="text-stm-warm-600">River</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <span className="w-3.5 h-0.5 bg-[#6baed6] inline-block" />
+                <span className="text-stm-warm-600">Creek</span>
+              </div>
             </div>
 
             {/* Divider */}
@@ -758,7 +802,7 @@ function SearchInput({
     <div className="relative">
       <input
         type="text"
-        placeholder="Search plantations..."
+        placeholder="Search features..."
         value={query}
         onChange={(e) => {
           setQuery(e.target.value);
@@ -772,7 +816,7 @@ function SearchInput({
         }}
         onFocus={() => setOpen(true)}
         onBlur={() => setTimeout(() => setOpen(false), 200)}
-        aria-label="Search plantations by name"
+        aria-label="Search features by name"
         aria-autocomplete="list"
         role="combobox"
         aria-expanded={open && results.length > 0}

@@ -14,6 +14,7 @@ const TYPE_FILTERS = [
   { value: 'plantation', label: 'Plantations' },
   { value: 'district', label: 'Districts' },
   { value: 'river', label: 'Rivers' },
+  { value: 'creek', label: 'Creeks' },
   { value: 'settlement', label: 'Settlements' },
 ] as const;
 
@@ -21,6 +22,7 @@ const TYPE_BADGE_COLORS: Record<string, string> = {
   plantation: 'bg-stm-sepia-100 text-stm-sepia-700',
   district: 'bg-stm-teal-100 text-stm-teal-700',
   river: 'bg-blue-100 text-blue-700',
+  creek: 'bg-sky-100 text-sky-700',
   settlement: 'bg-amber-100 text-amber-700',
 };
 
@@ -210,6 +212,7 @@ export default function PlacesPage() {
       plantation: 0,
       district: 0,
       river: 0,
+      creek: 0,
       settlement: 0,
     };
     for (const p of places) counts[p.type] = (counts[p.type] || 0) + 1;

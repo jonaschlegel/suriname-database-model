@@ -3,7 +3,7 @@
  *
  * Reads:
  *   - public/data/places.json        (E53 Place entities with geometry)
- *   - public/data/plantations.json   (E24 Plantations for Q-ID + labels)
+ *   - public/data/plantations.json   (E25 Plantations for Q-ID + labels)
  *   - ../data/07-gis-plantation-map-1930/plantation_polygons_1930.csv (PSUR IDs)
  *   - ../data/06-almanakken .../...  (CSV for districts, location refs, product)
  *
@@ -19,7 +19,7 @@ import { join } from 'path';
 
 interface GazetteerPlace {
   id: string;
-  type: 'plantation' | 'district' | 'river' | 'settlement';
+  type: 'plantation' | 'district' | 'river' | 'creek' | 'settlement';
   prefLabel: string;
   altLabels: string[];
   broader: string | null;
@@ -67,6 +67,11 @@ const placesRaw: Record<string, Record<string, unknown>> = JSON.parse(
 console.log('Loading plantations.json...');
 const plantationsRaw: Record<string, Record<string, unknown>> = JSON.parse(
   readFileSync(join(PUBLIC_DIR, 'plantations.json'), 'utf-8'),
+);
+
+console.log('Loading physical-features.json...');
+const physicalFeaturesRaw: Record<string, Record<string, unknown>> = JSON.parse(
+  readFileSync(join(PUBLIC_DIR, 'physical-features.json'), 'utf-8'),
 );
 
 // Build plantation lookup: placeUri -> plantation data
@@ -192,16 +197,31 @@ function districtSlug(name: string): string {
 // ── Extract centroids from WKT polygons ────────────────────────────
 
 function centroidFromWKT(wkt: string): { lat: number; lng: number } | null {
-  const match = wkt.match(/\(\((.+)\)\)/);
-  if (!match) return null;
-  const coords = match[1].split(',').map((pair) => {
-    const [lng, lat] = pair.trim().split(/\s+/).map(Number);
-    return { lat, lng };
-  });
-  if (coords.length === 0) return null;
-  const sumLat = coords.reduce((s, c) => s + c.lat, 0);
-  const sumLng = coords.reduce((s, c) => s + c.lng, 0);
-  return { lat: sumLat / coords.length, lng: sumLng / coords.length };
+  // Handle Polygon: POLYGON((...))
+  const polyMatch = wkt.match(/\(\((.+)\)\)/);
+  if (polyMatch) {
+    const coords = polyMatch[1].split(',').map((pair) => {
+      const [lng, lat] = pair.trim().split(/\s+/).map(Number);
+      return { lat, lng };
+    });
+    if (coords.length === 0) return null;
+    const sumLat = coords.reduce((s, c) => s + c.lat, 0);
+    const sumLng = coords.reduce((s, c) => s + c.lng, 0);
+    return { lat: sumLat / coords.length, lng: sumLng / coords.length };
+  }
+  // Handle LineString: LineString (...)
+  const lineMatch = wkt.match(/\((.+)\)/);
+  if (lineMatch) {
+    const coords = lineMatch[1].split(',').map((pair) => {
+      const [lng, lat] = pair.trim().split(/\s+/).map(Number);
+      return { lat, lng };
+    });
+    if (coords.length === 0) return null;
+    const sumLat = coords.reduce((s, c) => s + c.lat, 0);
+    const sumLng = coords.reduce((s, c) => s + c.lng, 0);
+    return { lat: sumLat / coords.length, lng: sumLng / coords.length };
+  }
+  return null;
 }
 
 // ── Sequential ID counter ──────────────────────────────────────────
@@ -274,7 +294,62 @@ for (const name of Array.from(allLocations).sort()) {
 }
 console.log(`  ${allLocations.size} locations (rivers/creeks/roads)`);
 
-// ── 3. Plantation places (from E53 + E24 + QGIS + almanakken) ─────
+// ── 3. QGIS river/creek features (E26 Physical Features) ──────────
+
+console.log('Processing QGIS river/creek features...');
+let riverCount = 0;
+let creekCount = 0;
+const riverPlaceUris = new Set<string>();
+
+for (const feature of Object.values(physicalFeaturesRaw)) {
+  const featureUri = feature['@id'] as string;
+  const prefLabel = (feature['prefLabel'] as string) || 'Unknown';
+  const featureType = (feature['featureType'] as string) || 'river';
+  const mainBodyWater = (feature['mainBodyWater'] as string) || '';
+  const placeUri = feature['P53_has_location'] as string | undefined;
+  if (placeUri) riverPlaceUris.add(placeUri);
+
+  // Look up the E53 Place for geometry
+  const placeEntity = placeUri ? placesRaw[placeUri] : undefined;
+  const geom = placeEntity?.['hasGeometry'] as { asWKT?: string } | undefined;
+  const wkt = geom?.asWKT || null;
+  const centroid = wkt ? centroidFromWKT(wkt) : null;
+  const fid = placeEntity?.['fid'] as number | undefined;
+
+  const type: 'river' | 'creek' = featureType === 'creek' ? 'creek' : 'river';
+  if (type === 'creek') creekCount++;
+  else riverCount++;
+
+  gazetteer.push({
+    id: nextId('stm'),
+    type,
+    prefLabel,
+    altLabels: [],
+    broader: null,
+    description: mainBodyWater
+      ? `${type === 'creek' ? 'Creek' : 'River'} segment of ${mainBodyWater} (QGIS 1930 map)`
+      : `${type === 'creek' ? 'Creek' : 'River'} feature from QGIS 1930 map`,
+    location: {
+      lat: centroid?.lat ?? null,
+      lng: centroid?.lng ?? null,
+      wkt,
+      crs: 'EPSG:4326',
+    },
+    sources: ['map-1930'],
+    wikidataQid: null,
+    fid: fid ?? null,
+    psurIds: [],
+    district: null,
+    locationDescription: mainBodyWater || null,
+    locationDescriptionOriginal: null,
+    placeType: type,
+    modifiedBy: null,
+    modifiedAt: null,
+  });
+}
+console.log(`  ${riverCount} rivers, ${creekCount} creeks (from QGIS)`);
+
+// ── 4. Plantation places (from E53 + E25 + QGIS + almanakken) ─────
 
 console.log('Processing plantation places...');
 let linkedDistricts = 0;
@@ -284,6 +359,10 @@ let linkedPsur = 0;
 
 for (const place of Object.values(placesRaw)) {
   const placeId = place['@id'] as string;
+
+  // Skip river/creek places — already handled in section 3
+  if (riverPlaceUris.has(placeId)) continue;
+
   const fid = place['fid'] as number;
   const label = (place['observedLabel'] as string) || `Place ${fid}`;
   const geom = place['hasGeometry'] as { asWKT?: string } | undefined;
@@ -361,13 +440,15 @@ for (const place of Object.values(placesRaw)) {
   });
 }
 
-console.log(`  ${Object.keys(placesRaw).length} plantation places (from QGIS)`);
+console.log(
+  `  ${Object.keys(placesRaw).length - riverPlaceUris.size} plantation places (from QGIS)`,
+);
 console.log(`  ${linkedDistricts} linked to districts`);
 console.log(`  ${linkedLocDesc} with location descriptions`);
 console.log(`  ${linkedProduct} with product/place types`);
 console.log(`  ${linkedPsur} with PSUR IDs`);
 
-// ── 4. Almanakken-only plantations (Q-IDs not in QGIS) ─────────────
+// ── 5. Almanakken-only plantations (Q-IDs not in QGIS) ─────────────
 
 console.log('Processing almanakken-only plantations...');
 const qidsInQgis = new Set<string>();
@@ -427,7 +508,13 @@ console.log(`  ${almOnlyWithPsur} with PSUR IDs`);
 // ── Sort and write ─────────────────────────────────────────────────
 
 gazetteer.sort((a, b) => {
-  const typeOrder = { district: 0, river: 1, settlement: 2, plantation: 3 };
+  const typeOrder: Record<string, number> = {
+    district: 0,
+    river: 1,
+    creek: 2,
+    settlement: 3,
+    plantation: 4,
+  };
   const diff = typeOrder[a.type] - typeOrder[b.type];
   if (diff !== 0) return diff;
   return a.prefLabel.localeCompare(b.prefLabel);
