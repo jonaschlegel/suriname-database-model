@@ -1,9 +1,10 @@
 'use client';
 
 import type { GazetteerPlace } from '@/lib/types';
+import { useSourceRegistry, getSourcesByCategory } from '@/lib/sources';
 import { usePlaceTypes } from '@/lib/thesaurus';
 import dynamic from 'next/dynamic';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 const PlaceMiniMap = dynamic(() => import('./PlaceMiniMap'), { ssr: false });
 
@@ -15,14 +16,7 @@ interface PlaceEditorProps {
   onCancel: () => void;
 }
 
-const SOURCE_OPTIONS = [
-  'map-1930',
-  'map-1882',
-  'almanakken',
-  'slave-registers',
-  'wikidata',
-  'ward-registers',
-];
+const CATEGORY_ORDER = ['map', 'register', 'almanac', 'dataset', 'external'];
 
 export default function PlaceEditor({
   place,
@@ -32,12 +26,28 @@ export default function PlaceEditor({
   onCancel,
 }: PlaceEditorProps) {
   const { labels, crmBadges, biasTypes, allTypes } = usePlaceTypes();
+  const { sources: registrySources, categories: registryCategories } =
+    useSourceRegistry();
+  const sourcesByCategory = useMemo(
+    () => getSourcesByCategory(registrySources, registryCategories),
+    [registrySources, registryCategories],
+  );
+  const sortedCategories = useMemo(
+    () =>
+      [...registryCategories].sort((a, b) => {
+        const ai = CATEGORY_ORDER.indexOf(a.categoryId);
+        const bi = CATEGORY_ORDER.indexOf(b.categoryId);
+        return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+      }),
+    [registryCategories],
+  );
   const [draft, setDraft] = useState<GazetteerPlace>({ ...place });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [altLabelInput, setAltLabelInput] = useState(
     place.altLabels.join(', '),
   );
+  const [sourceDropdownOpen, setSourceDropdownOpen] = useState(false);
 
   const update = <K extends keyof GazetteerPlace>(
     key: K,
@@ -305,27 +315,136 @@ export default function PlaceEditor({
           <label className="block text-sm font-medium text-stm-warm-700 mb-1">
             Sources
           </label>
-          <div className="flex flex-wrap gap-2">
-            {SOURCE_OPTIONS.map((src) => (
-              <label
-                key={src}
-                className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs border cursor-pointer transition-colors ${
-                  draft.sources.includes(src)
-                    ? 'bg-stm-sepia-100 border-stm-sepia-300 text-stm-sepia-800'
-                    : 'bg-white border-stm-warm-200 text-stm-warm-500 hover:border-stm-warm-300'
-                } ${!canEdit ? 'opacity-50 cursor-not-allowed' : ''}`}
+
+          {/* Selected sources as removable pills */}
+          {draft.sources.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 mb-2">
+              {draft.sources.map((srcId) => {
+                const src = registrySources.find((s) => s.sourceId === srcId);
+                return (
+                  <span
+                    key={srcId}
+                    className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs bg-stm-sepia-100 border border-stm-sepia-300 text-stm-sepia-800"
+                  >
+                    {src ? src.prefLabel : srcId}
+                    {canEdit && (
+                      <button
+                        type="button"
+                        onClick={() => handleSourceToggle(srcId)}
+                        className="text-stm-sepia-500 hover:text-stm-sepia-800 ml-0.5 leading-none"
+                      >
+                        x
+                      </button>
+                    )}
+                  </span>
+                );
+              })}
+            </div>
+          )}
+
+          {/* Dropdown trigger */}
+          {canEdit && (
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setSourceDropdownOpen(!sourceDropdownOpen)}
+                className="w-full flex items-center justify-between px-3 py-2 border border-stm-warm-200 rounded text-sm bg-white hover:border-stm-warm-300 transition-colors text-left"
               >
-                <input
-                  type="checkbox"
-                  checked={draft.sources.includes(src)}
-                  onChange={() => handleSourceToggle(src)}
-                  disabled={!canEdit}
-                  className="sr-only"
-                />
-                {src}
-              </label>
-            ))}
-          </div>
+                <span className="text-stm-warm-400">
+                  {draft.sources.length === 0
+                    ? 'Select sources...'
+                    : `${draft.sources.length} source${draft.sources.length !== 1 ? 's' : ''} selected`}
+                </span>
+                <svg
+                  className={`w-4 h-4 text-stm-warm-400 transition-transform ${sourceDropdownOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              {sourceDropdownOpen && (
+                <div className="absolute top-full left-0 right-0 mt-1 z-50 bg-white border border-stm-warm-200 rounded-lg shadow-lg max-h-52 overflow-y-auto">
+                  {sortedCategories.map((cat) => {
+                    const catSources = sourcesByCategory.get(cat.id) || [];
+                    if (catSources.length === 0) return null;
+                    return (
+                      <div key={cat.id}>
+                        <div className="px-3 py-1.5 bg-stm-warm-50 border-b border-stm-warm-100 sticky top-0">
+                          <span className="text-[10px] text-stm-warm-400 uppercase tracking-wide font-medium">
+                            {cat.prefLabel}
+                          </span>
+                        </div>
+                        {catSources.map((src) => {
+                          const isSelected = draft.sources.includes(
+                            src.sourceId,
+                          );
+                          return (
+                            <button
+                              key={src.sourceId}
+                              type="button"
+                              onClick={() => handleSourceToggle(src.sourceId)}
+                              className={`w-full text-left px-3 py-1.5 text-xs flex items-center gap-2 hover:bg-stm-warm-50 transition-colors ${
+                                isSelected
+                                  ? 'text-stm-sepia-800 font-medium'
+                                  : 'text-stm-warm-600'
+                              }`}
+                            >
+                              <span
+                                className={`w-3.5 h-3.5 rounded border flex items-center justify-center shrink-0 ${
+                                  isSelected
+                                    ? 'bg-stm-sepia-600 border-stm-sepia-600'
+                                    : 'border-stm-warm-300'
+                                }`}
+                              >
+                                {isSelected && (
+                                  <svg
+                                    className="w-2.5 h-2.5 text-white"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                    strokeWidth={4}
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      d="M5 13l4 4L19 7"
+                                    />
+                                  </svg>
+                                )}
+                              </span>
+                              <span className="flex-1 truncate">
+                                {src.prefLabel}
+                              </span>
+                              {src.mapYear && (
+                                <span className="text-[10px] text-stm-warm-400 font-mono shrink-0">
+                                  {src.mapYear}
+                                </span>
+                              )}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Read-only: just show pills */}
+          {!canEdit && draft.sources.length === 0 && (
+            <p className="text-xs text-stm-warm-400 italic">
+              No sources assigned
+            </p>
+          )}
         </div>
 
         {/* PSUR IDs */}

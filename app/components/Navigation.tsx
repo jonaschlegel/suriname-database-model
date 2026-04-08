@@ -5,9 +5,9 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
 const NAV_ITEMS = [
-  { href: '/', label: 'Home' },
   { href: '/explore', label: 'Explore Map' },
   { href: '/places', label: 'Places' },
+  { href: '/sources', label: 'Sources' },
   { href: '/model', label: 'Data Model' },
   { href: '/vocabulary', label: 'Vocabulary' },
 ] as const;
@@ -38,8 +38,7 @@ export default function Navigation() {
           {/* Desktop nav */}
           <div className="hidden sm:flex items-center gap-1">
             {NAV_ITEMS.map(({ href, label }) => {
-              const active =
-                href === '/' ? pathname === '/' : pathname.startsWith(href);
+              const active = pathname.startsWith(href);
               return (
                 <Link
                   key={href}
@@ -102,8 +101,7 @@ export default function Navigation() {
           className="sm:hidden border-t border-stm-warm-800 bg-stm-warm-900/98 px-4 pb-3 pt-2 space-y-1"
         >
           {NAV_ITEMS.map(({ href, label }) => {
-            const active =
-              href === '/' ? pathname === '/' : pathname.startsWith(href);
+            const active = pathname.startsWith(href);
             return (
               <Link
                 key={href}

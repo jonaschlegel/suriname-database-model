@@ -1,25 +1,19 @@
 'use client';
 
 import PlaceEditor from '@/components/PlaceEditor';
-import ThesaurusEditor from '@/components/ThesaurusEditor';
-import type { GazetteerPlace } from '@/lib/types';
+import SourceFilter, {
+  type SourceFilterState,
+  emptyFilterState,
+} from '@/components/SourceFilter';
+import { useSourceRegistry, getActiveSources } from '@/lib/sources';
 import { usePlaceTypes } from '@/lib/thesaurus';
+import type { GazetteerPlace } from '@/lib/types';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 interface AuthState {
   user: { login: string; avatar_url: string; name: string | null } | null;
   canEdit: boolean;
 }
-
-const DATASET_FILTERS = [
-  { key: 'map-1930', label: 'Map 1930' },
-  { key: 'map-1882', label: 'Map 1882' },
-  { key: 'almanakken', label: 'Almanakken' },
-  { key: 'wikidata', label: 'Wikidata' },
-] as const;
-
-type DatasetKey = (typeof DATASET_FILTERS)[number]['key'];
-type DatasetFilterMode = 'in' | 'not-in';
 
 type SortKey =
   | 'prefLabel'
@@ -68,7 +62,10 @@ export default function PlacesPage() {
   const typeFilters = useMemo(
     () => [
       { value: 'all', label: 'All' },
-      ...allTypes.map((t) => ({ value: t, label: labels[t] ? `${labels[t]}s` : t })),
+      ...allTypes.map((t) => ({
+        value: t,
+        label: labels[t] ? `${labels[t]}s` : t,
+      })),
     ],
     [allTypes, labels],
   );
@@ -81,21 +78,17 @@ export default function PlacesPage() {
   const [isCreating, setIsCreating] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey>('prefLabel');
   const [sortDir, setSortDir] = useState<SortDir>('asc');
-  const [activeView, setActiveView] = useState<'places' | 'vocabulary'>('places');
-  const [datasetFilters, setDatasetFilters] = useState<
-    Map<DatasetKey, DatasetFilterMode>
-  >(new Map());
-
-  const toggleDatasetFilter = useCallback((key: DatasetKey) => {
-    setDatasetFilters((prev) => {
-      const next = new Map(prev);
-      const current = next.get(key);
-      if (!current) next.set(key, 'in');
-      else if (current === 'in') next.set(key, 'not-in');
-      else next.delete(key);
-      return next;
-    });
-  }, []);
+  const [sourceFilter, setSourceFilter] =
+    useState<SourceFilterState>(emptyFilterState());
+  const {
+    sources: registrySources,
+    categories: registryCategories,
+    loading: registryLoading,
+  } = useSourceRegistry();
+  const activeRegistrySources = useMemo(
+    () => getActiveSources(registrySources),
+    [registrySources],
+  );
 
   // Load gazetteer data
   useEffect(() => {
@@ -133,14 +126,20 @@ export default function PlacesPage() {
     if (typeFilter !== 'all') {
       list = list.filter((p) => p.type === typeFilter);
     }
-    // Dataset presence filters
-    for (const [key, mode] of datasetFilters) {
-      const hasDataset = (p: GazetteerPlace) =>
-        key === 'wikidata' ? !!p.wikidataQid : p.sources.includes(key);
-      if (mode === 'in') {
-        list = list.filter(hasDataset);
+    // Source filter
+    if (sourceFilter.selected.size > 0) {
+      const selected = [...sourceFilter.selected];
+      const matchFn = (p: GazetteerPlace) => {
+        const check = (key: string) =>
+          key === 'wikidata' ? !!p.wikidataQid : p.sources.includes(key);
+        return sourceFilter.mode === 'and'
+          ? selected.every(check)
+          : selected.some(check);
+      };
+      if (sourceFilter.excludeMode) {
+        list = list.filter((p) => !matchFn(p));
       } else {
-        list = list.filter((p) => !hasDataset(p));
+        list = list.filter(matchFn);
       }
     }
     if (search.trim()) {
@@ -191,7 +190,7 @@ export default function PlacesPage() {
       }
     });
     return list;
-  }, [places, typeFilter, search, sortKey, sortDir, datasetFilters]);
+  }, [places, typeFilter, search, sortKey, sortDir, sourceFilter]);
 
   const districts = useMemo(
     () => places.filter((p) => p.type === 'district'),
@@ -269,28 +268,6 @@ export default function PlacesPage() {
               <h1 className="text-xl font-serif font-bold text-stm-warm-800">
                 Suriname Gazetteer
               </h1>
-              <div className="flex items-center gap-1 mt-1">
-                <button
-                  onClick={() => setActiveView('places')}
-                  className={`px-2.5 py-0.5 text-xs font-medium rounded transition-colors ${
-                    activeView === 'places'
-                      ? 'bg-stm-sepia-600 text-white'
-                      : 'bg-stm-warm-100 text-stm-warm-500 hover:bg-stm-warm-200'
-                  }`}
-                >
-                  Places ({places.length})
-                </button>
-                <button
-                  onClick={() => setActiveView('vocabulary')}
-                  className={`px-2.5 py-0.5 text-xs font-medium rounded transition-colors ${
-                    activeView === 'vocabulary'
-                      ? 'bg-stm-sepia-600 text-white'
-                      : 'bg-stm-warm-100 text-stm-warm-500 hover:bg-stm-warm-200'
-                  }`}
-                >
-                  Vocabulary
-                </button>
-              </div>
             </div>
 
             {/* Auth */}
@@ -338,356 +315,289 @@ export default function PlacesPage() {
         </div>
       </div>
 
-      {activeView === 'vocabulary' ? (
-        <div className="flex-1 overflow-auto">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <ThesaurusEditor canEdit={auth.canEdit} />
-          </div>
-        </div>
-      ) : (
       <>
-      {/* Search + filters */}
-      <div className="border-b border-stm-warm-100 bg-white/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-          <div className="flex items-center gap-3">
-            {/* Search */}
-            <div className="relative flex-1 max-w-md">
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search places..."
-                className="w-full pl-8 pr-3 py-1.5 text-sm border border-stm-warm-200 rounded bg-white focus:ring-2 focus:ring-stm-sepia-400 focus:border-stm-sepia-400 outline-none"
-              />
-              <svg
-                className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-stm-warm-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <circle cx="11" cy="11" r="8" strokeWidth="2" />
-                <path d="m21 21-4.35-4.35" strokeWidth="2" />
-              </svg>
-            </div>
-
-            {/* Type filter buttons */}
-            <div className="flex gap-1">
-              {typeFilters.map(({ value, label }) => (
-                <button
-                  key={value}
-                  onClick={() => setTypeFilter(value)}
-                  className={`px-2.5 py-1 text-xs font-medium rounded transition-colors ${
-                    typeFilter === value
-                      ? 'bg-stm-sepia-600 text-white'
-                      : 'bg-stm-warm-100 text-stm-warm-600 hover:bg-stm-warm-200'
-                  }`}
+        {/* Search + filters */}
+        <div className="border-b border-stm-warm-100 bg-white/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            <div className="flex items-center gap-3">
+              {/* Search */}
+              <div className="relative flex-1 max-w-md">
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search places..."
+                  className="w-full pl-8 pr-3 py-1.5 text-sm border border-stm-warm-200 rounded bg-white focus:ring-2 focus:ring-stm-sepia-400 focus:border-stm-sepia-400 outline-none"
+                />
+                <svg
+                  className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-stm-warm-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  {label}
-                  <span className="ml-1 opacity-60">{typeCounts[value]}</span>
-                </button>
-              ))}
-            </div>
+                  <circle cx="11" cy="11" r="8" strokeWidth="2" />
+                  <path d="m21 21-4.35-4.35" strokeWidth="2" />
+                </svg>
+              </div>
 
-            {/* Dataset filter toggles */}
-            <div className="flex gap-2 items-center border-l border-stm-warm-200 pl-3">
-              <span className="text-[10px] text-stm-warm-400 uppercase tracking-wide">
-                Data:
-              </span>
-              {DATASET_FILTERS.map(({ key, label }) => {
-                const mode = datasetFilters.get(key);
-                return (
+              {/* Type filter buttons */}
+              <div className="flex gap-1">
+                {typeFilters.map(({ value, label }) => (
                   <button
-                    key={key}
-                    onClick={() => toggleDatasetFilter(key)}
-                    title={
-                      !mode
-                        ? `Click to show only places in ${label}`
-                        : mode === 'in'
-                          ? `Click to show only places NOT in ${label}`
-                          : 'Click to clear filter'
-                    }
-                    className={`flex items-center gap-1 px-2 py-0.5 text-xs rounded border transition-colors ${
-                      mode === 'in'
-                        ? 'bg-stm-teal-50 border-stm-teal-300 text-stm-teal-700 font-medium'
-                        : mode === 'not-in'
-                          ? 'bg-red-50 border-red-300 text-red-700 font-medium'
-                          : 'bg-white border-stm-warm-200 text-stm-warm-500 hover:border-stm-warm-300'
+                    key={value}
+                    onClick={() => setTypeFilter(value)}
+                    className={`px-2.5 py-1 text-xs font-medium rounded transition-colors ${
+                      typeFilter === value
+                        ? 'bg-stm-sepia-600 text-white'
+                        : 'bg-stm-warm-100 text-stm-warm-600 hover:bg-stm-warm-200'
                     }`}
                   >
-                    <span
-                      className={`w-2.5 h-2.5 rounded-sm flex items-center justify-center text-white text-[8px] font-bold ${
-                        mode === 'in'
-                          ? 'bg-stm-teal-600'
-                          : mode === 'not-in'
-                            ? 'bg-red-500'
-                            : 'bg-stm-warm-100'
+                    {label}
+                    <span className="ml-1 opacity-60">{typeCounts[value]}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Source filter */}
+              {!registryLoading && (
+                <div className="border-l border-stm-warm-200 pl-3">
+                  <SourceFilter
+                    sources={activeRegistrySources}
+                    categories={registryCategories}
+                    value={sourceFilter}
+                    onChange={setSourceFilter}
+                  />
+                </div>
+              )}
+
+              {/* Add button */}
+              {auth.canEdit && (
+                <button
+                  onClick={() => {
+                    setIsCreating(true);
+                    setSelectedId(null);
+                  }}
+                  className="px-3 py-1.5 text-sm font-medium bg-stm-teal-600 text-white rounded hover:bg-stm-teal-700 transition-colors shrink-0"
+                >
+                  + Add Place
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Main content: table + editor */}
+        <div className="flex-1 overflow-hidden flex">
+          {/* Place table */}
+          <div className="flex-1 overflow-auto">
+            <div className="text-xs text-stm-warm-400 px-4 sm:px-6 lg:px-8 pt-2 pb-1 max-w-350 mx-auto">
+              {filtered.length} of {places.length} places
+            </div>
+
+            <div className="px-4 sm:px-6 lg:px-8 pb-4 max-w-350 mx-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead className="sticky top-0 z-10 bg-white">
+                  <tr className="text-left text-xs text-stm-warm-500 border-b border-stm-warm-200">
+                    {(
+                      [
+                        ['prefLabel', 'Name'],
+                        ['type', 'Type'],
+                        ['district', 'District'],
+                        ['placeType', 'Product / Type'],
+                        ['psurIds', 'PSUR'],
+                        ['wikidataQid', 'Wikidata'],
+                        ['lat', 'Coords'],
+                        ['modifiedAt', 'Modified'],
+                      ] as [SortKey, string][]
+                    ).map(([key, label]) => (
+                      <th
+                        key={key}
+                        className="py-2 px-2 font-medium cursor-pointer hover:text-stm-warm-700 select-none whitespace-nowrap"
+                        onClick={() => toggleSort(key)}
+                      >
+                        {label}
+                        <SortArrow active={sortKey === key} dir={sortDir} />
+                      </th>
+                    ))}
+                    <th className="py-2 px-2 font-medium whitespace-nowrap text-center">
+                      Map
+                    </th>
+                    <th className="py-2 px-2 font-medium whitespace-nowrap text-center">
+                      Alm.
+                    </th>
+                    <th className="py-2 px-2 font-medium whitespace-nowrap text-center">
+                      WD
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map((place) => (
+                    <tr
+                      key={place.id}
+                      onClick={() => {
+                        setSelectedId(place.id);
+                        setIsCreating(false);
+                      }}
+                      className={`cursor-pointer border-b border-stm-warm-50 transition-colors ${
+                        selectedId === place.id
+                          ? 'bg-stm-sepia-50'
+                          : 'bg-white hover:bg-stm-warm-50'
                       }`}
                     >
-                      {mode === 'in' && (
-                        <svg
-                          className="w-2 h-2"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={4}
+                      {/* Name */}
+                      <td className="py-1.5 px-2 font-medium text-stm-warm-800 max-w-55 truncate">
+                        {place.prefLabel}
+                        {place.altLabels.length > 0 && (
+                          <span className="text-[11px] text-stm-warm-400 ml-1 font-normal hidden xl:inline">
+                            ({place.altLabels.slice(0, 2).join(', ')})
+                          </span>
+                        )}
+                      </td>
+
+                      {/* Type */}
+                      <td className="py-1.5 px-2">
+                        <span
+                          className="inline-block px-1.5 py-0.5 text-[10px] font-medium rounded"
+                          style={{
+                            backgroundColor:
+                              (colors[place.type] || '#888') + '20',
+                            color: colors[place.type] || '#888',
+                          }}
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      )}
-                      {mode === 'not-in' && (
-                        <svg
-                          className="w-2 h-2"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={4}
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M6 18L18 6M6 6l12 12"
-                          />
-                        </svg>
-                      )}
-                    </span>
-                    {label}
-                  </button>
-                );
-              })}
-            </div>
+                          {labels[place.type] || place.type}
+                        </span>
+                      </td>
 
-            {/* Add button */}
-            {auth.canEdit && (
-              <button
-                onClick={() => {
-                  setIsCreating(true);
-                  setSelectedId(null);
-                }}
-                className="px-3 py-1.5 text-sm font-medium bg-stm-teal-600 text-white rounded hover:bg-stm-teal-700 transition-colors shrink-0"
-              >
-                + Add Place
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
+                      {/* District */}
+                      <td className="py-1.5 px-2 text-stm-warm-600 max-w-35 truncate">
+                        {place.district ?? (
+                          <span className="text-stm-warm-200">--</span>
+                        )}
+                      </td>
 
-      {/* Main content: table + editor */}
-      <div className="flex-1 overflow-hidden flex">
-        {/* Place table */}
-        <div className="flex-1 overflow-auto">
-          <div className="text-xs text-stm-warm-400 px-4 sm:px-6 lg:px-8 pt-2 pb-1 max-w-350 mx-auto">
-            {filtered.length} of {places.length} places
-          </div>
+                      {/* Product / Type */}
+                      <td className="py-1.5 px-2 text-stm-warm-500 text-xs max-w-30 truncate">
+                        {place.placeType ?? (
+                          <span className="text-stm-warm-200">--</span>
+                        )}
+                      </td>
 
-          <div className="px-4 sm:px-6 lg:px-8 pb-4 max-w-350 mx-auto">
-            <table className="w-full text-sm border-collapse">
-              <thead className="sticky top-0 z-10 bg-white">
-                <tr className="text-left text-xs text-stm-warm-500 border-b border-stm-warm-200">
-                  {(
-                    [
-                      ['prefLabel', 'Name'],
-                      ['type', 'Type'],
-                      ['district', 'District'],
-                      ['placeType', 'Product / Type'],
-                      ['psurIds', 'PSUR'],
-                      ['wikidataQid', 'Wikidata'],
-                      ['lat', 'Coords'],
-                      ['modifiedAt', 'Modified'],
-                    ] as [SortKey, string][]
-                  ).map(([key, label]) => (
-                    <th
-                      key={key}
-                      className="py-2 px-2 font-medium cursor-pointer hover:text-stm-warm-700 select-none whitespace-nowrap"
-                      onClick={() => toggleSort(key)}
-                    >
-                      {label}
-                      <SortArrow active={sortKey === key} dir={sortDir} />
-                    </th>
+                      {/* PSUR */}
+                      <td className="py-1.5 px-2 text-stm-warm-500 font-mono text-xs">
+                        {place.psurIds.length > 0 ? (
+                          place.psurIds.join(', ')
+                        ) : (
+                          <span className="text-stm-warm-200">--</span>
+                        )}
+                      </td>
+
+                      {/* Wikidata */}
+                      <td className="py-1.5 px-2 text-stm-warm-500 font-mono text-xs">
+                        {place.wikidataQid ? (
+                          <a
+                            href={`https://www.wikidata.org/wiki/${place.wikidataQid}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-stm-teal-600 hover:underline"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {place.wikidataQid}
+                          </a>
+                        ) : (
+                          <span className="text-stm-warm-200">--</span>
+                        )}
+                      </td>
+
+                      {/* Coords */}
+                      <td className="py-1.5 px-2 text-stm-warm-400 font-mono text-xs whitespace-nowrap">
+                        {place.location.lat != null ? (
+                          <>
+                            {place.location.lat.toFixed(2)},{' '}
+                            {place.location.lng?.toFixed(2)}
+                          </>
+                        ) : (
+                          <span className="text-stm-warm-200">--</span>
+                        )}
+                      </td>
+
+                      {/* Modified */}
+                      <td className="py-1.5 px-2 text-stm-warm-400 text-xs whitespace-nowrap">
+                        {place.modifiedAt ? (
+                          new Date(place.modifiedAt).toLocaleDateString()
+                        ) : (
+                          <span className="text-stm-warm-200">--</span>
+                        )}
+                      </td>
+
+                      {/* Map 1930 */}
+                      <td className="py-1.5 px-2 text-center">
+                        {place.sources.includes('map-1930') ? (
+                          <span
+                            className="text-stm-sepia-500"
+                            title="In Map 1930"
+                          >
+                            &#10003;
+                          </span>
+                        ) : (
+                          <span className="text-stm-warm-200">-</span>
+                        )}
+                      </td>
+
+                      {/* Almanakken */}
+                      <td className="py-1.5 px-2 text-center">
+                        {place.sources.includes('almanakken') ? (
+                          <span
+                            className="text-stm-teal-600"
+                            title="In Almanakken"
+                          >
+                            &#10003;
+                          </span>
+                        ) : (
+                          <span className="text-stm-warm-200">-</span>
+                        )}
+                      </td>
+
+                      {/* Wikidata */}
+                      <td className="py-1.5 px-2 text-center">
+                        {place.wikidataQid ? (
+                          <span
+                            className="text-blue-600"
+                            title="Has Wikidata Q-ID"
+                          >
+                            &#10003;
+                          </span>
+                        ) : (
+                          <span className="text-stm-warm-200">-</span>
+                        )}
+                      </td>
+                    </tr>
                   ))}
-                  <th className="py-2 px-2 font-medium whitespace-nowrap text-center">
-                    Map
-                  </th>
-                  <th className="py-2 px-2 font-medium whitespace-nowrap text-center">
-                    Alm.
-                  </th>
-                  <th className="py-2 px-2 font-medium whitespace-nowrap text-center">
-                    WD
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {filtered.map((place) => (
-                  <tr
-                    key={place.id}
-                    onClick={() => {
-                      setSelectedId(place.id);
-                      setIsCreating(false);
-                    }}
-                    className={`cursor-pointer border-b border-stm-warm-50 transition-colors ${
-                      selectedId === place.id
-                        ? 'bg-stm-sepia-50'
-                        : 'bg-white hover:bg-stm-warm-50'
-                    }`}
-                  >
-                    {/* Name */}
-                    <td className="py-1.5 px-2 font-medium text-stm-warm-800 max-w-55 truncate">
-                      {place.prefLabel}
-                      {place.altLabels.length > 0 && (
-                        <span className="text-[11px] text-stm-warm-400 ml-1 font-normal hidden xl:inline">
-                          ({place.altLabels.slice(0, 2).join(', ')})
-                        </span>
-                      )}
-                    </td>
+                </tbody>
+              </table>
 
-                    {/* Type */}
-                    <td className="py-1.5 px-2">
-                      <span
-                        className="inline-block px-1.5 py-0.5 text-[10px] font-medium rounded"
-                        style={{
-                          backgroundColor: (colors[place.type] || '#888') + '20',
-                          color: colors[place.type] || '#888',
-                        }}
-                      >
-                        {labels[place.type] || place.type}
-                      </span>
-                    </td>
-
-                    {/* District */}
-                    <td className="py-1.5 px-2 text-stm-warm-600 max-w-35 truncate">
-                      {place.district ?? (
-                        <span className="text-stm-warm-200">--</span>
-                      )}
-                    </td>
-
-                    {/* Product / Type */}
-                    <td className="py-1.5 px-2 text-stm-warm-500 text-xs max-w-30 truncate">
-                      {place.placeType ?? (
-                        <span className="text-stm-warm-200">--</span>
-                      )}
-                    </td>
-
-                    {/* PSUR */}
-                    <td className="py-1.5 px-2 text-stm-warm-500 font-mono text-xs">
-                      {place.psurIds.length > 0 ? (
-                        place.psurIds.join(', ')
-                      ) : (
-                        <span className="text-stm-warm-200">--</span>
-                      )}
-                    </td>
-
-                    {/* Wikidata */}
-                    <td className="py-1.5 px-2 text-stm-warm-500 font-mono text-xs">
-                      {place.wikidataQid ? (
-                        <a
-                          href={`https://www.wikidata.org/wiki/${place.wikidataQid}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-stm-teal-600 hover:underline"
-                          onClick={(e) => e.stopPropagation()}
-                        >
-                          {place.wikidataQid}
-                        </a>
-                      ) : (
-                        <span className="text-stm-warm-200">--</span>
-                      )}
-                    </td>
-
-                    {/* Coords */}
-                    <td className="py-1.5 px-2 text-stm-warm-400 font-mono text-xs whitespace-nowrap">
-                      {place.location.lat != null ? (
-                        <>
-                          {place.location.lat.toFixed(2)},{' '}
-                          {place.location.lng?.toFixed(2)}
-                        </>
-                      ) : (
-                        <span className="text-stm-warm-200">--</span>
-                      )}
-                    </td>
-
-                    {/* Modified */}
-                    <td className="py-1.5 px-2 text-stm-warm-400 text-xs whitespace-nowrap">
-                      {place.modifiedAt ? (
-                        new Date(place.modifiedAt).toLocaleDateString()
-                      ) : (
-                        <span className="text-stm-warm-200">--</span>
-                      )}
-                    </td>
-
-                    {/* Map 1930 */}
-                    <td className="py-1.5 px-2 text-center">
-                      {place.sources.includes('map-1930') ? (
-                        <span
-                          className="text-stm-sepia-500"
-                          title="In Map 1930"
-                        >
-                          &#10003;
-                        </span>
-                      ) : (
-                        <span className="text-stm-warm-200">-</span>
-                      )}
-                    </td>
-
-                    {/* Almanakken */}
-                    <td className="py-1.5 px-2 text-center">
-                      {place.sources.includes('almanakken') ? (
-                        <span
-                          className="text-stm-teal-600"
-                          title="In Almanakken"
-                        >
-                          &#10003;
-                        </span>
-                      ) : (
-                        <span className="text-stm-warm-200">-</span>
-                      )}
-                    </td>
-
-                    {/* Wikidata */}
-                    <td className="py-1.5 px-2 text-center">
-                      {place.wikidataQid ? (
-                        <span
-                          className="text-blue-600"
-                          title="Has Wikidata Q-ID"
-                        >
-                          &#10003;
-                        </span>
-                      ) : (
-                        <span className="text-stm-warm-200">-</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-            {filtered.length === 0 && (
-              <p className="text-sm text-stm-warm-400 text-center py-8">
-                No places match your search.
-              </p>
-            )}
+              {filtered.length === 0 && (
+                <p className="text-sm text-stm-warm-400 text-center py-8">
+                  No places match your search.
+                </p>
+              )}
+            </div>
           </div>
+
+          {/* Editor panel */}
+          {selectedPlace && (
+            <div className="w-105 shrink-0 border-l border-stm-warm-200 bg-stm-warm-50 overflow-y-auto">
+              <PlaceEditor
+                key={selectedPlace.id}
+                place={selectedPlace}
+                districts={districts}
+                canEdit={auth.canEdit}
+                onSave={handleSave}
+                onCancel={handleCancel}
+              />
+            </div>
+          )}
         </div>
-
-        {/* Editor panel */}
-        {selectedPlace && (
-          <div className="w-105 shrink-0 border-l border-stm-warm-200 bg-stm-warm-50 overflow-y-auto">
-            <PlaceEditor
-              key={selectedPlace.id}
-              place={selectedPlace}
-              districts={districts}
-              canEdit={auth.canEdit}
-              onSave={handleSave}
-              onCancel={handleCancel}
-            />
-          </div>
-        )}
-      </div>
       </>
-      )}
     </div>
   );
 }

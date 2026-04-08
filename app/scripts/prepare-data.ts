@@ -233,13 +233,12 @@ if (existsSync(geojsonSrc)) {
         added++;
       }
     }
-    console.log(`  Merged ${added} gazetteer features into map-features.geojson`);
+    console.log(
+      `  Merged ${added} gazetteer features into map-features.geojson`,
+    );
   }
 
-  writeFileSync(
-    join(OUT_DIR, 'map-features.geojson'),
-    JSON.stringify(geojson),
-  );
+  writeFileSync(join(OUT_DIR, 'map-features.geojson'), JSON.stringify(geojson));
   console.log('  Wrote map-features.geojson');
 }
 
@@ -262,6 +261,13 @@ const thesaurusSrc = join(__dirname, '../../data/place-types-thesaurus.jsonld');
 if (existsSync(thesaurusSrc)) {
   copyFileSync(thesaurusSrc, join(OUT_DIR, 'place-types-thesaurus.jsonld'));
   console.log('  Copied place-types-thesaurus.jsonld');
+}
+
+// Copy sources registry
+const sourcesSrc = join(__dirname, '../../data/sources-registry.jsonld');
+if (existsSync(sourcesSrc)) {
+  copyFileSync(sourcesSrc, join(OUT_DIR, 'sources-registry.jsonld'));
+  console.log('  Copied sources-registry.jsonld');
 }
 
 console.log('\nDone! Data files ready in public/data/');
