@@ -3,15 +3,19 @@
 import {
   type Source,
   type SourceCategory,
-  getCategoryLabel,
   getActiveSources,
   getFutureSources,
   getSourcesByCategory,
   useSourceRegistry,
 } from '@/lib/sources';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const CATEGORY_ORDER = ['map', 'register', 'almanac', 'dataset', 'external'];
+
+interface AuthState {
+  user: { login: string; avatar_url: string; name: string | null } | null;
+  canEdit: boolean;
+}
 
 function sortedCategories(categories: SourceCategory[]): SourceCategory[] {
   return [...categories].sort((a, b) => {
@@ -26,6 +30,16 @@ export default function SourcesPage() {
     useSourceRegistry();
   const [expandedSource, setExpandedSource] = useState<string | null>(null);
   const [showFuture, setShowFuture] = useState(false);
+  const [auth, setAuth] = useState<AuthState>({ user: null, canEdit: false });
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [showAddForm, setShowAddForm] = useState(false);
+
+  useEffect(() => {
+    fetch('/api/auth/session')
+      .then((r) => r.json())
+      .then(setAuth)
+      .catch(() => {});
+  }, []);
 
   if (loading) {
     return (
@@ -48,20 +62,80 @@ export default function SourcesPage() {
     <div className="h-full overflow-y-auto bg-stm-warm-50">
       <div className="max-w-5xl mx-auto px-6 py-10">
         {/* Header */}
-        <div className="mb-6">
-          <h1 className="text-3xl font-serif font-bold text-stm-warm-900 mb-2">
-            Sources
-          </h1>
-          <p className="text-stm-warm-600 text-sm max-w-3xl">
-            Registry of historical sources (
-            <code className="text-xs bg-stm-warm-100 px-1 py-0.5 rounded">
-              E22 Human-Made Object
-            </code>
-            ) used in the Suriname Time Machine. Each source is a physical or
-            digital artifact that carries information about places, persons, and
-            organizations.
-          </p>
+        <div className="mb-6 flex items-start justify-between">
+          <div>
+            <h1 className="text-3xl font-serif font-bold text-stm-warm-900 mb-2">
+              Sources
+            </h1>
+            <p className="text-stm-warm-600 text-sm max-w-3xl">
+              Registry of historical sources (
+              <code className="text-xs bg-stm-warm-100 px-1 py-0.5 rounded">
+                E22 Human-Made Object
+              </code>
+              ) used in the Suriname Time Machine. Each source is a physical or
+              digital artifact that carries information about places, persons,
+              and organizations.
+            </p>
+          </div>
+          <div className="flex items-center gap-3 shrink-0">
+            {auth.canEdit && (
+              <button
+                onClick={() => {
+                  setShowAddForm(true);
+                  setEditingId(null);
+                }}
+                className="px-3 py-1.5 text-sm font-medium bg-stm-teal-600 text-white rounded hover:bg-stm-teal-700 transition-colors"
+              >
+                + Add Source
+              </button>
+            )}
+            {auth.user ? (
+              <div className="flex items-center gap-2">
+                <img
+                  src={auth.user.avatar_url}
+                  alt={auth.user.login}
+                  className="w-7 h-7 rounded-full"
+                />
+                <span className="text-sm text-stm-warm-600">
+                  {auth.user.name || auth.user.login}
+                </span>
+                {auth.canEdit && (
+                  <span className="text-xs bg-stm-teal-100 text-stm-teal-700 px-1.5 py-0.5 rounded">
+                    Editor
+                  </span>
+                )}
+              </div>
+            ) : (
+              <a
+                href="/api/auth/github"
+                className="inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium bg-stm-warm-800 text-white rounded hover:bg-stm-warm-700 transition-colors"
+              >
+                Sign in
+              </a>
+            )}
+          </div>
         </div>
+
+        {/* Add source form */}
+        {showAddForm && (
+          <SourceForm
+            categories={orderedCategories}
+            onSave={async (data) => {
+              const res = await fetch('/api/sources', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+              });
+              if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.error || 'Failed to save');
+              }
+              setShowAddForm(false);
+              window.location.reload();
+            }}
+            onCancel={() => setShowAddForm(false)}
+          />
+        )}
 
         {/* Stats bar */}
         <div className="flex gap-4 mb-8">
@@ -112,6 +186,10 @@ export default function SourcesPage() {
                   expandedSource={expandedSource}
                   onToggle={setExpandedSource}
                   variant="active"
+                  canEdit={auth.canEdit}
+                  editingId={editingId}
+                  onEdit={setEditingId}
+                  categories={orderedCategories}
                 />
               );
             })}
@@ -153,6 +231,10 @@ export default function SourcesPage() {
                     expandedSource={expandedSource}
                     onToggle={setExpandedSource}
                     variant="future"
+                    canEdit={auth.canEdit}
+                    editingId={editingId}
+                    onEdit={setEditingId}
+                    categories={orderedCategories}
                   />
                 );
               })}
@@ -172,12 +254,20 @@ function CategoryGroup({
   expandedSource,
   onToggle,
   variant,
+  canEdit,
+  editingId,
+  onEdit,
+  categories,
 }: {
   category: SourceCategory;
   sources: Source[];
   expandedSource: string | null;
   onToggle: (id: string | null) => void;
   variant: 'active' | 'future';
+  canEdit: boolean;
+  editingId: string | null;
+  onEdit: (id: string | null) => void;
+  categories: SourceCategory[];
 }) {
   const isFuture = variant === 'future';
 
@@ -212,6 +302,12 @@ function CategoryGroup({
               onToggle(expandedSource === src.sourceId ? null : src.sourceId)
             }
             variant={variant}
+            canEdit={canEdit}
+            isEditing={editingId === src.sourceId}
+            onEdit={() =>
+              onEdit(editingId === src.sourceId ? null : src.sourceId)
+            }
+            categories={categories}
           />
         ))}
       </div>
@@ -224,11 +320,19 @@ function SourceCard({
   isExpanded,
   onToggle,
   variant,
+  canEdit,
+  isEditing,
+  onEdit,
+  categories,
 }: {
   source: Source;
   isExpanded: boolean;
   onToggle: () => void;
   variant: 'active' | 'future';
+  canEdit: boolean;
+  isEditing: boolean;
+  onEdit: () => void;
+  categories: SourceCategory[];
 }) {
   const isFuture = variant === 'future';
 
@@ -312,71 +416,112 @@ function SourceCard({
 
       {isExpanded && (
         <div className="px-4 pb-4 border-t border-stm-warm-100">
-          <div className="pt-3 space-y-2">
-            {source.description && (
-              <p className="text-sm text-stm-warm-600">{source.description}</p>
-            )}
+          {isEditing ? (
+            <SourceEditForm
+              source={source}
+              categories={categories}
+              onSave={async (data) => {
+                const res = await fetch('/api/sources', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(data),
+                });
+                if (!res.ok) {
+                  const err = await res.json();
+                  throw new Error(err.error || 'Failed to save');
+                }
+                onEdit();
+                window.location.reload();
+              }}
+              onCancel={onEdit}
+            />
+          ) : (
+            <div className="pt-3 space-y-2">
+              {source.description && (
+                <p className="text-sm text-stm-warm-600">
+                  {source.description}
+                </p>
+              )}
 
-            <dl className="grid grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
-              {source.sourceId && (
-                <MetaField label="Source ID" value={source.sourceId} mono />
-              )}
-              {source.maker && <MetaField label="Maker" value={source.maker} />}
-              {source.publisher && (
-                <MetaField label="Publisher" value={source.publisher} />
-              )}
-              {source.publicationPlace && (
-                <MetaField label="Published" value={source.publicationPlace} />
-              )}
-              {source.holdingArchive && (
-                <MetaField label="Archive" value={source.holdingArchive} />
-              )}
-            </dl>
+              <dl className="grid grid-cols-2 gap-x-6 gap-y-1.5 text-sm">
+                {source.sourceId && (
+                  <MetaField label="Source ID" value={source.sourceId} mono />
+                )}
+                {source.maker && (
+                  <MetaField label="Maker" value={source.maker} />
+                )}
+                {source.publisher && (
+                  <MetaField label="Publisher" value={source.publisher} />
+                )}
+                {source.publicationPlace && (
+                  <MetaField
+                    label="Published"
+                    value={source.publicationPlace}
+                  />
+                )}
+                {source.holdingArchive && (
+                  <MetaField label="Archive" value={source.holdingArchive} />
+                )}
+              </dl>
 
-            {/* Links */}
-            <div className="flex gap-3 pt-1">
-              {source.handleUrl && (
-                <a
-                  href={source.handleUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  Archive Link
-                </a>
-              )}
-              {source.iiifManifest && (
-                <a
-                  href={source.iiifManifest}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  IIIF Manifest
-                </a>
-              )}
-              {source.iiifInfoUrl && (
-                <a
-                  href={source.iiifInfoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  IIIF Image
-                </a>
-              )}
-              {source.sameAs && (
-                <a
-                  href={source.sameAs}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
-                >
-                  External Link
-                </a>
+              {/* Links */}
+              <div className="flex gap-3 pt-1">
+                {source.handleUrl && (
+                  <a
+                    href={source.handleUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    Archive Link
+                  </a>
+                )}
+                {source.iiifManifest && (
+                  <a
+                    href={source.iiifManifest}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    IIIF Manifest
+                  </a>
+                )}
+                {source.iiifInfoUrl && (
+                  <a
+                    href={source.iiifInfoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    IIIF Image
+                  </a>
+                )}
+                {source.sameAs && (
+                  <a
+                    href={source.sameAs}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-blue-600 hover:text-blue-800 hover:underline"
+                  >
+                    External Link
+                  </a>
+                )}
+              </div>
+
+              {/* Edit button */}
+              {canEdit && (
+                <div className="pt-2 border-t border-stm-warm-100">
+                  <button
+                    type="button"
+                    onClick={onEdit}
+                    className="text-xs text-stm-sepia-600 hover:text-stm-sepia-800 font-medium"
+                  >
+                    Edit source
+                  </button>
+                </div>
               )}
             </div>
-          </div>
+          )}
         </div>
       )}
     </div>
@@ -402,6 +547,256 @@ function MetaField({
       >
         {value}
       </dd>
+    </div>
+  );
+}
+
+/* Inline edit form for an existing source */
+function SourceEditForm({
+  source,
+  categories,
+  onSave,
+  onCancel,
+}: {
+  source: Source;
+  categories: SourceCategory[];
+  onSave: (data: {
+    sourceId: string;
+    prefLabel: string;
+    description: string | null;
+    categoryId: string;
+    linkedToGazetteer: boolean;
+  }) => Promise<void>;
+  onCancel: () => void;
+}) {
+  const currentCatId = source.type.split('/').pop() || '';
+  const [label, setLabel] = useState(source.prefLabel);
+  const [desc, setDesc] = useState(source.description || '');
+  const [catId, setCatId] = useState(currentCatId);
+  const [linked, setLinked] = useState(source.linkedToGazetteer);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async () => {
+    setSaving(true);
+    setError(null);
+    try {
+      await onSave({
+        sourceId: source.sourceId,
+        prefLabel: label,
+        description: desc || null,
+        categoryId: catId,
+        linkedToGazetteer: linked,
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to save');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="pt-3 space-y-3">
+      <div>
+        <label className="block text-xs font-medium text-stm-warm-600 mb-1">
+          Label
+        </label>
+        <input
+          type="text"
+          value={label}
+          onChange={(e) => setLabel(e.target.value)}
+          className="w-full px-3 py-1.5 text-sm border border-stm-warm-200 rounded bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none"
+        />
+      </div>
+      <div>
+        <label className="block text-xs font-medium text-stm-warm-600 mb-1">
+          Description
+        </label>
+        <textarea
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+          rows={2}
+          className="w-full px-3 py-1.5 text-sm border border-stm-warm-200 rounded bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none resize-y"
+        />
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="block text-xs font-medium text-stm-warm-600 mb-1">
+            Category
+          </label>
+          <select
+            value={catId}
+            onChange={(e) => setCatId(e.target.value)}
+            className="w-full px-3 py-1.5 text-sm border border-stm-warm-200 rounded bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none"
+          >
+            {categories.map((c) => (
+              <option key={c.categoryId} value={c.categoryId}>
+                {c.prefLabel}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex items-end">
+          <label className="flex items-center gap-2 text-sm text-stm-warm-700 cursor-pointer pb-1.5">
+            <input
+              type="checkbox"
+              checked={linked}
+              onChange={(e) => setLinked(e.target.checked)}
+              className="rounded border-stm-warm-300 text-stm-teal-600 focus:ring-stm-sepia-400"
+            />
+            Linked to gazetteer
+          </label>
+        </div>
+      </div>
+      {error && (
+        <p className="text-xs text-red-600 bg-red-50 px-2 py-1 rounded">
+          {error}
+        </p>
+      )}
+      <div className="flex gap-2 pt-1">
+        <button
+          onClick={handleSubmit}
+          disabled={saving || !label.trim()}
+          className="px-3 py-1.5 text-xs font-medium bg-stm-sepia-600 text-white rounded hover:bg-stm-sepia-700 disabled:opacity-50 transition-colors"
+        >
+          {saving ? 'Saving...' : 'Save to GitHub'}
+        </button>
+        <button
+          onClick={onCancel}
+          disabled={saving}
+          className="px-3 py-1.5 text-xs text-stm-warm-600 border border-stm-warm-200 rounded hover:bg-stm-warm-50 transition-colors"
+        >
+          Cancel
+        </button>
+      </div>
+      <p className="text-[10px] text-stm-warm-400">
+        Source ID: <span className="font-mono">{source.sourceId}</span>{' '}
+        (immutable)
+      </p>
+    </div>
+  );
+}
+
+/* Form for adding a brand new source */
+function SourceForm({
+  categories,
+  onSave,
+  onCancel,
+}: {
+  categories: SourceCategory[];
+  onSave: (data: {
+    sourceId: string;
+    prefLabel: string;
+    description: string | null;
+    categoryId: string;
+    linkedToGazetteer: boolean;
+  }) => Promise<void>;
+  onCancel: () => void;
+}) {
+  const [label, setLabel] = useState('');
+  const [desc, setDesc] = useState('');
+  const [catId, setCatId] = useState(categories[0]?.categoryId || 'map');
+  const [linked, setLinked] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async () => {
+    setSaving(true);
+    setError(null);
+    try {
+      await onSave({
+        sourceId: '', // empty = auto-generate from label
+        prefLabel: label,
+        description: desc || null,
+        categoryId: catId,
+        linkedToGazetteer: linked,
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to save');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="mb-8 border border-stm-teal-200 bg-white rounded-lg shadow-sm p-5 space-y-3">
+      <h3 className="text-sm font-semibold text-stm-warm-800">
+        Add New Source
+      </h3>
+      <div>
+        <label className="block text-xs font-medium text-stm-warm-600 mb-1">
+          Label
+        </label>
+        <input
+          type="text"
+          value={label}
+          onChange={(e) => setLabel(e.target.value)}
+          placeholder="e.g. Generale Kaart van Suriname (1770)"
+          className="w-full px-3 py-1.5 text-sm border border-stm-warm-200 rounded bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none"
+        />
+      </div>
+      <div>
+        <label className="block text-xs font-medium text-stm-warm-600 mb-1">
+          Description
+        </label>
+        <textarea
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+          rows={2}
+          placeholder="Brief description of this source..."
+          className="w-full px-3 py-1.5 text-sm border border-stm-warm-200 rounded bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none resize-y"
+        />
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="block text-xs font-medium text-stm-warm-600 mb-1">
+            Category
+          </label>
+          <select
+            value={catId}
+            onChange={(e) => setCatId(e.target.value)}
+            className="w-full px-3 py-1.5 text-sm border border-stm-warm-200 rounded bg-white focus:ring-2 focus:ring-stm-sepia-400 outline-none"
+          >
+            {categories.map((c) => (
+              <option key={c.categoryId} value={c.categoryId}>
+                {c.prefLabel}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="flex items-end">
+          <label className="flex items-center gap-2 text-sm text-stm-warm-700 cursor-pointer pb-1.5">
+            <input
+              type="checkbox"
+              checked={linked}
+              onChange={(e) => setLinked(e.target.checked)}
+              className="rounded border-stm-warm-300 text-stm-teal-600 focus:ring-stm-sepia-400"
+            />
+            Linked to gazetteer
+          </label>
+        </div>
+      </div>
+      {error && (
+        <p className="text-xs text-red-600 bg-red-50 px-2 py-1 rounded">
+          {error}
+        </p>
+      )}
+      <div className="flex gap-2 pt-1">
+        <button
+          onClick={handleSubmit}
+          disabled={saving || !label.trim()}
+          className="px-3 py-1.5 text-sm font-medium bg-stm-teal-600 text-white rounded hover:bg-stm-teal-700 disabled:opacity-50 transition-colors"
+        >
+          {saving ? 'Saving...' : 'Add Source'}
+        </button>
+        <button
+          onClick={onCancel}
+          disabled={saving}
+          className="px-3 py-1.5 text-sm text-stm-warm-600 border border-stm-warm-200 rounded hover:bg-stm-warm-50 transition-colors"
+        >
+          Cancel
+        </button>
+      </div>
     </div>
   );
 }
