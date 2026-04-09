@@ -11,7 +11,10 @@
     },
     "altLabel": {
       "@id": "skos:altLabel",
-      "@container": ["@language", "@set"]
+      "@container": [
+        "@language",
+        "@set"
+      ]
     },
     "definition": {
       "@id": "skos:definition",
@@ -91,7 +94,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/human-made",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Human-Made Feature",
         "nl": "Menselijk Bouwwerk"
@@ -114,7 +120,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/natural",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Natural Feature",
         "nl": "Natuurlijk Kenmerk",
@@ -134,7 +143,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/administrative",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Administrative Division",
         "nl": "Administratieve Indeling"
@@ -152,7 +164,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/plantation",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Plantation",
         "nl": "Plantage",
@@ -167,8 +182,12 @@
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/human-made",
-      "related": ["stm:vocabulary/place-type/settlement"],
-      "exactMatch": ["http://www.wikidata.org/entity/Q188913"],
+      "related": [
+        "stm:vocabulary/place-type/settlement"
+      ],
+      "exactMatch": [
+        "http://www.wikidata.org/entity/Q188913"
+      ],
       "typeId": "plantation",
       "color": "#a67830",
       "crmClass": "E25_Human-Made_Feature",
@@ -179,13 +198,18 @@
     },
     {
       "@id": "stm:vocabulary/place-type/military-post",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Military Post",
         "nl": "Militaire Post"
       },
       "altLabel": {
-        "nl": ["voormalige militaire post (1882 map)"]
+        "nl": [
+          "voormalige militaire post (1882 map)"
+        ]
       },
       "definition": {
         "en": "A fortified position or garrison established for military defense or territorial control.",
@@ -197,8 +221,12 @@
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/human-made",
-      "related": ["stm:vocabulary/place-type/settlement"],
-      "closeMatch": ["http://www.wikidata.org/entity/Q245016"],
+      "related": [
+        "stm:vocabulary/place-type/settlement"
+      ],
+      "closeMatch": [
+        "http://www.wikidata.org/entity/Q245016"
+      ],
       "typeId": "military-post",
       "color": "#c0392b",
       "crmClass": "E25_Human-Made_Feature",
@@ -209,7 +237,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/road",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Road",
         "nl": "Weg",
@@ -220,7 +251,9 @@
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/human-made",
-      "exactMatch": ["http://www.wikidata.org/entity/Q34442"],
+      "exactMatch": [
+        "http://www.wikidata.org/entity/Q34442"
+      ],
       "typeId": "road",
       "color": "#a0522d",
       "crmClass": "E25_Human-Made_Feature",
@@ -231,7 +264,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/railroad",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Railroad",
         "nl": "Spoorweg"
@@ -241,8 +277,12 @@
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/human-made",
-      "related": ["stm:vocabulary/place-type/station"],
-      "closeMatch": ["http://www.wikidata.org/entity/Q22667"],
+      "related": [
+        "stm:vocabulary/place-type/station"
+      ],
+      "closeMatch": [
+        "http://www.wikidata.org/entity/Q22667"
+      ],
       "typeId": "railroad",
       "color": "#2c2c2c",
       "crmClass": "E25_Human-Made_Feature",
@@ -253,30 +293,39 @@
     },
     {
       "@id": "stm:vocabulary/place-type/station",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
-        "en": "Station",
-        "nl": "Station",
+        "en": "Astronomical Station",
+        "nl": "Astronomisch Station",
         "srn": "Stasi"
       },
       "definition": {
-        "en": "A stopping place on a transportation route, particularly a railroad."
+        "nl": "Geodetisch meetpunt",
+        "en": "Geodetic control point used as referencing point for map making",
+        "srn": "Lanti-marki [?]"
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/human-made",
-      "related": ["stm:vocabulary/place-type/railroad"],
-      "closeMatch": ["http://www.wikidata.org/entity/Q55488"],
+      "closeMatch": [
+        "https://www.wikidata.org/wiki/Q1408783"
+      ],
       "typeId": "station",
       "color": "#2c3e50",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
       "sortOrder": 5,
       "created": "2026-04-07",
-      "modified": "2026-04-07"
+      "modified": "2026-04-09"
     },
     {
       "@id": "stm:vocabulary/place-type/settlement",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Settlement",
         "nl": "Nederzetting"
@@ -299,8 +348,12 @@
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/human-made",
-      "related": ["stm:vocabulary/place-type/plantation"],
-      "exactMatch": ["http://www.wikidata.org/entity/Q486972"],
+      "related": [
+        "stm:vocabulary/place-type/plantation"
+      ],
+      "exactMatch": [
+        "http://www.wikidata.org/entity/Q486972"
+      ],
       "narrower": [
         "stm:vocabulary/place-type/town",
         "stm:vocabulary/place-type/indigenous-village",
@@ -316,7 +369,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/town",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Town",
         "nl": "Stad",
@@ -328,7 +384,9 @@
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/settlement",
-      "exactMatch": ["http://www.wikidata.org/entity/Q3957"],
+      "exactMatch": [
+        "http://www.wikidata.org/entity/Q3957"
+      ],
       "typeId": "town",
       "color": "#d4a853",
       "crmClass": "E25_Human-Made_Feature",
@@ -339,7 +397,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/indigenous-village",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Indigenous Village",
         "nl": "Inheems Dorp"
@@ -373,7 +434,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/maroon-village",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Maroon Village",
         "nl": "Marrondorp",
@@ -399,7 +463,9 @@
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/settlement",
-      "closeMatch": ["http://www.wikidata.org/entity/Q5765472"],
+      "closeMatch": [
+        "http://www.wikidata.org/entity/Q5765472"
+      ],
       "typeId": "maroon-village",
       "color": "#8e44ad",
       "crmClass": "E25_Human-Made_Feature",
@@ -410,7 +476,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/river",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "River",
         "nl": "Rivier",
@@ -422,7 +491,9 @@
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/natural",
-      "exactMatch": ["http://www.wikidata.org/entity/Q4022"],
+      "exactMatch": [
+        "http://www.wikidata.org/entity/Q4022"
+      ],
       "typeId": "river",
       "color": "#3182bd",
       "crmClass": "E26_Physical_Feature",
@@ -433,7 +504,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/creek",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "Creek",
         "nl": "Kreek",
@@ -445,7 +519,9 @@
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/natural",
-      "closeMatch": ["http://www.wikidata.org/entity/Q47521"],
+      "closeMatch": [
+        "http://www.wikidata.org/entity/Q47521"
+      ],
       "typeId": "creek",
       "color": "#6baed6",
       "crmClass": "E26_Physical_Feature",
@@ -456,7 +532,10 @@
     },
     {
       "@id": "stm:vocabulary/place-type/district",
-      "@type": ["skos:Concept", "crm:E55_Type"],
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
       "prefLabel": {
         "en": "District",
         "nl": "District",
@@ -468,7 +547,9 @@
       },
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/administrative",
-      "exactMatch": ["http://www.wikidata.org/entity/Q149621"],
+      "exactMatch": [
+        "http://www.wikidata.org/entity/Q149621"
+      ],
       "typeId": "district",
       "color": "#5a9e6f",
       "crmClass": "E53_Place",
