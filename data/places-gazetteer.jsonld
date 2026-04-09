@@ -367,7 +367,7 @@
       "prefLabel": "248",
       "altLabels": [],
       "broader": null,
-      "description": "Test",
+      "description": "",
       "location": {
         "lat": 5.786178632222222,
         "lng": -55.32829225777777,
@@ -384,7 +384,7 @@
       "locationDescription": null,
       "locationDescriptionOriginal": null,
       "placeType": null,
-      "modifiedBy": "jonaschlegel",
+      "modifiedBy": "Thunnisvanoort",
       "modifiedAt": "2026-04-09",
       "externalLinks": []
     },
