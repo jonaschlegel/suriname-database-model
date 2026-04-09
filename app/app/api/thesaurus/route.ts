@@ -44,8 +44,8 @@ export async function POST(request: NextRequest) {
       token,
       THESAURUS_PATH,
       JSON.stringify(thesaurus, null, 2) + '\n',
-      `Update geographical features thesaurus`,
       sha,
+      `Update geographical features thesaurus`,
     );
 
     return NextResponse.json({ ok: true });
