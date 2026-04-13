@@ -4759,10 +4759,8 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00710",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
+      "@id": "stm:place/stm-00710",
+      "@type": "E25_Human-Made_Feature",
       "id": "stm-00710",
       "type": "plantation",
       "prefLabel": "Badenstein",
@@ -4789,13 +4787,22 @@
       "locationDescription": "Warappa Kreek",
       "locationDescriptionOriginal": "Warrappa-kreek, regterhand in het opvaren",
       "placeType": "katoen",
-      "modifiedBy": null,
-      "modifiedAt": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-13",
       "externalLinks": [
         {
           "authority": "wikidata",
           "identifier": "Q59115187",
           "matchType": "closeMatch"
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "Commewijne rivier\\plantages\\Badenstein 2006-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/drive/folders/0B88mZFitv8emS1hQN2JjNjl2NmM?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-3bVNO9yHN3AcEqwuUzUrAwhttps://drive.google.com/drive/u/0/folders/0B88mZFitv8embmZaYWFQNnZacDQ?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-sImlF_DkEFu3ebWbDQ58Kg",
+          "author": "Philip Dikland",
+          "year": "2006, 2009",
+          "notes": null
         }
       ]
     },
