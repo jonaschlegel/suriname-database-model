@@ -76067,7 +76067,7 @@
       "@type": "E25_Human-Made_Feature",
       "id": "stm-02842",
       "type": "military-post",
-      "broader": "stm-00001",
+      "broader": null,
       "description": "Military post from 1882 map",
       "location": {
         "lat": 5.777265438468821,
