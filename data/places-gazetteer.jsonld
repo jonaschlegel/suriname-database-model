@@ -73614,37 +73614,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02842",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02842",
-      "type": "military-post",
-      "prefLabel": "'s Hertogenbosch",
-      "altLabels": [],
-      "broader": null,
-      "description": "Military post from 1882 map",
-      "location": {
-        "lat": 5.777265438468821,
-        "lng": -54.58875704340696,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1882"
-      ],
-      "wikidataQid": null,
-      "fid": 68,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02843",
       "@type": [
         "E25_Human-Made_Feature"
@@ -76092,6 +76061,41 @@
       "modifiedBy": null,
       "modifiedAt": null,
       "externalLinks": []
+    },
+    {
+      "@id": "stm:place/stm-02842",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02842",
+      "type": "military-post",
+      "broader": "stm-00001",
+      "description": "Military post from 1882 map",
+      "location": {
+        "lat": 5.777265438468821,
+        "lng": -54.58875704340696,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1882"
+      ],
+      "wikidataQid": null,
+      "fid": 68,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "jonaschlegel",
+      "modifiedAt": "2026-04-13",
+      "externalLinks": [],
+      "names": [
+        {
+          "text": "'s Hertogenbosch",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
     },
     {
       "@id": "https://data.suriname-timemachine.org/place/stm-02923",
