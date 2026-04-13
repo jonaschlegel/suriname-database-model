@@ -49,6 +49,15 @@ Primary data lives in `/data/` with these key sources:
 - **Mermaid erDiagram** — Does NOT support `%%` comments; use YAML frontmatter for metadata instead
 - **Mermaid flowchart** — Supports `%%` comments normally
 
+## Color System
+
+- **CRITERIA/Bruseker CRM colors are canonical** — Entity identity colors follow the CIDOC-CRM CRITERIA scheme (George Bruseker). Never invent new entity colors; use `CRM_COLORS` from `app/lib/data.ts`.
+- **Single source of truth** — `CRM_COLORS` dict in `app/lib/data.ts` is the canonical mapping. CSS tokens in `globals.css` (`--color-entity-*`) mirror these values for Tailwind usage.
+- **Place type colors derive from CRM parent class** — Each place type uses a tint/shade within its parent CRM class hue family (e.g., plantation types use E25 salmon variants, water features use E26 blue variants). Defined in `data/place-types-thesaurus.jsonld`.
+- **Entity colors as backgrounds, not text** — CRITERIA pastels have poor contrast as text on light backgrounds. Use entity color as `background-color` with dark text (`text-stm-warm-800` or `#78716c`) for WCAG AA compliance. Use white text only on darker entity colors (E25, E53, E22).
+- **Surface palette** — Backgrounds use the warm sepia/parchment palette (`stm-warm-*`, `stm-sepia-*`). Never use arbitrary hex values for surfaces; use the existing CSS custom properties.
+- **No hardcoded entity hex in components** — Always reference `CRM_COLORS['Exx']` in TypeScript or `bg-entity-exx`/`text-entity-exx` in Tailwind classes. Never inline raw hex values for entity identity colors.
+
 ## Key Modeling Decisions (Universal Source Pattern)
 
 Always use these patterns (see SKILL.md for full details):

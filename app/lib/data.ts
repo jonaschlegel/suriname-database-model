@@ -141,6 +141,11 @@ export const CRM_COLORS: Record<string, string> = {
   E55: '#d4edda', // E55 Type (light green)
   E52: '#cce5ff', // E52 Time-Span (light blue)
   E54: '#e2d9f3', // E54 Dimension (light purple)
+  E12: '#f0c87a', // E12 Production (warm gold)
+  E17: '#f0a0a0', // E17 Type Assignment (muted red)
+  E42: '#b8c9e0', // E42 Identifier (steel blue)
+  E81: '#f0a0a0', // E81 Transformation (muted red)
+  E68: '#e0b0b0', // E68 Dissolution (dusty rose)
   PROV: '#d4c4fb', // Provenance (lavender)
   Provenance: '#d4c4fb',
 };
@@ -160,6 +165,11 @@ export const CRM_CLASS_NAMES: Record<string, string> = {
   E55: 'E55 Type',
   E52: 'E52 Time-Span',
   E54: 'E54 Dimension',
+  E12: 'E12 Production',
+  E17: 'E17 Type Assignment',
+  E42: 'E42 Identifier',
+  E81: 'E81 Transformation',
+  E68: 'E68 Dissolution',
   PROV: 'prov:ProvenanceRecord',
 };
 

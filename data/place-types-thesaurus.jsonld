@@ -189,7 +189,7 @@
         "http://www.wikidata.org/entity/Q188913"
       ],
       "typeId": "plantation",
-      "color": "#a67830",
+      "color": "#e6956b",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
       "sortOrder": 1,
@@ -228,7 +228,7 @@
         "http://www.wikidata.org/entity/Q245016"
       ],
       "typeId": "military-post",
-      "color": "#c0392b",
+      "color": "#c47a55",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
       "sortOrder": 2,
@@ -255,7 +255,7 @@
         "http://www.wikidata.org/entity/Q34442"
       ],
       "typeId": "road",
-      "color": "#a0522d",
+      "color": "#b87d4a",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
       "sortOrder": 3,
@@ -284,7 +284,7 @@
         "http://www.wikidata.org/entity/Q22667"
       ],
       "typeId": "railroad",
-      "color": "#2c2c2c",
+      "color": "#a06040",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
       "sortOrder": 4,
@@ -313,7 +313,7 @@
         "https://www.wikidata.org/wiki/Q1408783"
       ],
       "typeId": "station",
-      "color": "#2c3e50",
+      "color": "#d4a882",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
       "sortOrder": 5,
@@ -360,7 +360,7 @@
         "stm:vocabulary/place-type/maroon-village"
       ],
       "typeId": "settlement",
-      "color": "#8b7355",
+      "color": "#cf8860",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
       "sortOrder": 6,
@@ -388,7 +388,7 @@
         "http://www.wikidata.org/entity/Q3957"
       ],
       "typeId": "town",
-      "color": "#d4a853",
+      "color": "#d4a074",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
       "sortOrder": 7,
@@ -425,7 +425,7 @@
       "inScheme": "stm:vocabulary/place-type",
       "broader": "stm:vocabulary/place-type/settlement",
       "typeId": "indigenous-village",
-      "color": "#27ae60",
+      "color": "#e8ad80",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
       "sortOrder": 8,
@@ -467,7 +467,7 @@
         "http://www.wikidata.org/entity/Q5765472"
       ],
       "typeId": "maroon-village",
-      "color": "#8e44ad",
+      "color": "#d09070",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
       "sortOrder": 9,
@@ -495,7 +495,7 @@
         "http://www.wikidata.org/entity/Q4022"
       ],
       "typeId": "river",
-      "color": "#3182bd",
+      "color": "#4a88bf",
       "crmClass": "E26_Physical_Feature",
       "crmBadge": "E26",
       "sortOrder": 10,
@@ -523,7 +523,7 @@
         "http://www.wikidata.org/entity/Q47521"
       ],
       "typeId": "creek",
-      "color": "#6baed6",
+      "color": "#8dbde0",
       "crmClass": "E26_Physical_Feature",
       "crmBadge": "E26",
       "sortOrder": 11,
@@ -551,7 +551,7 @@
         "http://www.wikidata.org/entity/Q149621"
       ],
       "typeId": "district",
-      "color": "#5a9e6f",
+      "color": "#7ab56a",
       "crmClass": "E53_Place",
       "crmBadge": "E53",
       "sortOrder": 0,

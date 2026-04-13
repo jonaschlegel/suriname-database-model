@@ -49,14 +49,27 @@
   --color-stm-warm-800: #3a352c;
   --color-stm-warm-900: #242019;
 
-  /* Entity type colors (used across badges & graphs) */
-  --color-entity-e25: #3b82f6;
-  --color-entity-e74: #8b5cf6;
-  --color-entity-e53: #22c55e;
-  --color-entity-e41: #f59e0b;
-  --color-entity-e22: #6b7280;
-  --color-entity-obs: #14b8a6;
-  --color-entity-prov: #f43f5e;
+  /* Entity type colors — CRITERIA / George Bruseker CIDOC-CRM scheme
+     Canonical across all pages: model, places, sources, vocabulary, homepage.
+     See: https://github.com/chin-rcip/CRITERIA */
+  --color-entity-e25: #e6956b; /* E25 Human-Made Feature — plantation (warm salmon) */
+  --color-entity-e26: #5b9bd5; /* E26 Physical Feature — rivers/creeks (blue) */
+  --color-entity-e74: #ffbdca; /* E74 Group — organization (pink) */
+  --color-entity-e53: #94cc7d; /* E53 Place — location/geometry (green) */
+  --color-entity-e41: #fef3ba; /* E41 Appellation — names (yellow) */
+  --color-entity-e22: #c78e66; /* E22 Human-Made Object — sources (brown) */
+  --color-entity-e13: #82ddff; /* E13 Attribute Assignment — observations (light blue) */
+  --color-entity-e36: #d4a574; /* E36 Visual Item — visual content (tan) */
+  --color-entity-e39: #ffe6eb; /* E39 Actor — person roles (light pink) */
+  --color-entity-e52: #cce5ff; /* E52 Time-Span — temporal extent (light blue) */
+  --color-entity-e54: #e2d9f3; /* E54 Dimension — measurements (light purple) */
+  --color-entity-e55: #d4edda; /* E55 Type — controlled vocabulary (light green) */
+  --color-entity-e12: #f0c87a; /* E12 Production — source production event (warm gold) */
+  --color-entity-e17: #f0a0a0; /* E17 Type Assignment — classification (muted red) */
+  --color-entity-e42: #b8c9e0; /* E42 Identifier — external IDs (steel blue) */
+  --color-entity-e81: #f0a0a0; /* E81 Transformation — plantation mergers (muted red) */
+  --color-entity-e68: #e0b0b0; /* E68 Dissolution — org absorption (dusty rose) */
+  --color-entity-prov: #d4c4fb; /* prov:ProvenanceRecord — provenance (lavender) */
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);

@@ -105,8 +105,8 @@ export default function HomePage() {
           </h2>
           <div className="grid sm:grid-cols-3 gap-8">
             <div className="bg-white border border-stm-warm-200 p-6">
-              <div className="w-10 h-10 bg-blue-50 flex items-center justify-center mb-4">
-                <span className="text-entity-e25 font-bold text-sm">E25</span>
+              <div className="w-10 h-10 bg-entity-e25 flex items-center justify-center mb-4">
+                <span className="text-white font-bold text-sm">E25</span>
               </div>
               <h3 className="font-semibold text-stm-warm-800 mb-2">
                 Plantation (Physical Site)
@@ -118,8 +118,8 @@ export default function HomePage() {
               </p>
             </div>
             <div className="bg-white border border-stm-warm-200 p-6">
-              <div className="w-10 h-10 bg-purple-50 flex items-center justify-center mb-4">
-                <span className="text-entity-e74 font-bold text-sm">E74</span>
+              <div className="w-10 h-10 bg-entity-e74 flex items-center justify-center mb-4">
+                <span className="text-stm-warm-800 font-bold text-sm">E74</span>
               </div>
               <h3 className="font-semibold text-stm-warm-800 mb-2">
                 Organization (Legal Entity)
@@ -131,8 +131,8 @@ export default function HomePage() {
               </p>
             </div>
             <div className="bg-white border border-stm-warm-200 p-6">
-              <div className="w-10 h-10 bg-green-50 flex items-center justify-center mb-4">
-                <span className="text-entity-e53 font-bold text-sm">E53</span>
+              <div className="w-10 h-10 bg-entity-e53 flex items-center justify-center mb-4">
+                <span className="text-white font-bold text-sm">E53</span>
               </div>
               <h3 className="font-semibold text-stm-warm-800 mb-2">
                 Place (Location / Geometry)

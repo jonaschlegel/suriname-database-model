@@ -76,7 +76,7 @@ const EMPTY_CONCEPT: Omit<PlaceTypeConcept, 'id' | 'typeId'> = {
   definition: {},
   editorialNote: {},
   historyNote: null,
-  color: '#888888',
+  color: '#e6956b',
   crmClass: 'E25_Human-Made_Feature',
   crmBadge: 'E25',
   sortOrder: 99,

@@ -1,22 +1,23 @@
 'use client';
 
+import { CRM_COLORS } from '@/lib/data';
 import { useEffect, useMemo, useState } from 'react';
 
 /* ─── Helpers ──────────────────────────────────────────────────── */
 
 /** Colors that need dark text for contrast */
 const LIGHT_BG = new Set([
-  '#fef3ba',
-  '#ffe6eb',
-  '#ffbdca',
-  '#d4edda',
-  '#cce5ff',
-  '#e2d9f3',
-  '#d4c4fb',
-  '#82ddff',
-  '#b8c9e0',
-  '#f0a0a0',
-  '#e0b0b0',
+  CRM_COLORS['E41'],
+  CRM_COLORS['E39'],
+  CRM_COLORS['E74'],
+  CRM_COLORS['E55'],
+  CRM_COLORS['E52'],
+  CRM_COLORS['E54'],
+  CRM_COLORS['PROV'],
+  CRM_COLORS['E13'],
+  CRM_COLORS['E42'],
+  CRM_COLORS['E17'],
+  CRM_COLORS['E68'],
 ]);
 
 function badgeTextColor(bg: string): string {
@@ -53,7 +54,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Plantation',
     crmClass: 'E25 Human-Made Feature',
     desc: 'The central entity -- the physical plantation as a human-made landscape feature. A subclass of both E24 Physical Human-Made Thing and E26 Physical Feature. Connected to locations via P53 and to operating organizations via P52. Classified via SKOS thesaurus concepts.',
-    color: '#e6956b',
+    color: CRM_COLORS.E25,
     cx: 380,
     cy: 330,
     dataKey: 'plantations',
@@ -80,7 +81,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Physical Feature',
     crmClass: 'E26 Physical Feature',
     desc: 'Natural geographical features such as rivers and creeks. E26 is the superclass of E25 (human-made features). Connected to locations via P53. Classified via SKOS thesaurus concepts (river, creek). No ownership relationship (rivers have no owners).',
-    color: '#5b9bd5',
+    color: CRM_COLORS.E26,
     cx: 150,
     cy: 330,
     dataKey: 'physical-features',
@@ -97,7 +98,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Organization',
     crmClass: 'E74 Group / sdo:Organization',
     desc: 'The legal entity that owns or operates the plantation. Identified by Wikidata Q-IDs. Separated from E25 to model the distinction between the physical place and its legal operator. Annual observations (E13) record time-varying properties.',
-    color: '#ffbdca',
+    color: CRM_COLORS.E74,
     cx: 720,
     cy: 290,
     dataKey: 'organizations',
@@ -125,7 +126,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Place',
     crmClass: 'E53 Place',
     desc: 'Spatial location of the plantation. Polygons digitized from the 1930 Bos & Weyerman map in QGIS. Source CRS is EPSG:31170 (Suriname Old TM), reprojected to WGS84 (EPSG:4326) using datum shift +towgs84=-265,120,-358,0,0,0,0. Geometry stored as GeoSPARQL wktLiteral.',
-    color: '#94cc7d',
+    color: CRM_COLORS.E53,
     cx: 150,
     cy: 530,
     dataKey: 'places',
@@ -148,7 +149,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Appellation',
     crmClass: 'E41 Appellation',
     desc: 'Names as first-class entities. Each source creates its own E41 instance. Map labels identify E25; almanac names identify E74. Temporal scope is inferred from the E22 source production date. Linked via P139 has alternative form.',
-    color: '#fef3ba',
+    color: CRM_COLORS.E41,
     cx: 620,
     cy: 100,
     dataKey: 'appellations-count',
@@ -166,7 +167,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Source',
     crmClass: 'E22 Human-Made Object',
     desc: 'Physical sources: maps, almanacs, registers. The source carries visual items (E36) and appellations (E41) that represent or identify entities. Each source has an E12 Production event recording who made it, where, and when. Digital reproductions (IIIF scans) are also modeled as E36 Visual Item, linked via P138 represents. The Almanakken (Surinaamse Almanakken) is modeled as a single E22 for the entire series.',
-    color: '#c78e66',
+    color: CRM_COLORS.E22,
     cx: 200,
     cy: 100,
     dataKey: 'sources',
@@ -188,7 +189,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Attr. Assignment',
     crmClass: 'E13 Attribute Assignment',
     desc: 'Each almanac row is an E13 Attribute Assignment -- not a source. The Almanakken is one E22 (the entire bound book/series); each CSV row is a separate E13 recording one year of observation about one organization. Properties: name, owner, administrator, director, product, size, location. Person-related data (enslaved counts) deferred to PICO integration. Plantation classification (verlaten) handled via E17 Type Assignment. Coverage spans ~1750-1863.',
-    color: '#82ddff',
+    color: CRM_COLORS.E13,
     cx: 580,
     cy: 510,
     dataKey: 'observations-count',
@@ -213,7 +214,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Type Assignment',
     crmClass: 'E17 Type Assignment',
     desc: 'Classifies a plantation as abandoned (verlaten) when an almanac row marks it as deserted. A subclass of E13 Attribute Assignment with specific properties P41 classified (targeting E25 Plantation) and P42 assigned (targeting E55 Type). Inherits P4 has time-span and prov:hadPrimarySource from E13.',
-    color: '#f0a0a0',
+    color: CRM_COLORS.E17,
     cx: 400,
     cy: 490,
     dataKey: '',
@@ -231,14 +232,17 @@ const ENTITIES: EntityDef[] = [
     label: 'Visual Item',
     crmClass: 'E36 Visual Item',
     desc: 'The visual content carried by a source. A map (E22) carries a visual item (E36) that represents the physical plantation (E25). This intermediary class enables the principle: "maps depict things; things have locations." Digital reproductions (IIIF scans) are also E36 Visual Items that represent the physical source (E22) via P138.',
-    color: '#d4a574',
+    color: CRM_COLORS.E36,
     cx: 380,
     cy: 160,
     dataKey: '',
     structural: true,
     properties: [
       { name: 'P138 represents', range: 'E25 Human-Made Feature' },
-      { name: 'P138 represents', range: 'E22 Human-Made Object (digital scan)' },
+      {
+        name: 'P138 represents',
+        range: 'E22 Human-Made Object (digital scan)',
+      },
       { name: 'P128i is carried by', range: 'E22 Human-Made Object' },
       { name: 'P50 has current keeper', range: 'string (archive name)' },
       { name: 'sdo:contentUrl', range: 'IIIF info.json URL' },
@@ -250,7 +254,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Time-Span',
     crmClass: 'E52 Time-Span',
     desc: 'Temporal extent of an E13 observation or E12 production event. Almanac years span ~1750-1863. E12 Production events for sources carry the date of creation, making colonial provenance explicit.',
-    color: '#cce5ff',
+    color: CRM_COLORS.E52,
     cx: 810,
     cy: 450,
     dataKey: '',
@@ -267,7 +271,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Actor',
     crmClass: 'E39 Actor',
     desc: 'People from almanac columns: eigenaren (owners), administrateurs, and directeurs. Currently stored as name strings. Entity resolution is needed to link identical persons across years and plantations. PICO-compatible modeling.',
-    color: '#ffe6eb',
+    color: CRM_COLORS.E39,
     cx: 870,
     cy: 580,
     dataKey: '',
@@ -284,7 +288,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Type',
     crmClass: 'E55 Type',
     desc: 'Controlled vocabulary terms: products (sugar, coffee, cocoa, cotton), plantation status (abandoned/verlaten via E17 Type Assignment), source types (map/almanac/register), certainty levels for qualified links. Managed as an authority list (thesaurus/taxonomy TBD).',
-    color: '#d4edda',
+    color: CRM_COLORS.E55,
     cx: 500,
     cy: 660,
     dataKey: '',
@@ -301,7 +305,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Dimension',
     crmClass: 'E54 Dimension',
     desc: 'Physical measurements. Size in akkers (Surinamese land unit) as recorded in the almanac. The akker is approximately 0.43 hectares.',
-    color: '#e2d9f3',
+    color: CRM_COLORS.E54,
     cx: 280,
     cy: 660,
     dataKey: '',
@@ -318,7 +322,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Production',
     crmClass: 'E12 Production',
     desc: 'The production event of a physical source (E22). Records who made the source (P14), where it was produced (P7), and when (P4). For maps, makers are Dutch colonial cartographers and publishers like Departement van Kolonien in Den Haag. For almanacs, the Koloniaal Bestuur van Suriname in Paramaribo. This makes colonial provenance explicit in the data graph.',
-    color: '#f0c87a',
+    color: CRM_COLORS.E12,
     cx: 60,
     cy: 30,
     dataKey: '',
@@ -336,7 +340,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Identifier',
     crmClass: 'E42 Identifier',
     desc: 'External identifiers linking entities to authority databases. Wikidata Q-IDs for organizations (e.g. Q4392658), PSUR IDs from slave registers, QGIS feature IDs (fid) for polygon geometries, and map catalogue identifiers.',
-    color: '#b8c9e0',
+    color: CRM_COLORS.E42,
     cx: 920,
     cy: 100,
     dataKey: '',
@@ -353,7 +357,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Transformation',
     crmClass: 'E81 Transformation',
     desc: "Models plantation mergers. When plantations merge, E81 simultaneously ends old E25 entities and produces the merged E25. For example, Suzanna'sdal and Geijersvlijt merging into one plantation by 1930.",
-    color: '#f0a0a0',
+    color: CRM_COLORS.E81,
     cx: 180,
     cy: 380,
     dataKey: '',
@@ -376,7 +380,7 @@ const ENTITIES: EntityDef[] = [
     label: 'Dissolution',
     crmClass: 'E68 Dissolution',
     desc: 'Models when an organization (E74) is absorbed by another. The dissolved organization ceases to exist; the absorbing organization acts as agent of the dissolution via P14 carried out by.',
-    color: '#e0b0b0',
+    color: CRM_COLORS.E68,
     cx: 920,
     cy: 220,
     dataKey: '',
@@ -696,7 +700,7 @@ function SchemaGraph({
           cy="0"
           r="8"
           fill="white"
-          stroke="#c78e66"
+          stroke={CRM_COLORS['E22']}
           strokeWidth="2"
         />
         <text x="14" y="4" className="text-[9px] fill-stm-warm-500">
@@ -1008,94 +1012,94 @@ function SourcePatternSection() {
       <div className="bg-stm-warm-50 p-4 font-mono text-xs text-stm-warm-600 space-y-2.5">
         <div>
           <span className="text-stm-warm-400">Source:</span>{' '}
-          <span style={{ color: '#c78e66' }}>E22 Map</span>
+          <span style={{ color: CRM_COLORS.E22 }}>E22 Map</span>
           {' -> P128 -> '}
-          <span style={{ color: '#d4a574' }}>E36 Visual Item</span>
+          <span style={{ color: CRM_COLORS.E36 }}>E36 Visual Item</span>
           {' -> P138 -> '}
-          <span style={{ color: '#e6956b' }}>E25 Plantation</span>
+          <span style={{ color: CRM_COLORS.E25 }}>E25 Plantation</span>
         </div>
         <div>
           <span className="text-stm-warm-400">Name:</span>{' '}
-          <span style={{ color: '#c78e66' }}>E22 Almanac</span>
+          <span style={{ color: CRM_COLORS.E22 }}>E22 Almanac</span>
           {' -> P128 -> '}
-          <span style={{ color: '#b5a200' }}>E41 Name</span>
+          <span style={{ color: CRM_COLORS.E41 }}>E41 Name</span>
           {' -> P1i -> '}
-          <span style={{ color: '#d4829a' }}>E74 Organization</span>
+          <span style={{ color: CRM_COLORS.E74 }}>E74 Organization</span>
         </div>
         <div>
           <span className="text-stm-warm-400">Location:</span>{' '}
-          <span style={{ color: '#e6956b' }}>E25 Plantation</span>
+          <span style={{ color: CRM_COLORS.E25 }}>E25 Plantation</span>
           {' -> P53 -> '}
-          <span style={{ color: '#6aad55' }}>E53 Place</span>
+          <span style={{ color: CRM_COLORS.E53 }}>E53 Place</span>
           {' -> geo:hasGeometry -> geo:asWKT -> POLYGON(...)'}
         </div>
         <div>
           <span className="text-stm-warm-400">Ownership:</span>{' '}
-          <span style={{ color: '#e6956b' }}>E25 Plantation</span>
+          <span style={{ color: CRM_COLORS.E25 }}>E25 Plantation</span>
           {' -> P52 -> '}
-          <span style={{ color: '#d4829a' }}>E74 Organization</span>
+          <span style={{ color: CRM_COLORS.E74 }}>E74 Organization</span>
           {' (wd:Q-ID)'}
         </div>
         <div>
           <span className="text-stm-warm-400">Time:</span>{' '}
-          <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
+          <span style={{ color: CRM_COLORS.E13 }}>E13 Attr. Assign.</span>
           {' -> P4 -> '}
-          <span style={{ color: '#6ba3cc' }}>E52 Time-Span</span>
+          <span style={{ color: CRM_COLORS.E52 }}>E52 Time-Span</span>
           {' (year) + P140 -> '}
-          <span style={{ color: '#d4829a' }}>E74</span>
+          <span style={{ color: CRM_COLORS.E74 }}>E74</span>
           {' = "what happened when"'}
         </div>
         <div>
           <span className="text-stm-warm-400">People:</span>{' '}
-          <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
+          <span style={{ color: CRM_COLORS.E13 }}>E13 Attr. Assign.</span>
           {' -> P14 -> '}
-          <span style={{ color: '#cc8e99' }}>E39 Actor</span>
+          <span style={{ color: CRM_COLORS.E39 }}>E39 Actor</span>
           {' + pico:hasRole -> picot:owner/admin/director'}
         </div>
         <div>
           <span className="text-stm-warm-400">Measurement:</span>{' '}
-          <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
+          <span style={{ color: CRM_COLORS.E13 }}>E13 Attr. Assign.</span>
           {' -> P43 -> '}
-          <span style={{ color: '#9b8abd' }}>E54 Dimension</span>
+          <span style={{ color: CRM_COLORS.E54 }}>E54 Dimension</span>
           {' (size in akkers)'}
         </div>
         <div>
           <span className="text-stm-warm-400">Types:</span>{' '}
-          <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
+          <span style={{ color: CRM_COLORS.E13 }}>E13 Attr. Assign.</span>
           {' -> P141 -> '}
-          <span style={{ color: '#5e9e52' }}>E55 Type</span>
+          <span style={{ color: CRM_COLORS.E55 }}>E55 Type</span>
           {' (product / deserted)'}
         </div>
         <div>
           <span className="text-stm-warm-400">Digital:</span>{' '}
-          <span style={{ color: '#d4a574' }}>E36 Visual Item</span>
+          <span style={{ color: CRM_COLORS.E36 }}>E36 Visual Item</span>
           {' -> P138 -> '}
-          <span style={{ color: '#c78e66' }}>E22 Source</span>
+          <span style={{ color: CRM_COLORS.E22 }}>E22 Source</span>
           {' (IIIF scan of physical source)'}
         </div>
         <div>
           <span className="text-stm-warm-400">Merger:</span>{' '}
-          <span style={{ color: '#e6956b' }}>E25 Plantation</span>
+          <span style={{ color: CRM_COLORS.E25 }}>E25 Plantation</span>
           {' -> P124 -> '}
-          <span style={{ color: '#cc7070' }}>E81 Transformation</span>
+          <span style={{ color: CRM_COLORS.E81 }}>E81 Transformation</span>
           {' -> P123 -> '}
-          <span style={{ color: '#e6956b' }}>E25 Plantation</span>
+          <span style={{ color: CRM_COLORS.E25 }}>E25 Plantation</span>
           {' (merged)'}
         </div>
         <div>
           <span className="text-stm-warm-400">Absorption:</span>{' '}
-          <span style={{ color: '#d4829a' }}>E74 Organization</span>
+          <span style={{ color: CRM_COLORS.E74 }}>E74 Organization</span>
           {' -> P99i -> '}
-          <span style={{ color: '#b87070' }}>E68 Dissolution</span>
+          <span style={{ color: CRM_COLORS.E68 }}>E68 Dissolution</span>
           {' -> P14 -> '}
-          <span style={{ color: '#d4829a' }}>E74 Organization</span>
+          <span style={{ color: CRM_COLORS.E74 }}>E74 Organization</span>
           {' (successor)'}
         </div>
         <div>
           <span className="text-stm-warm-400">Identifier:</span>{' '}
-          <span style={{ color: '#d4829a' }}>E74 Organization</span>
+          <span style={{ color: CRM_COLORS.E74 }}>E74 Organization</span>
           {' -> P48 -> '}
-          <span style={{ color: '#8aa4be' }}>E42 Identifier</span>
+          <span style={{ color: CRM_COLORS.E42 }}>E42 Identifier</span>
           {' (Wikidata Q-ID / PSUR ID)'}
         </div>
       </div>
@@ -1154,12 +1158,12 @@ function SpatialModelSection() {
           </h4>
           <div className="bg-stm-warm-50 p-4 font-mono text-xs text-stm-warm-600 space-y-1.5">
             <div className="mb-2">
-              <span style={{ color: '#e6956b' }}>E25</span>
+              <span style={{ color: CRM_COLORS['E25'] }}>E25</span>
               {' -> P53 -> '}
-              <span style={{ color: '#6aad55' }}>E53 Place</span>
+              <span style={{ color: CRM_COLORS['E53'] }}>E53 Place</span>
             </div>
             <div className="ml-4">
-              <span style={{ color: '#6aad55' }}>E53</span>
+              <span style={{ color: CRM_COLORS['E53'] }}>E53</span>
               {' -> geo:hasGeometry -> geo:Geometry'}
             </div>
             <div className="ml-8">{'-> geo:asWKT'}</div>
@@ -1211,12 +1215,14 @@ function TemporalModelSection() {
           </h4>
           <div className="bg-stm-warm-50 p-4 font-mono text-xs text-stm-warm-600 space-y-1.5">
             <div>
-              <span style={{ color: '#4ab3e6' }}>E13 Attr. Assign.</span>
+              <span style={{ color: CRM_COLORS['E13'] }}>
+                E13 Attr. Assign.
+              </span>
               {' -> P4 has time-span -> '}
-              <span style={{ color: '#6ba3cc' }}>E52</span>
+              <span style={{ color: CRM_COLORS['E52'] }}>E52</span>
             </div>
             <div className="ml-4">
-              <span style={{ color: '#6ba3cc' }}>E52</span>
+              <span style={{ color: CRM_COLORS['E52'] }}>E52</span>
               {' -> P82 at some time within -> xsd:gYear'}
             </div>
             <div className="mt-3 text-stm-warm-500">
@@ -1233,7 +1239,7 @@ function TemporalModelSection() {
           </h4>
           <div className="bg-stm-warm-50 p-4 font-mono text-xs text-stm-warm-600 space-y-1.5">
             <div>
-              <span style={{ color: '#c78e66' }}>E22 Source</span>
+              <span style={{ color: CRM_COLORS['E22'] }}>E22 Source</span>
               {' -> P108i was produced by -> E12 -> P4 has time-span -> E52'}
             </div>
             <div className="mt-1 text-stm-warm-500">
