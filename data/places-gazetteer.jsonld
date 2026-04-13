@@ -4882,14 +4882,15 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00684",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
+      "@id": "stm:place/stm-00684",
+      "@type": "E25_Human-Made_Feature",
       "id": "stm-00684",
       "type": "plantation",
       "prefLabel": "Barbados",
-      "altLabels": [],
+      "altLabels": [
+        "Schasie",
+        "Schas"
+      ],
       "broader": "stm-00004",
       "description": "",
       "location": {
@@ -4912,13 +4913,22 @@
       "locationDescription": "Warappa Kreek",
       "locationDescriptionOriginal": "Warrappa-kreek, regterhand in het opvaren",
       "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-13",
       "externalLinks": [
         {
           "authority": "wikidata",
           "identifier": "Q2649101",
           "matchType": "closeMatch"
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "Commewijne rivier\\plantages\\Barbados 2008-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/drive/folders/0B88mZFitv8emS1hQN2JjNjl2NmM?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-3bVNO9yHN3AcEqwuUzUrAw.google.com/drive/u/0/folders/0B88mZFitv8embmZaYWFQNnZacDQ?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-sImlF_DkEFu3ebWbDQ58Kg",
+          "author": "Philip Dikland",
+          "year": "2008, 2010",
+          "notes": null
         }
       ]
     },
