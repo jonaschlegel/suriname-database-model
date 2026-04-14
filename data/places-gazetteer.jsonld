@@ -83616,6 +83616,42 @@
       "externalLinks": []
     },
     {
+      "id": "stm-new-1776183306173",
+      "type": "settlement",
+      "names": [
+        {
+          "text": "Clarapolder",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "broader": "stm-00002",
+      "description": "",
+      "location": {
+        "lat": 5.897223191699894,
+        "lng": -57.044417944599004,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "rijksmuseum-collection"
+      ],
+      "wikidataQid": null,
+      "externalLinks": [],
+      "fid": null,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "diklandRefs": [],
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-14",
+      "@id": "stm:place/stm-new-1776183306173",
+      "@type": "E25_Human-Made_Feature"
+    },
+    {
       "@id": "stm:place/stm-02626",
       "@type": "E25_Human-Made_Feature",
       "id": "stm-02626",
