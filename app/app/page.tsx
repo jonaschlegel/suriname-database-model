@@ -21,11 +21,12 @@ const PARTNERS = [
   'Allard Pierson en Universiteitsbibliotheek Amsterdam',
 ];
 
-const FINANCIERS = [
-  'Stichting Pica',
-  'KNAW Citizen Science Incubator',
-];
+const FINANCIERS = ['Stichting Pica', 'KNAW Citizen Science Incubator'];
 
+/**
+ * Landing page for the Suriname Time Machine.
+ * Renders the hero section, dataset statistics, partners, financiers, and footer.
+ */
 export default function HomePage() {
   return (
     <div className="h-full overflow-y-auto">
@@ -73,9 +74,8 @@ export default function HomePage() {
           </div>
           <div className="mt-6 max-w-3xl border border-stm-warm-600/70 bg-stm-warm-900/30 p-4">
             <p className="text-sm text-stm-warm-200 leading-relaxed">
-              This website is still under development and may contain errors.
-              We ask users to keep in mind that colonial sources can be
-              hurtful.
+              This website is still under development and may contain errors. We
+              ask users to keep in mind that colonial sources can be hurtful.
             </p>
           </div>
         </div>
