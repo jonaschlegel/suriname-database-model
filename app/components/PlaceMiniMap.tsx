@@ -2,7 +2,36 @@
 
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+// Allmaps' WebGL renderer reads _leaflet_pos from pane elements before Leaflet
+// sets it; guard against undefined to avoid a TypeError on first render.
+let _domUtilPatched = false;
+if (typeof window !== 'undefined' && !_domUtilPatched) {
+  const _orig = L.DomUtil.getPosition;
+  L.DomUtil.getPosition = function (el: HTMLElement): L.Point {
+    if (!el) return new L.Point(0, 0);
+    if (!(el as unknown as Record<string, unknown>)._leaflet_pos) {
+      (el as unknown as Record<string, unknown>)._leaflet_pos = new L.Point(
+        0,
+        0,
+      );
+    }
+    return _orig.call(this, el);
+  };
+  _domUtilPatched = true;
+}
+
+const MAP_1930_URLS = [
+  'https://annotations.allmaps.org/maps/d9191cafde1831f0', // sheet 3
+  'https://annotations.allmaps.org/maps/dc967c11ce9e86b3', // sheet 4
+  'https://annotations.allmaps.org/maps/edaf1bbc8b86f0bf', // sheet 5
+  'https://annotations.allmaps.org/maps/9eac27facff8687f', // sheet 6
+  'https://annotations.allmaps.org/maps/5e0b6889ed3816d9', // sheet 7
+  'https://annotations.allmaps.org/maps/aacef031cb456d2a', // sheet 8
+  'https://annotations.allmaps.org/maps/4d07f0d3bf9fc347', // sheet 9
+  'https://annotations.allmaps.org/maps/ddd8d3ca24e1916a', // sheet 11
+];
 
 interface PlaceMiniMapProps {
   lat: number | null;
@@ -27,6 +56,8 @@ export default function PlaceMiniMap({
   const mapRef = useRef<L.Map | null>(null);
   const markerRef = useRef<L.Marker | null>(null);
   const polygonRef = useRef<L.Polygon | null>(null);
+  const warpedLayerRef = useRef<L.Layer | null>(null);
+  const [show1930Map, setShow1930Map] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -44,10 +75,50 @@ export default function PlaceMiniMap({
     mapRef.current = map;
 
     return () => {
+      warpedLayerRef.current?.remove();
+      warpedLayerRef.current = null;
       map.remove();
       mapRef.current = null;
     };
   }, []);
+
+  // Load or unload the 1930 Plantation Map overlay
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    if (!show1930Map) {
+      warpedLayerRef.current?.remove();
+      warpedLayerRef.current = null;
+      return;
+    }
+
+    let cancelled = false;
+    import('@allmaps/leaflet')
+      .then(async ({ WarpedMapLayer }) => {
+        if (cancelled || !mapRef.current) return;
+        const layer = new WarpedMapLayer(MAP_1930_URLS[0]);
+        layer.addTo(mapRef.current);
+        for (const url of MAP_1930_URLS.slice(1)) {
+          if (cancelled) break;
+          await (
+            layer as unknown as {
+              addGeoreferenceAnnotationByUrl: (u: string) => Promise<unknown>;
+            }
+          ).addGeoreferenceAnnotationByUrl(url);
+        }
+        if (!cancelled) warpedLayerRef.current = layer;
+      })
+      .catch(() => {
+        // Allmaps failed to load — mini map still usable without overlay
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [show1930Map]);
+
+  const toggle1930Map = useCallback(() => setShow1930Map((v) => !v), []);
 
   // Update map content when props change
   useEffect(() => {
@@ -114,9 +185,23 @@ export default function PlaceMiniMap({
   return (
     <div
       ref={containerRef}
-      className="w-full h-48 rounded border border-stm-warm-200"
+      className="relative w-full h-48 border border-stm-warm-200"
       style={{ minHeight: '192px' }}
-    />
+    >
+      <button
+        type="button"
+        onClick={toggle1930Map}
+        title="Toggle 1930 plantation map"
+        className={[
+          'absolute bottom-2 right-2 z-1000 px-2 py-0.5 text-[11px] font-medium border leading-tight',
+          show1930Map
+            ? 'bg-stm-sepia-600 text-white border-stm-sepia-700'
+            : 'bg-white/90 text-stm-warm-600 border-stm-warm-300 hover:bg-stm-warm-50',
+        ].join(' ')}
+      >
+        1930
+      </button>
+    </div>
   );
 }
 
