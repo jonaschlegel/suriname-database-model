@@ -102693,6 +102693,58 @@
       "modifiedBy": null,
       "modifiedAt": null,
       "externalLinks": []
+    },
+    {
+      "id": "stm-new-1776182225443",
+      "type": "creek",
+      "names": [
+        {
+          "text": "Mindrineti",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": false
+        },
+        {
+          "text": "Miendrieneti",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": false
+        },
+        {
+          "text": "Miendrienetie",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": null,
+        "lng": null,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [],
+      "wikidataQid": null,
+      "externalLinks": [
+        {
+          "authority": "geonames",
+          "identifier": "https://www.geonames.org/3383512/miendrienetie-kreek.html",
+          "matchType": "closeMatch"
+        }
+      ],
+      "fid": null,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "diklandRefs": [],
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-14",
+      "@id": "stm:place/stm-new-1776182225443",
+      "@type": "E26_Physical_Feature"
     }
   ]
 }
