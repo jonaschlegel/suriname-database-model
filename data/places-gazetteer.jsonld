@@ -82017,37 +82017,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02716",
-      "@type": [
-        "E53_Place"
-      ],
-      "id": "stm-02716",
-      "type": "settlement",
-      "prefLabel": "Nieuw Rotterdam",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.973860084804432,
-        "lng": -57.012460000469055,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1882"
-      ],
-      "wikidataQid": null,
-      "fid": 252,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02775",
       "@type": [
         "E53_Place"
@@ -83693,6 +83662,47 @@
         },
         {
           "text": "Jodensavanne",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02716",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02716",
+      "type": "settlement",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.973860084804432,
+        "lng": -57.012460000469055,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1882"
+      ],
+      "wikidataQid": "Q1010568",
+      "fid": 252,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-14",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q1010568",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Nieuw Rotterdam",
           "language": "nl",
           "type": "official",
           "isPreferred": true
