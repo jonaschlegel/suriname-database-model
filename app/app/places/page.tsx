@@ -10,7 +10,16 @@ import { getActiveSources, useSourceRegistry } from '@/lib/sources';
 import { usePlaceTypes } from '@/lib/thesaurus';
 import type { GazetteerPlace } from '@/lib/types';
 import { getPreferredName } from '@/lib/types';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import {
+  memo,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 type SortKey =
   | 'name'
@@ -117,7 +126,7 @@ const PlaceRow = memo(function PlaceRow({
       </td>
 
       {/* Product / Type */}
-      <td className="py-1.5 px-2 text-stm-warm-500 text-xs max-w-30 truncate">
+      <td className="py-1.5 px-2 text-stm-warm-500 text-xs max-w-30 truncate hidden 2xl:table-cell">
         {place.placeType ?? <span className="text-stm-warm-200">--</span>}
       </td>
 
@@ -161,7 +170,7 @@ const PlaceRow = memo(function PlaceRow({
       </td>
 
       {/* Modified */}
-      <td className="py-1.5 px-2 text-stm-warm-400 text-xs whitespace-nowrap">
+      <td className="py-1.5 px-2 text-stm-warm-400 text-xs whitespace-nowrap hidden 2xl:table-cell">
         {place.modifiedAt ? (
           new Date(place.modifiedAt).toLocaleDateString()
         ) : (
@@ -195,6 +204,14 @@ const PlaceRow = memo(function PlaceRow({
 });
 
 export default function PlacesPage() {
+  return (
+    <Suspense>
+      <PlacesPageInner />
+    </Suspense>
+  );
+}
+
+function PlacesPageInner() {
   const { labels, colors, allTypes } = usePlaceTypes();
   const typeFilters = useMemo(
     () => [
@@ -211,12 +228,18 @@ export default function PlacesPage() {
   const { canEdit } = useAuth();
   const [search, setSearch] = useState('');
   const [typeFilter, setTypeFilter] = useState('all');
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  // Selected place IDs — supports up to 2 for future compare/merge
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [isCreating, setIsCreating] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey>('name');
   const [sortDir, setSortDir] = useState<SortDir>('asc');
   const [sourceFilter, setSourceFilter] =
     useState<SourceFilterState>(emptyFilterState());
+
+  // URL sync: read ?place= (and future ?place2=) from search params
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const initializedFromUrl = useRef(false);
   const {
     sources: registrySources,
     categories: registryCategories,
@@ -245,6 +268,37 @@ export default function PlacesPage() {
       .finally(() => setLoading(false));
   }, []);
 
+  // Initialize selection from URL params (once data is loaded)
+  useEffect(() => {
+    if (initializedFromUrl.current || places.length === 0) return;
+    initializedFromUrl.current = true;
+    const placeParam = searchParams.get('place');
+    // Future: const place2Param = searchParams.get('place2');
+    if (placeParam && places.some((p) => p.id === placeParam)) {
+      setSelectedIds([placeParam]);
+    }
+  }, [places, searchParams]);
+
+  // Sync selectedIds to URL (skip transient stm-new-* IDs)
+  const syncUrlToSelection = useCallback(
+    (ids: string[]) => {
+      const persistIds = ids.filter((id) => !id.startsWith('stm-new-'));
+      const params = new URLSearchParams(window.location.search);
+      if (persistIds[0]) {
+        params.set('place', persistIds[0]);
+      } else {
+        params.delete('place');
+      }
+      // Future: place2 param for dual-panel
+      // if (persistIds[1]) params.set('place2', persistIds[1]);
+      // else params.delete('place2');
+      const qs = params.toString();
+      const newUrl = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+      router.replace(newUrl, { scroll: false });
+    },
+    [router],
+  );
+
   const toggleSort = useCallback((key: SortKey) => {
     setSortKey((prev) => {
       if (prev === key) {
@@ -256,10 +310,14 @@ export default function PlacesPage() {
     });
   }, []);
 
-  const handleRowSelect = useCallback((id: string) => {
-    setSelectedId(id);
-    setIsCreating(false);
-  }, []);
+  const handleRowSelect = useCallback(
+    (id: string) => {
+      setSelectedIds([id]);
+      setIsCreating(false);
+      syncUrlToSelection([id]);
+    },
+    [syncUrlToSelection],
+  );
 
   // Filter, search, and sort
   const filtered = useMemo(() => {
@@ -343,6 +401,9 @@ export default function PlacesPage() {
     [places],
   );
 
+  // Derive the first selected place (single-panel for now)
+  const selectedId = selectedIds[0] ?? null;
+
   const selectedPlace = useMemo(() => {
     if (isCreating) return emptyPlace();
     if (!selectedId) return null;
@@ -355,49 +416,58 @@ export default function PlacesPage() {
     return counts;
   }, [places]);
 
-  const handleSave = useCallback(async (updated: GazetteerPlace) => {
-    const res = await fetch('/api/places', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(updated),
-    });
-    if (!res.ok) {
-      const data = await res.json();
-      throw new Error(data.error || 'Failed to save');
-    }
-    // Update local state
-    setPlaces((prev) => {
-      const idx = prev.findIndex((p) => p.id === updated.id);
-      if (idx >= 0) {
-        const next = [...prev];
-        next[idx] = updated;
-        return next;
+  const handleSave = useCallback(
+    async (updated: GazetteerPlace) => {
+      const res = await fetch('/api/places', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updated),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to save');
       }
-      return [...prev, updated];
-    });
-    setSelectedId(updated.id);
-    setIsCreating(false);
-  }, []);
+      // Update local state
+      setPlaces((prev) => {
+        const idx = prev.findIndex((p) => p.id === updated.id);
+        if (idx >= 0) {
+          const next = [...prev];
+          next[idx] = updated;
+          return next;
+        }
+        return [...prev, updated];
+      });
+      setSelectedIds([updated.id]);
+      setIsCreating(false);
+      syncUrlToSelection([updated.id]);
+    },
+    [syncUrlToSelection],
+  );
 
   const handleCancel = useCallback(() => {
-    setSelectedId(null);
+    setSelectedIds([]);
     setIsCreating(false);
-  }, []);
+    syncUrlToSelection([]);
+  }, [syncUrlToSelection]);
 
-  const handleDelete = useCallback(async (id: string) => {
-    const res = await fetch('/api/places', {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id }),
-    });
-    if (!res.ok) {
-      const data = await res.json();
-      throw new Error(data.error || 'Failed to delete');
-    }
-    setPlaces((prev) => prev.filter((p) => p.id !== id));
-    setSelectedId(null);
-    setIsCreating(false);
-  }, []);
+  const handleDelete = useCallback(
+    async (id: string) => {
+      const res = await fetch('/api/places', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Failed to delete');
+      }
+      setPlaces((prev) => prev.filter((p) => p.id !== id));
+      setSelectedIds([]);
+      setIsCreating(false);
+      syncUrlToSelection([]);
+    },
+    [syncUrlToSelection],
+  );
 
   // Keyboard: Escape closes editor
   useEffect(() => {
@@ -514,7 +584,8 @@ export default function PlacesPage() {
                 <button
                   onClick={() => {
                     setIsCreating(true);
-                    setSelectedId(null);
+                    setSelectedIds([]);
+                    syncUrlToSelection([]);
                   }}
                   className="px-3 py-1.5 text-sm font-medium bg-stm-teal-600 text-white rounded hover:bg-stm-teal-700 transition-colors shrink-0"
                 >
@@ -539,19 +610,19 @@ export default function PlacesPage() {
                   <tr className="text-left text-xs text-stm-warm-500 border-b border-stm-warm-200">
                     {(
                       [
-                        ['name', 'Name'],
-                        ['type', 'Type'],
-                        ['district', 'District'],
-                        ['placeType', 'Product / Type'],
-                        ['psurIds', 'PSUR'],
-                        ['externalLinks', 'Links'],
-                        ['lat', 'Coords'],
-                        ['modifiedAt', 'Modified'],
-                      ] as [SortKey, string][]
-                    ).map(([key, label]) => (
+                        ['name', 'Name', ''],
+                        ['type', 'Type', ''],
+                        ['district', 'District', ''],
+                        ['placeType', 'Product / Type', 'hidden 2xl:table-cell'],
+                        ['psurIds', 'PSUR', ''],
+                        ['externalLinks', 'Links', ''],
+                        ['lat', 'Coords', ''],
+                        ['modifiedAt', 'Modified', 'hidden 2xl:table-cell'],
+                      ] as [SortKey, string, string][]
+                    ).map(([key, label, extraClass]) => (
                       <th
                         key={key}
-                        className="py-2 px-2 font-medium cursor-pointer hover:text-stm-warm-700 select-none whitespace-nowrap"
+                        className={`py-2 px-2 font-medium cursor-pointer hover:text-stm-warm-700 select-none whitespace-nowrap ${extraClass}`}
                         onClick={() => toggleSort(key)}
                       >
                         {label}
@@ -571,7 +642,7 @@ export default function PlacesPage() {
                     <PlaceRow
                       key={place.id}
                       place={place}
-                      isSelected={selectedId === place.id}
+                      isSelected={selectedIds.includes(place.id)}
                       onSelect={handleRowSelect}
                       colors={colors}
                       labels={labels}
@@ -588,9 +659,9 @@ export default function PlacesPage() {
             </div>
           </div>
 
-          {/* Editor panel */}
+          {/* Editor panel — future: map over selectedIds for dual-panel compare/merge */}
           {selectedPlace && (
-            <div className="w-105 shrink-0 border-l border-stm-warm-200 bg-stm-warm-50 overflow-y-auto">
+            <div className="w-[40%] min-w-105 max-w-160 shrink-0 border-l border-stm-warm-200 bg-stm-warm-50 overflow-y-auto">
               <PlaceEditor
                 key={selectedPlace.id}
                 place={selectedPlace}
