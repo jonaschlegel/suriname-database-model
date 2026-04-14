@@ -17803,47 +17803,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00659",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00659",
-      "type": "plantation",
-      "prefLabel": "Elisabethshoop",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.916833316,
-        "lng": -55.04252614000001,
-        "wkt": "Polygon ((-55.04665647 5.89749115, -55.04202895 5.94804640, -55.03616938 5.94710998, -55.04111943 5.89402790, -55.04665647 5.89749115))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q2439396",
-      "fid": 1742,
-      "psurIds": [
-        "PSUR0102"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q2439396",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01120",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73614,6 +73573,57 @@
           "language": "nl",
           "type": "official",
           "isPreferred": true
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00659",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00659",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.916833316,
+        "lng": -55.04252614000001,
+        "wkt": "Polygon ((-55.04665647 5.89749115, -55.04202895 5.94804640, -55.03616938 5.94710998, -55.04111943 5.89402790, -55.04665647 5.89749115))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q2439396",
+      "fid": 1742,
+      "psurIds": [
+        "PSUR0102"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-14",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q2439396",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Elisabethshoop",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Elisabeths Hoop",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
         }
       ]
     },
