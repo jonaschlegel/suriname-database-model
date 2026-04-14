@@ -293,7 +293,9 @@ function PlacesPageInner() {
       // if (persistIds[1]) params.set('place2', persistIds[1]);
       // else params.delete('place2');
       const qs = params.toString();
-      const newUrl = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+      const newUrl = qs
+        ? `${window.location.pathname}?${qs}`
+        : window.location.pathname;
       router.replace(newUrl, { scroll: false });
     },
     [router],
@@ -613,7 +615,11 @@ function PlacesPageInner() {
                         ['name', 'Name', ''],
                         ['type', 'Type', ''],
                         ['district', 'District', ''],
-                        ['placeType', 'Product / Type', 'hidden 2xl:table-cell'],
+                        [
+                          'placeType',
+                          'Product / Type',
+                          'hidden 2xl:table-cell',
+                        ],
                         ['psurIds', 'PSUR', ''],
                         ['externalLinks', 'Links', ''],
                         ['lat', 'Coords', ''],
