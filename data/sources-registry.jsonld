@@ -82,6 +82,17 @@
       "description": "Community and researcher-compiled document collections containing historical descriptions of Surinamese plantations, places, and persons."
     },
     {
+      "@id": "https://data.suriname-timemachine.org/source/rijksmuseum-collection",
+      "@type": [
+        "crm:E22_Human-Made_Object"
+      ],
+      "sourceId": "rijksmuseum-collection",
+      "prefLabel": "Rijksmuseum collection",
+      "P2_has_type": "https://data.suriname-timemachine.org/type/source-type/research-collection",
+      "linkedToGazetteer": false,
+      "description": "Online image collection of Rijksmuseum at https://www.rijksmuseum.nl/nl/collectie"
+    },
+    {
       "@id": "https://data.suriname-timemachine.org/source/map-1930",
       "@type": [
         "crm:E22_Human-Made_Object"
