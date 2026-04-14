@@ -17,8 +17,16 @@ const PARTNERS = [
   'Historische Database Suriname en de Cariben (HDSC)',
   'Amsterdam Time Machine, UvA',
   'Wikimedia Nederland',
+  'Universiteitsbibliotheek Leiden',
+  'Allard Pierson en Universiteitsbibliotheek Amsterdam',
 ];
 
+const FINANCIERS = ['Stichting Pica', 'KNAW Citizen Science Incubator'];
+
+/**
+ * Landing page for the Suriname Time Machine.
+ * Renders the hero section, dataset statistics, partners, financiers, and footer.
+ */
 export default function HomePage() {
   return (
     <div className="h-full overflow-y-auto">
@@ -63,6 +71,12 @@ export default function HomePage() {
             >
               Browse Data Model
             </Link>
+          </div>
+          <div className="mt-6 max-w-3xl border border-stm-warm-600/70 bg-stm-warm-900/30 p-4">
+            <p className="text-sm text-stm-warm-200 leading-relaxed">
+              This website is still under development and may contain errors. We
+              ask users to keep in mind that colonial sources can be hurtful.
+            </p>
           </div>
         </div>
       </section>
@@ -154,6 +168,25 @@ export default function HomePage() {
           </h2>
           <div className="flex flex-wrap gap-3">
             {PARTNERS.map((name) => (
+              <span
+                key={name}
+                className="bg-stm-warm-100 text-stm-warm-600 px-4 py-2 text-sm font-medium"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Financiers */}
+      <section className="pb-16 sm:pb-20 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stm-warm-800 mb-8">
+            Financiers
+          </h2>
+          <div className="flex flex-wrap gap-3">
+            {FINANCIERS.map((name) => (
               <span
                 key={name}
                 className="bg-stm-warm-100 text-stm-warm-600 px-4 py-2 text-sm font-medium"
