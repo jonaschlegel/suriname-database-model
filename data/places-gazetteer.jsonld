@@ -32169,47 +32169,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00821",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00821",
-      "type": "plantation",
-      "prefLabel": "Liverpool",
-      "altLabels": [],
-      "broader": "stm-00008",
-      "description": "",
-      "location": {
-        "lat": 5.875457761999999,
-        "lng": -54.785106142,
-        "wkt": "Polygon ((-54.78577284 5.88758938, -54.78219761 5.88732124, -54.78392014 5.85808839, -54.78786728 5.85670042, -54.78577284 5.88758938))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59116948",
-      "fid": 1905,
-      "psurIds": [
-        "PSUR0200"
-      ],
-      "district": "Divisie Matapplea",
-      "locationDescription": "Boven-Cottica",
-      "locationDescriptionOriginal": "Rivier Cottica, (boven) regterhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59116948",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00596",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73621,6 +73580,57 @@
         },
         {
           "text": "Elisabeths Hoop",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00821",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00821",
+      "type": "plantation",
+      "broader": "stm-00008",
+      "description": "",
+      "location": {
+        "lat": 5.875457761999999,
+        "lng": -54.785106142,
+        "wkt": "Polygon ((-54.78577284 5.88758938, -54.78219761 5.88732124, -54.78392014 5.85808839, -54.78786728 5.85670042, -54.78577284 5.88758938))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59116948",
+      "fid": 1905,
+      "psurIds": [
+        "PSUR0200"
+      ],
+      "district": "Divisie Matapplea",
+      "locationDescription": "Boven-Cottica",
+      "locationDescriptionOriginal": "Rivier Cottica, (boven) regterhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-14",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59116948",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Liverpool",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Leeverpoel",
           "language": "nl",
           "type": "variant",
           "isPreferred": false
