@@ -83612,7 +83612,7 @@
         "map-1930",
         "map-1882"
       ],
-      "wikidataQid": null,
+      "wikidataQid": "Q648787",
       "fid": 127,
       "psurIds": [],
       "district": null,
@@ -83621,7 +83621,13 @@
       "placeType": null,
       "modifiedBy": "Thunnisvanoort",
       "modifiedAt": "2026-04-14",
-      "externalLinks": [],
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q648787",
+          "matchType": "closeMatch"
+        }
+      ],
       "names": [
         {
           "text": "Ruïne Synagoge",
