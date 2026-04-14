@@ -82560,38 +82560,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02626",
-      "@type": [
-        "E53_Place"
-      ],
-      "id": "stm-02626",
-      "type": "settlement",
-      "prefLabel": "Ruïne Synagoge",
-      "altLabels": [],
-      "broader": null,
-      "description": "Jodensavanne",
-      "location": {
-        "lat": 5.4167777613469115,
-        "lng": -54.978325629847404,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "map-1882"
-      ],
-      "wikidataQid": null,
-      "fid": 127,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02759",
       "@type": [
         "E53_Place"
@@ -83626,6 +83594,48 @@
       "modifiedBy": null,
       "modifiedAt": null,
       "externalLinks": []
+    },
+    {
+      "@id": "stm:place/stm-02626",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02626",
+      "type": "settlement",
+      "broader": null,
+      "description": "Jodensavanne",
+      "location": {
+        "lat": 5.4167777613469115,
+        "lng": -54.978325629847404,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "map-1882"
+      ],
+      "wikidataQid": null,
+      "fid": 127,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-14",
+      "externalLinks": [],
+      "names": [
+        {
+          "text": "Ruïne Synagoge",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
+        },
+        {
+          "text": "Jodensavanne",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
     },
     {
       "@id": "https://data.suriname-timemachine.org/place/stm-02530",
