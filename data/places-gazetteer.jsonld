@@ -74234,37 +74234,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02809",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02809",
-      "type": "military-post",
-      "prefLabel": "Gelderland",
-      "altLabels": [],
-      "broader": null,
-      "description": "Military post from 1882 map",
-      "location": {
-        "lat": 5.4319302784370675,
-        "lng": -54.98542362393378,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1882"
-      ],
-      "wikidataQid": null,
-      "fid": 34,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02816",
       "@type": [
         "E25_Human-Made_Feature"
@@ -76091,6 +76060,47 @@
       "names": [
         {
           "text": "'s Hertogenbosch",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02809",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02809",
+      "type": "military-post",
+      "broader": null,
+      "description": "Military post from 1882 map",
+      "location": {
+        "lat": 5.4319302784370675,
+        "lng": -54.98542362393378,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1882"
+      ],
+      "wikidataQid": null,
+      "fid": 34,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-14",
+      "externalLinks": [
+        {
+          "authority": "_custom",
+          "identifier": "https://www.atlasofmutualheritage.nl/page/7770/gelderland",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Gelderland",
           "language": "nl",
           "type": "official",
           "isPreferred": true
