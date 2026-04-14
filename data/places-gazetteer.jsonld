@@ -11674,47 +11674,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02065",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02065",
-      "type": "plantation",
-      "prefLabel": "Cornelisvriendschap",
-      "altLabels": [],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.800919445714285,
-        "lng": -54.96563805142857,
-        "wkt": "Polygon ((-54.95962257 5.80298681, -54.96013162 5.79697685, -54.96966708 5.79804519, -54.96992862 5.79972794, -54.97008423 5.80178778, -54.97040967 5.80392474, -54.95962257 5.80298681))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115409",
-      "fid": 3150,
-      "psurIds": [
-        "PSUR0069"
-      ],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Orelana Kreek",
-      "locationDescriptionOriginal": "Hoer-Helena-kreek, linkerhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115409",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02303",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73490,6 +73449,57 @@
           "language": "nl",
           "type": "official",
           "isPreferred": true
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02065",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02065",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.800919445714285,
+        "lng": -54.96563805142857,
+        "wkt": "Polygon ((-54.95962257 5.80298681, -54.96013162 5.79697685, -54.96966708 5.79804519, -54.96992862 5.79972794, -54.97008423 5.80178778, -54.97040967 5.80392474, -54.95962257 5.80298681))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115409",
+      "fid": 3150,
+      "psurIds": [
+        "PSUR0069"
+      ],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Orelana Kreek",
+      "locationDescriptionOriginal": "Hoer-Helena-kreek, linkerhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-14",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115409",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Cornelisvriendschap",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Cornelis Vriendschap",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
         }
       ]
     },
