@@ -176,8 +176,13 @@ export default function HomePage() {
               </span>
             ))}
           </div>
+        </div>
+      </section>
 
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stm-warm-800 mt-14 mb-8">
+      {/* Financiers */}
+      <section className="pb-16 sm:pb-20 bg-white">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-stm-warm-800 mb-8">
             Financiers
           </h2>
           <div className="flex flex-wrap gap-3">
