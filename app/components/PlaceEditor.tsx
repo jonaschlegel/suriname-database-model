@@ -451,8 +451,10 @@ export default function PlaceEditor({
     <div className="bg-white border border-stm-warm-200 rounded-lg shadow-sm">
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-stm-warm-100">
-        <h3 className="text-lg font-serif font-bold text-stm-warm-800">
-          {place.modifiedAt ? 'Edit Place' : 'New Place'}
+        <h3 className="text-lg font-serif font-bold text-stm-warm-800 truncate">
+          {place.id.startsWith('stm-new-')
+            ? 'New Place'
+            : getPreferredName(place) || 'Unnamed Place'}
         </h3>
         <button
           onClick={onCancel}
@@ -463,7 +465,7 @@ export default function PlaceEditor({
         </button>
       </div>
 
-      <div className="p-5 space-y-4 max-h-[70vh] overflow-y-auto">
+      <div className="p-5 space-y-4">
         {/* Names */}
         <div>
           <div className="flex items-center justify-between mb-1">
