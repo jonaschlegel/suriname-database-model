@@ -458,7 +458,10 @@ function PlacesPageInner() {
       throw new Error(data.error || 'Failed to save');
     }
     // Use the server response which includes modifiedBy/modifiedAt set by the API
-    const saved: GazetteerPlace = data.place ?? updated;
+    if (!data.place?.modifiedBy || !data.place?.modifiedAt) {
+      throw new Error('Server response missing modifiedBy/modifiedAt');
+    }
+    const saved: GazetteerPlace = data.place;
     // Update local state
     setPlaces((prev) => {
       const idx = prev.findIndex((p) => p.id === saved.id);

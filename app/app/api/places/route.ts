@@ -18,8 +18,13 @@ const PUBLIC_GAZETTEER = join(
 function syncPublicCopy(jsonldStr: string) {
   try {
     writeFileSync(PUBLIC_GAZETTEER, jsonldStr, 'utf-8');
-  } catch {
+  } catch (err) {
     // Non-fatal: the GitHub copy is the source of truth
+    console.error(
+      'Failed to sync public gazetteer copy',
+      PUBLIC_GAZETTEER,
+      err,
+    );
   }
 }
 
@@ -303,7 +308,13 @@ export async function DELETE(request: NextRequest) {
     jsonld['@graph'] = gazetteer;
 
     const jsonStr = JSON.stringify(jsonld, null, 2);
-    await writeRepoFile(token, GAZETTEER_PATH, jsonStr, sha, `Delete place: ${label}`);
+    await writeRepoFile(
+      token,
+      GAZETTEER_PATH,
+      jsonStr,
+      sha,
+      `Delete place: ${label}`,
+    );
     syncPublicCopy(jsonStr);
 
     return NextResponse.json({ ok: true });
