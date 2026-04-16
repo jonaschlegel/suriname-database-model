@@ -3147,48 +3147,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00595",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00595",
-      "type": "plantation",
-      "prefLabel": "Alliance",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.905694462916667,
-        "lng": -54.88768217541668,
-        "wkt": "Polygon ((-54.88083421 5.91794472, -54.88137690 5.90371177, -54.88198505 5.88291468, -54.88311798 5.88467460, -54.88515520 5.88684759, -54.88783671 5.88864263, -54.88894055 5.88890789, -54.88934424 5.89180846, -54.88910063 5.89441172, -54.88802807 5.89817306, -54.88741411 5.90151276, -54.88778543 5.90558008, -54.88893908 5.91031664, -54.89058815 5.91348528, -54.89219610 5.91498357, -54.89396337 5.91665638, -54.89422276 5.91786226, -54.89359798 5.91860211, -54.89214846 5.91788836, -54.89039580 5.91614294, -54.88811410 5.91570952, -54.88551315 5.91575814, -54.88293997 5.91618723, -54.88083421 5.91794472))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q137472412",
-      "fid": 1678,
-      "psurIds": [
-        "PSUR0010",
-        "PSUR0204",
-        "PSUR0318"
-      ],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q137472412",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00707",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73478,6 +73436,52 @@
           "language": "nl",
           "type": "historical",
           "isPreferred": false
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00595",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00595",
+      "type": "plantation",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.905694462916667,
+        "lng": -54.88768217541668,
+        "wkt": "Polygon ((-54.88083421 5.91794472, -54.88137690 5.90371177, -54.88198505 5.88291468, -54.88311798 5.88467460, -54.88515520 5.88684759, -54.88783671 5.88864263, -54.88894055 5.88890789, -54.88934424 5.89180846, -54.88910063 5.89441172, -54.88802807 5.89817306, -54.88741411 5.90151276, -54.88778543 5.90558008, -54.88893908 5.91031664, -54.89058815 5.91348528, -54.89219610 5.91498357, -54.89396337 5.91665638, -54.89422276 5.91786226, -54.89359798 5.91860211, -54.89214846 5.91788836, -54.89039580 5.91614294, -54.88811410 5.91570952, -54.88551315 5.91575814, -54.88293997 5.91618723, -54.88083421 5.91794472))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q137472412",
+      "fid": 1678,
+      "psurIds": [
+        "PSUR0010",
+        "PSUR0204",
+        "PSUR0318"
+      ],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-16",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q137472412",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Alliance",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
         }
       ]
     },
