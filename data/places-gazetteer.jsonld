@@ -3147,48 +3147,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00554",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00554",
-      "type": "plantation",
-      "prefLabel": "Alkmaar",
-      "altLabels": [],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.834182193749999,
-        "lng": -55.022130333750006,
-        "wkt": "Polygon ((-55.02654330 5.80371723, -55.02617727 5.80900511, -55.02157988 5.86546057, -55.02061261 5.86410810, -55.01895950 5.86282269, -55.01603311 5.86168761, -55.02059370 5.80293901, -55.02654330 5.80371723))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q3255483",
-      "fid": 1637,
-      "psurIds": [
-        "PSUR0008",
-        "PSUR0009"
-      ],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q3255483",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00595",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73462,6 +73420,64 @@
           "author": "Philip Dikland",
           "year": "2011",
           "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00554",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00554",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.834182193749999,
+        "lng": -55.022130333750006,
+        "wkt": "Polygon ((-55.02654330 5.80371723, -55.02617727 5.80900511, -55.02157988 5.86546057, -55.02061261 5.86410810, -55.01895950 5.86282269, -55.01603311 5.86168761, -55.02059370 5.80293901, -55.02654330 5.80371723))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q3255483",
+      "fid": 1637,
+      "psurIds": [
+        "PSUR0008",
+        "PSUR0009"
+      ],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-16",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q3255483",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Alkmaar",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "goedoefrou",
+          "language": "srn",
+          "type": "historical",
+          "isPreferred": false
+        },
+        {
+          "text": "Godeffroy",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
         }
       ]
     },
