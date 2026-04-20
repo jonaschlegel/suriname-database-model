@@ -10,7 +10,7 @@ import { getActiveSources, useSourceRegistry } from '@/lib/sources';
 import { usePlaceTypes } from '@/lib/thesaurus';
 import type { GazetteerPlace } from '@/lib/types';
 import { getPreferredName } from '@/lib/types';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import {
   memo,
   Suspense,
@@ -273,9 +273,8 @@ function PlacesPageInner() {
   const [sourceFilter, setSourceFilter] =
     useState<SourceFilterState>(emptyFilterState());
 
-  // URL sync: read ?place= (and future ?place2=) from search params
+  // URL sync: read ?place= query param
   const searchParams = useSearchParams();
-  const router = useRouter();
   const initializedFromUrl = useRef(false);
   const {
     sources: registrySources,
@@ -305,38 +304,28 @@ function PlacesPageInner() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Initialize selection from URL params (once data is loaded)
+  // Initialize selection from URL (once data is loaded)
   useEffect(() => {
     if (initializedFromUrl.current || places.length === 0) return;
     initializedFromUrl.current = true;
-    const placeParam = searchParams.get('place');
-    // Future: const place2Param = searchParams.get('place2');
-    if (placeParam && places.some((p) => p.id === placeParam)) {
-      setSelectedIds([placeParam]);
+    const placeId = searchParams.get('place');
+    if (placeId && places.some((p) => p.id === placeId)) {
+      setSelectedIds([placeId]);
     }
   }, [places, searchParams]);
 
-  // Sync selectedIds to URL (skip transient stm-new-* IDs)
-  const syncUrlToSelection = useCallback(
-    (ids: string[]) => {
-      const persistIds = ids.filter((id) => !id.startsWith('stm-new-'));
-      const params = new URLSearchParams(window.location.search);
-      if (persistIds[0]) {
-        params.set('place', persistIds[0]);
-      } else {
-        params.delete('place');
-      }
-      // Future: place2 param for dual-panel
-      // if (persistIds[1]) params.set('place2', persistIds[1]);
-      // else params.delete('place2');
-      const qs = params.toString();
-      const newUrl = qs
-        ? `${window.location.pathname}?${qs}`
-        : window.location.pathname;
-      router.replace(newUrl, { scroll: false });
-    },
-    [router],
-  );
+  // Sync selectedIds to URL as ?place= query param (skip transient stm-new-* IDs)
+  const syncUrlToSelection = useCallback((ids: string[]) => {
+    const persistIds = ids.filter((id) => !id.startsWith('stm-new-'));
+    const params = new URLSearchParams(window.location.search);
+    if (persistIds[0]) {
+      params.set('place', persistIds[0]);
+    } else {
+      params.delete('place');
+    }
+    const qs = params.toString();
+    window.history.replaceState(null, '', qs ? `/places?${qs}` : '/places');
+  }, []);
 
   const toggleSort = useCallback(
     (key: SortKey) => {
