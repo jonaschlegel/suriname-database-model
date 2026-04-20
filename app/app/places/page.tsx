@@ -338,23 +338,23 @@ function PlacesPageInner() {
     [router],
   );
 
-  const booleanSortKeys: Set<SortKey> = new Set([
-    'wikidata',
-    'dikland',
-    'map1930',
-    'almanakken',
-  ]);
-
-  const toggleSort = useCallback((key: SortKey) => {
-    setSortKey((prev) => {
-      if (prev === key) {
+  const toggleSort = useCallback(
+    (key: SortKey) => {
+      const boolKeys: SortKey[] = [
+        'wikidata',
+        'dikland',
+        'map1930',
+        'almanakken',
+      ];
+      if (key === sortKey) {
         setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
-        return key;
+      } else {
+        setSortKey(key);
+        setSortDir(boolKeys.includes(key) ? 'desc' : 'asc');
       }
-      setSortDir(booleanSortKeys.has(key) ? 'desc' : 'asc');
-      return key;
-    });
-  }, []);
+    },
+    [sortKey],
+  );
 
   const handleRowSelect = useCallback(
     (id: string) => {
