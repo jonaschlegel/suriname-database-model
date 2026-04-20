@@ -323,13 +323,6 @@ if (existsSync(gazetteerSrc)) {
     JSON.stringify({ ...gazetteerRaw, '@graph': migratedGraph }),
   );
   console.log('  Wrote places-gazetteer.jsonld');
-} else {
-  // Fallback: try old .json format
-  const gazetteerSrcJson = join(__dirname, '../../data/places-gazetteer.json');
-  if (existsSync(gazetteerSrcJson)) {
-    copyFileSync(gazetteerSrcJson, join(OUT_DIR, 'places-gazetteer.json'));
-    console.log('  Copied places-gazetteer.json (legacy format)');
-  }
 }
 
 // Copy place-types thesaurus

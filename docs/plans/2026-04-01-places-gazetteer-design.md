@@ -46,8 +46,8 @@ Hierarchy: `broader` field links child to parent (e.g. plantation -> district).
 
 ## Storage
 
-- Source of truth: `data/places-gazetteer.json` in the Git repo
-- App reads from `app/public/data/places-gazetteer.json` (copied by prepare-data)
+- Source of truth: `data/places-gazetteer.jsonld` in the Git repo (JSON-LD with `@context` and `@graph`)
+- App reads from `app/public/data/places-gazetteer.jsonld` (copied by prepare-data)
 - Edits committed to GitHub via Contents API as the authenticated user
 
 ## Authentication
