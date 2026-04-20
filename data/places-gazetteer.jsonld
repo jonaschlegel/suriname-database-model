@@ -7972,44 +7972,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01161",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01161",
-      "type": "plantation",
-      "prefLabel": "Bruinsburg",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.729130891428572,
-        "lng": -54.718560968571424,
-        "wkt": "Polygon ((-54.72773364 5.72267086, -54.72837988 5.72643358, -54.71006919 5.74204473, -54.70510611 5.73590729, -54.71013047 5.73155876, -54.72077385 5.72263016, -54.72773364 5.72267086))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59115328",
-      "fid": 2245,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115328",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02180",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73757,6 +73719,57 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emLUp0b1VlZ2Eza2c/view?usp=sharing&resourcekey=0-waRc6kDXxTJAlzY_xt0RKg",
           "author": "Philip Dikland",
           "year": "2002",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01161",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01161",
+      "type": "plantation",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.729130891428572,
+        "lng": -54.718560968571424,
+        "wkt": "Polygon ((-54.72773364 5.72267086, -54.72837988 5.72643358, -54.71006919 5.74204473, -54.70510611 5.73590729, -54.71013047 5.73155876, -54.72077385 5.72263016, -54.72773364 5.72267086))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59115328",
+      "fid": 2245,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115328",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Bruinsburg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Bruinsburg 2010-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emQzVVV0ZmQzBIZUE/view?usp=sharing&resourcekey=0-nwGgT0t3PWA0lSjK6BZFRg",
+          "author": "Philip Dikland",
+          "year": "2010",
           "notes": null
         }
       ]
