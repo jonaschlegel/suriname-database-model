@@ -83965,6 +83965,52 @@
       ]
     },
     {
+      "id": "stm-new-1776701050288",
+      "type": "settlement",
+      "names": [
+        {
+          "text": "Donderskreek",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Akoenamiramba-kreek",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": false
+        }
+      ],
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": null,
+        "lng": null,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [],
+      "wikidataQid": null,
+      "externalLinks": [
+        {
+          "authority": "geonames",
+          "identifier": "https://www.geonames.org/3383168/ricanau-kreek.html",
+          "matchType": "closeMatch"
+        }
+      ],
+      "fid": null,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "diklandRefs": [],
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "@id": "stm:place/stm-new-1776701050288",
+      "@type": "E25_Human-Made_Feature"
+    },
+    {
       "@id": "stm:place/stm-02618",
       "@type": "E25_Human-Made_Feature",
       "id": "stm-02618",
