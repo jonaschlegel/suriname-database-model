@@ -1326,7 +1326,7 @@ function ModelPageInner() {
     const entity = ENTITIES.find((e) => e.id === id);
     if (entity) {
       const params = new URLSearchParams(window.location.search);
-      params.set('entity', entity.type);
+      params.set('entity', entity.id);
       window.history.replaceState(null, '', `/model?${params.toString()}`);
     }
   }, []);

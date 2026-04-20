@@ -10,7 +10,7 @@ import {
   useSourceRegistry,
 } from '@/lib/sources';
 import { buildSourceUrl } from '@/lib/url';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 function sortedCategories(categories: SourceCategory[]): SourceCategory[] {
@@ -34,7 +34,6 @@ export default function SourcesPage() {
 
   // URL sync: read path param /sources/{sourceId}
   const params = useParams<{ sourceId?: string[] }>();
-  const router = useRouter();
   const initializedFromUrl = useRef(false);
   const pathSourceId = params.sourceId?.[0] ?? null;
 
@@ -52,15 +51,12 @@ export default function SourcesPage() {
     }
   }, [sources, pathSourceId]);
 
-  // Sync expandedSource to URL
-  const handleToggleSource = useCallback(
-    (sourceId: string | null) => {
-      setExpandedSource(sourceId);
-      const newUrl = sourceId ? buildSourceUrl(sourceId) : '/sources';
-      router.replace(newUrl, { scroll: false });
-    },
-    [router],
-  );
+  // Sync expandedSource to URL (replaceState avoids Next.js re-rendering)
+  const handleToggleSource = useCallback((sourceId: string | null) => {
+    setExpandedSource(sourceId);
+    const newUrl = sourceId ? buildSourceUrl(sourceId) : '/sources';
+    window.history.replaceState(null, '', newUrl);
+  }, []);
 
   if (loading) {
     return (

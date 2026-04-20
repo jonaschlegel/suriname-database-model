@@ -1,14 +1,14 @@
 /**
  * Shared URL builders and parsers for deep-linkable navigation.
  *
- * Path routes:
- *   /places/{id}            — stm-00001
- *   /sources/{sourceId}     — map-1930
- *   /vocabulary/{typeId}    — plantation
- *
  * Query-param routes:
+ *   /places?place={id}      — stm-00001
  *   /explore?place={id}&z={zoom}&lat={lat}&lng={lng}
  *   /model?entity={crmId}   — e25
+ *
+ * Path routes:
+ *   /sources/{sourceId}     — map-1930
+ *   /vocabulary/{typeId}    — plantation
  */
 
 /* ─── Default map viewport ─────────────────────────────────────── */
@@ -16,10 +16,6 @@ export const DEFAULT_CENTER: [number, number] = [5.5, -55.2];
 export const DEFAULT_ZOOM = 8;
 
 /* ─── Path-based URL builders ──────────────────────────────────── */
-export function buildPlaceUrl(id: string): string {
-  return `/places?place=${encodeURIComponent(id)}`;
-}
-
 export function buildSourceUrl(sourceId: string): string {
   return `/sources/${encodeURIComponent(sourceId)}`;
 }

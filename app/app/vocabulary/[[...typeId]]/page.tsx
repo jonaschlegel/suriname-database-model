@@ -10,7 +10,7 @@ import type {
 } from '@/lib/thesaurus';
 import { langEn, parseThesaurus } from '@/lib/thesaurus';
 import { buildVocabularyUrl } from '@/lib/url';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 export default function VocabularyPage() {
@@ -23,7 +23,6 @@ export default function VocabularyPage() {
 
   // URL sync: read path param /vocabulary/{typeId}
   const params = useParams<{ typeId?: string[] }>();
-  const router = useRouter();
   const initializedFromUrl = useRef(false);
   const pathTypeId = params.typeId?.[0] ?? null;
 
@@ -47,15 +46,12 @@ export default function VocabularyPage() {
     }
   }, [concepts, pathTypeId]);
 
-  // Sync selected concept to URL
-  const handleSelectConcept = useCallback(
-    (typeId: string | null) => {
-      setSelectedConcept(typeId);
-      const newUrl = typeId ? buildVocabularyUrl(typeId) : '/vocabulary';
-      router.replace(newUrl, { scroll: false });
-    },
-    [router],
-  );
+  // Sync selected concept to URL (replaceState avoids Next.js re-rendering)
+  const handleSelectConcept = useCallback((typeId: string | null) => {
+    setSelectedConcept(typeId);
+    const newUrl = typeId ? buildVocabularyUrl(typeId) : '/vocabulary';
+    window.history.replaceState(null, '', newUrl);
+  }, []);
 
   if (loading) {
     return (
