@@ -79290,38 +79290,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02714",
-      "@type": [
-        "E53_Place"
-      ],
-      "id": "stm-02714",
-      "type": "station",
-      "prefLabel": "Batavia",
-      "altLabels": [],
-      "broader": null,
-      "description": "1882: kerk -- Leprozen etablissement",
-      "location": {
-        "lat": 5.713214047548087,
-        "lng": -55.877510839037434,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "map-1882"
-      ],
-      "wikidataQid": null,
-      "fid": 250,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02660",
       "@type": [
         "E53_Place"
@@ -83841,6 +83809,42 @@
       "modifiedBy": null,
       "modifiedAt": null,
       "externalLinks": []
+    },
+    {
+      "@id": "stm:place/stm-02714",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02714",
+      "type": "settlement",
+      "broader": null,
+      "description": "1882: kerk -- Leprozen etablissement",
+      "location": {
+        "lat": 5.713214047548087,
+        "lng": -55.877510839037434,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "map-1882"
+      ],
+      "wikidataQid": null,
+      "fid": 250,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [],
+      "names": [
+        {
+          "text": "Batavia",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
     },
     {
       "@id": "stm:place/stm-02707",
