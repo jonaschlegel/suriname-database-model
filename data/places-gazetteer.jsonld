@@ -80826,38 +80826,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02613",
-      "@type": [
-        "E53_Place"
-      ],
-      "id": "stm-02613",
-      "type": "settlement",
-      "prefLabel": "Kabel",
-      "altLabels": [],
-      "broader": null,
-      "description": "Kabelstation",
-      "location": {
-        "lat": 4.912880637502012,
-        "lng": -55.07455373747128,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "map-1882"
-      ],
-      "wikidataQid": null,
-      "fid": 113,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02742",
       "@type": [
         "E53_Place"
@@ -83809,6 +83777,48 @@
         },
         {
           "text": "Jodensavanne",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02613",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02613",
+      "type": "settlement",
+      "broader": null,
+      "description": "Kabelstation",
+      "location": {
+        "lat": 4.912880637502012,
+        "lng": -55.07455373747128,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "map-1882"
+      ],
+      "wikidataQid": "Q135087723",
+      "fid": 113,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q135087723",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Kabel",
           "language": "nl",
           "type": "official",
           "isPreferred": true
