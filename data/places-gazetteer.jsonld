@@ -82779,37 +82779,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02617",
-      "@type": [
-        "E53_Place"
-      ],
-      "id": "stm-02617",
-      "type": "settlement",
-      "prefLabel": "Sikakamp",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 4.759689475677745,
-        "lng": -54.995938994827014,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": null,
-      "fid": 117,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02738",
       "@type": [
         "E53_Place"
@@ -83870,6 +83839,47 @@
       "names": [
         {
           "text": "Nieuw Rotterdam",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02617",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02617",
+      "type": "settlement",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 4.759689475677745,
+        "lng": -54.995938994827014,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": "Q135087773",
+      "fid": 117,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q135087773",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Sikakamp",
           "language": "nl",
           "type": "official",
           "isPreferred": true
