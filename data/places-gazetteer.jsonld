@@ -96930,37 +96930,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00147",
-      "@type": [
-        "E26_Physical_Feature"
-      ],
-      "id": "stm-00147",
-      "type": "creek",
-      "prefLabel": "Grote Mauritie Kreek",
-      "altLabels": [],
-      "broader": null,
-      "description": "Creek segment of Saramacca (QGIS 1930 map)",
-      "location": {
-        "lat": 5.471158592,
-        "lng": -55.388114288,
-        "wkt": "LineString (-55.38109963 5.46636724, -55.38221252 5.46724332, -55.38583104 5.46905761, -55.38705605 5.46921178, -55.38829933 5.47044478, -55.38925708 5.47200346, -55.38969232 5.47290082, -55.39056516 5.47381841, -55.39311744 5.47504621, -55.39401231 5.47549229)",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": null,
-      "fid": 284,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Saramacca",
-      "locationDescriptionOriginal": null,
-      "placeType": "creek",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00178",
       "@type": [
         "E26_Physical_Feature"
@@ -103190,6 +103159,47 @@
       "modifiedBy": null,
       "modifiedAt": null,
       "externalLinks": []
+    },
+    {
+      "@id": "stm:place/stm-00147",
+      "@type": "E26_Physical_Feature",
+      "id": "stm-00147",
+      "type": "creek",
+      "broader": null,
+      "description": "Creek segment of Saramacca (QGIS 1930 map)",
+      "location": {
+        "lat": 5.471158592,
+        "lng": -55.388114288,
+        "wkt": "LineString (-55.38109963 5.46636724, -55.38221252 5.46724332, -55.38583104 5.46905761, -55.38705605 5.46921178, -55.38829933 5.47044478, -55.38925708 5.47200346, -55.38969232 5.47290082, -55.39056516 5.47381841, -55.39311744 5.47504621, -55.39401231 5.47549229)",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": null,
+      "fid": 284,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Saramacca",
+      "locationDescriptionOriginal": null,
+      "placeType": "creek",
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [],
+      "names": [
+        {
+          "text": "Grote Mauritie Kreek",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Tittiebo",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ]
     },
     {
       "id": "stm-new-1776182225443",
