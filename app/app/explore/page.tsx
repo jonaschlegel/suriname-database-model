@@ -4,7 +4,12 @@ import PlantationPanel from '@/components/PlantationPanel';
 import type { AllData } from '@/lib/data';
 import { loadAllData } from '@/lib/data';
 import type { GeoJSONFeature } from '@/lib/types';
-import { DEFAULT_CENTER, DEFAULT_ZOOM, parseExploreParams } from '@/lib/url';
+import {
+  DEFAULT_CENTER,
+  DEFAULT_ZOOM,
+  extractPlaceId,
+  parseExploreParams,
+} from '@/lib/url';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
@@ -49,12 +54,13 @@ function ExplorePageInner() {
     if (initializedFromUrl.current || !data?.geojson) return;
     initializedFromUrl.current = true;
     if (urlParams.place) {
+      const placeParam = urlParams.place;
       const feature = data.geojson.features.find(
         (f) =>
-          f.properties.placeUri === urlParams.place ||
-          f.properties.plantationUri === urlParams.place ||
-          f.properties.featureUri === urlParams.place ||
-          f.id === urlParams.place,
+          extractPlaceId(f.properties.placeUri) === placeParam ||
+          extractPlaceId(f.properties.plantationUri) === placeParam ||
+          extractPlaceId(f.properties.featureUri) === placeParam ||
+          f.id === placeParam,
       );
       if (feature) {
         setSelectedFeature(feature);
@@ -88,11 +94,12 @@ function ExplorePageInner() {
     (feature: GeoJSONFeature) => {
       setSelectedFeature(feature);
       setHighlightedName(feature.properties.name);
-      const placeId =
+      const placeId = extractPlaceId(
         feature.properties.placeUri ??
-        feature.properties.plantationUri ??
-        feature.properties.featureUri ??
-        feature.id;
+          feature.properties.plantationUri ??
+          feature.properties.featureUri ??
+          feature.id,
+      );
       syncUrl(placeId);
     },
     [syncUrl],

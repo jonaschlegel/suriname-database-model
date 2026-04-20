@@ -15,6 +15,14 @@
 export const DEFAULT_CENTER: [number, number] = [5.5, -55.2];
 export const DEFAULT_ZOOM = 8;
 
+/* ─── URI helpers ──────────────────────────────────────────────── */
+/** Extract short place ID (e.g. "stm-02542") from a full Linked Data URI or return the input as-is. */
+export function extractPlaceId(uri: string | undefined | null): string | null {
+  if (!uri) return null;
+  const match = uri.match(/\/(stm-\d+)$/);
+  return match ? match[1] : uri;
+}
+
 /* ─── Path-based URL builders ──────────────────────────────────── */
 export function buildSourceUrl(sourceId: string): string {
   return `/sources/${encodeURIComponent(sourceId)}`;
