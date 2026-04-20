@@ -34,7 +34,7 @@ function ExplorePageInner() {
   );
   const [highlightedName, setHighlightedName] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const initializedFromUrl = useRef(false);
+  const lastAppliedPlace = useRef<string | null>(null);
 
   // Compute initial viewport from URL params
   const initialCenter: [number, number] =
@@ -49,12 +49,13 @@ function ExplorePageInner() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Initialize selected feature from ?place= param (once data is loaded)
+  // Initialize/update selected feature from ?place= param
   useEffect(() => {
-    if (initializedFromUrl.current || !data?.geojson) return;
-    initializedFromUrl.current = true;
-    if (urlParams.place) {
-      const placeParam = urlParams.place;
+    if (!data?.geojson) return;
+    const placeParam = urlParams.place;
+    if (placeParam === lastAppliedPlace.current) return;
+    lastAppliedPlace.current = placeParam;
+    if (placeParam) {
       const feature = data.geojson.features.find(
         (f) =>
           extractPlaceId(f.properties.placeUri) === placeParam ||
