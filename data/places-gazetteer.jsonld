@@ -101483,37 +101483,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00471",
-      "@type": [
-        "E26_Physical_Feature"
-      ],
-      "id": "stm-00471",
-      "type": "creek",
-      "prefLabel": "Rikanau Kreek",
-      "altLabels": [],
-      "broader": null,
-      "description": "Creek segment of Cottica (QGIS 1930 map)",
-      "location": {
-        "lat": 5.653365455263159,
-        "lng": -54.39210504157895,
-        "wkt": "LineString (-54.42329702 5.68191301, -54.41714292 5.67887885, -54.41048127 5.67723120, -54.40824652 5.67574912, -54.40439706 5.67335865, -54.40322984 5.66742823, -54.40252770 5.66528126, -54.40166339 5.66395319, -54.39529088 5.65833551, -54.39093981 5.65548612, -54.38933830 5.65352781, -54.38714907 5.64545531, -54.38585794 5.64285080, -54.38129005 5.63912994, -54.37353778 5.63653642, -54.37027645 5.63451590, -54.36962694 5.62432060, -54.36848335 5.62088284, -54.36721950 5.61910889)",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": null,
-      "fid": 738,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Cottica",
-      "locationDescriptionOriginal": null,
-      "placeType": "creek",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00462",
       "@type": [
         "E26_Physical_Feature"
@@ -103269,6 +103238,47 @@
       "modifiedAt": "2026-04-14",
       "@id": "stm:place/stm-new-1776182225443",
       "@type": "E26_Physical_Feature"
+    },
+    {
+      "@id": "stm:place/stm-00471",
+      "@type": "E26_Physical_Feature",
+      "id": "stm-00471",
+      "type": "creek",
+      "broader": null,
+      "description": "Creek segment of Cottica (QGIS 1930 map)",
+      "location": {
+        "lat": 5.653365455263159,
+        "lng": -54.39210504157895,
+        "wkt": "LineString (-54.42329702 5.68191301, -54.41714292 5.67887885, -54.41048127 5.67723120, -54.40824652 5.67574912, -54.40439706 5.67335865, -54.40322984 5.66742823, -54.40252770 5.66528126, -54.40166339 5.66395319, -54.39529088 5.65833551, -54.39093981 5.65548612, -54.38933830 5.65352781, -54.38714907 5.64545531, -54.38585794 5.64285080, -54.38129005 5.63912994, -54.37353778 5.63653642, -54.37027645 5.63451590, -54.36962694 5.62432060, -54.36848335 5.62088284, -54.36721950 5.61910889)",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": null,
+      "fid": 738,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Cottica",
+      "locationDescriptionOriginal": null,
+      "placeType": "creek",
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "geonames",
+          "identifier": "https://www.geonames.org/3383168/ricanau-kreek.html",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Rikanau Kreek",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
     },
     {
       "@id": "stm:place/stm-00325",
