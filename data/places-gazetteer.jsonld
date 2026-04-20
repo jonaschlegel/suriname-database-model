@@ -9186,43 +9186,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02204",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02204",
-      "type": "plantation",
-      "prefLabel": "Carramawipibo",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "Plantation from Surinaamse Almanakken (no QGIS geometry)",
-      "location": {
-        "lat": null,
-        "lng": null,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "almanakken"
-      ],
-      "wikidataQid": "Q59115372",
-      "fid": null,
-      "psurIds": [],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Caramacca Kreek",
-      "locationDescriptionOriginal": "Caramacca-kreek",
-      "placeType": "hout",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115372",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01872",
       "@type": [
         "E25_Human-Made_Feature"
@@ -10178,47 +10141,6 @@
         {
           "authority": "wikidata",
           "identifier": "Q59115394",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00671",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00671",
-      "type": "plantation",
-      "prefLabel": "Clifford Kocqshoven",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.9469002688888875,
-        "lng": -54.897041144444444,
-        "wkt": "Polygon ((-54.88092500 5.94644922, -54.88124867 5.94230243, -54.90509306 5.94477662, -54.90651200 5.94666677, -54.90827906 5.94858646, -54.91039620 5.94914136, -54.90984419 5.94969251, -54.89014712 5.94803783, -54.88092500 5.94644922))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115395",
-      "fid": 1754,
-      "psurIds": [
-        "PSUR0059"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Warappa Kreek",
-      "locationDescriptionOriginal": "Warrappa-kreek, regterhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115395",
           "matchType": "closeMatch"
         }
       ]
@@ -25600,44 +25522,6 @@
         {
           "authority": "wikidata",
           "identifier": "Q59116805",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01001",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01001",
-      "type": "plantation",
-      "prefLabel": "Klarenbeek",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.601425783846154,
-        "lng": -54.67210979076923,
-        "wkt": "Polygon ((-54.65388866 5.61408565, -54.65551547 5.58739437, -54.66224975 5.59108058, -54.66357194 5.58932553, -54.66654402 5.59127399, -54.67469464 5.59535751, -54.68144447 5.59856428, -54.68213872 5.59949497, -54.68656425 5.60561696, -54.68660402 5.60781009, -54.68572948 5.61059713, -54.68459320 5.61384848, -54.65388866 5.61408565))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59116806",
-      "fid": 2085,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne (boven), regterhand",
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59116806",
           "matchType": "closeMatch"
         }
       ]
@@ -73794,6 +73678,116 @@
       ]
     },
     {
+      "@id": "stm:place/stm-02204",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02204",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "Plantation from Surinaamse Almanakken (no QGIS geometry)",
+      "location": {
+        "lat": null,
+        "lng": null,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "almanakken"
+      ],
+      "wikidataQid": "Q59115372",
+      "fid": null,
+      "psurIds": [],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Caramacca Kreek",
+      "locationDescriptionOriginal": "Caramacca-kreek",
+      "placeType": "hout",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115372",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Carramawipibo",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Caramawipibo 2010-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTWQtVnpudHhRM1k/view?usp=sharing&resourcekey=0-eb8JSEy1382c33QQN-6Ctg",
+          "author": "Philip Dikland",
+          "year": "2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00671",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00671",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.9469002688888875,
+        "lng": -54.897041144444444,
+        "wkt": "Polygon ((-54.88092500 5.94644922, -54.88124867 5.94230243, -54.90509306 5.94477662, -54.90651200 5.94666677, -54.90827906 5.94858646, -54.91039620 5.94914136, -54.90984419 5.94969251, -54.89014712 5.94803783, -54.88092500 5.94644922))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115395",
+      "fid": 1754,
+      "psurIds": [
+        "PSUR0059"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Warappa Kreek",
+      "locationDescriptionOriginal": "Warrappa-kreek, regterhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115395",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Clifford Kocqshoven",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Kokkoe",
+          "language": "srn",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Clifford Kokshoven 2008-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emN1N4QnJiVGEtUUE/view?usp=sharing&resourcekey=0-0cAEIasx6pvqSRzZITVliQ",
+          "author": "Philip Dikland",
+          "year": "2008",
+          "notes": null
+        }
+      ]
+    },
+    {
       "@id": "stm:place/stm-02065",
       "@type": "E25_Human-Made_Feature",
       "id": "stm-02065",
@@ -73934,6 +73928,57 @@
           "language": "nl",
           "type": "variant",
           "isPreferred": false
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01001",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01001",
+      "type": "plantation",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.601425783846154,
+        "lng": -54.67210979076923,
+        "wkt": "Polygon ((-54.65388866 5.61408565, -54.65551547 5.58739437, -54.66224975 5.59108058, -54.66357194 5.58932553, -54.66654402 5.59127399, -54.67469464 5.59535751, -54.68144447 5.59856428, -54.68213872 5.59949497, -54.68656425 5.60561696, -54.68660402 5.60781009, -54.68572948 5.61059713, -54.68459320 5.61384848, -54.65388866 5.61408565))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59116806",
+      "fid": 2085,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne (boven), regterhand",
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59116806",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Klarenbeek",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Clarenbeek en Nimmerdorr 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emOE1zN2pjRHQxcnc/view?usp=sharing&resourcekey=0-nfSrRIpI5inws9Q9kLXe_g",
+          "author": "Philip Dikland",
+          "year": "2005, aangevuld 2010",
+          "notes": null
         }
       ]
     },
@@ -79245,38 +79290,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02714",
-      "@type": [
-        "E53_Place"
-      ],
-      "id": "stm-02714",
-      "type": "station",
-      "prefLabel": "Batavia",
-      "altLabels": [],
-      "broader": null,
-      "description": "1882: kerk -- Leprozen etablissement",
-      "location": {
-        "lat": 5.713214047548087,
-        "lng": -55.877510839037434,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "map-1882"
-      ],
-      "wikidataQid": null,
-      "fid": 250,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02660",
       "@type": [
         "E53_Place"
@@ -82100,38 +82113,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02649",
-      "@type": [
-        "E53_Place"
-      ],
-      "id": "stm-02649",
-      "type": "settlement",
-      "prefLabel": "Moengo",
-      "altLabels": [],
-      "broader": null,
-      "description": "1882: Aucaner dorp",
-      "location": {
-        "lat": 5.625886610761272,
-        "lng": -54.403425893838275,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "map-1882"
-      ],
-      "wikidataQid": null,
-      "fid": 181,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02576",
       "@type": [
         "E53_Place"
@@ -83798,6 +83779,42 @@
       "externalLinks": []
     },
     {
+      "@id": "stm:place/stm-02714",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02714",
+      "type": "settlement",
+      "broader": null,
+      "description": "1882: kerk -- Leprozen etablissement",
+      "location": {
+        "lat": 5.713214047548087,
+        "lng": -55.877510839037434,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "map-1882"
+      ],
+      "wikidataQid": null,
+      "fid": 250,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [],
+      "names": [
+        {
+          "text": "Batavia",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
+    },
+    {
       "@id": "stm:place/stm-02707",
       "@type": "E25_Human-Made_Feature",
       "id": "stm-02707",
@@ -83914,6 +83931,52 @@
           "isPreferred": true
         }
       ]
+    },
+    {
+      "id": "stm-new-1776701050288",
+      "type": "settlement",
+      "names": [
+        {
+          "text": "Donderskreek",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Akoenamiramba-kreek",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": false
+        }
+      ],
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": null,
+        "lng": null,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [],
+      "wikidataQid": null,
+      "externalLinks": [
+        {
+          "authority": "geonames",
+          "identifier": "https://www.geonames.org/3383168/ricanau-kreek.html",
+          "matchType": "closeMatch"
+        }
+      ],
+      "fid": null,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "diklandRefs": [],
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "@id": "stm:place/stm-new-1776701050288",
+      "@type": "E25_Human-Made_Feature"
     },
     {
       "@id": "stm:place/stm-02618",
@@ -84040,6 +84103,48 @@
       "names": [
         {
           "text": "Kabel",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02649",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02649",
+      "type": "settlement",
+      "broader": null,
+      "description": "1882: Aucaner dorp",
+      "location": {
+        "lat": 5.625886610761272,
+        "lng": -54.403425893838275,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "map-1882"
+      ],
+      "wikidataQid": "Q24226",
+      "fid": 181,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q24226",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Moengo",
           "language": "nl",
           "type": "official",
           "isPreferred": true
@@ -90062,37 +90167,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00363",
-      "@type": [
-        "E26_Physical_Feature"
-      ],
-      "id": "stm-00363",
-      "type": "river",
-      "prefLabel": "Marowijne",
-      "altLabels": [],
-      "broader": null,
-      "description": "River segment of Marowijne (QGIS 1930 map)",
-      "location": {
-        "lat": 4.3671798551968495,
-        "lng": -54.21303773433069,
-        "wkt": "LineString (-53.95923964 5.75744313, -53.98481684 5.71348601, -54.00373211 5.67393425, -54.01516534 5.64850527, -54.01671719 5.60575501, -54.01898670 5.56054042, -54.01841825 5.53294083, -54.02179549 5.52427249, -54.03460145 5.51614420, -54.04525762 5.49900133, -54.06401311 5.48138859, -54.07853348 5.46672167, -54.08144380 5.46176382, -54.10695643 5.42933222, -54.11275859 5.42218861, -54.12752529 5.40121171, -54.13820757 5.37183385, -54.16046282 5.35272747, -54.17333108 5.34510278, -54.18356684 5.32994833, -54.20327546 5.30683630, -54.21603264 5.30036045, -54.23086204 5.29219091, -54.25310586 5.28348614, -54.29074084 5.25207635, -54.30507487 5.22983181, -54.32212686 5.20367882, -54.33276407 5.18415488, -54.35745364 5.14038794, -54.36839229 5.11036116, -54.39929291 5.09262109, -54.40991638 5.08420888, -54.42915503 5.04357846, -54.43517848 5.02884676, -54.44099454 4.99889705, -54.44271455 4.97484298, -54.43807369 4.96106497, -54.45228998 4.93247053, -54.48023575 4.90663598, -54.46908048 4.88310269, -54.47510347 4.86667867, -54.47941296 4.81505638, -54.47862584 4.77961039, -54.47308431 4.75240406, -54.46709012 4.74083456, -54.44073063 4.73541731, -54.44137204 4.70204877, -54.43598715 4.67658211, -54.42287157 4.63399003, -54.41184503 4.61270218, -54.40858906 4.56796478, -54.43055509 4.53076113, -54.43815106 4.49634946, -54.43429473 4.41359695, -54.42482466 4.40254956, -54.43362422 4.36356950, -54.42459971 4.34388395, -54.41012614 4.33233278, -54.39718979 4.32985485, -54.39578899 4.29240117, -54.38524884 4.25014736, -54.39363337 4.21208350, -54.39863562 4.20013091, -54.38943558 4.18394765, -54.38421064 4.18042938, -54.37785324 4.17876607, -54.35198240 4.17357734, -54.34215178 4.16253330, -54.32311680 4.13431231, -54.33624955 4.11854117, -54.34100781 4.08842493, -54.35518830 4.05634249, -54.35449730 4.04402058, -54.34282796 4.03457603, -54.30772807 4.00063719, -54.28850187 3.93863387, -54.27218321 3.91695399, -54.24692209 3.90869802, -54.25140639 3.89451985, -54.23437142 3.85790626, -54.21067907 3.85752054, -54.19160756 3.84825800, -54.18757887 3.83692000, -54.19700380 3.82951226, -54.19949989 3.82051548, -54.19738084 3.80909626, -54.18912878 3.80033908, -54.16487523 3.80937599, -54.12655974 3.79768623, -54.11701322 3.78528808, -54.11211429 3.76892107, -54.10202873 3.75496811, -54.09262377 3.73596073, -54.07632416 3.70830795, -54.08527269 3.69115311, -54.07861796 3.67247687, -54.05040962 3.65600124, -54.05081756 3.63584491, -54.04487568 3.63434098, -54.04487568 3.63434098, -54.02667598 3.63132141, -54.02442357 3.64400859, -54.00991715 3.65294014, -53.99027188 3.62826747, -53.98880804 3.61632015, -53.97841953 3.60883528, -53.98327000 3.59764640, -53.98292959 3.58084876, -53.99705969 3.57378287, -54.00489038 3.55774663, -54.00789534 3.53946180, -53.99863372 3.52526066, -54.00721386 3.50511954, -54.00726816 3.47451132, -54.00988813 3.46331780, -54.01509643 3.45884774, -54.01660117 3.44802545, -54.01957931 3.44429794, -54.01218078 3.42674107, -54.02595385 3.40959442, -54.04827703 3.38798253, -54.06016808 3.38501638, -54.05684006 3.37605200, -54.05240462 3.36297967, -54.05909716 3.35888478, -54.06285076 3.33500090, -54.06658204 3.32455511)",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": null,
-      "fid": 629,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Marowijne",
-      "locationDescriptionOriginal": null,
-      "placeType": "river",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00032",
       "@type": [
         "E26_Physical_Feature"
@@ -93596,6 +93670,47 @@
       "externalLinks": []
     },
     {
+      "@id": "stm:place/stm-00363",
+      "@type": "E26_Physical_Feature",
+      "id": "stm-00363",
+      "type": "river",
+      "broader": null,
+      "description": "River segment of Marowijne (QGIS 1930 map)",
+      "location": {
+        "lat": 4.3671798551968495,
+        "lng": -54.21303773433069,
+        "wkt": "LineString (-53.95923964 5.75744313, -53.98481684 5.71348601, -54.00373211 5.67393425, -54.01516534 5.64850527, -54.01671719 5.60575501, -54.01898670 5.56054042, -54.01841825 5.53294083, -54.02179549 5.52427249, -54.03460145 5.51614420, -54.04525762 5.49900133, -54.06401311 5.48138859, -54.07853348 5.46672167, -54.08144380 5.46176382, -54.10695643 5.42933222, -54.11275859 5.42218861, -54.12752529 5.40121171, -54.13820757 5.37183385, -54.16046282 5.35272747, -54.17333108 5.34510278, -54.18356684 5.32994833, -54.20327546 5.30683630, -54.21603264 5.30036045, -54.23086204 5.29219091, -54.25310586 5.28348614, -54.29074084 5.25207635, -54.30507487 5.22983181, -54.32212686 5.20367882, -54.33276407 5.18415488, -54.35745364 5.14038794, -54.36839229 5.11036116, -54.39929291 5.09262109, -54.40991638 5.08420888, -54.42915503 5.04357846, -54.43517848 5.02884676, -54.44099454 4.99889705, -54.44271455 4.97484298, -54.43807369 4.96106497, -54.45228998 4.93247053, -54.48023575 4.90663598, -54.46908048 4.88310269, -54.47510347 4.86667867, -54.47941296 4.81505638, -54.47862584 4.77961039, -54.47308431 4.75240406, -54.46709012 4.74083456, -54.44073063 4.73541731, -54.44137204 4.70204877, -54.43598715 4.67658211, -54.42287157 4.63399003, -54.41184503 4.61270218, -54.40858906 4.56796478, -54.43055509 4.53076113, -54.43815106 4.49634946, -54.43429473 4.41359695, -54.42482466 4.40254956, -54.43362422 4.36356950, -54.42459971 4.34388395, -54.41012614 4.33233278, -54.39718979 4.32985485, -54.39578899 4.29240117, -54.38524884 4.25014736, -54.39363337 4.21208350, -54.39863562 4.20013091, -54.38943558 4.18394765, -54.38421064 4.18042938, -54.37785324 4.17876607, -54.35198240 4.17357734, -54.34215178 4.16253330, -54.32311680 4.13431231, -54.33624955 4.11854117, -54.34100781 4.08842493, -54.35518830 4.05634249, -54.35449730 4.04402058, -54.34282796 4.03457603, -54.30772807 4.00063719, -54.28850187 3.93863387, -54.27218321 3.91695399, -54.24692209 3.90869802, -54.25140639 3.89451985, -54.23437142 3.85790626, -54.21067907 3.85752054, -54.19160756 3.84825800, -54.18757887 3.83692000, -54.19700380 3.82951226, -54.19949989 3.82051548, -54.19738084 3.80909626, -54.18912878 3.80033908, -54.16487523 3.80937599, -54.12655974 3.79768623, -54.11701322 3.78528808, -54.11211429 3.76892107, -54.10202873 3.75496811, -54.09262377 3.73596073, -54.07632416 3.70830795, -54.08527269 3.69115311, -54.07861796 3.67247687, -54.05040962 3.65600124, -54.05081756 3.63584491, -54.04487568 3.63434098, -54.04487568 3.63434098, -54.02667598 3.63132141, -54.02442357 3.64400859, -54.00991715 3.65294014, -53.99027188 3.62826747, -53.98880804 3.61632015, -53.97841953 3.60883528, -53.98327000 3.59764640, -53.98292959 3.58084876, -53.99705969 3.57378287, -54.00489038 3.55774663, -54.00789534 3.53946180, -53.99863372 3.52526066, -54.00721386 3.50511954, -54.00726816 3.47451132, -54.00988813 3.46331780, -54.01509643 3.45884774, -54.01660117 3.44802545, -54.01957931 3.44429794, -54.01218078 3.42674107, -54.02595385 3.40959442, -54.04827703 3.38798253, -54.06016808 3.38501638, -54.05684006 3.37605200, -54.05240462 3.36297967, -54.05909716 3.35888478, -54.06285076 3.33500090, -54.06658204 3.32455511)",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": "Q1369002",
+      "fid": 629,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Marowijne",
+      "locationDescriptionOriginal": null,
+      "placeType": "river",
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q1369002",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Marowijne",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
+    },
+    {
       "@id": "stm:place/stm-00387",
       "@type": "E26_Physical_Feature",
       "id": "stm-00387",
@@ -96871,37 +96986,6 @@
       ],
       "wikidataQid": null,
       "fid": 331,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Saramacca",
-      "locationDescriptionOriginal": null,
-      "placeType": "creek",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00147",
-      "@type": [
-        "E26_Physical_Feature"
-      ],
-      "id": "stm-00147",
-      "type": "creek",
-      "prefLabel": "Grote Mauritie Kreek",
-      "altLabels": [],
-      "broader": null,
-      "description": "Creek segment of Saramacca (QGIS 1930 map)",
-      "location": {
-        "lat": 5.471158592,
-        "lng": -55.388114288,
-        "wkt": "LineString (-55.38109963 5.46636724, -55.38221252 5.46724332, -55.38583104 5.46905761, -55.38705605 5.46921178, -55.38829933 5.47044478, -55.38925708 5.47200346, -55.38969232 5.47290082, -55.39056516 5.47381841, -55.39311744 5.47504621, -55.39401231 5.47549229)",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": null,
-      "fid": 284,
       "psurIds": [],
       "district": null,
       "locationDescription": "Saramacca",
@@ -101438,37 +101522,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00471",
-      "@type": [
-        "E26_Physical_Feature"
-      ],
-      "id": "stm-00471",
-      "type": "creek",
-      "prefLabel": "Rikanau Kreek",
-      "altLabels": [],
-      "broader": null,
-      "description": "Creek segment of Cottica (QGIS 1930 map)",
-      "location": {
-        "lat": 5.653365455263159,
-        "lng": -54.39210504157895,
-        "wkt": "LineString (-54.42329702 5.68191301, -54.41714292 5.67887885, -54.41048127 5.67723120, -54.40824652 5.67574912, -54.40439706 5.67335865, -54.40322984 5.66742823, -54.40252770 5.66528126, -54.40166339 5.66395319, -54.39529088 5.65833551, -54.39093981 5.65548612, -54.38933830 5.65352781, -54.38714907 5.64545531, -54.38585794 5.64285080, -54.38129005 5.63912994, -54.37353778 5.63653642, -54.37027645 5.63451590, -54.36962694 5.62432060, -54.36848335 5.62088284, -54.36721950 5.61910889)",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": null,
-      "fid": 738,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Cottica",
-      "locationDescriptionOriginal": null,
-      "placeType": "creek",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00462",
       "@type": [
         "E26_Physical_Feature"
@@ -103174,6 +103227,47 @@
       "externalLinks": []
     },
     {
+      "@id": "stm:place/stm-00147",
+      "@type": "E26_Physical_Feature",
+      "id": "stm-00147",
+      "type": "creek",
+      "broader": null,
+      "description": "Creek segment of Saramacca (QGIS 1930 map)",
+      "location": {
+        "lat": 5.471158592,
+        "lng": -55.388114288,
+        "wkt": "LineString (-55.38109963 5.46636724, -55.38221252 5.46724332, -55.38583104 5.46905761, -55.38705605 5.46921178, -55.38829933 5.47044478, -55.38925708 5.47200346, -55.38969232 5.47290082, -55.39056516 5.47381841, -55.39311744 5.47504621, -55.39401231 5.47549229)",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": null,
+      "fid": 284,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Saramacca",
+      "locationDescriptionOriginal": null,
+      "placeType": "creek",
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [],
+      "names": [
+        {
+          "text": "Grote Mauritie Kreek",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Tittiebo",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ]
+    },
+    {
       "id": "stm-new-1776182225443",
       "type": "creek",
       "names": [
@@ -103224,6 +103318,47 @@
       "modifiedAt": "2026-04-14",
       "@id": "stm:place/stm-new-1776182225443",
       "@type": "E26_Physical_Feature"
+    },
+    {
+      "@id": "stm:place/stm-00471",
+      "@type": "E26_Physical_Feature",
+      "id": "stm-00471",
+      "type": "creek",
+      "broader": null,
+      "description": "Creek segment of Cottica (QGIS 1930 map)",
+      "location": {
+        "lat": 5.653365455263159,
+        "lng": -54.39210504157895,
+        "wkt": "LineString (-54.42329702 5.68191301, -54.41714292 5.67887885, -54.41048127 5.67723120, -54.40824652 5.67574912, -54.40439706 5.67335865, -54.40322984 5.66742823, -54.40252770 5.66528126, -54.40166339 5.66395319, -54.39529088 5.65833551, -54.39093981 5.65548612, -54.38933830 5.65352781, -54.38714907 5.64545531, -54.38585794 5.64285080, -54.38129005 5.63912994, -54.37353778 5.63653642, -54.37027645 5.63451590, -54.36962694 5.62432060, -54.36848335 5.62088284, -54.36721950 5.61910889)",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": null,
+      "fid": 738,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Cottica",
+      "locationDescriptionOriginal": null,
+      "placeType": "creek",
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "geonames",
+          "identifier": "https://www.geonames.org/3383168/ricanau-kreek.html",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Rikanau Kreek",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
     },
     {
       "@id": "stm:place/stm-00325",
