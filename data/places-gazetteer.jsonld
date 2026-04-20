@@ -7972,47 +7972,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00588",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00588",
-      "type": "plantation",
-      "prefLabel": "Bruinendaal",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.908216324,
-        "lng": -54.901558464000004,
-        "wkt": "Polygon ((-54.88901782 5.90595947, -54.91987253 5.90763639, -54.91968267 5.91152738, -54.89020148 5.90999891, -54.88901782 5.90595947))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115325",
-      "fid": 1671,
-      "psurIds": [
-        "PSUR0046"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Matappica Kreek",
-      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115325",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01161",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73738,6 +73697,66 @@
           "driveUrl": "https://drive.google.com/file/d/1hP9e4QhXbGdu80iq0lM6o5bLCNBInT2F/view?usp=sharing",
           "author": "Philip Dikland",
           "year": "2020",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00588",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00588",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.908216324,
+        "lng": -54.901558464000004,
+        "wkt": "Polygon ((-54.88901782 5.90595947, -54.91987253 5.90763639, -54.91968267 5.91152738, -54.89020148 5.90999891, -54.88901782 5.90595947))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115325",
+      "fid": 1671,
+      "psurIds": [
+        "PSUR0046"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Matappica Kreek",
+      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115325",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Bruinendaal",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Pardo",
+          "language": "srn",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Bruinendaal 2001-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emLUp0b1VlZ2Eza2c/view?usp=sharing&resourcekey=0-waRc6kDXxTJAlzY_xt0RKg",
+          "author": "Philip Dikland",
+          "year": "2002",
           "notes": null
         }
       ]
