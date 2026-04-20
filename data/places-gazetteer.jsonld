@@ -73268,8 +73268,8 @@
       "locationDescription": "Warappa Kreek",
       "locationDescriptionOriginal": "Warrappa-kreek, regterhand in het opvaren",
       "placeType": "katoen",
-      "modifiedBy": "jonaschlegel",
-      "modifiedAt": "2026-04-13",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-20",
       "externalLinks": [
         {
           "authority": "wikidata",
@@ -73283,6 +73283,21 @@
           "language": "nl",
           "type": "official",
           "isPreferred": true
+        },
+        {
+          "text": "Goedoefrouw",
+          "language": "srn",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Anna's Zorg 2006-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/drive/u/0/folders/0B88mZFitv8embmZaYWFQNnZacDQ?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-sImlF_DkEFu3ebWbDQ58Kg",
+          "author": "Philip Dikland",
+          "year": "2006, aangevuld 2009",
+          "notes": null
         }
       ]
     },
