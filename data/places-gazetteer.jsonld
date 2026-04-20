@@ -2703,57 +2703,6 @@
       ]
     },
     {
-      "@id": "stm:place/stm-00597",
-      "@type": "E25_Human-Made_Feature",
-      "id": "stm-00597",
-      "type": "plantation",
-      "prefLabel": "Adrichem",
-      "altLabels": [
-        "Heide",
-        "Fiscari"
-      ],
-      "broader": "stm-00008",
-      "description": "",
-      "location": {
-        "lat": 5.957600725714285,
-        "lng": -54.87723938428571,
-        "wkt": "Polygon ((-54.89083780 5.96206923, -54.85923212 5.95946659, -54.85932670 5.95441234, -54.85921191 5.95356976, -54.88986037 5.95579336, -54.89136899 5.95582457, -54.89083780 5.96206923))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115128",
-      "fid": 1680,
-      "psurIds": [
-        "PSUR0003"
-      ],
-      "district": "Divisie Matapplea",
-      "locationDescription": "Matappica Kreek",
-      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
-      "placeType": "koffie en katoen",
-      "modifiedBy": "Thunnisvanoort",
-      "modifiedAt": "2026-04-13",
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115128",
-          "matchType": "closeMatch"
-        }
-      ],
-      "diklandRefs": [
-        {
-          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Adrichem 2005-01 geschiedenis.pdf",
-          "driveUrl": "https://drive.google.com/drive/folders/0B88mZFitv8emS1hQN2JjNjl2NmM?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-3bVNO9yHN3AcEqwuUzUrAw",
-          "author": "Philip Dikland",
-          "year": "2005-2008",
-          "notes": null
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01856",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73250,6 +73199,72 @@
           "author": "Philip Dikland",
           "year": "2006, aangevuld 2009",
           "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00597",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00597",
+      "type": "plantation",
+      "broader": "stm-00008",
+      "description": "",
+      "location": {
+        "lat": 5.957600725714285,
+        "lng": -54.87723938428571,
+        "wkt": "Polygon ((-54.89083780 5.96206923, -54.85923212 5.95946659, -54.85932670 5.95441234, -54.85921191 5.95356976, -54.88986037 5.95579336, -54.89136899 5.95582457, -54.89083780 5.96206923))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115128",
+      "fid": 1680,
+      "psurIds": [
+        "PSUR0003"
+      ],
+      "district": "Divisie Matapplea",
+      "locationDescription": "Matappica Kreek",
+      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
+      "placeType": "koffie en katoen",
+      "modifiedBy": "jonaschlegel",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115128",
+          "matchType": "closeMatch"
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Adrichem 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emM2xIS2VzLXF1TEk/view?usp=drive_link&resourcekey=0-B5Qg7k0kFTTtLDHYqdxgNQ",
+          "author": "Philip Dikland",
+          "year": "2005-2008",
+          "notes": null
+        }
+      ],
+      "names": [
+        {
+          "text": "Adrichem",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Heide",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
+        },
+        {
+          "text": "Fiscari",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
         }
       ]
     },
