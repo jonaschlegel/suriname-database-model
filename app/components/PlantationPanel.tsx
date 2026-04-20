@@ -462,9 +462,7 @@ export default function PlantationPanel({
             {(() => {
               const pid =
                 props.stmId ??
-                extractPlaceId(
-                  plantationUri || featureUri || placeUri || '',
-                );
+                extractPlaceId(plantationUri || featureUri || placeUri || '');
               return pid ? (
                 <Link
                   href={`/places?place=${pid}`}
