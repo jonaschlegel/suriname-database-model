@@ -79045,37 +79045,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02619",
-      "@type": [
-        "E53_Place"
-      ],
-      "id": "stm-02619",
-      "type": "station",
-      "prefLabel": "Dam",
-      "altLabels": [],
-      "broader": null,
-      "description": "Eind treinspoor",
-      "location": {
-        "lat": 4.662587553312574,
-        "lng": -54.932047310153976,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": null,
-      "fid": 119,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02660",
       "@type": [
         "E53_Place"
@@ -83693,6 +83662,47 @@
       "modifiedAt": "2026-04-14",
       "@id": "stm:place/stm-new-1776183306173",
       "@type": "E25_Human-Made_Feature"
+    },
+    {
+      "@id": "stm:place/stm-02619",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02619",
+      "type": "settlement",
+      "broader": null,
+      "description": "Eind treinspoor",
+      "location": {
+        "lat": 4.662587553312574,
+        "lng": -54.932047310153976,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": "Q135067691",
+      "fid": 119,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q135067691",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Dam",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
     },
     {
       "@id": "stm:place/stm-02618",
