@@ -3453,47 +3453,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00615",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00615",
-      "type": "plantation",
-      "prefLabel": "Anna Catharina",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.9827449727586215,
-        "lng": -54.80319147137932,
-        "wkt": "Polygon ((-54.85557047 5.99244533, -54.85260842 5.99415469, -54.84770672 5.99400581, -54.84068407 5.99378789, -54.82934019 5.99333460, -54.81758984 5.99308378, -54.80537508 5.99297719, -54.78813226 5.98040069, -54.74566106 5.98235584, -54.74549530 5.97747560, -54.75089244 5.97702003, -54.75605729 5.97668020, -54.76093230 5.97616556, -54.76621339 5.97570964, -54.77219050 5.97542911, -54.77776181 5.97491547, -54.78333293 5.97451795, -54.78855572 5.97423600, -54.79430064 5.97401295, -54.79934925 5.97378871, -54.80468763 5.97379727, -54.81147712 5.97351761, -54.81148746 5.97614646, -54.81126386 5.97993685, -54.81107614 5.98853472, -54.81261373 5.98862430, -54.84077771 5.98948892, -54.85584887 5.99061571, -54.85557047 5.99244533))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115152",
-      "fid": 1698,
-      "psurIds": [
-        "PSUR0013"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Matappica Kreek",
-      "locationDescriptionOriginal": "Mattappica-kreek, linkerhand",
-      "placeType": "katoen",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115152",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02360",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73496,6 +73455,66 @@
           "driveUrl": "https://drive.google.com/drive/u/0/folders/0B88mZFitv8embmZaYWFQNnZacDQ?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-sImlF_DkEFu3ebWbDQ58Kg",
           "author": "Philip Dikland",
           "year": "2003, aangevuld 2004, 2010, 2011, 2012",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00615",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00615",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.9827449727586215,
+        "lng": -54.80319147137932,
+        "wkt": "Polygon ((-54.85557047 5.99244533, -54.85260842 5.99415469, -54.84770672 5.99400581, -54.84068407 5.99378789, -54.82934019 5.99333460, -54.81758984 5.99308378, -54.80537508 5.99297719, -54.78813226 5.98040069, -54.74566106 5.98235584, -54.74549530 5.97747560, -54.75089244 5.97702003, -54.75605729 5.97668020, -54.76093230 5.97616556, -54.76621339 5.97570964, -54.77219050 5.97542911, -54.77776181 5.97491547, -54.78333293 5.97451795, -54.78855572 5.97423600, -54.79430064 5.97401295, -54.79934925 5.97378871, -54.80468763 5.97379727, -54.81147712 5.97351761, -54.81148746 5.97614646, -54.81126386 5.97993685, -54.81107614 5.98853472, -54.81261373 5.98862430, -54.84077771 5.98948892, -54.85584887 5.99061571, -54.85557047 5.99244533))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115152",
+      "fid": 1698,
+      "psurIds": [
+        "PSUR0013"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Matappica Kreek",
+      "locationDescriptionOriginal": "Mattappica-kreek, linkerhand",
+      "placeType": "katoen",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115152",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Anna Catharina",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "van Omroe",
+          "language": "srn",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Anna Catharina 2008-01 Geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/drive/u/0/folders/0B88mZFitv8embmZaYWFQNnZacDQ?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-sImlF_DkEFu3ebWbDQ58Kg",
+          "author": "Philip Dikland",
+          "year": "2008",
           "notes": null
         }
       ]
