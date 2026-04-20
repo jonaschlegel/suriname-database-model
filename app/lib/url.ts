@@ -60,10 +60,14 @@ export function parseExploreParams(
   const latRaw = searchParams.get('lat');
   const lngRaw = searchParams.get('lng');
 
+  const z = zRaw ? Number(zRaw) : null;
+  const lat = latRaw ? Number(latRaw) : null;
+  const lng = lngRaw ? Number(lngRaw) : null;
+
   return {
     place: place || null,
-    z: zRaw ? Number(zRaw) : null,
-    lat: latRaw ? Number(latRaw) : null,
-    lng: lngRaw ? Number(lngRaw) : null,
+    z: Number.isFinite(z) ? z : null,
+    lat: Number.isFinite(lat) && lat! >= -90 && lat! <= 90 ? lat : null,
+    lng: Number.isFinite(lng) && lng! >= -180 && lng! <= 180 ? lng : null,
   };
 }
