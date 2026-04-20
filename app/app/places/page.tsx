@@ -27,9 +27,13 @@ type SortKey =
   | 'district'
   | 'psurIds'
   | 'externalLinks'
+  | 'wikidata'
+  | 'dikland'
   | 'placeType'
   | 'lat'
-  | 'modifiedAt';
+  | 'modifiedAt'
+  | 'map1930'
+  | 'almanakken';
 type SortDir = 'asc' | 'desc';
 
 function emptyPlace(): GazetteerPlace {
@@ -155,6 +159,39 @@ const PlaceRow = memo(function PlaceRow({
           </span>
         ) : (
           <span className="text-stm-warm-200">--</span>
+        )}
+      </td>
+
+      {/* Wikidata */}
+      <td className="py-1.5 px-2 text-center">
+        {(place.externalLinks || []).some((l) => l.authority === 'wikidata') ? (
+          <span
+            className="text-stm-teal-600"
+            title={
+              (place.externalLinks || [])
+                .filter((l) => l.authority === 'wikidata')
+                .map((l) => l.identifier)
+                .join(', ') || undefined
+            }
+          >
+            &#10003;
+          </span>
+        ) : (
+          <span className="text-stm-warm-200">-</span>
+        )}
+      </td>
+
+      {/* Dikland */}
+      <td className="py-1.5 px-2 text-center">
+        {(place.diklandRefs || []).length > 0 ? (
+          <span
+            className="text-stm-sepia-500"
+            title={`${place.diklandRefs.length} Dikland ref${place.diklandRefs.length > 1 ? 's' : ''}`}
+          >
+            &#10003;
+          </span>
+        ) : (
+          <span className="text-stm-warm-200">-</span>
         )}
       </td>
 
@@ -301,13 +338,20 @@ function PlacesPageInner() {
     [router],
   );
 
+  const booleanSortKeys: Set<SortKey> = new Set([
+    'wikidata',
+    'dikland',
+    'map1930',
+    'almanakken',
+  ]);
+
   const toggleSort = useCallback((key: SortKey) => {
     setSortKey((prev) => {
       if (prev === key) {
         setSortDir((d) => (d === 'asc' ? 'desc' : 'asc'));
         return key;
       }
-      setSortDir('asc');
+      setSortDir(booleanSortKeys.has(key) ? 'desc' : 'asc');
       return key;
     });
   }, []);
@@ -331,7 +375,10 @@ function PlacesPageInner() {
     if (sourceFilter.selected.size > 0) {
       const selected = [...sourceFilter.selected];
       const matchFn = (p: GazetteerPlace) => {
-        const check = (key: string) => p.sources.includes(key);
+        const check = (key: string) =>
+          key === 'dikland-collection'
+            ? (p.diklandRefs || []).length > 0
+            : p.sources.includes(key);
         return sourceFilter.mode === 'and'
           ? selected.every(check)
           : selected.some(check);
@@ -391,6 +438,30 @@ function PlacesPageInner() {
           return cmp(a.location.lat, b.location.lat);
         case 'modifiedAt':
           return cmp(a.modifiedAt, b.modifiedAt);
+        case 'wikidata':
+          return cmp(
+            (a.externalLinks || []).some((l) => l.authority === 'wikidata')
+              ? 1
+              : 0,
+            (b.externalLinks || []).some((l) => l.authority === 'wikidata')
+              ? 1
+              : 0,
+          );
+        case 'dikland':
+          return cmp(
+            (a.diklandRefs || []).length > 0 ? 1 : 0,
+            (b.diklandRefs || []).length > 0 ? 1 : 0,
+          );
+        case 'map1930':
+          return cmp(
+            a.sources.includes('map-1930') ? 1 : 0,
+            b.sources.includes('map-1930') ? 1 : 0,
+          );
+        case 'almanakken':
+          return cmp(
+            a.sources.includes('almanakken') ? 1 : 0,
+            b.sources.includes('almanakken') ? 1 : 0,
+          );
         default:
           return 0;
       }
@@ -627,8 +698,12 @@ function PlacesPageInner() {
                         ],
                         ['psurIds', 'PSUR', ''],
                         ['externalLinks', 'Links', ''],
+                        ['wikidata', 'WD', ''],
+                        ['dikland', 'Dik.', ''],
                         ['lat', 'Coords', ''],
                         ['modifiedAt', 'Modified', 'hidden 2xl:table-cell'],
+                        ['map1930', 'Map', ''],
+                        ['almanakken', 'Alm.', ''],
                       ] as [SortKey, string, string][]
                     ).map(([key, label, extraClass]) => (
                       <th
@@ -640,12 +715,6 @@ function PlacesPageInner() {
                         <SortArrow active={sortKey === key} dir={sortDir} />
                       </th>
                     ))}
-                    <th className="py-2 px-2 font-medium whitespace-nowrap text-center">
-                      Map
-                    </th>
-                    <th className="py-2 px-2 font-medium whitespace-nowrap text-center">
-                      Alm.
-                    </th>
                   </tr>
                 </thead>
                 <tbody>
