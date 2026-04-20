@@ -4565,54 +4565,6 @@
       ]
     },
     {
-      "@id": "stm:place/stm-00710",
-      "@type": "E25_Human-Made_Feature",
-      "id": "stm-00710",
-      "type": "plantation",
-      "prefLabel": "Badenstein",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.974663329,
-        "lng": -54.900146189,
-        "wkt": "Polygon ((-54.89077068 5.96840170, -54.91564732 5.97010728, -54.91531006 5.97269213, -54.91491005 5.97866106, -54.91452857 5.98173968, -54.88957898 5.97996126, -54.88981486 5.97734724, -54.88993330 5.97569165, -54.89019739 5.97362959, -54.89077068 5.96840170))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115187",
-      "fid": 1793,
-      "psurIds": [
-        "PSUR0019"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Warappa Kreek",
-      "locationDescriptionOriginal": "Warrappa-kreek, regterhand in het opvaren",
-      "placeType": "katoen",
-      "modifiedBy": "Thunnisvanoort",
-      "modifiedAt": "2026-04-13",
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115187",
-          "matchType": "closeMatch"
-        }
-      ],
-      "diklandRefs": [
-        {
-          "folderPath": "Commewijne rivier\\plantages\\Badenstein 2006-01 geschiedenis.pdf",
-          "driveUrl": "https://drive.google.com/drive/folders/0B88mZFitv8emS1hQN2JjNjl2NmM?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-3bVNO9yHN3AcEqwuUzUrAwhttps://drive.google.com/drive/u/0/folders/0B88mZFitv8embmZaYWFQNnZacDQ?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-sImlF_DkEFu3ebWbDQ58Kg",
-          "author": "Philip Dikland",
-          "year": "2006, 2009",
-          "notes": null
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02135",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73531,6 +73483,66 @@
           "author": "Philip Dikland",
           "year": "2008",
           "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00710",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00710",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.974663329,
+        "lng": -54.900146189,
+        "wkt": "Polygon ((-54.89077068 5.96840170, -54.91564732 5.97010728, -54.91531006 5.97269213, -54.91491005 5.97866106, -54.91452857 5.98173968, -54.88957898 5.97996126, -54.88981486 5.97734724, -54.88993330 5.97569165, -54.89019739 5.97362959, -54.89077068 5.96840170))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115187",
+      "fid": 1793,
+      "psurIds": [
+        "PSUR0019"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Warappa Kreek",
+      "locationDescriptionOriginal": "Warrappa-kreek, regterhand in het opvaren",
+      "placeType": "katoen",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115187",
+          "matchType": "closeMatch"
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "Commewijne rivier\\plantages\\Badenstein 2006-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/drive/folders/0B88mZFitv8emS1hQN2JjNjl2NmM?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-3bVNO9yHN3AcEqwuUzUrAwhttps://drive.google.com/drive/u/0/folders/0B88mZFitv8embmZaYWFQNnZacDQ?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-sImlF_DkEFu3ebWbDQ58Kg",
+          "author": "Philip Dikland",
+          "year": "2006, aangevuld 2009",
+          "notes": null
+        }
+      ],
+      "names": [
+        {
+          "text": "Badenstein",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Voogtoe",
+          "language": "srn",
+          "type": "historical",
+          "isPreferred": false
         }
       ]
     },
