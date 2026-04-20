@@ -41,12 +41,20 @@ export default function SourcesPage() {
   useEffect(() => {
     if (initializedFromUrl.current || sources.length === 0) return;
     initializedFromUrl.current = true;
-    if (pathSourceId && sources.some((s) => s.sourceId === pathSourceId)) {
-      setExpandedSource(pathSourceId);
-      // Scroll to the source after a brief delay for DOM render
+    const source = pathSourceId
+      ? sources.find((s) => s.sourceId === pathSourceId)
+      : null;
+    if (source) {
+      setExpandedSource(source.sourceId);
+      if (!source.linkedToGazetteer) {
+        setShowFuture(true);
+      }
+      // Scroll after DOM renders the (possibly newly-visible) card
       requestAnimationFrame(() => {
-        const el = document.getElementById(`source-${pathSourceId}`);
-        el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        requestAnimationFrame(() => {
+          const el = document.getElementById(`source-${source.sourceId}`);
+          el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
       });
     }
   }, [sources, pathSourceId]);
