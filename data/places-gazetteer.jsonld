@@ -4828,44 +4828,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02059",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02059",
-      "type": "plantation",
-      "prefLabel": "Beekenhorst",
-      "altLabels": [],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.852359257142857,
-        "lng": -54.95830998142856,
-        "wkt": "Polygon ((-54.96372646 5.84897801, -54.95779432 5.86888776, -54.95082099 5.86412675, -54.95392292 5.84327363, -54.95927405 5.84311777, -54.95890467 5.84915287, -54.96372646 5.84897801))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q3255570",
-      "fid": 3144,
-      "psurIds": [],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q3255570",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01382",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73561,6 +73523,57 @@
           "language": "srn",
           "type": "historical",
           "isPreferred": false
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02059",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02059",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.852359257142857,
+        "lng": -54.95830998142856,
+        "wkt": "Polygon ((-54.96372646 5.84897801, -54.95779432 5.86888776, -54.95082099 5.86412675, -54.95392292 5.84327363, -54.95927405 5.84311777, -54.95890467 5.84915287, -54.96372646 5.84897801))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q3255570",
+      "fid": 3144,
+      "psurIds": [],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q3255570",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Beekenhorst",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Beekenhorst 2002-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emWHBSZ2JyczZTRHM/view?usp=sharing&resourcekey=0-no1LG3q3ytTGrwZRnRG6TA",
+          "author": "Philip Dikland",
+          "year": "2002",
+          "notes": null
         }
       ]
     },
