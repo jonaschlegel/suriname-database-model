@@ -4,11 +4,7 @@ import PlantationPanel from '@/components/PlantationPanel';
 import type { AllData } from '@/lib/data';
 import { loadAllData } from '@/lib/data';
 import type { GeoJSONFeature } from '@/lib/types';
-import {
-  DEFAULT_CENTER,
-  DEFAULT_ZOOM,
-  parseExploreParams,
-} from '@/lib/url';
+import { DEFAULT_CENTER, DEFAULT_ZOOM, parseExploreParams } from '@/lib/url';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';

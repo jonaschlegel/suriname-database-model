@@ -2,7 +2,14 @@
 
 import { CRM_COLORS } from '@/lib/data';
 import { useSearchParams } from 'next/navigation';
-import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 /* ─── Helpers ──────────────────────────────────────────────────── */
 

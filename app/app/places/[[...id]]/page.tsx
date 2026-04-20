@@ -325,14 +325,12 @@ function PlacesPageInner() {
   }, [places, pathPlaceId, searchParams, router]);
 
   // Sync selectedIds to URL as path route (skip transient stm-new-* IDs)
-  const syncUrlToSelection = useCallback(
-    (ids: string[]) => {
-      const persistIds = ids.filter((id) => !id.startsWith('stm-new-'));
-      const newUrl = persistIds[0] ? buildPlaceUrl(persistIds[0]) : '/places';
-      router.replace(newUrl, { scroll: false });
-    },
-    [router],
-  );
+  // Uses replaceState to avoid Next.js re-rendering the page on every click
+  const syncUrlToSelection = useCallback((ids: string[]) => {
+    const persistIds = ids.filter((id) => !id.startsWith('stm-new-'));
+    const newUrl = persistIds[0] ? buildPlaceUrl(persistIds[0]) : '/places';
+    window.history.replaceState(null, '', newUrl);
+  }, []);
 
   const toggleSort = useCallback(
     (key: SortKey) => {

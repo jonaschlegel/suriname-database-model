@@ -1,8 +1,8 @@
 'use client';
 
 import 'leaflet/dist/leaflet.css';
-import type { GeoJSONCollection, GeoJSONFeature } from '@/lib/types';
 import { usePlaceTypes } from '@/lib/thesaurus';
+import type { GeoJSONCollection, GeoJSONFeature } from '@/lib/types';
 import L from 'leaflet';
 import { useCallback, useEffect, useRef, useState } from 'react';
 

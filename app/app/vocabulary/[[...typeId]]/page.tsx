@@ -1,17 +1,17 @@
 'use client';
 
 import ThesaurusEditor from '@/components/ThesaurusEditor';
-import { langEn, parseThesaurus } from '@/lib/thesaurus';
+import { useAuth } from '@/lib/auth';
 import type {
   LangArrayMap,
   LangMap,
   PlaceTypeConcept,
   ThesaurusScheme,
 } from '@/lib/thesaurus';
+import { langEn, parseThesaurus } from '@/lib/thesaurus';
 import { buildVocabularyUrl } from '@/lib/url';
 import { useParams, useRouter } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { useAuth } from '@/lib/auth';
 
 export default function VocabularyPage() {
   const { canEdit } = useAuth();
@@ -26,7 +26,6 @@ export default function VocabularyPage() {
   const router = useRouter();
   const initializedFromUrl = useRef(false);
   const pathTypeId = params.typeId?.[0] ?? null;
-
 
   useEffect(() => {
     fetch('/data/place-types-thesaurus.jsonld')
@@ -212,7 +211,9 @@ export default function VocabularyPage() {
                             <div key={child.typeId}>
                               <button
                                 type="button"
-                                onClick={() => handleSelectConcept(child.typeId)}
+                                onClick={() =>
+                                  handleSelectConcept(child.typeId)
+                                }
                                 className={`w-full text-left pl-8 pr-4 py-2 border-b border-stm-warm-100 hover:bg-stm-warm-50 transition-colors flex items-center gap-2 ${
                                   selectedConcept === child.typeId
                                     ? 'bg-stm-sepia-50 border-l-2 border-l-stm-sepia-500'
@@ -236,7 +237,9 @@ export default function VocabularyPage() {
                                 <button
                                   key={sub.typeId}
                                   type="button"
-                                  onClick={() => handleSelectConcept(sub.typeId)}
+                                  onClick={() =>
+                                    handleSelectConcept(sub.typeId)
+                                  }
                                   className={`w-full text-left pl-14 pr-4 py-1.5 border-b border-stm-warm-100 hover:bg-stm-warm-50 transition-colors flex items-center gap-2 ${
                                     selectedConcept === sub.typeId
                                       ? 'bg-stm-sepia-50 border-l-2 border-l-stm-sepia-500'
