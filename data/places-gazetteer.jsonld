@@ -80484,37 +80484,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02618",
-      "@type": [
-        "E53_Place"
-      ],
-      "id": "stm-02618",
-      "type": "settlement",
-      "prefLabel": "Gege",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 4.705116982242576,
-        "lng": -54.954995588410384,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": null,
-      "fid": 118,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02717",
       "@type": [
         "E53_Place"
@@ -83756,6 +83725,47 @@
       "modifiedAt": "2026-04-14",
       "@id": "stm:place/stm-new-1776183306173",
       "@type": "E25_Human-Made_Feature"
+    },
+    {
+      "@id": "stm:place/stm-02618",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02618",
+      "type": "settlement",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 4.705116982242576,
+        "lng": -54.954995588410384,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": "Q135087732",
+      "fid": 118,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-20",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q135087732",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Gege",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ]
     },
     {
       "@id": "stm:place/stm-02626",
