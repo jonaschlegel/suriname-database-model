@@ -122,6 +122,23 @@
       "description": "Map of Suriname from 1882 period, used for military post locations and secondary plantation label verification."
     },
     {
+      "@id": "https://data.suriname-timemachine.org/source/paramaribo-street-map-1916",
+      "@type": [
+        "crm:E22_Human-Made_Object"
+      ],
+      "sourceId": "paramaribo-street-map-1916",
+      "prefLabel": "Paramaribo 1916-17 (street overlay source)",
+      "P2_has_type": "https://data.suriname-timemachine.org/type/source-type/map",
+      "mapYear": 1916,
+      "timeSpan": "1916-1917",
+      "maker": "Opnemingsdienst van Suriname",
+      "holdingArchive": "UB Amsterdam",
+      "handleUrl": "https://hdl.handle.net/11245/3.38611",
+      "iiifManifest": "https://uvaerfgoed.nl/viewer/api/v1/records/11245_3_38611/manifest/",
+      "description": "Street line source used for Paramaribo road overlays in the gazetteer, derived from the Paramaribo 1916-17 map.",
+      "linkedToGazetteer": true
+    },
+    {
       "@id": "https://data.suriname-timemachine.org/source/almanakken",
       "@type": [
         "crm:E22_Human-Made_Object"

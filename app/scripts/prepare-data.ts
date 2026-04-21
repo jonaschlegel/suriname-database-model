@@ -211,6 +211,14 @@ if (existsSync(geojsonSrc)) {
         (preferredName?.text as string) ||
         (fallbackName?.text as string) ||
         '';
+      const entrySources = Array.isArray(entry.sources)
+        ? (entry.sources as string[])
+        : [];
+      const derivedMapYear = entrySources.includes('paramaribo-street-map-1916')
+        ? '1916'
+        : entrySources.includes('map-1882')
+          ? '1882'
+          : '1930';
 
       // LineString features (road/railroad) — use WKT if available
       if (loc.wkt && (type === 'road' || type === 'railroad')) {
@@ -237,7 +245,7 @@ if (existsSync(geojsonSrc)) {
                 placeUri: (entry['@id'] as string) || `stm:place/${entry.id}`,
                 status: 'infrastructure',
                 featureType: type,
-                mapYear: '1930',
+                mapYear: derivedMapYear,
               },
             });
             added++;
@@ -262,9 +270,7 @@ if (existsSync(geojsonSrc)) {
             placeUri: (entry['@id'] as string) || `stm:place/${entry.id}`,
             status: 'named',
             featureType: type,
-            mapYear: (entry.sources as string[])?.includes('map-1882')
-              ? '1882'
-              : '1930',
+            mapYear: derivedMapYear,
           },
         });
         added++;
