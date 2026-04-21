@@ -72953,7 +72953,7 @@
       "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
       "placeType": "suiker",
       "modifiedBy": "GerDijkstra",
-      "modifiedAt": "2026-04-20",
+      "modifiedAt": "2026-04-21",
       "externalLinks": [
         {
           "authority": "wikidata",
@@ -72971,7 +72971,13 @@
         {
           "text": "Verbergie",
           "language": "srn",
-          "type": "historical",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Verberk",
+          "language": "nl",
+          "type": "variant",
           "isPreferred": false
         }
       ],
