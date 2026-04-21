@@ -15323,47 +15323,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00685",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00685",
-      "type": "plantation",
-      "prefLabel": "Echtensrots",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.957684868333334,
-        "lng": -54.93761304833333,
-        "wkt": "Polygon ((-54.91698485 5.95757466, -54.91726450 5.95467018, -54.96263784 5.95691003, -54.96237255 5.96010507, -54.94943370 5.95927461, -54.91698485 5.95757466))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115530",
-      "fid": 1768,
-      "psurIds": [
-        "PSUR0099"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Warappa Kreek",
-      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
-      "placeType": "koffie en katoen",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115530",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01160",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74098,6 +74057,78 @@
           "author": "Philip Dikland",
           "year": "2004, aangevuld 2010",
           "notes": "Circa 1685 of eerder – stichting plantage Nieuw Accaribo.\n\nIn de begintijd van de kolonie bestonden er twee plantages Accaribo ; Dat waren de plantage\n“Accaribo” aan de Surinamerivier, die thans nog bestaat, en de plantage “Nieuw-Accaribo”\naan de Commewijnerivier, die later werd hernaamd tot Des Tombesburg."
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00685",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00685",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.957684868333334,
+        "lng": -54.93761304833333,
+        "wkt": "Polygon ((-54.91698485 5.95757466, -54.91726450 5.95467018, -54.96263784 5.95691003, -54.96237255 5.96010507, -54.94943370 5.95927461, -54.91698485 5.95757466))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115530",
+      "fid": 1768,
+      "psurIds": [
+        "PSUR0099"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Warappa Kreek",
+      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
+      "placeType": "koffie en katoen",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115530",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Echtensrots",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Rostoo",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Rocheteau",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Echtens Rots",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Echtensrots 2008-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emdFBGSzVQNkcyZWs/view?usp=sharing&resourcekey=0-SMXBqRgSnkLthaUj6h_usA",
+          "author": "Philip Dikland",
+          "year": "2008",
+          "notes": null
         }
       ]
     },
