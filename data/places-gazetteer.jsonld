@@ -73734,7 +73734,13 @@
         {
           "text": "Santi",
           "language": "srn",
-          "type": "historical",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Constantia",
+          "language": "nl",
+          "type": "variant",
           "isPreferred": false
         }
       ],
