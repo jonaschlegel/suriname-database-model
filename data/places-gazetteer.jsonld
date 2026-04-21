@@ -3979,47 +3979,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01244",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01244",
-      "type": "plantation",
-      "prefLabel": "Arendrust",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.789376175454546,
-        "lng": -54.74391252363637,
-        "wkt": "Polygon ((-54.74241326 5.78083380, -54.74772801 5.77639831, -54.75027560 5.77922012, -54.75858396 5.78867419, -54.75138676 5.79139288, -54.75289130 5.79360297, -54.74220312 5.80264813, -54.73842821 5.80531420, -54.72760248 5.79245706, -54.72911180 5.79176247, -54.74241326 5.78083380))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115166",
-      "fid": 2328,
-      "psurIds": [
-        "PSUR0017"
-      ],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115166",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02343",
       "@type": [
         "E25_Human-Made_Feature"
@@ -72685,6 +72644,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emZVZzNWJZSnR5MGs/view?usp=drive_link&resourcekey=0-eiUwMBYsdEKZMmlORoACAA",
           "author": "Philip Dikland",
           "year": "2006, aangevuld 2009",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01244",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01244",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.789376175454546,
+        "lng": -54.74391252363637,
+        "wkt": "Polygon ((-54.74241326 5.78083380, -54.74772801 5.77639831, -54.75027560 5.77922012, -54.75858396 5.78867419, -54.75138676 5.79139288, -54.75289130 5.79360297, -54.74220312 5.80264813, -54.73842821 5.80531420, -54.72760248 5.79245706, -54.72911180 5.79176247, -54.74241326 5.78083380))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115166",
+      "fid": 2328,
+      "psurIds": [
+        "PSUR0017"
+      ],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115166",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Arendrust",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "di Losi",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Arendsrust",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Arendsrust 2002-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emc3lPWFVRMzZXejA/view?usp=sharing&resourcekey=0-xn-pKGHzU_dp2AGjNADDdA",
+          "author": "Philip Dikland",
+          "year": "2002, aangevuld 2010",
           "notes": null
         }
       ]
