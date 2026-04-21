@@ -10513,44 +10513,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00999",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00999",
-      "type": "plantation",
-      "prefLabel": "Crawassibo",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.564618921428571,
-        "lng": -54.71090558428572,
-        "wkt": "Polygon ((-54.70905869 5.57322340, -54.69420503 5.55956283, -54.70003233 5.54779500, -54.70669626 5.55370157, -54.72799196 5.57226683, -54.72929613 5.57255942, -54.70905869 5.57322340))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59115416",
-      "fid": 2083,
-      "psurIds": [],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115416",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02348",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73928,6 +73890,57 @@
           "language": "nl",
           "type": "variant",
           "isPreferred": false
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00999",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00999",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.564618921428571,
+        "lng": -54.71090558428572,
+        "wkt": "Polygon ((-54.70905869 5.57322340, -54.69420503 5.55956283, -54.70003233 5.54779500, -54.70669626 5.55370157, -54.72799196 5.57226683, -54.72929613 5.57255942, -54.70905869 5.57322340))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59115416",
+      "fid": 2083,
+      "psurIds": [],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115416",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Crawassibo",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Crawassibo 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emR1hORlhmMVlxNnc/view?usp=sharing&resourcekey=0-kQ32VNcZTwoCCnDcNI4XIw",
+          "author": "Philip Dikland",
+          "year": "2005, aangevuld 2010",
+          "notes": null
         }
       ]
     },
