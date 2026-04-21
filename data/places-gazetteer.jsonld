@@ -21419,49 +21419,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01016",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01016",
-      "type": "plantation",
-      "prefLabel": "Hazard boven Commewijne",
-      "altLabels": [
-        "Hazard"
-      ],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.67330933076923,
-        "lng": -54.730582254615385,
-        "wkt": "Polygon ((-54.72438558 5.66063443, -54.74057855 5.66156147, -54.74050321 5.66331873, -54.73949974 5.67413733, -54.73600112 5.67687660, -54.73361812 5.68006792, -54.73129366 5.68291075, -54.72943677 5.68354673, -54.72674150 5.68264180, -54.72459969 5.68022730, -54.72283527 5.67756653, -54.72369052 5.66889728, -54.72438558 5.66063443))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q21000077",
-      "fid": 2100,
-      "psurIds": [
-        "PSUR0137"
-      ],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q21000077",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00665",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74080,6 +74037,66 @@
           "language": "nl",
           "type": "variant",
           "isPreferred": false
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01016",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01016",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.67330933076923,
+        "lng": -54.730582254615385,
+        "wkt": "Polygon ((-54.72438558 5.66063443, -54.74057855 5.66156147, -54.74050321 5.66331873, -54.73949974 5.67413733, -54.73600112 5.67687660, -54.73361812 5.68006792, -54.73129366 5.68291075, -54.72943677 5.68354673, -54.72674150 5.68264180, -54.72459969 5.68022730, -54.72283527 5.67756653, -54.72369052 5.66889728, -54.72438558 5.66063443))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q21000077",
+      "fid": 2100,
+      "psurIds": [
+        "PSUR0137"
+      ],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q21000077",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Hazard boven Commewijne",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Hazard",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Bergen op Zoom 2001-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emYXdZdlBmbTl2Sms/view?usp=sharing&resourcekey=0--gvPzVQ8zgjv-nAaKd_M1g",
+          "author": "Philip Dikland",
+          "year": "2001, aangevuld 2009",
+          "notes": null
         }
       ]
     },
