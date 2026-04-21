@@ -85998,37 +85998,6 @@
       "externalLinks": []
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02556",
-      "@type": [
-        "E53_Place"
-      ],
-      "id": "stm-02556",
-      "type": "maroon-village",
-      "prefLabel": "Commissaris Kondre",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.2377856816353106,
-        "lng": -55.36552898699526,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": null,
-      "fid": 56,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": []
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02580",
       "@type": [
         "E53_Place"
@@ -87731,6 +87700,53 @@
       "modifiedBy": null,
       "modifiedAt": null,
       "externalLinks": []
+    },
+    {
+      "@id": "stm:place/stm-02556",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02556",
+      "type": "maroon-village",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.2377856816353106,
+        "lng": -55.36552898699526,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": null,
+      "fid": 56,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "Thunnisvanoort",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "geonames",
+          "identifier": "https://www.geonames.org/3384415/commissaris-kondre.html",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Commissaris Kondre",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Post Mindrineti",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ]
     },
     {
       "@id": "https://data.suriname-timemachine.org/place/stm-00205",
