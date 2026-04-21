@@ -10383,47 +10383,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00689",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00689",
-      "type": "plantation",
-      "prefLabel": "Constantia",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.892674124999999,
-        "lng": -54.905624035625,
-        "wkt": "Polygon ((-54.92188351 5.90123575, -54.92109485 5.90114502, -54.88898378 5.89930732, -54.88971282 5.89663589, -54.89032812 5.89435785, -54.89054062 5.89225190, -54.89098549 5.88905604, -54.89644097 5.88796218, -54.90032127 5.88671973, -54.90637739 5.88369287, -54.91126112 5.88165526, -54.91515477 5.88046953, -54.90310960 5.89510105, -54.91979919 5.89596099, -54.92210756 5.89599887, -54.92188351 5.90123575))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q124825047",
-      "fid": 1772,
-      "psurIds": [
-        "PSUR0064"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Matappica Kreek",
-      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q124825047",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01198",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73796,6 +73755,66 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emWWxyX25jLU1FTGs/view?usp=sharing&resourcekey=0-TWH1TNJj08noefw94fw8IA",
           "author": "Philip Dikland",
           "year": "2001, aangevuld 2009, 2012",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00689",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00689",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.892674124999999,
+        "lng": -54.905624035625,
+        "wkt": "Polygon ((-54.92188351 5.90123575, -54.92109485 5.90114502, -54.88898378 5.89930732, -54.88971282 5.89663589, -54.89032812 5.89435785, -54.89054062 5.89225190, -54.89098549 5.88905604, -54.89644097 5.88796218, -54.90032127 5.88671973, -54.90637739 5.88369287, -54.91126112 5.88165526, -54.91515477 5.88046953, -54.90310960 5.89510105, -54.91979919 5.89596099, -54.92210756 5.89599887, -54.92188351 5.90123575))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q124825047",
+      "fid": 1772,
+      "psurIds": [
+        "PSUR0064"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Matappica Kreek",
+      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q124825047",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Constantia",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Santi",
+          "language": "srn",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Constantia 2001-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emVEVwNlphU0JkczQ/view?usp=sharing&resourcekey=0-1-VYi_rc6cccjprpbH1nWA",
+          "author": "Philip Dikland",
+          "year": "2001",
           "notes": null
         }
       ]
