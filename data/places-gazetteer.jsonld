@@ -10610,47 +10610,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02053",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02053",
-      "type": "plantation",
-      "prefLabel": "Coresburg",
-      "altLabels": [],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.82616495,
-        "lng": -54.98217367285714,
-        "wkt": "Polygon ((-55.00157447 5.82530524, -54.96748564 5.83129855, -54.96727807 5.82864262, -54.96746079 5.82713396, -54.96770301 5.82622893, -55.00213926 5.81924011, -55.00157447 5.82530524))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115406",
-      "fid": 3138,
-      "psurIds": [
-        "PSUR0066"
-      ],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Orelana Kreek",
-      "locationDescriptionOriginal": "Hoer-Helena-kreek, regterhand in het opvaren",
-      "placeType": "koffie en cacao",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115406",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01202",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73815,6 +73774,60 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emVEVwNlphU0JkczQ/view?usp=sharing&resourcekey=0-1-VYi_rc6cccjprpbH1nWA",
           "author": "Philip Dikland",
           "year": "2001",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02053",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02053",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.82616495,
+        "lng": -54.98217367285714,
+        "wkt": "Polygon ((-55.00157447 5.82530524, -54.96748564 5.83129855, -54.96727807 5.82864262, -54.96746079 5.82713396, -54.96770301 5.82622893, -55.00213926 5.81924011, -55.00157447 5.82530524))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115406",
+      "fid": 3138,
+      "psurIds": [
+        "PSUR0066"
+      ],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Orelana Kreek",
+      "locationDescriptionOriginal": "Hoer-Helena-kreek, regterhand in het opvaren",
+      "placeType": "koffie en cacao",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115406",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Coresburg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Coresburg 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emLW5SclFOcTdEUTg/view?usp=sharing&resourcekey=0-tvJ-O9tdSRfc1n-IJuVmDg",
+          "author": "Philip Dikland",
+          "year": "2005",
           "notes": null
         }
       ]
