@@ -11235,47 +11235,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01026",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01026",
-      "type": "plantation",
-      "prefLabel": "De Dageraad",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.650960706818181,
-        "lng": -54.730683061363635,
-        "wkt": "Polygon ((-54.71283696 5.62902978, -54.72344784 5.62974450, -54.72796218 5.63515476, -54.74231767 5.65132864, -54.74419583 5.63909899, -54.77057940 5.64059338, -54.76957721 5.65101999, -54.76382795 5.65609428, -54.75488476 5.66380673, -54.74050321 5.66331873, -54.74057855 5.66156147, -54.72438558 5.66063443, -54.72369052 5.66889728, -54.72283527 5.67756653, -54.72087796 5.67508541, -54.71770920 5.67370920, -54.71942427 5.65201726, -54.70831984 5.65144681, -54.70933796 5.64080992, -54.70934406 5.63715722, -54.71555417 5.63403046, -54.71283696 5.62902978))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115429",
-      "fid": 2110,
-      "psurIds": [
-        "PSUR0071"
-      ],
-      "district": null,
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115429",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02472",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74023,6 +73982,66 @@
           "author": "Philip Dikland",
           "year": "2005, aangevuld 2008",
           "notes": "De eerstbekende naam van de plantage was Castanienboom. In 1737 en 1741 werd een deel\nvan de grond verkocht aan buurplantage Nieuwsorg, en de resterende grond werd omstreeks 1750 \"Eendragt\" genoemd. Omstreeks 1840 werd deze naam gewijzigd in \"Dageraad\"."
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01026",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01026",
+      "type": "plantation",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.650960706818181,
+        "lng": -54.730683061363635,
+        "wkt": "Polygon ((-54.71283696 5.62902978, -54.72344784 5.62974450, -54.72796218 5.63515476, -54.74231767 5.65132864, -54.74419583 5.63909899, -54.77057940 5.64059338, -54.76957721 5.65101999, -54.76382795 5.65609428, -54.75488476 5.66380673, -54.74050321 5.66331873, -54.74057855 5.66156147, -54.72438558 5.66063443, -54.72369052 5.66889728, -54.72283527 5.67756653, -54.72087796 5.67508541, -54.71770920 5.67370920, -54.71942427 5.65201726, -54.70831984 5.65144681, -54.70933796 5.64080992, -54.70934406 5.63715722, -54.71555417 5.63403046, -54.71283696 5.62902978))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115429",
+      "fid": 2110,
+      "psurIds": [
+        "PSUR0071"
+      ],
+      "district": null,
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115429",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "De Dageraad",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "De Dageraat",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Dageraat - Knoppemombo 2003-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8embm45emxnU01malU/view?usp=sharing&resourcekey=0-f_INHt1s__h3KyVLUCG1jA",
+          "author": "Philip Dikland",
+          "year": "2003, aangevuld 2010",
+          "notes": null
         }
       ]
     },
