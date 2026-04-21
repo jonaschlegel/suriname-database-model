@@ -112,9 +112,7 @@
       "narrower": [
         "stm:vocabulary/place-type/plantation",
         "stm:vocabulary/place-type/military-post",
-        "stm:vocabulary/place-type/street",
-        "stm:vocabulary/place-type/road",
-        "stm:vocabulary/place-type/railroad",
+        "stm:vocabulary/place-type/transport-infrastructure",
         "stm:vocabulary/place-type/station",
         "stm:vocabulary/place-type/settlement"
       ]
@@ -237,6 +235,33 @@
       "modified": "2026-04-07"
     },
     {
+      "@id": "stm:vocabulary/place-type/transport-infrastructure",
+      "@type": [
+        "skos:Concept",
+        "crm:E55_Type"
+      ],
+      "prefLabel": {
+        "en": "Transport Infrastructure",
+        "nl": "Transportinfrastructuur"
+      },
+      "definition": {
+        "en": "Human-made linear infrastructure used for overland movement and connection between places."
+      },
+      "inScheme": "stm:vocabulary/place-type",
+      "broader": "stm:vocabulary/place-type/human-made",
+      "narrower": [
+        "stm:vocabulary/place-type/road",
+        "stm:vocabulary/place-type/railroad"
+      ],
+      "typeId": "transport-infrastructure",
+      "color": "#ad7444",
+      "crmClass": "E25_Human-Made_Feature",
+      "crmBadge": "E25",
+      "sortOrder": 3,
+      "created": "2026-04-21",
+      "modified": "2026-04-21"
+    },
+    {
       "@id": "stm:vocabulary/place-type/road",
       "@type": [
         "skos:Concept",
@@ -247,11 +272,23 @@
         "nl": "Weg",
         "srn": "Pasi"
       },
+      "altLabel": {
+        "en": [
+          "Street"
+        ],
+        "nl": [
+          "Straat"
+        ]
+      },
       "definition": {
         "en": "A constructed path or route for transportation between settlements."
       },
+      "editorialNote": {
+        "en": "Urban streets are currently normalized under road because the available source data does not support a stable distinction between road and street.",
+        "nl": "Stedelijke straten worden momenteel onder weg genormaliseerd omdat de beschikbare brondata geen stabiel onderscheid tussen weg en straat ondersteunen."
+      },
       "inScheme": "stm:vocabulary/place-type",
-      "broader": "stm:vocabulary/place-type/human-made",
+      "broader": "stm:vocabulary/place-type/transport-infrastructure",
       "exactMatch": [
         "http://www.wikidata.org/entity/Q34442"
       ],
@@ -259,35 +296,9 @@
       "color": "#b87d4a",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
-      "sortOrder": 3,
+      "sortOrder": 4,
       "created": "2026-04-07",
       "modified": "2026-04-07"
-    },
-    {
-      "@id": "stm:vocabulary/place-type/street",
-      "@type": [
-        "skos:Concept",
-        "crm:E55_Type"
-      ],
-      "prefLabel": {
-        "en": "Street",
-        "nl": "Straat"
-      },
-      "definition": {
-        "en": "An urban or town thoroughfare intended for local circulation and access."
-      },
-      "inScheme": "stm:vocabulary/place-type",
-      "broader": "stm:vocabulary/place-type/human-made",
-      "closeMatch": [
-        "http://www.wikidata.org/entity/Q79007"
-      ],
-      "typeId": "street",
-      "color": "#b17f47",
-      "crmClass": "E25_Human-Made_Feature",
-      "crmBadge": "E25",
-      "sortOrder": 12,
-      "created": "2026-04-20",
-      "modified": "2026-04-20"
     },
     {
       "@id": "stm:vocabulary/place-type/railroad",
@@ -303,7 +314,7 @@
         "en": "A track or system of tracks for rail transport between locations."
       },
       "inScheme": "stm:vocabulary/place-type",
-      "broader": "stm:vocabulary/place-type/human-made",
+      "broader": "stm:vocabulary/place-type/transport-infrastructure",
       "related": [
         "stm:vocabulary/place-type/station"
       ],
@@ -314,7 +325,7 @@
       "color": "#a06040",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
-      "sortOrder": 4,
+      "sortOrder": 5,
       "created": "2026-04-07",
       "modified": "2026-04-07"
     },
@@ -343,7 +354,7 @@
       "color": "#d4a882",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
-      "sortOrder": 5,
+      "sortOrder": 6,
       "created": "2026-04-07",
       "modified": "2026-04-09"
     },
@@ -390,7 +401,7 @@
       "color": "#cf8860",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
-      "sortOrder": 6,
+      "sortOrder": 7,
       "created": "2026-04-07",
       "modified": "2026-04-07"
     },
@@ -418,7 +429,7 @@
       "color": "#d4a074",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
-      "sortOrder": 7,
+      "sortOrder": 8,
       "created": "2026-04-07",
       "modified": "2026-04-07"
     },
@@ -455,7 +466,7 @@
       "color": "#e8ad80",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
-      "sortOrder": 8,
+      "sortOrder": 9,
       "created": "2026-04-07",
       "modified": "2026-04-07"
     },
@@ -497,7 +508,7 @@
       "color": "#d09070",
       "crmClass": "E25_Human-Made_Feature",
       "crmBadge": "E25",
-      "sortOrder": 9,
+      "sortOrder": 10,
       "created": "2026-04-07",
       "modified": "2026-04-07"
     },
@@ -525,7 +536,7 @@
       "color": "#4a88bf",
       "crmClass": "E26_Physical_Feature",
       "crmBadge": "E26",
-      "sortOrder": 10,
+      "sortOrder": 11,
       "created": "2026-04-07",
       "modified": "2026-04-07"
     },
@@ -553,7 +564,7 @@
       "color": "#8dbde0",
       "crmClass": "E26_Physical_Feature",
       "crmBadge": "E26",
-      "sortOrder": 11,
+      "sortOrder": 12,
       "created": "2026-04-07",
       "modified": "2026-04-07"
     },

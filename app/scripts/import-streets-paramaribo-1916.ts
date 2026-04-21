@@ -1,7 +1,4 @@
-import {
-  readFileSync,
-  writeFileSync,
-} from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
 type RawGeometry = {
@@ -82,7 +79,7 @@ const DEFAULT_GEOJSON = join(
 );
 const DEFAULT_GAZETTEER = join(ROOT_DIR, 'data', 'places-gazetteer.jsonld');
 const SOURCE_TAG = 'paramaribo-street-map-1916';
-const UNNAMED_LABEL_PREFIX = 'Unnamed street (Paramaribo 1916)';
+const UNNAMED_LABEL_PREFIX = 'Unnamed road (Paramaribo 1916)';
 
 function parseArgs(argv: string[]): CliOptions {
   let geojsonPath = DEFAULT_GEOJSON;
@@ -106,15 +103,17 @@ function parseArgs(argv: string[]): CliOptions {
       continue;
     }
     if (arg === '--help' || arg === '-h') {
-      console.log([
-        'Usage: tsx scripts/import-streets-paramaribo-1916.ts [options]',
-        '',
-        'Options:',
-        '  --write                 Persist updates to the gazetteer file',
-        '  --geojson <path>        Input streets GeoJSON path',
-        '  --gazetteer <path>      Gazetteer JSON-LD path',
-        '  --help, -h              Show this help',
-      ].join('\n'));
+      console.log(
+        [
+          'Usage: tsx scripts/import-streets-paramaribo-1916.ts [options]',
+          '',
+          'Options:',
+          '  --write                 Persist updates to the gazetteer file',
+          '  --geojson <path>        Input streets GeoJSON path',
+          '  --gazetteer <path>      Gazetteer JSON-LD path',
+          '  --help, -h              Show this help',
+        ].join('\n'),
+      );
       process.exit(0);
     }
   }
@@ -139,10 +138,16 @@ function getEntryLabel(entry: GazetteerEntry): string {
   if (Array.isArray(entry.names)) {
     const names = entry.names as Array<Record<string, unknown>>;
     const preferred = names.find((n) => n.isPreferred === true);
-    if (preferred && typeof preferred.text === 'string' && preferred.text.trim()) {
+    if (
+      preferred &&
+      typeof preferred.text === 'string' &&
+      preferred.text.trim()
+    ) {
       return preferred.text.trim();
     }
-    const first = names.find((n) => typeof n.text === 'string' && String(n.text).trim());
+    const first = names.find(
+      (n) => typeof n.text === 'string' && String(n.text).trim(),
+    );
     if (first) return String(first.text).trim();
   }
   return '';
@@ -170,11 +175,15 @@ function segmentsToLineStringWkt(segments: number[][][]): string | null {
 
   if (points.length < 2) return null;
 
-  const serialized = points.map(([lng, lat]) => `${lng.toFixed(8)} ${lat.toFixed(8)}`);
+  const serialized = points.map(
+    ([lng, lat]) => `${lng.toFixed(8)} ${lat.toFixed(8)}`,
+  );
   return `LineString (${serialized.join(', ')})`;
 }
 
-function centroidFromSegments(segments: number[][][]): { lat: number; lng: number } | null {
+function centroidFromSegments(
+  segments: number[][][],
+): { lat: number; lng: number } | null {
   let latSum = 0;
   let lngSum = 0;
   let count = 0;
@@ -198,18 +207,29 @@ function centroidFromSegments(segments: number[][][]): { lat: number; lng: numbe
   };
 }
 
-function determineCrmType(typeId: string, context: Record<string, unknown>): string[] {
+function determineCrmType(
+  typeId: string,
+  context: Record<string, unknown>,
+): string[] {
   const human = context['E25_Human-Made_Feature'];
   const natural = context['E26_Physical_Feature'];
   const place = context['E53_Place'];
 
   if (typeId === 'river' || typeId === 'creek') {
-    return [typeof natural === 'string' ? 'E26_Physical_Feature' : 'E26_Physical_Feature'];
+    return [
+      typeof natural === 'string'
+        ? 'E26_Physical_Feature'
+        : 'E26_Physical_Feature',
+    ];
   }
   if (typeId === 'district') {
     return [typeof place === 'string' ? 'E53_Place' : 'E53_Place'];
   }
-  return [typeof human === 'string' ? 'E25_Human-Made_Feature' : 'E25_Human-Made_Feature'];
+  return [
+    typeof human === 'string'
+      ? 'E25_Human-Made_Feature'
+      : 'E25_Human-Made_Feature',
+  ];
 }
 
 function nextStmId(entries: GazetteerEntry[]): string {
@@ -238,7 +258,10 @@ function buildStreetAggregates(features: RawFeature[]): {
       continue;
     }
 
-    if (feature.geometry.type !== 'LineString' && feature.geometry.type !== 'MultiLineString') {
+    if (
+      feature.geometry.type !== 'LineString' &&
+      feature.geometry.type !== 'MultiLineString'
+    ) {
       skippedNoGeometry++;
       continue;
     }
@@ -276,42 +299,116 @@ function buildStreetAggregates(features: RawFeature[]): {
   };
 }
 
-function ensureSource(existing: string[] | undefined, sourceTag: string): string[] {
+function ensureSource(
+  existing: string[] | undefined,
+  sourceTag: string,
+): string[] {
   const list = Array.isArray(existing) ? [...existing] : [];
   if (!list.includes(sourceTag)) list.push(sourceTag);
   return list;
+}
+
+function hasSource(entry: GazetteerEntry, sourceTag: string): boolean {
+  return Array.isArray(entry.sources) && entry.sources.includes(sourceTag);
+}
+
+function stmNumericId(entry: GazetteerEntry): number {
+  const match = entry.id?.match(/^stm-(\d{5})$/);
+  if (!match) return Number.MAX_SAFE_INTEGER;
+  const value = Number(match[1]);
+  return Number.isNaN(value) ? Number.MAX_SAFE_INTEGER : value;
+}
+
+function dedupeSourceEntriesByFid(
+  entries: GazetteerEntry[],
+  sourceTag: string,
+): number {
+  const byFid = new Map<number, GazetteerEntry[]>();
+
+  for (const entry of entries) {
+    if (!hasSource(entry, sourceTag) || entry.fid == null) continue;
+    const list = byFid.get(entry.fid) || [];
+    list.push(entry);
+    byFid.set(entry.fid, list);
+  }
+
+  const duplicatesToRemove = new Set<GazetteerEntry>();
+
+  for (const group of byFid.values()) {
+    if (group.length < 2) continue;
+    const sorted = [...group].sort(
+      (left, right) => stmNumericId(left) - stmNumericId(right),
+    );
+    for (const duplicate of sorted.slice(1)) {
+      duplicatesToRemove.add(duplicate);
+    }
+  }
+
+  if (duplicatesToRemove.size === 0) return 0;
+
+  let removed = 0;
+  for (let index = entries.length - 1; index >= 0; index--) {
+    if (!duplicatesToRemove.has(entries[index])) continue;
+    entries.splice(index, 1);
+    removed++;
+  }
+
+  return removed;
 }
 
 function main() {
   const options = parseArgs(process.argv.slice(2));
 
   console.log('Loading street GeoJSON...');
-  const rawGeojson = JSON.parse(readFileSync(options.geojsonPath, 'utf-8')) as RawFeatureCollection;
-  if (rawGeojson.type !== 'FeatureCollection' || !Array.isArray(rawGeojson.features)) {
-    throw new Error('Input GeoJSON must be a FeatureCollection with features[]');
+  const rawGeojson = JSON.parse(
+    readFileSync(options.geojsonPath, 'utf-8'),
+  ) as RawFeatureCollection;
+  if (
+    rawGeojson.type !== 'FeatureCollection' ||
+    !Array.isArray(rawGeojson.features)
+  ) {
+    throw new Error(
+      'Input GeoJSON must be a FeatureCollection with features[]',
+    );
   }
 
   console.log('Loading gazetteer...');
-  const gazetteer = JSON.parse(readFileSync(options.gazetteerPath, 'utf-8')) as GazetteerDocument;
+  const gazetteer = JSON.parse(
+    readFileSync(options.gazetteerPath, 'utf-8'),
+  ) as GazetteerDocument;
   if (!Array.isArray(gazetteer['@graph'])) {
     throw new Error('Gazetteer file must contain @graph array');
   }
 
-  const { aggregates, skippedNoGeometry, unnamedFeatures } = buildStreetAggregates(rawGeojson.features);
+  const { aggregates, skippedNoGeometry, unnamedFeatures } =
+    buildStreetAggregates(rawGeojson.features);
 
-  const existingStreetCandidates = gazetteer['@graph'].filter((entry) => {
+  const dedupedEntries = dedupeSourceEntriesByFid(
+    gazetteer['@graph'],
+    SOURCE_TAG,
+  );
+
+  const existingRoadCandidates = gazetteer['@graph'].filter((entry) => {
     const name = getEntryLabel(entry);
     return Boolean(name);
   });
 
   const byNormalizedName = new Map<string, GazetteerEntry[]>();
-  for (const entry of existingStreetCandidates) {
+  for (const entry of existingRoadCandidates) {
     const label = getEntryLabel(entry);
     const key = normalizeLabel(label);
     if (!key) continue;
     const list = byNormalizedName.get(key) || [];
     list.push(entry);
     byNormalizedName.set(key, list);
+  }
+
+  const bySourceFid = new Map<number, GazetteerEntry[]>();
+  for (const entry of existingRoadCandidates) {
+    if (!hasSource(entry, SOURCE_TAG) || entry.fid == null) continue;
+    const list = bySourceFid.get(entry.fid) || [];
+    list.push(entry);
+    bySourceFid.set(entry.fid, list);
   }
 
   let inserted = 0;
@@ -329,7 +426,16 @@ function main() {
     }
 
     const key = normalizeLabel(aggregate.label);
-    const matching = byNormalizedName.get(key) || [];
+    const matchingByName = byNormalizedName.get(key) || [];
+    const primaryFid = aggregate.featureIds.find((fid) => fid >= 0);
+    const matchingByFid =
+      primaryFid == null ? [] : bySourceFid.get(primaryFid) || [];
+    const matching =
+      matchingByName.length === 1
+        ? matchingByName
+        : matchingByFid.length === 1
+          ? matchingByFid
+          : matchingByName;
 
     if (matching.length > 1) {
       conflicts++;
@@ -338,8 +444,8 @@ function main() {
 
     if (matching.length === 1) {
       const entry = matching[0];
-      entry.type = 'street';
-      entry['@type'] = determineCrmType('street', gazetteer['@context']);
+      entry.type = 'road';
+      entry['@type'] = determineCrmType('road', gazetteer['@context']);
       entry.prefLabel = aggregate.label;
       entry.altLabels = Array.isArray(entry.altLabels) ? entry.altLabels : [];
       entry.location = {
@@ -360,13 +466,13 @@ function main() {
     const id = nextStmId(gazetteer['@graph']);
     const entry: GazetteerEntry = {
       '@id': `https://data.suriname-timemachine.org/place/${id}`,
-      '@type': determineCrmType('street', gazetteer['@context']),
+      '@type': determineCrmType('road', gazetteer['@context']),
       id,
-      type: 'street',
+      type: 'road',
       prefLabel: aggregate.label,
       altLabels: [],
       broader: null,
-      description: 'Street line from the Paramaribo 1916 map.',
+      description: 'Road line from the Paramaribo 1916 map.',
       location: {
         lat: centroid.lat,
         lng: centroid.lng,
@@ -395,6 +501,7 @@ function main() {
   const summary = [
     `Features read: ${rawGeojson.features.length}`,
     `Street groups after merge by normalized label: ${aggregates.length}`,
+    `Duplicate source-tagged fid entries removed: ${dedupedEntries}`,
     `Unnamed source features: ${unnamedFeatures}`,
     `Skipped (missing/unsupported geometry): ${skippedNoGeometry}`,
     `Skipped (invalid WKT/centroid): ${skippedNoWkt}`,

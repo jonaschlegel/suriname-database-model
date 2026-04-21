@@ -1,21 +1,10 @@
 'use client';
 
 import 'leaflet/dist/leaflet.css';
-
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-
-import L from 'leaflet';
-
 import { usePlaceTypes } from '@/lib/thesaurus';
-import type {
-  GeoJSONCollection,
-  GeoJSONFeature,
-} from '@/lib/types';
+import type { GeoJSONCollection, GeoJSONFeature } from '@/lib/types';
+import L from 'leaflet';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const TRANSFORMATION_LABELS: Record<string, string> = {
   helmert: 'Helmert',
@@ -473,24 +462,6 @@ export default function MapView({
 
         // LineString features
         if (geomType === 'LineString') {
-          // Streets
-          if (ft === 'street') {
-            if (isSelected)
-              return { color: '#8c5d2e', weight: 3, opacity: 0.9 };
-            if (isHighlighted)
-              return {
-                color: '#e07850',
-                weight: 2.5,
-                opacity: 0.85,
-                dashArray: '6 3',
-              };
-            return {
-              color: '#b17f47',
-              weight: 2,
-              opacity: 0.75,
-            };
-          }
-
           // Roads
           if (ft === 'road') {
             if (isSelected)
@@ -896,7 +867,6 @@ export default function MapView({
                       const isLine =
                         ft === 'river' ||
                         ft === 'creek' ||
-                        ft === 'street' ||
                         ft === 'road' ||
                         ft === 'railroad';
                       const isPoly = ft === 'plantation';

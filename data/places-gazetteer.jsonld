@@ -90854,7 +90854,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-00044",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Rijweg naar Kwatta",
       "altLabels": [],
       "broader": null,
@@ -103465,8 +103465,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02944",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #1",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #1",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -103497,8 +103497,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02945",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #2",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #2",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -103529,8 +103529,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02946",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #3",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #3",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -103561,8 +103561,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02947",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #4",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #4",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -103593,7 +103593,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02948",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Waterkant",
       "altLabels": [],
       "broader": null,
@@ -103625,8 +103625,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02949",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #6",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #6",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -103657,8 +103657,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02950",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #7",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #7",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -103689,7 +103689,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02951",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Heerenstraat",
       "altLabels": [],
       "broader": null,
@@ -103721,7 +103721,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02952",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Gravenstraat",
       "altLabels": [],
       "broader": null,
@@ -103753,7 +103753,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02953",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Keizerstraat",
       "altLabels": [],
       "broader": null,
@@ -103785,7 +103785,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02954",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Soldatenstraat",
       "altLabels": [],
       "broader": null,
@@ -103817,7 +103817,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02955",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Wagenwegstraat",
       "altLabels": [],
       "broader": null,
@@ -103849,7 +103849,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02956",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Watermolenstraat",
       "altLabels": [],
       "broader": null,
@@ -103881,7 +103881,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02957",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Oranjestraat",
       "altLabels": [],
       "broader": null,
@@ -103913,7 +103913,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02958",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Kromme Elleboogstraat",
       "altLabels": [],
       "broader": null,
@@ -103945,7 +103945,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02959",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Oude Hofstraat",
       "altLabels": [],
       "broader": null,
@@ -103977,7 +103977,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02960",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Groote Hofstraat",
       "altLabels": [],
       "broader": null,
@@ -104009,7 +104009,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02961",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Kerkplein",
       "altLabels": [],
       "broader": null,
@@ -104041,7 +104041,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02962",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Korte Kerkstraat",
       "altLabels": [],
       "broader": null,
@@ -104073,7 +104073,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02963",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Klipsteenstraat",
       "altLabels": [],
       "broader": null,
@@ -104105,8 +104105,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02964",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #25",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #25",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -104137,7 +104137,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02965",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Malabatrumstraat",
       "altLabels": [],
       "broader": null,
@@ -104169,7 +104169,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02966",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Princessestraat",
       "altLabels": [],
       "broader": null,
@@ -104201,7 +104201,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02967",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Jessurunstraat",
       "altLabels": [],
       "broader": null,
@@ -104233,7 +104233,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02968",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Gonggrijpstraat",
       "altLabels": [],
       "broader": null,
@@ -104265,7 +104265,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02969",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Stoelmanstraat",
       "altLabels": [],
       "broader": null,
@@ -104297,8 +104297,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02970",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #31",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #31",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -104329,7 +104329,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02971",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Swalmbergstraat",
       "altLabels": [],
       "broader": null,
@@ -104361,7 +104361,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02972",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Knuffelsgracht",
       "altLabels": [],
       "broader": null,
@@ -104393,7 +104393,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02973",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Vaillants Plein",
       "altLabels": [],
       "broader": null,
@@ -104425,7 +104425,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02974",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Heiligeweg",
       "altLabels": [],
       "broader": null,
@@ -104457,7 +104457,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02975",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Maagdenstraat",
       "altLabels": [],
       "broader": null,
@@ -104489,7 +104489,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02976",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Domineestraat",
       "altLabels": [],
       "broader": null,
@@ -104521,7 +104521,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02977",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Jodenbreestraat",
       "altLabels": [],
       "broader": null,
@@ -104553,7 +104553,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02978",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Steenbakkerijstraat",
       "altLabels": [],
       "broader": null,
@@ -104585,7 +104585,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02979",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Straat langs de Steenbakkersgracht Noordzijde",
       "altLabels": [],
       "broader": null,
@@ -104617,7 +104617,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02980",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Zwartenhovenbrugstraat",
       "altLabels": [],
       "broader": null,
@@ -104649,7 +104649,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02981",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Saramaccastraat",
       "altLabels": [],
       "broader": null,
@@ -104681,7 +104681,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02982",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Kleine Saramaccastraat",
       "altLabels": [],
       "broader": null,
@@ -104713,7 +104713,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02983",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Rust en Vredestraat",
       "altLabels": [],
       "broader": null,
@@ -104745,7 +104745,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02984",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Wanicastraat",
       "altLabels": [],
       "broader": null,
@@ -104777,8 +104777,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02985",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #46",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #46",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -104809,8 +104809,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02986",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #47",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #47",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -104841,8 +104841,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02987",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #48",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #48",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -104873,7 +104873,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02988",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Groote Dwarsstraat",
       "altLabels": [],
       "broader": null,
@@ -104905,7 +104905,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02989",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Burenstraat",
       "altLabels": [],
       "broader": null,
@@ -104937,7 +104937,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02990",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Weidestraat",
       "altLabels": [],
       "broader": null,
@@ -104969,8 +104969,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02991",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #53",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #53",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -105001,7 +105001,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02992",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Eerste Rijweg",
       "altLabels": [],
       "broader": null,
@@ -105033,7 +105033,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02993",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Gemeene Landsweg",
       "altLabels": [],
       "broader": null,
@@ -105065,7 +105065,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02994",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Verlengde Gemeene Landsweg",
       "altLabels": [],
       "broader": null,
@@ -105097,7 +105097,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02995",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Molenpad",
       "altLabels": [],
       "broader": null,
@@ -105129,7 +105129,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02996",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Verlengde Molenpad",
       "altLabels": [],
       "broader": null,
@@ -105161,8 +105161,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02997",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #59",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #59",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -105193,8 +105193,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02998",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #60",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #60",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -105225,8 +105225,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-02999",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #61",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #61",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -105257,7 +105257,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03000",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Koningsstraat",
       "altLabels": [],
       "broader": null,
@@ -105289,7 +105289,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03001",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Willemstraat",
       "altLabels": [],
       "broader": null,
@@ -105321,7 +105321,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03002",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Emmastraat",
       "altLabels": [],
       "broader": null,
@@ -105353,7 +105353,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03003",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Nassaustraat",
       "altLabels": [],
       "broader": null,
@@ -105385,7 +105385,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03004",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Cornelisstraat",
       "altLabels": [],
       "broader": null,
@@ -105417,7 +105417,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03005",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Helenastraat",
       "altLabels": [],
       "broader": null,
@@ -105449,8 +105449,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03006",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #68",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #68",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -105481,8 +105481,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03007",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #69",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #69",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -105513,7 +105513,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03008",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Commissarisstraat",
       "altLabels": [],
       "broader": null,
@@ -105545,8 +105545,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03009",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #71",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #71",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -105577,8 +105577,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03010",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #72",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #72",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -105609,8 +105609,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03011",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #73",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #73",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -105641,7 +105641,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03012",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Hofstraat",
       "altLabels": [],
       "broader": null,
@@ -105673,7 +105673,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03013",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Fredericistraat",
       "altLabels": [],
       "broader": null,
@@ -105705,7 +105705,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03014",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Straat langs de Steenbakkersgracht Zuidzijde",
       "altLabels": [],
       "broader": null,
@@ -105737,7 +105737,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03015",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Verlengde Weidestraat",
       "altLabels": [],
       "broader": null,
@@ -105769,7 +105769,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03016",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Verlengde Keizerstraat",
       "altLabels": [],
       "broader": null,
@@ -105801,7 +105801,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03017",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Van Radersstraat",
       "altLabels": [],
       "broader": null,
@@ -105833,7 +105833,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03018",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Oranjelaan",
       "altLabels": [],
       "broader": null,
@@ -105865,7 +105865,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03019",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Sophialaan",
       "altLabels": [],
       "broader": null,
@@ -105897,7 +105897,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03020",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Van Sijpesteijnlaan",
       "altLabels": [],
       "broader": null,
@@ -105929,7 +105929,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03021",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Van Idsingalaan",
       "altLabels": [],
       "broader": null,
@@ -105961,7 +105961,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03022",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Beethovenstraat",
       "altLabels": [],
       "broader": null,
@@ -105993,7 +105993,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03023",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Van Esveldstraat",
       "altLabels": [],
       "broader": null,
@@ -106025,8 +106025,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03024",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #86",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #86",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106057,8 +106057,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03025",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #87",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #87",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106089,7 +106089,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03026",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Nieuwe Weg van Charlesbrug",
       "altLabels": [],
       "broader": null,
@@ -106121,7 +106121,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03027",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Oude Weg van Charlesburg",
       "altLabels": [],
       "broader": null,
@@ -106153,8 +106153,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03028",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #90",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #90",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106185,7 +106185,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03029",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Anniestraat",
       "altLabels": [],
       "broader": null,
@@ -106217,7 +106217,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03030",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Frederikalaan",
       "altLabels": [],
       "broader": null,
@@ -106249,8 +106249,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03031",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #93",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #93",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106281,8 +106281,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03032",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #94",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #94",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106313,8 +106313,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03033",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #95",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #95",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106345,8 +106345,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03034",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #96",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #96",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106377,7 +106377,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03035",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Mangolaan",
       "altLabels": [],
       "broader": null,
@@ -106409,7 +106409,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03036",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Koffielaan",
       "altLabels": [],
       "broader": null,
@@ -106441,7 +106441,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03037",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Para-grasweg",
       "altLabels": [],
       "broader": null,
@@ -106473,7 +106473,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03038",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Hoenderparkweg",
       "altLabels": [],
       "broader": null,
@@ -106505,8 +106505,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03039",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #101",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #101",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106537,8 +106537,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03040",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #102",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #102",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106569,8 +106569,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03041",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #103",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #103",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106601,8 +106601,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03042",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #104",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #104",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106633,8 +106633,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03043",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #105",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #105",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106665,8 +106665,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03044",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #106",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #106",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106697,8 +106697,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03045",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #107",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #107",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106729,8 +106729,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03046",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #108",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #108",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106761,8 +106761,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03047",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #109",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #109",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106793,8 +106793,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03048",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #110",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #110",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106825,8 +106825,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03049",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #111",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #111",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106857,8 +106857,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03050",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #112",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #112",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106889,8 +106889,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03051",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #113",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #113",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106921,8 +106921,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03052",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #114",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #114",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106953,8 +106953,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03053",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #115",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #115",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -106985,8 +106985,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03054",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #116",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #116",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -107017,7 +107017,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03055",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Verlengde Hoogestraat",
       "altLabels": [],
       "broader": null,
@@ -107049,7 +107049,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03056",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Hoogestraat",
       "altLabels": [],
       "broader": null,
@@ -107081,7 +107081,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03057",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Ladesmastraat",
       "altLabels": [],
       "broader": null,
@@ -107113,8 +107113,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03058",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #120",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #120",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -107145,7 +107145,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03059",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Timmermansstraat",
       "altLabels": [],
       "broader": null,
@@ -107177,7 +107177,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03060",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Prinsenstraat",
       "altLabels": [],
       "broader": null,
@@ -107209,7 +107209,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03061",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Nieuwe Domineestraat",
       "altLabels": [],
       "broader": null,
@@ -107241,7 +107241,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03062",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Straat langs de Drambrandersgracht Zuid",
       "altLabels": [],
       "broader": null,
@@ -107273,8 +107273,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03063",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #125",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #125",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -107305,8 +107305,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03064",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #126",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #126",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -107337,7 +107337,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03065",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Pontenwerfstraat",
       "altLabels": [],
       "broader": null,
@@ -107369,7 +107369,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03066",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Nepveustraat",
       "altLabels": [],
       "broader": null,
@@ -107401,7 +107401,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03067",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Van Lansbergestraat",
       "altLabels": [],
       "broader": null,
@@ -107433,7 +107433,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03068",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Celinestraat",
       "altLabels": [],
       "broader": null,
@@ -107465,8 +107465,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03069",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #131",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #131",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -107497,8 +107497,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03070",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #132",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #132",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -107529,8 +107529,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03071",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #133",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #133",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -107561,8 +107561,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03072",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #134",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #134",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -107593,7 +107593,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03073",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Bamboelaan",
       "altLabels": [],
       "broader": null,
@@ -107625,7 +107625,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03074",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Groote Waterstraat",
       "altLabels": [],
       "broader": null,
@@ -107657,7 +107657,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03075",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Mauriciusstraat",
       "altLabels": [],
       "broader": null,
@@ -107689,7 +107689,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03076",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Hofstede Crulllaan",
       "altLabels": [],
       "broader": null,
@@ -107721,7 +107721,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03077",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Wilhelminastraat",
       "altLabels": [],
       "broader": null,
@@ -107753,7 +107753,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03078",
-      "type": "street",
+      "type": "road",
       "prefLabel": "W. L. Lothlaan",
       "altLabels": [],
       "broader": null,
@@ -107785,7 +107785,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03079",
-      "type": "street",
+      "type": "road",
       "prefLabel": "President Da Costalaan",
       "altLabels": [],
       "broader": null,
@@ -107817,7 +107817,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03080",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Sommelsdijkschestraat (Palmenlaan)",
       "altLabels": [],
       "broader": null,
@@ -107849,7 +107849,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03081",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Kleine Dwarsstraat",
       "altLabels": [],
       "broader": null,
@@ -107881,7 +107881,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03082",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Kleine Waterstraat",
       "altLabels": [],
       "broader": null,
@@ -107913,7 +107913,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03083",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Crommelinstraat",
       "altLabels": [],
       "broader": null,
@@ -107945,7 +107945,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03084",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Wichersstraat",
       "altLabels": [],
       "broader": null,
@@ -107977,7 +107977,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03085",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Groote Combéweg",
       "altLabels": [],
       "broader": null,
@@ -108009,8 +108009,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03086",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #148",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #148",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -108041,7 +108041,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03087",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Mahonylaan",
       "altLabels": [],
       "broader": null,
@@ -108073,7 +108073,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03088",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Julianastraat",
       "altLabels": [],
       "broader": null,
@@ -108105,7 +108105,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03089",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Prins Hendrikstraat",
       "altLabels": [],
       "broader": null,
@@ -108137,8 +108137,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03090",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #152",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #152",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -108169,8 +108169,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03091",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #153",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #153",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -108201,8 +108201,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03092",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #154",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #154",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -108233,7 +108233,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03093",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Laan van Tourtonne",
       "altLabels": [],
       "broader": null,
@@ -108265,7 +108265,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03094",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Costerstraat",
       "altLabels": [],
       "broader": null,
@@ -108297,7 +108297,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03095",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Koninginnestraat",
       "altLabels": [],
       "broader": null,
@@ -108329,8 +108329,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03096",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #158",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #158",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -108361,8 +108361,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03097",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #159",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #159",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -108393,8 +108393,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03098",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #160",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #160",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -108425,7 +108425,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03099",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Kleine Combéweg",
       "altLabels": [],
       "broader": null,
@@ -108457,7 +108457,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03100",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Gouvernementsplein",
       "altLabels": [],
       "broader": null,
@@ -108489,8 +108489,8 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03101",
-      "type": "street",
-      "prefLabel": "Unnamed street (Paramaribo 1916) #163",
+      "type": "road",
+      "prefLabel": "Unnamed road (Paramaribo 1916) #163",
       "altLabels": [],
       "broader": null,
       "description": "Street line from the Paramaribo 1916 map.",
@@ -108521,7 +108521,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03102",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Noorderkerkstraat",
       "altLabels": [],
       "broader": null,
@@ -108553,7 +108553,7 @@
         "E25_Human-Made_Feature"
       ],
       "id": "stm-03103",
-      "type": "street",
+      "type": "road",
       "prefLabel": "Kalkbranderijstraat",
       "altLabels": [],
       "broader": null,

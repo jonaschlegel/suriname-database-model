@@ -212,8 +212,8 @@ if (existsSync(geojsonSrc)) {
         (fallbackName?.text as string) ||
         '';
 
-      // LineString features (street/road/railroad) — use WKT if available
-      if (loc.wkt && (type === 'street' || type === 'road' || type === 'railroad')) {
+      // LineString features (road/railroad) — use WKT if available
+      if (loc.wkt && (type === 'road' || type === 'railroad')) {
         const match = loc.wkt.match(/LineString\s*\((.+?)\)/i);
         if (match) {
           const coords: number[][] = [];
