@@ -150,6 +150,22 @@ const OVERLAY_CONFIGS: OverlayConfig[] = [
     gcpCount: 5,
   },
   {
+    id: 'historic-map-32-main',
+    label: 'Paramaribo main map 1916-17',
+    annotationUrl: 'https://annotations.allmaps.org/maps/a8b80690c8e2e4cb',
+    defaultEnabled: false,
+    transformation: 'polynominal',
+    gcpCount: '28',
+  },
+  {
+    id: 'historic-map-32-districts',
+    label: 'Paramaribo districts 1916',
+    annotationUrl: 'https://annotations.allmaps.org/maps/5f85ef4e29065511',
+    defaultEnabled: false,
+    transformation: 'thinPlateSpline',
+    gcpCount: '13',
+  },
+  {
     id: 'leiden-overview',
     label: 'Leiden Overview Map',
     annotationUrl: 'https://annotations.allmaps.org/maps/d76dd411d74219c1',
@@ -444,8 +460,8 @@ export default function MapView({
           };
         }
 
-        // LineString features
-        if (geomType === 'LineString') {
+        // LineString / MultiLineString features
+        if (geomType === 'LineString' || geomType === 'MultiLineString') {
           // Roads
           if (ft === 'road') {
             if (isSelected)
@@ -553,7 +569,10 @@ export default function MapView({
           if (featureIdentifier !== selectedUriRef.current) {
             if (feature.geometry?.type === 'Point') {
               target.setStyle({ fillOpacity: 0.9, weight: 2.5 });
-            } else if (feature.geometry?.type === 'LineString') {
+            } else if (
+              feature.geometry?.type === 'LineString' ||
+              feature.geometry?.type === 'MultiLineString'
+            ) {
               target.setStyle({ opacity: 0.9, weight: 3.5 });
             } else {
               target.setStyle({ fillOpacity: 0.5, weight: 2 });

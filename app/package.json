@@ -2,19 +2,19 @@
   "name": "suriname-plantation-viewer",
   "version": "1.0.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "pnpm pipeline && next build",
-    "start": "next start",
-    "generate": "tsx scripts/generate-database.ts",
-    "prepare-data": "tsx scripts/prepare-data.ts",
-    "pipeline": "tsx scripts/generate-database.ts && tsx scripts/prepare-data.ts",
-    "seed-gazetteer": "tsx scripts/seed-gazetteer.ts"
-  },
   "keywords": [],
-  "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.19.0",
+  "author": "",
+  "scripts": {
+    "build": "pnpm pipeline && next build",
+    "dev": "next dev",
+    "generate": "tsx scripts/generate-database.ts",
+    "import-streets-1916": "tsx scripts/import-streets-paramaribo-1916.ts",
+    "pipeline": "tsx scripts/generate-database.ts && tsx scripts/prepare-data.ts",
+    "prepare-data": "tsx scripts/prepare-data.ts",
+    "seed-gazetteer": "tsx scripts/seed-gazetteer.ts",
+    "start": "next start"
+  },
   "dependencies": {
     "@allmaps/leaflet": "1.0.0-beta.53",
     "@vercel/analytics": "^2.0.1",
@@ -40,5 +40,6 @@
     "tailwindcss": "^4.2.2",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
-  }
+  },
+  "packageManager": "pnpm@10.19.0"
 }

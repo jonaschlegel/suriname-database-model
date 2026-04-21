@@ -201,36 +201,90 @@ if (existsSync(geojsonSrc)) {
       } | null;
       if (!loc) continue;
 
-      // LineString features (roads, railroad) — use WKT if available
+      const entryNames = Array.isArray(entry.names)
+        ? (entry.names as Record<string, unknown>[])
+        : [];
+      const preferredName = entryNames.find((n) => n.isPreferred === true);
+      const fallbackName = entryNames.length > 0 ? entryNames[0] : null;
+      const displayName =
+        (entry.prefLabel as string) ||
+        (preferredName?.text as string) ||
+        (fallbackName?.text as string) ||
+        '';
+      const entrySources = Array.isArray(entry.sources)
+        ? (entry.sources as string[])
+        : [];
+      const derivedMapYear = entrySources.includes('paramaribo-street-map-1916')
+        ? '1916'
+        : entrySources.includes('map-1882')
+          ? '1882'
+          : '1930';
+
+      // LineString / MultiLineString features (road/railroad) — use WKT if available
       if (loc.wkt && (type === 'road' || type === 'railroad')) {
-        const match = loc.wkt.match(/LineString\s*\((.+?)\)/i);
-        if (match) {
-          const coords: number[][] = [];
-          for (const pair of match[1].split(',')) {
-            const parts = pair.trim().split(/\s+/);
-            if (parts.length >= 2) {
-              const lon = parseFloat(parts[0]);
-              const lat = parseFloat(parts[1]);
-              if (!isNaN(lon) && !isNaN(lat)) coords.push([lon, lat]);
+        const isMulti = /^MultiLineString\s*\(/i.test(loc.wkt);
+        let geometry:
+          | { type: 'LineString'; coordinates: number[][] }
+          | { type: 'MultiLineString'; coordinates: number[][][] }
+          | null = null;
+
+        if (isMulti) {
+          const inner = loc.wkt
+            .replace(/^MultiLineString\s*\(/i, '')
+            .replace(/\)\s*$/, '');
+          const segmentMatches = [...inner.matchAll(/\(([^)]+)\)/g)];
+          const allSegments: number[][][] = [];
+          for (const segMatch of segmentMatches) {
+            const coords: number[][] = [];
+            for (const pair of segMatch[1].split(',')) {
+              const pts = pair.trim().split(/\s+/);
+              if (pts.length >= 2) {
+                const lon = parseFloat(pts[0]);
+                const lat = parseFloat(pts[1]);
+                if (!isNaN(lon) && !isNaN(lat)) coords.push([lon, lat]);
+              }
+            }
+            if (coords.length >= 2) allSegments.push(coords);
+          }
+          if (allSegments.length === 1) {
+            geometry = { type: 'LineString', coordinates: allSegments[0] };
+          } else if (allSegments.length > 1) {
+            geometry = { type: 'MultiLineString', coordinates: allSegments };
+          }
+        } else {
+          const match = loc.wkt.match(/LineString\s*\(([^)]+)\)/i);
+          if (match) {
+            const coords: number[][] = [];
+            for (const pair of match[1].split(',')) {
+              const pts = pair.trim().split(/\s+/);
+              if (pts.length >= 2) {
+                const lon = parseFloat(pts[0]);
+                const lat = parseFloat(pts[1]);
+                if (!isNaN(lon) && !isNaN(lat)) coords.push([lon, lat]);
+              }
+            }
+            if (coords.length >= 2) {
+              geometry = { type: 'LineString', coordinates: coords };
             }
           }
-          if (coords.length >= 2) {
-            geojson.features.push({
-              type: 'Feature',
-              id: `${type}-${entry.fid || entry.id}`,
-              geometry: { type: 'LineString', coordinates: coords },
-              properties: {
-                fid: entry.fid ?? null,
-                name: entry.prefLabel || '',
-                stmId: entry.id as string,
-                placeUri: (entry['@id'] as string) || `stm:place/${entry.id}`,
-                status: 'infrastructure',
-                featureType: type,
-                mapYear: '1930',
-              },
-            });
-            added++;
-          }
+        }
+
+        if (geometry) {
+          geojson.features.push({
+            type: 'Feature',
+            id: `${type}-${entry.fid || entry.id}`,
+            geometry,
+            properties: {
+              fid: entry.fid ?? null,
+              name: displayName,
+              stmId: entry.id as string,
+              placeUri: (entry['@id'] as string) || `stm:place/${entry.id}`,
+              status: 'infrastructure',
+              featureType: type,
+              mapYear: derivedMapYear,
+            },
+          });
+          added++;
         }
         continue;
       }
@@ -246,14 +300,12 @@ if (existsSync(geojsonSrc)) {
           },
           properties: {
             fid: entry.fid ?? null,
-            name: entry.prefLabel || '',
+            name: displayName,
             stmId: entry.id as string,
             placeUri: (entry['@id'] as string) || `stm:place/${entry.id}`,
             status: 'named',
             featureType: type,
-            mapYear: (entry.sources as string[])?.includes('map-1882')
-              ? '1882'
-              : '1930',
+            mapYear: derivedMapYear,
           },
         });
         added++;

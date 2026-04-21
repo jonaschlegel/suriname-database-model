@@ -4,11 +4,21 @@ A Linked Open Data platform for historical records from Suriname's colonial arch
 
 ## Quick Start
 
+Run commands from the repository root (recommended):
+
 ```bash
-cd app
 pnpm install
 pnpm pipeline    # generate JSON-LD + prepare frontend data
 pnpm dev         # start dev server at http://localhost:3000
+```
+
+Alternatively, run the same scripts directly inside `app/`:
+
+```bash
+cd app
+pnpm install
+pnpm pipeline
+pnpm dev
 ```
 
 ## Project Structure
