@@ -6611,43 +6611,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02362",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02362",
-      "type": "plantation",
-      "prefLabel": "Bodenburg en Karelsdeel (Grond van)",
-      "altLabels": [],
-      "broader": "stm-00008",
-      "description": "Plantation from Surinaamse Almanakken (no QGIS geometry)",
-      "location": {
-        "lat": null,
-        "lng": null,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "almanakken"
-      ],
-      "wikidataQid": "Q59115280",
-      "fid": null,
-      "psurIds": [],
-      "district": "Divisie Matapplea",
-      "locationDescription": "Matappica Kreek",
-      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
-      "placeType": "katoen",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115280",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01137",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73281,6 +73244,68 @@
       "names": [
         {
           "text": "Bodenburg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Saffyn",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Saffin",
+          "language": "srn",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Bodenburg 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emV2NBY1JweVZUQWs/view?usp=sharing&resourcekey=0-xR2GcRFSY5HlfywHy8zqlA",
+          "author": "Philip Dikland",
+          "year": "2005",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02362",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02362",
+      "type": "plantation",
+      "broader": "stm-00008",
+      "description": "Plantation from Surinaamse Almanakken (no QGIS geometry)",
+      "location": {
+        "lat": null,
+        "lng": null,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "almanakken"
+      ],
+      "wikidataQid": "Q59115280",
+      "fid": null,
+      "psurIds": [],
+      "district": "Divisie Matapplea",
+      "locationDescription": "Matappica Kreek",
+      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
+      "placeType": "katoen",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115280",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Bodenburg en Karelsdeel (Grond van)",
           "language": "nl",
           "type": "official",
           "isPreferred": true
