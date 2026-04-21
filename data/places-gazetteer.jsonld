@@ -38672,44 +38672,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01246",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01246",
-      "type": "plantation",
-      "prefLabel": "Nimmerdor",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.5742593650000005,
-        "lng": -54.720827705,
-        "wkt": "Polygon ((-54.72929613 5.57255942, -54.71565987 5.57869522, -54.70905869 5.57322340, -54.72929613 5.57255942))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59132920",
-      "fid": 2330,
-      "psurIds": [],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59132920",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02160",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74343,6 +74305,63 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8ema2J1LXBIS2FuQjg/view?usp=sharing&resourcekey=0-tBwmcosglIvTHboUAdgWlQ",
           "author": "Philip Dikland",
           "year": "2005, aangevuld 2010, 2012",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01246",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01246",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.5742593650000005,
+        "lng": -54.720827705,
+        "wkt": "Polygon ((-54.72929613 5.57255942, -54.71565987 5.57869522, -54.70905869 5.57322340, -54.72929613 5.57255942))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59132920",
+      "fid": 2330,
+      "psurIds": [],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59132920",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Nimmerdor",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Nimmerdorr",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Clarenbeek en Nimmerdorr 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emOE1zN2pjRHQxcnc/view?usp=sharing&resourcekey=0-nfSrRIpI5inws9Q9kLXe_g",
+          "author": "Philip Dikland",
+          "year": "2005, aangevuld 2010",
           "notes": null
         }
       ]
