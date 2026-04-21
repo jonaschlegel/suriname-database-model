@@ -10651,47 +10651,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00668",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00668",
-      "type": "plantation",
-      "prefLabel": "Cornelia'sburg",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.932200267272727,
-        "lng": -54.92973638545455,
-        "wkt": "Polygon ((-54.95605027 5.93602974, -54.92016457 5.93449989, -54.89327382 5.93234160, -54.89382002 5.92913249, -54.89386060 5.92773825, -54.91152675 5.92898319, -54.94565125 5.93017576, -54.95034224 5.93047386, -54.95027907 5.93436633, -54.95608138 5.93443209, -54.95605027 5.93602974))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115408",
-      "fid": 1751,
-      "psurIds": [
-        "PSUR0068"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Warappa Kreek",
-      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115408",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02303",
       "@type": [
         "E25_Human-Made_Feature"
@@ -73828,6 +73787,66 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emLW5SclFOcTdEUTg/view?usp=sharing&resourcekey=0-tvJ-O9tdSRfc1n-IJuVmDg",
           "author": "Philip Dikland",
           "year": "2005",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00668",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00668",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.932200267272727,
+        "lng": -54.92973638545455,
+        "wkt": "Polygon ((-54.95605027 5.93602974, -54.92016457 5.93449989, -54.89327382 5.93234160, -54.89382002 5.92913249, -54.89386060 5.92773825, -54.91152675 5.92898319, -54.94565125 5.93017576, -54.95034224 5.93047386, -54.95027907 5.93436633, -54.95608138 5.93443209, -54.95605027 5.93602974))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115408",
+      "fid": 1751,
+      "psurIds": [
+        "PSUR0068"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Warappa Kreek",
+      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115408",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Cornelia'sburg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Santigron",
+          "language": "srn",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Cornelia's burg 2008-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emMTYxRHY0ejRXNkk/view?usp=sharing&resourcekey=0-7uzOofYvUT1fBYoY2Tj2AQ",
+          "author": "Philip Dikland",
+          "year": "2008",
           "notes": null
         }
       ]
