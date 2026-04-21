@@ -3938,47 +3938,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01183",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01183",
-      "type": "plantation",
-      "prefLabel": "Arendrust",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.773446098,
-        "lng": -54.752674651333336,
-        "wkt": "Polygon ((-54.75027560 5.77922012, -54.74772801 5.77639831, -54.74241326 5.78083380, -54.74050228 5.77891349, -54.74768616 5.77431740, -54.74930435 5.77139803, -54.75144371 5.76965102, -54.75372290 5.76948448, -54.75447140 5.76728842, -54.75661499 5.76886049, -54.76316498 5.76913372, -54.76492242 5.76989064, -54.75931801 5.77420966, -54.75827610 5.77287177, -54.75027560 5.77922012))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115166",
-      "fid": 2267,
-      "psurIds": [
-        "PSUR0017"
-      ],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115166",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02343",
       "@type": [
         "E25_Human-Made_Feature"
@@ -72644,6 +72603,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emZVZzNWJZSnR5MGs/view?usp=drive_link&resourcekey=0-eiUwMBYsdEKZMmlORoACAA",
           "author": "Philip Dikland",
           "year": "2006, aangevuld 2009",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01183",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01183",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.773446098,
+        "lng": -54.752674651333336,
+        "wkt": "Polygon ((-54.75027560 5.77922012, -54.74772801 5.77639831, -54.74241326 5.78083380, -54.74050228 5.77891349, -54.74768616 5.77431740, -54.74930435 5.77139803, -54.75144371 5.76965102, -54.75372290 5.76948448, -54.75447140 5.76728842, -54.75661499 5.76886049, -54.76316498 5.76913372, -54.76492242 5.76989064, -54.75931801 5.77420966, -54.75827610 5.77287177, -54.75027560 5.77922012))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115166",
+      "fid": 2267,
+      "psurIds": [
+        "PSUR0017"
+      ],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115166",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Arendrust",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "di Losi",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Arendsrust",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Arendsrust 2002-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emc3lPWFVRMzZXejA/view?usp=sharing&resourcekey=0-xn-pKGHzU_dp2AGjNADDdA",
+          "author": "Philip Dikland",
+          "year": "2002, aangevuld 2010",
           "notes": null
         }
       ]
