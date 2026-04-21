@@ -14591,47 +14591,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01015",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01015",
-      "type": "plantation",
-      "prefLabel": "Destombesburg",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.686695951,
-        "lng": -54.709837349,
-        "wkt": "Polygon ((-54.69543844 5.69141943, -54.70300994 5.68530103, -54.71495358 5.67425649, -54.71883623 5.67572244, -54.72207202 5.67865148, -54.72495332 5.68326149, -54.72917355 5.68491153, -54.70254441 5.70758184, -54.69195356 5.69443435, -54.69543844 5.69141943))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115512",
-      "fid": 2099,
-      "psurIds": [
-        "PSUR0093"
-      ],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115512",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01612",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74066,6 +74025,78 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8embm45emxnU01malU/view?usp=sharing&resourcekey=0-f_INHt1s__h3KyVLUCG1jA",
           "author": "Philip Dikland",
           "year": "2003, aangevuld 2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01015",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01015",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.686695951,
+        "lng": -54.709837349,
+        "wkt": "Polygon ((-54.69543844 5.69141943, -54.70300994 5.68530103, -54.71495358 5.67425649, -54.71883623 5.67572244, -54.72207202 5.67865148, -54.72495332 5.68326149, -54.72917355 5.68491153, -54.70254441 5.70758184, -54.69195356 5.69443435, -54.69543844 5.69141943))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115512",
+      "fid": 2099,
+      "psurIds": [
+        "PSUR0093"
+      ],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115512",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Destombesburg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Van der Werfi",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Van der Werff",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Des Tombesburg",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Des Tombesburg 2004-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emSjVrbkxPV2lPV1E/view?usp=sharing&resourcekey=0-7u8e3BaloYOnDKorYX4PmA",
+          "author": "Philip Dikland",
+          "year": "2004, aangevuld 2010",
           "notes": null
         }
       ]
