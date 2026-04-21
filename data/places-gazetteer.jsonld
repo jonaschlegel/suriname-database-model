@@ -73498,7 +73498,7 @@
       "locationDescriptionOriginal": "Caramacca-kreek",
       "placeType": "hout",
       "modifiedBy": "GerDijkstra",
-      "modifiedAt": "2026-04-20",
+      "modifiedAt": "2026-04-21",
       "externalLinks": [
         {
           "authority": "wikidata",
@@ -73512,6 +73512,12 @@
           "language": "nl",
           "type": "official",
           "isPreferred": true
+        },
+        {
+          "text": "Caramawipibo",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
         }
       ],
       "diklandRefs": [
