@@ -73862,6 +73862,12 @@
           "language": "nl",
           "type": "vernacular",
           "isPreferred": false
+        },
+        {
+          "text": "Cornelia's Burg",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
         }
       ],
       "diklandRefs": [
