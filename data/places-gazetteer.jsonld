@@ -888,44 +888,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00696",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00696",
-      "type": "plantation",
-      "prefLabel": "Aan Bodenburg",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.977614828,
-        "lng": -54.870340492000004,
-        "wkt": "Polygon ((-54.85743477 5.97788047, -54.85743908 5.97500470, -54.88981486 5.97734724, -54.88957898 5.97996126, -54.85743477 5.97788047))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59115279",
-      "fid": 1779,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Matappica Kreek",
-      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
-      "placeType": "katoen",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115279",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01290",
       "@type": [
         "E25_Human-Made_Feature"
@@ -72190,6 +72152,69 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emZVZzNWJZSnR5MGs/view?usp=drive_link&resourcekey=0-eiUwMBYsdEKZMmlORoACAA",
           "author": "Philip Dikland",
           "year": "2006, aangevuld 2009",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00696",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00696",
+      "type": "plantation",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.977614828,
+        "lng": -54.870340492000004,
+        "wkt": "Polygon ((-54.85743477 5.97788047, -54.85743908 5.97500470, -54.88981486 5.97734724, -54.88957898 5.97996126, -54.85743477 5.97788047))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59115279",
+      "fid": 1779,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Matappica Kreek",
+      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
+      "placeType": "katoen",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115279",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Aan Bodenburg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Saffyn",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Saffin",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Bodenburg 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emV2NBY1JweVZUQWs/view?usp=sharing&resourcekey=0-xR2GcRFSY5HlfywHy8zqlA",
+          "author": "Philip Dikland",
+          "year": "2005",
           "notes": null
         }
       ]
