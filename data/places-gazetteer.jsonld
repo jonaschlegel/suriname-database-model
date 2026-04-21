@@ -36932,44 +36932,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01024",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01024",
-      "type": "plantation",
-      "prefLabel": "Nieuw Appecappe",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.615691242857143,
-        "lng": -54.66569452571429,
-        "wkt": "Polygon ((-54.68438504 5.61689807, -54.65365125 5.61719325, -54.64947630 5.61712778, -54.64948219 5.61378740, -54.65388866 5.61408565, -54.68459320 5.61384848, -54.68438504 5.61689807))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59115165",
-      "fid": 2108,
-      "psurIds": [],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Cassewinicakreek",
-      "locationDescriptionOriginal": "Casiwinica-kreek, linkerhand in het opvaren",
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115165",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01248",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74258,6 +74220,57 @@
           "language": "nl",
           "type": "variant",
           "isPreferred": false
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01024",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01024",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.615691242857143,
+        "lng": -54.66569452571429,
+        "wkt": "Polygon ((-54.68438504 5.61689807, -54.65365125 5.61719325, -54.64947630 5.61712778, -54.64948219 5.61378740, -54.65388866 5.61408565, -54.68459320 5.61384848, -54.68438504 5.61689807))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59115165",
+      "fid": 2108,
+      "psurIds": [],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Cassewinicakreek",
+      "locationDescriptionOriginal": "Casiwinica-kreek, linkerhand in het opvaren",
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-21",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115165",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Nieuw Appecappe",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Appecap geschiedenis dikland 005.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8ema2J1LXBIS2FuQjg/view?usp=sharing&resourcekey=0-tBwmcosglIvTHboUAdgWlQ",
+          "author": "Philip Dikland",
+          "year": "2005, aangevuld 2010, 2012",
+          "notes": null
         }
       ]
     },
