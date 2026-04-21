@@ -677,22 +677,6 @@
       "linkedToGazetteer": false
     },
     {
-      "@id": "https://data.suriname-timemachine.org/source/historic-map-32",
-      "@type": [
-        "crm:E22_Human-Made_Object"
-      ],
-      "sourceId": "historic-map-32",
-      "prefLabel": "Paramaribo 1916-17 vervaardigd door den Opnemingsdienst van Suriname",
-      "P2_has_type": "https://data.suriname-timemachine.org/type/source-type/map",
-      "mapYear": 1920,
-      "maker": "Opnemingsdienst van Suriname",
-      "holdingArchive": "UB Amsterdam",
-      "handleUrl": "https://hdl.handle.net/11245/3.38611",
-      "iiifManifest": "https://uvaerfgoed.nl/viewer/api/v1/records/11245_3_38611/manifest/",
-      "iiifInfoUrl": "https://images.uba.uva.nl/iiif/2/erfgoed!surinamica!2!2!1!990006521220205131!SURI01_Kaartenzl-62-14-26.jpg/info.json",
-      "linkedToGazetteer": false
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/source/historic-map-33",
       "@type": [
         "crm:E22_Human-Made_Object"
@@ -1618,22 +1602,6 @@
       "linkedToGazetteer": false
     },
     {
-      "@id": "https://data.suriname-timemachine.org/source/historic-map-92",
-      "@type": [
-        "crm:E22_Human-Made_Object"
-      ],
-      "sourceId": "historic-map-92",
-      "prefLabel": "Kaart van Suriname [meerbladig]",
-      "P2_has_type": "https://data.suriname-timemachine.org/type/source-type/map",
-      "mapYear": 1930,
-      "maker": "Louis August Bakhuis, W. de Quant, Johan François Adriaan Cateau van Rosevelt, Jan Felix Adriaan Eugeen van Lansberge, Ministerie van Koloniën (Den Haag)",
-      "holdingArchive": "UB Leiden",
-      "handleUrl": "http://hdl.handle.net/1887.1/item:2015734",
-      "iiifManifest": "http://hdl.handle.net/1887.1/item:2015734",
-      "iiifInfoUrl": "https://digitalcollections.universiteitleiden.nl/iiif/2/item%3A2015734%7EJP2%7E2d4a9c0a75863e1fd5934663af151852d9d04ea272cf0f12c1c5cb240794dd25%7Edigitalc/info.json",
-      "linkedToGazetteer": false
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/source/historic-map-93",
       "@type": [
         "crm:E22_Human-Made_Object"
@@ -1969,37 +1937,6 @@
       "linkedToGazetteer": false
     },
     {
-      "@id": "https://data.suriname-timemachine.org/source/historic-map-115",
-      "@type": [
-        "crm:E22_Human-Made_Object"
-      ],
-      "sourceId": "historic-map-115",
-      "prefLabel": "Plan de la ville de Paramaribo et de ses environs, jusqu'au terrein de la société",
-      "P2_has_type": "https://data.suriname-timemachine.org/type/source-type/map",
-      "mapYear": 1772,
-      "maker": "J. van der Schley, Marc Michel Rey",
-      "holdingArchive": "UB Leiden",
-      "handleUrl": "http://hdl.handle.net/1887.1/item:2013495",
-      "iiifManifest": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item%3A2013495/manifest",
-      "iiifInfoUrl": "https://iiif.universiteitleiden.nl/iiif/2/hdl:1887.1%2Fitem:2013495/info.json",
-      "linkedToGazetteer": false
-    },
-    {
-      "@id": "https://data.suriname-timemachine.org/source/historic-map-116",
-      "@type": [
-        "crm:E22_Human-Made_Object"
-      ],
-      "sourceId": "historic-map-116",
-      "prefLabel": "Nieuwe special kaart van de colonie Suriname met de tot culture gebragt zijnde landen en plantagien eerbiedigst opgedragen aan het Committe van de Bataafsche bezittingen in America en op de kust van Africa / COLLBN 053-15",
-      "P2_has_type": "https://data.suriname-timemachine.org/type/source-type/map",
-      "maker": "J. H. Moseberg",
-      "holdingArchive": "UB Leiden",
-      "handleUrl": "http://hdl.handle.net/1887.1/item:3633336",
-      "iiifManifest": "https://digitalcollections.universiteitleiden.nl/iiif_manifest/item%3A3633336/manifest",
-      "iiifInfoUrl": "https://iiif.universiteitleiden.nl/iiif/2/hdl:1887.1%252Fitem:3633336/info.json",
-      "linkedToGazetteer": false
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/source/historic-map-117",
       "@type": [
         "crm:E22_Human-Made_Object"
@@ -2007,7 +1944,8 @@
       "sourceId": "historic-map-117",
       "prefLabel": "Paramaribo 1916-17",
       "P2_has_type": "https://data.suriname-timemachine.org/type/source-type/map",
-      "mapYear": 1920,
+      "mapYear": 1916,
+      "timeSpan": "1916-1917",
       "maker": "Centraal bureau luchtkartering",
       "holdingArchive": "UB Leiden",
       "handleUrl": "http://hdl.handle.net/1887.1/item:2012417",
