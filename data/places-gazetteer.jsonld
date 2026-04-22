@@ -17894,47 +17894,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00576",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00576",
-      "type": "plantation",
-      "prefLabel": "Geertruidenberg",
-      "altLabels": [],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.852427518,
-        "lng": -55.053394088000005,
-        "wkt": "Polygon ((-55.05294793 5.82802026, -55.05901519 5.82860007, -55.05404593 5.88980086, -55.04801346 5.88769614, -55.05294793 5.82802026))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q124808146",
-      "fid": 1659,
-      "psurIds": [
-        "PSUR0117"
-      ],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q124808146",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00725",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74328,6 +74287,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emb3J0bWRlWlBERmc/view?usp=sharing&resourcekey=0-hnU965-WFignJ7jnw_u_JQ",
           "author": "Philip Dikland",
           "year": "2006, aangevuld 2007, 2009",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00576",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00576",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.852427518,
+        "lng": -55.053394088000005,
+        "wkt": "Polygon ((-55.05294793 5.82802026, -55.05901519 5.82860007, -55.05404593 5.88980086, -55.04801346 5.88769614, -55.05294793 5.82802026))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q124808146",
+      "fid": 1659,
+      "psurIds": [
+        "PSUR0117"
+      ],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q124808146",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Geertruidenberg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Broe",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Broen",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Geertruidenberg 2001 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emYWNxczBaYy1sY00/view?usp=sharing&resourcekey=0-rMb45_M495PGQVG2zPaflw",
+          "author": "Philip Dikland",
+          "year": "2001",
           "notes": null
         }
       ]
