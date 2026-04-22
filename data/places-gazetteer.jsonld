@@ -31172,47 +31172,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00691",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00691",
-      "type": "plantation",
-      "prefLabel": "Maria Petronella en Johanna Maria",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.950308022727271,
-        "lng": -54.921633080909096,
-        "wkt": "Polygon ((-54.91039620 5.94914136, -54.90827906 5.94858646, -54.90651200 5.94666677, -54.96302474 5.94944496, -54.96263784 5.95691003, -54.91726450 5.95467018, -54.91692045 5.95170674, -54.91555900 5.95016527, -54.91396553 5.94856537, -54.91300837 5.94838975, -54.91039620 5.94914136))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q124831564",
-      "fid": 1774,
-      "psurIds": [
-        "PSUR0227"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Warappa Kreek",
-      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q124831564",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00831",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75249,6 +75208,66 @@
       "names": [
         {
           "text": "Maria Petronella",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Spaan",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Maria Petronella 2008-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emNGhXMG1vYWthTk0/view?usp=sharing&resourcekey=0-S6-wEElRq_Hz3MjoEvxCow",
+          "author": "Philip Dikland",
+          "year": "2008",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00691",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00691",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.950308022727271,
+        "lng": -54.921633080909096,
+        "wkt": "Polygon ((-54.91039620 5.94914136, -54.90827906 5.94858646, -54.90651200 5.94666677, -54.96302474 5.94944496, -54.96263784 5.95691003, -54.91726450 5.95467018, -54.91692045 5.95170674, -54.91555900 5.95016527, -54.91396553 5.94856537, -54.91300837 5.94838975, -54.91039620 5.94914136))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q124831564",
+      "fid": 1774,
+      "psurIds": [
+        "PSUR0227"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Warappa Kreek",
+      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q124831564",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Maria Petronella en Johanna Maria",
           "language": "nl",
           "type": "official",
           "isPreferred": true
