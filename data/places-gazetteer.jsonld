@@ -23169,44 +23169,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00995",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00995",
-      "type": "plantation",
-      "prefLabel": "Jukenombo",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.563580351428571,
-        "lng": -54.6517267,
-        "wkt": "Polygon ((-54.67702041 5.54907486, -54.66170299 5.56358662, -54.64411895 5.58067901, -54.64348651 5.57762797, -54.62914110 5.59084773, -54.62150467 5.58116142, -54.63895701 5.56508624, -54.64023437 5.56408639, -54.64043354 5.56622168, -54.65585192 5.55229170, -54.65736243 5.55055150, -54.66852298 5.55097744, -54.66881651 5.54885750, -54.67702041 5.54907486))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59115748",
-      "fid": 2079,
-      "psurIds": [],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115748",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01878",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74702,6 +74664,63 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emM05BZWxHeVRINzQ/view?usp=sharing&resourcekey=0-zhy8KhU-Y7MeNORV8Zft6w",
           "author": "Philip Dikland",
           "year": "2005-2008",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00995",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00995",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.563580351428571,
+        "lng": -54.6517267,
+        "wkt": "Polygon ((-54.67702041 5.54907486, -54.66170299 5.56358662, -54.64411895 5.58067901, -54.64348651 5.57762797, -54.62914110 5.59084773, -54.62150467 5.58116142, -54.63895701 5.56508624, -54.64023437 5.56408639, -54.64043354 5.56622168, -54.65585192 5.55229170, -54.65736243 5.55055150, -54.66852298 5.55097744, -54.66881651 5.54885750, -54.67702041 5.54907486))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59115748",
+      "fid": 2079,
+      "psurIds": [],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115748",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Jukenombo",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Jukemombo",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Jukemombo 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emYU5scjREd2tyc0E/view?usp=sharing&resourcekey=0-wvoHvfyjuUwbBm-6HZtvHQ",
+          "author": "Philip Dikland",
+          "year": "2005, aangevuld 2010",
           "notes": null
         }
       ]
