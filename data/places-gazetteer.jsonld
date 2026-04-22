@@ -31404,47 +31404,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00875",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00875",
-      "type": "plantation",
-      "prefLabel": "Marienbosch",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.88582921,
-        "lng": -55.01660851625,
-        "wkt": "Polygon ((-55.02047623 5.87151950, -55.01711645 5.91572859, -55.01189504 5.91519941, -55.01198610 5.91185886, -55.01514579 5.86544184, -55.01729428 5.86672474, -55.01847801 5.86864124, -55.02047623 5.87151950))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q2042290",
-      "fid": 1959,
-      "psurIds": [
-        "PSUR0228"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
-      "placeType": "koffie en cacao",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q2042290",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00583",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75244,6 +75203,60 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emNGhXMG1vYWthTk0/view?usp=sharing&resourcekey=0-S6-wEElRq_Hz3MjoEvxCow",
           "author": "Philip Dikland",
           "year": "2008",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00875",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00875",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.88582921,
+        "lng": -55.01660851625,
+        "wkt": "Polygon ((-55.02047623 5.87151950, -55.01711645 5.91572859, -55.01189504 5.91519941, -55.01198610 5.91185886, -55.01514579 5.86544184, -55.01729428 5.86672474, -55.01847801 5.86864124, -55.02047623 5.87151950))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q2042290",
+      "fid": 1959,
+      "psurIds": [
+        "PSUR0228"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
+      "placeType": "koffie en cacao",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q2042290",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Marienbosch",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Marienbosch 2002-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emT1c3TG1aVWlHUEk/view?usp=sharing&resourcekey=0-Zaj7ai4dCbvo1228PkoxoA",
+          "author": "Philip Dikland",
+          "year": "2002, aangevuld 2005, 2008",
           "notes": null
         }
       ]
