@@ -20612,47 +20612,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00665",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00665",
-      "type": "plantation",
-      "prefLabel": "Hecht en Sterk",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.903261101666666,
-        "lng": -54.954990509999995,
-        "wkt": "Polygon ((-54.95987199 5.87506095, -54.95608138 5.93443209, -54.95027907 5.93436633, -54.95034224 5.93047386, -54.95349639 5.87017243, -54.95987199 5.87506095))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q3964207",
-      "fid": 1748,
-      "psurIds": [
-        "PSUR0138"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q3964207",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01138",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74464,6 +74423,78 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emODdvNnRzbk9ubk0/view?usp=sharing&resourcekey=0-UoYY4VJGcU3uWsk47YFjcg",
           "author": "Philip Dikland",
           "year": "2005, aangevuld 2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00665",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00665",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.903261101666666,
+        "lng": -54.954990509999995,
+        "wkt": "Polygon ((-54.95987199 5.87506095, -54.95608138 5.93443209, -54.95027907 5.93436633, -54.95034224 5.93047386, -54.95349639 5.87017243, -54.95987199 5.87506095))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q3964207",
+      "fid": 1748,
+      "psurIds": [
+        "PSUR0138"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q3964207",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Hecht en Sterk",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Hegt en Sterk",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        },
+        {
+          "text": "Storkoe",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Stolkert",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Hecht en Sterk 2001-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emUVBJMnA5cUNxTTA/view?usp=sharing&resourcekey=0-1YTaoJviWCCNB3-8lldVew",
+          "author": "Philip Dikland",
+          "year": "2001",
           "notes": null
         }
       ]
