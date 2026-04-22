@@ -74358,6 +74358,12 @@
           "language": "nl",
           "type": "official",
           "isPreferred": true
+        },
+        {
+          "text": "De Hoop",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
         }
       ],
       "diklandRefs": [
