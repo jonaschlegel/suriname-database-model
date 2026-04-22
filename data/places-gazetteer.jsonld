@@ -33084,47 +33084,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02049",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02049",
-      "type": "plantation",
-      "prefLabel": "Mon Affaire",
-      "altLabels": [],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.803914816249999,
-        "lng": -54.989714697500006,
-        "wkt": "Polygon ((-54.97008900 5.80996602, -54.97056571 5.80828420, -54.97053931 5.80629406, -55.03034721 5.79054368, -55.03034201 5.79507043, -55.00345619 5.80158746, -54.97228915 5.80960666, -54.97008900 5.80996602))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59132760",
-      "fid": 3134,
-      "psurIds": [
-        "PSUR0239"
-      ],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Orelana Kreek",
-      "locationDescriptionOriginal": "Hoer-Helena-kreek, regterhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59132760",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01125",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75386,6 +75345,78 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emWEl0bGNSMkxkUk0/view?usp=sharing&resourcekey=0-f_XIBh-hDQD_ZjALzg5FVw",
           "author": "Philip Dikland",
           "year": "2008",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02049",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02049",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.803914816249999,
+        "lng": -54.989714697500006,
+        "wkt": "Polygon ((-54.97008900 5.80996602, -54.97056571 5.80828420, -54.97053931 5.80629406, -55.03034721 5.79054368, -55.03034201 5.79507043, -55.00345619 5.80158746, -54.97228915 5.80960666, -54.97008900 5.80996602))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59132760",
+      "fid": 3134,
+      "psurIds": [
+        "PSUR0239"
+      ],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Orelana Kreek",
+      "locationDescriptionOriginal": "Hoer-Helena-kreek, regterhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59132760",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Mon Affaire",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Brokkoe",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Pottendorfoe",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Pottendorff",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Mon Affaire 2013-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTlZkd0J6ZjRlNm8/view?usp=sharing&resourcekey=0-30v-r2wqDju0_x8IEJ5c3Q",
+          "author": "Philip Dikland",
+          "year": "2013",
           "notes": null
         }
       ]
