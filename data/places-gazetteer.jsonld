@@ -31013,44 +31013,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01155",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01155",
-      "type": "plantation",
-      "prefLabel": "Makreabo",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.745098229,
-        "lng": -54.735986214,
-        "wkt": "Polygon ((-54.71797071 5.75128067, -54.73448094 5.73724939, -54.73607377 5.73857369, -54.73894422 5.73892701, -54.74810633 5.74016207, -54.74842188 5.74228306, -54.74710170 5.74362450, -54.74464538 5.74619829, -54.72614650 5.76140294, -54.71797071 5.75128067))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59117044",
-      "fid": 2239,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59117044",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01165",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75215,6 +75177,63 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emdDlxWDYzcEM1ZUk/view?usp=sharing&resourcekey=0-2VGfRSXawkBefqWoyrRguA",
           "author": "Philip Dikland",
           "year": "2004",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01155",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01155",
+      "type": "plantation",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.745098229,
+        "lng": -54.735986214,
+        "wkt": "Polygon ((-54.71797071 5.75128067, -54.73448094 5.73724939, -54.73607377 5.73857369, -54.73894422 5.73892701, -54.74810633 5.74016207, -54.74842188 5.74228306, -54.74710170 5.74362450, -54.74464538 5.74619829, -54.72614650 5.76140294, -54.71797071 5.75128067))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59117044",
+      "fid": 2239,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59117044",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Makreabo",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Macriabo",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Macriabo 2007-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTk9wdm1jOHlvWjQ/view?usp=sharing&resourcekey=0-ghvJEJ6-Ex4wj19EltEMKA",
+          "author": "Philip Dikland",
+          "year": "2007",
           "notes": null
         }
       ]
