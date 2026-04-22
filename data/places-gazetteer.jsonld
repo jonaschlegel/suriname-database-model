@@ -22200,44 +22200,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00687",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00687",
-      "type": "plantation",
-      "prefLabel": "Jacoba's daal",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.961645701666666,
-        "lng": -54.927211228333334,
-        "wkt": "Polygon ((-54.91572877 5.96370217, -54.91637195 5.96018818, -54.91698485 5.95757466, -54.94943370 5.95927461, -54.94901933 5.96543242, -54.91572877 5.96370217))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59115720",
-      "fid": 1770,
-      "psurIds": [],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Warappa Kreek",
-      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
-      "placeType": "kost",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115720",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01267",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74570,6 +74532,81 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emWE1qTFBSYmo2U3c/view?usp=sharing&resourcekey=0-XXzIQJpUmeh71Y-J6D4Z3A",
           "author": "Philip Dikland",
           "year": "2005",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00687",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00687",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.961645701666666,
+        "lng": -54.927211228333334,
+        "wkt": "Polygon ((-54.91572877 5.96370217, -54.91637195 5.96018818, -54.91698485 5.95757466, -54.94943370 5.95927461, -54.94901933 5.96543242, -54.91572877 5.96370217))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59115720",
+      "fid": 1770,
+      "psurIds": [],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Warappa Kreek",
+      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
+      "placeType": "kost",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115720",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Jacoba's daal",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Jacobaasdaal",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        },
+        {
+          "text": "Wikion",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Witjoe",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Wittchow",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Jacobasdaal 2006-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emYkZfeUs4X0ttOG8/view?usp=sharing&resourcekey=0-fB6-plsrQUIuLNBxrcdAXg",
+          "author": "Philip Dikland",
+          "year": "2006, aangevuld 2009",
           "notes": null
         }
       ]
