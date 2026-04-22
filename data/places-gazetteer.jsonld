@@ -33793,44 +33793,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02066",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02066",
-      "type": "plantation",
-      "prefLabel": "Montpellier",
-      "altLabels": [],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.790589341428571,
-        "lng": -54.978574990000006,
-        "wkt": "Polygon ((-54.99002205 5.79134076, -54.96966141 5.79656646, -54.96984659 5.79306604, -54.97003038 5.79068221, -54.97016923 5.78808708, -54.99027322 5.78304208, -54.99002205 5.79134076))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q124831652",
-      "fid": 3151,
-      "psurIds": [],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Orelana Kreek",
-      "locationDescriptionOriginal": "Hoer-Helena-kreek, regterhand in het opvaren",
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q124831652",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00565",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75477,6 +75439,57 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emR2lpNVUzbW10TWM/view?usp=sharing&resourcekey=0-R4L47-0wDoLxnKQ52ZtvNA",
           "author": "Philip Dikland",
           "year": "2003, aangevuld 2005, 2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02066",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02066",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.790589341428571,
+        "lng": -54.978574990000006,
+        "wkt": "Polygon ((-54.99002205 5.79134076, -54.96966141 5.79656646, -54.96984659 5.79306604, -54.97003038 5.79068221, -54.97016923 5.78808708, -54.99027322 5.78304208, -54.99002205 5.79134076))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q124831652",
+      "fid": 3151,
+      "psurIds": [],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Orelana Kreek",
+      "locationDescriptionOriginal": "Hoer-Helena-kreek, regterhand in het opvaren",
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q124831652",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Montpellier",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Montpellier 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emVFExaGNneUcwZnM/view?usp=sharing&resourcekey=0-xFmfFSPaBuohS06MQ4nGAA",
+          "author": "Philip Dikland",
+          "year": "2005",
           "notes": null
         }
       ]
