@@ -33466,47 +33466,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00677",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00677",
-      "type": "plantation",
-      "prefLabel": "Mon Souci",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.900908534285714,
-        "lng": -54.979836571428564,
-        "wkt": "Polygon ((-54.98349080 5.88132281, -54.97988301 5.92518169, -54.97979358 5.92706977, -54.97419466 5.92680118, -54.97770058 5.88250160, -54.98030257 5.88215988, -54.98349080 5.88132281))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q3143074",
-      "fid": 1760,
-      "psurIds": [
-        "PSUR0240"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q3143074",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00577",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75417,6 +75376,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTlZkd0J6ZjRlNm8/view?usp=sharing&resourcekey=0-30v-r2wqDju0_x8IEJ5c3Q",
           "author": "Philip Dikland",
           "year": "2013",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00677",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00677",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.900908534285714,
+        "lng": -54.979836571428564,
+        "wkt": "Polygon ((-54.98349080 5.88132281, -54.97988301 5.92518169, -54.97979358 5.92706977, -54.97419466 5.92680118, -54.97770058 5.88250160, -54.98030257 5.88215988, -54.98349080 5.88132281))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q3143074",
+      "fid": 1760,
+      "psurIds": [
+        "PSUR0240"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q3143074",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Mon Souci",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Pikien Stolkroe",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "kleine Stolkert",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Mon Souci 2001-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emUGlBX3JKXzBvRXc/view?usp=sharing&resourcekey=0-nr4TI0YDCMCyUk2kYbIXew",
+          "author": "Philip Dikland",
+          "year": "2003",
           "notes": null
         }
       ]
