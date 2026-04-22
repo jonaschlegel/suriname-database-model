@@ -30826,43 +30826,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02175",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02175",
-      "type": "plantation",
-      "prefLabel": "Macriabo",
-      "altLabels": [],
-      "broader": null,
-      "description": "Plantation from Surinaamse Almanakken (no QGIS geometry)",
-      "location": {
-        "lat": null,
-        "lng": null,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "almanakken"
-      ],
-      "wikidataQid": "Q59117035",
-      "fid": null,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, linkerhand",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59117035",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02089",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75177,6 +75140,56 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emdDlxWDYzcEM1ZUk/view?usp=sharing&resourcekey=0-2VGfRSXawkBefqWoyrRguA",
           "author": "Philip Dikland",
           "year": "2004",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02175",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02175",
+      "type": "plantation",
+      "broader": null,
+      "description": "Plantation from Surinaamse Almanakken (no QGIS geometry)",
+      "location": {
+        "lat": null,
+        "lng": null,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "almanakken"
+      ],
+      "wikidataQid": "Q59117035",
+      "fid": null,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, linkerhand",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59117035",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Macriabo",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Macriabo 2007-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTk9wdm1jOHlvWjQ/view?usp=sharing&resourcekey=0-ghvJEJ6-Ex4wj19EltEMKA",
+          "author": "Philip Dikland",
+          "year": "2007",
           "notes": null
         }
       ]
