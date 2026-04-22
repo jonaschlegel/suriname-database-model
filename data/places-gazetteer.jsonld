@@ -74417,7 +74417,7 @@
       "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
       "placeType": "suiker",
       "modifiedBy": "GerDijkstra",
-      "modifiedAt": "2026-04-21",
+      "modifiedAt": "2026-04-22",
       "externalLinks": [
         {
           "authority": "wikidata",
@@ -74437,6 +74437,18 @@
           "language": "nl",
           "type": "historical",
           "isPreferred": false
+        },
+        {
+          "text": "Ouson",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Brousson",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
         }
       ],
       "diklandRefs": [
@@ -74445,6 +74457,13 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emYXdZdlBmbTl2Sms/view?usp=sharing&resourcekey=0--gvPzVQ8zgjv-nAaKd_M1g",
           "author": "Philip Dikland",
           "year": "2001, aangevuld 2009",
+          "notes": null
+        },
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Hazard Commewijne 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emODdvNnRzbk9ubk0/view?usp=sharing&resourcekey=0-UoYY4VJGcU3uWsk47YFjcg",
+          "author": "Philip Dikland",
+          "year": "2005, aangevuld 2010",
           "notes": null
         }
       ]
