@@ -23598,44 +23598,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01011",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01011",
-      "type": "plantation",
-      "prefLabel": "Killenstein Nova",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.673093576153846,
-        "lng": -54.751129034615374,
-        "wkt": "Polygon ((-54.77255443 5.66627480, -54.75095052 5.68507784, -54.74768119 5.68812222, -54.74622390 5.68507018, -54.74640756 5.67908667, -54.74505061 5.67542446, -54.74342908 5.67399849, -54.74111007 5.67352996, -54.73949974 5.67413733, -54.74050321 5.66331873, -54.75488476 5.66380673, -54.76382795 5.65609428, -54.77255443 5.66627480))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59116804",
-      "fid": 2095,
-      "psurIds": [],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
-      "placeType": "hout",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59116804",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01384",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74777,6 +74739,63 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emYjdmalVPRDY2SFk/view?usp=sharing&resourcekey=0-1D2StDJAbJgneBDoWEncIA",
           "author": "Philip Dikland",
           "year": "2005, aangevuld 2008, 2009",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01011",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01011",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.673093576153846,
+        "lng": -54.751129034615374,
+        "wkt": "Polygon ((-54.77255443 5.66627480, -54.75095052 5.68507784, -54.74768119 5.68812222, -54.74622390 5.68507018, -54.74640756 5.67908667, -54.74505061 5.67542446, -54.74342908 5.67399849, -54.74111007 5.67352996, -54.73949974 5.67413733, -54.74050321 5.66331873, -54.75488476 5.66380673, -54.76382795 5.65609428, -54.77255443 5.66627480))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59116804",
+      "fid": 2095,
+      "psurIds": [],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
+      "placeType": "hout",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59116804",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Killenstein Nova",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Killestein Nova",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Killestein Nova 2004-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emZ2stcnBBSHo0SlU/view?usp=sharing&resourcekey=0-KEBT70no1PC8bvQK8lMtfw",
+          "author": "Philip Dikland",
+          "year": "2004, aangevuld 2009",
           "notes": null
         }
       ]
