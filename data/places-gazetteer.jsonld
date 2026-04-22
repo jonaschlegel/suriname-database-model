@@ -38151,44 +38151,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01176",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01176",
-      "type": "plantation",
-      "prefLabel": "Ostage",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.806683644736842,
-        "lng": -54.79400205105264,
-        "wkt": "Polygon ((-54.79286216 5.82555455, -54.78933475 5.81846129, -54.79334348 5.81460426, -54.79630777 5.81089079, -54.79718090 5.80897500, -54.79705135 5.80695866, -54.79693380 5.80166777, -54.79544595 5.79863848, -54.79373586 5.79790959, -54.79074775 5.79836965, -54.78691490 5.80112314, -54.78302553 5.80291793, -54.78111109 5.80303107, -54.77935814 5.80190993, -54.80114790 5.78756559, -54.80217391 5.78989103, -54.81321714 5.81343702, -54.80328443 5.81952895, -54.79286216 5.82555455))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59133025",
-      "fid": 2260,
-      "psurIds": [],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59133025",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01177",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75881,6 +75843,57 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emOE1zN2pjRHQxcnc/view?usp=sharing&resourcekey=0-nfSrRIpI5inws9Q9kLXe_g",
           "author": "Philip Dikland",
           "year": "2005, aangevuld 2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01176",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01176",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.806683644736842,
+        "lng": -54.79400205105264,
+        "wkt": "Polygon ((-54.79286216 5.82555455, -54.78933475 5.81846129, -54.79334348 5.81460426, -54.79630777 5.81089079, -54.79718090 5.80897500, -54.79705135 5.80695866, -54.79693380 5.80166777, -54.79544595 5.79863848, -54.79373586 5.79790959, -54.79074775 5.79836965, -54.78691490 5.80112314, -54.78302553 5.80291793, -54.78111109 5.80303107, -54.77935814 5.80190993, -54.80114790 5.78756559, -54.80217391 5.78989103, -54.81321714 5.81343702, -54.80328443 5.81952895, -54.79286216 5.82555455))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59133025",
+      "fid": 2260,
+      "psurIds": [],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59133025",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Ostage",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Ostage 2004-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTjBwYzJmQVByQzA/view?usp=sharing&resourcekey=0-cE-3yvzRH6OLJpYV1WkuLg",
+          "author": "Philip Dikland",
+          "year": "2004",
           "notes": null
         }
       ]
