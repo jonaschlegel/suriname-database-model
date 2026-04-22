@@ -17353,47 +17353,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00681",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00681",
-      "type": "plantation",
-      "prefLabel": "Frederikslust",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.973396914285714,
-        "lng": -54.928572672857136,
-        "wkt": "Polygon ((-54.91567767 5.96914871, -54.96171872 5.97198522, -54.96106722 5.98203529, -54.91491005 5.97866106, -54.91531006 5.97269213, -54.91564732 5.97010728, -54.91567767 5.96914871))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q19787475",
-      "fid": 1764,
-      "psurIds": [
-        "PSUR0113"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Warappa Kreek",
-      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
-      "placeType": "koffie en katoen",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q19787475",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02156",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74303,6 +74262,72 @@
           "driveUrl": "https://drive.google.com/drive/u/0/folders/0B88mZFitv8embmZaYWFQNnZacDQ?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-sImlF_DkEFu3ebWbDQ58Kg",
           "author": "Philip Dikland",
           "year": "2003-2004, aangevuld 2008, 2009",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00681",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00681",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.973396914285714,
+        "lng": -54.928572672857136,
+        "wkt": "Polygon ((-54.91567767 5.96914871, -54.96171872 5.97198522, -54.96106722 5.98203529, -54.91491005 5.97866106, -54.91531006 5.97269213, -54.91564732 5.97010728, -54.91567767 5.96914871))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q19787475",
+      "fid": 1764,
+      "psurIds": [
+        "PSUR0113"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Warappa Kreek",
+      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
+      "placeType": "koffie en katoen",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q19787475",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Frederikslust",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Andree njan joe oppo",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Andree eet je op",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Frederikslust 2006-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emb3J0bWRlWlBERmc/view?usp=sharing&resourcekey=0-hnU965-WFignJ7jnw_u_JQ",
+          "author": "Philip Dikland",
+          "year": "2006, aangevuld 2007, 2009",
           "notes": null
         }
       ]
