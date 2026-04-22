@@ -21804,43 +21804,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00997",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00997",
-      "type": "plantation",
-      "prefLabel": "Imo tappi",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.5409523168421035,
-        "lng": -54.66006288578947,
-        "wkt": "Polygon ((-54.66852298 5.55097744, -54.65736243 5.55055150, -54.65585192 5.55229170, -54.64976771 5.55013161, -54.64681580 5.54722175, -54.64612765 5.54286350, -54.64623302 5.53948854, -54.62796013 5.53777724, -54.62517762 5.53751085, -54.62645030 5.52278643, -54.63401510 5.52349697, -54.69743544 5.52813707, -54.70694333 5.52855946, -54.70669707 5.53730234, -54.67071319 5.53359691, -54.66896514 5.54670827, -54.66881651 5.54885750, -54.66881651 5.54885750, -54.66852298 5.55097744))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": "Q59115713",
-      "fid": 2081,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115713",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01517",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74551,6 +74514,62 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emelNRb0s0U1IzRVE/view?usp=sharing&resourcekey=0-Wl5O-B2A45uJEAKpwfGU9Q",
           "author": "Philip Dikland",
           "year": "2003, aangevuld 2010, 2010-2",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00997",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00997",
+      "type": "plantation",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.5409523168421035,
+        "lng": -54.66006288578947,
+        "wkt": "Polygon ((-54.66852298 5.55097744, -54.65736243 5.55055150, -54.65585192 5.55229170, -54.64976771 5.55013161, -54.64681580 5.54722175, -54.64612765 5.54286350, -54.64623302 5.53948854, -54.62796013 5.53777724, -54.62517762 5.53751085, -54.62645030 5.52278643, -54.63401510 5.52349697, -54.69743544 5.52813707, -54.70694333 5.52855946, -54.70669707 5.53730234, -54.67071319 5.53359691, -54.66896514 5.54670827, -54.66881651 5.54885750, -54.66881651 5.54885750, -54.66852298 5.55097744))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": "Q59115713",
+      "fid": 2081,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115713",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Imo tappi",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Imotapi",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Imotapi 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emWE1qTFBSYmo2U3c/view?usp=sharing&resourcekey=0-XXzIQJpUmeh71Y-J6D4Z3A",
+          "author": "Philip Dikland",
+          "year": "2005",
           "notes": null
         }
       ]
