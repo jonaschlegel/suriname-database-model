@@ -35071,43 +35071,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00906",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00906",
-      "type": "plantation",
-      "prefLabel": "Nieuw Ribanica",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.485399821724138,
-        "lng": -54.64820444206897,
-        "wkt": "Polygon ((-54.65739788 5.51316805, -54.64052969 5.51142494, -54.62829800 5.51067721, -54.63153849 5.48117138, -54.63273091 5.47890782, -54.63386310 5.47792221, -54.63508241 5.47684961, -54.63633206 5.47499280, -54.63778179 5.47476296, -54.63906900 5.47273662, -54.64028066 5.47128168, -54.64274378 5.47169262, -54.64445497 5.47111465, -54.64671630 5.47088619, -54.64804712 5.47236989, -54.64997368 5.47296868, -54.65401811 5.47249637, -54.65645366 5.47209389, -54.65795818 5.47372310, -54.65795203 5.47732493, -54.65632114 5.48179538, -54.65483415 5.48684701, -54.65503332 5.48902588, -54.65569630 5.49120555, -54.65870253 5.49614872, -54.66295371 5.50202352, -54.66372722 5.50739856, -54.66204075 5.51041656, -54.65739788 5.51316805))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930"
-      ],
-      "wikidataQid": "Q59132857",
-      "fid": 1990,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": null,
-      "locationDescriptionOriginal": null,
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59132857",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00519",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75617,6 +75580,56 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emenpqVlhER3Bfelk/view?usp=sharing&resourcekey=0-dSxqlBfBdQRY7NDs4eQZ2Q",
           "author": "Philip Dikland",
           "year": "2002",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00906",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00906",
+      "type": "plantation",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.485399821724138,
+        "lng": -54.64820444206897,
+        "wkt": "Polygon ((-54.65739788 5.51316805, -54.64052969 5.51142494, -54.62829800 5.51067721, -54.63153849 5.48117138, -54.63273091 5.47890782, -54.63386310 5.47792221, -54.63508241 5.47684961, -54.63633206 5.47499280, -54.63778179 5.47476296, -54.63906900 5.47273662, -54.64028066 5.47128168, -54.64274378 5.47169262, -54.64445497 5.47111465, -54.64671630 5.47088619, -54.64804712 5.47236989, -54.64997368 5.47296868, -54.65401811 5.47249637, -54.65645366 5.47209389, -54.65795818 5.47372310, -54.65795203 5.47732493, -54.65632114 5.48179538, -54.65483415 5.48684701, -54.65503332 5.48902588, -54.65569630 5.49120555, -54.65870253 5.49614872, -54.66295371 5.50202352, -54.66372722 5.50739856, -54.66204075 5.51041656, -54.65739788 5.51316805))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930"
+      ],
+      "wikidataQid": "Q59132857",
+      "fid": 1990,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": null,
+      "locationDescriptionOriginal": null,
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59132857",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Nieuw Ribanica",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Nieuw Ribanica 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emeTRCVXVaT0pKOHM/view?usp=sharing&resourcekey=0-tFEwWjiVjAelmoYxUuBhrw",
+          "author": "Philip Dikland",
+          "year": "2005",
           "notes": null
         }
       ]
