@@ -29138,47 +29138,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00596",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00596",
-      "type": "plantation",
-      "prefLabel": "Livonia",
-      "altLabels": [],
-      "broader": "stm-00008",
-      "description": "",
-      "location": {
-        "lat": 5.967095554444445,
-        "lng": -54.87770863888889,
-        "wkt": "Polygon ((-54.89019739 5.97362959, -54.87992792 5.97271418, -54.88040038 5.96705043, -54.85858433 5.96583444, -54.85922974 5.96106424, -54.85923212 5.95946659, -54.89083780 5.96206923, -54.89077068 5.96840170, -54.89019739 5.97362959))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59116974",
-      "fid": 1679,
-      "psurIds": [
-        "PSUR0201"
-      ],
-      "district": "Divisie Matapplea",
-      "locationDescription": "Matappica Kreek",
-      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
-      "placeType": "koffie en katoen",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59116974",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01383",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75091,6 +75050,72 @@
           "language": "nl",
           "type": "variant",
           "isPreferred": false
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00596",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00596",
+      "type": "plantation",
+      "broader": "stm-00008",
+      "description": "",
+      "location": {
+        "lat": 5.967095554444445,
+        "lng": -54.87770863888889,
+        "wkt": "Polygon ((-54.89019739 5.97362959, -54.87992792 5.97271418, -54.88040038 5.96705043, -54.85858433 5.96583444, -54.85922974 5.96106424, -54.85923212 5.95946659, -54.89083780 5.96206923, -54.89077068 5.96840170, -54.89019739 5.97362959))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59116974",
+      "fid": 1679,
+      "psurIds": [
+        "PSUR0201"
+      ],
+      "district": "Divisie Matapplea",
+      "locationDescription": "Matappica Kreek",
+      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
+      "placeType": "koffie en katoen",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59116974",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Livonia",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Feerman",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Fellman",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Livonia 2008-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTzVZR2J6TW8tbjA/view?usp=sharing&resourcekey=0-Gwdlc4aI44bPVFTq3AlkCA",
+          "author": "Philip Dikland",
+          "year": "2008",
+          "notes": null
         }
       ]
     },
