@@ -74282,6 +74282,12 @@
           "language": "srn",
           "type": "vernacular",
           "isPreferred": false
+        },
+        {
+          "text": "Fauquemberg",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
         }
       ],
       "diklandRefs": [
