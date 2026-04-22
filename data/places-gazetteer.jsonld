@@ -24906,47 +24906,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00651",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00651",
-      "type": "plantation",
-      "prefLabel": "Kroonenbrug",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.879723333333334,
-        "lng": -55.00369706,
-        "wkt": "Polygon ((-55.00676042 5.86697138, -55.00401988 5.90214672, -54.99900159 5.90170483, -55.00153348 5.87138052, -55.00410657 5.86916517, -55.00676042 5.86697138))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q2183731",
-      "fid": 1734,
-      "psurIds": [
-        "PSUR0168"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q2183731",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00598",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74867,6 +74826,66 @@
           "author": "Philip Dikland",
           "year": "2008",
           "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00651",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00651",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.879723333333334,
+        "lng": -55.00369706,
+        "wkt": "Polygon ((-55.00676042 5.86697138, -55.00401988 5.90214672, -54.99900159 5.90170483, -55.00153348 5.87138052, -55.00410657 5.86916517, -55.00676042 5.86697138))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q2183731",
+      "fid": 1734,
+      "psurIds": [
+        "PSUR0168"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q2183731",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Kroonenburg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Kronenburg",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Kronenburg 2003-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emcE1zRXduRDBsMms/view?usp=sharing&resourcekey=0-JlcOMAjJSqndwhenzToYWw",
+          "author": "Philip Dikland",
+          "year": "2003",
+          "notes": "Kroonenburg was oorspronkelijk een koffie- en katoenplantage. De plantage is thans\nsamengevoegd met de \"2/3\" plantages Rijnberk, Schaapstede, en Goede Vriendschap tot de\ndorpsgemeente Kroonenburg."
         }
       ]
     },
