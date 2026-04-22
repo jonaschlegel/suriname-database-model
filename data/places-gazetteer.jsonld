@@ -22901,47 +22901,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00656",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00656",
-      "type": "plantation",
-      "prefLabel": "Johannesburg",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.930722538,
-        "lng": -55.05835384200001,
-        "wkt": "Polygon ((-55.05897104 5.94951830, -55.05363311 5.94904744, -55.05757376 5.90213693, -55.06262026 5.90339172, -55.05897104 5.94951830))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q2386590",
-      "fid": 1739,
-      "psurIds": [
-        "PSUR0155"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q2386590",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01700",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74652,6 +74611,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emamRLNXVKUnQ2T3M/view?usp=sharing&resourcekey=0-EFYEspUYmdzFlJvZIMxgOQ",
           "author": "Philip Dikland",
           "year": "2003",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00656",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00656",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.930722538,
+        "lng": -55.05835384200001,
+        "wkt": "Polygon ((-55.05897104 5.94951830, -55.05363311 5.94904744, -55.05757376 5.90213693, -55.06262026 5.90339172, -55.05897104 5.94951830))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q2386590",
+      "fid": 1739,
+      "psurIds": [
+        "PSUR0155"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q2386590",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Johannesburg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Halloi",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Halloy",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Johannesburg 2004-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emX2g3YTBqVTc5aVU/view?usp=sharing&resourcekey=0-J1W-T-aX-ghyOzANFbadfw",
+          "author": "Philip Dikland",
+          "year": "2004",
           "notes": null
         }
       ]
