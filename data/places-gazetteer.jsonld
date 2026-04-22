@@ -56435,47 +56435,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00675",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00675",
-      "type": "plantation",
-      "prefLabel": "Ponthieu",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.936862851666667,
-        "lng": -54.923718283333336,
-        "wkt": "Polygon ((-54.96211020 5.93879733, -54.96172765 5.94293630, -54.89604863 5.93959316, -54.89608681 5.93630992, -54.89541708 5.93487188, -54.89324075 5.93518830, -54.89248749 5.93446102, -54.89327382 5.93234160, -54.92016457 5.93449989, -54.95605027 5.93602974, -54.95590193 5.93852775, -54.96211020 5.93879733))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59133089",
-      "fid": 1758,
-      "psurIds": [
-        "PSUR0287"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Warappa Kreek",
-      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59133089",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01339",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75952,6 +75911,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTWpsaVo2Zzk5dVk/view?usp=sharing&resourcekey=0-9mUNwqI_Qj_0we0pkwzDog",
           "author": "Philip Dikland",
           "year": "2007",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00675",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00675",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.936862851666667,
+        "lng": -54.923718283333336,
+        "wkt": "Polygon ((-54.96211020 5.93879733, -54.96172765 5.94293630, -54.89604863 5.93959316, -54.89608681 5.93630992, -54.89541708 5.93487188, -54.89324075 5.93518830, -54.89248749 5.93446102, -54.89327382 5.93234160, -54.92016457 5.93449989, -54.95605027 5.93602974, -54.95590193 5.93852775, -54.96211020 5.93879733))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59133089",
+      "fid": 1758,
+      "psurIds": [
+        "PSUR0287"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Warappa Kreek",
+      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59133089",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Ponthieu",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Gieskie",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Gieske",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Ponthieu 2008-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emeDBhMXdiTnZERHM/view?usp=sharing&resourcekey=0-N9npMbJM41VqLGwLdTfCjA",
+          "author": "Philip Dikland",
+          "year": "2008, aangevuld 2010",
           "notes": null
         }
       ]
