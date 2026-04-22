@@ -33466,51 +33466,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00577",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00577",
-      "type": "plantation",
-      "prefLabel": "Mon Tr�sor",
-      "altLabels": [
-        "Mon tr�sor"
-      ],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.831039954285714,
-        "lng": -55.00952408,
-        "wkt": "Polygon ((-55.01419393 5.80412991, -55.00988132 5.86148595, -55.00754940 5.86185713, -55.00468054 5.86257315, -55.00756310 5.81939753, -55.00860634 5.80370610, -55.01419393 5.80412991))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59132787",
-      "fid": 1660,
-      "psurIds": [
-        "PSUR0246-A",
-        "PSUR0246-B",
-        "PSUR0372"
-      ],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59132787",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01130",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75442,6 +75397,86 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emUGlBX3JKXzBvRXc/view?usp=sharing&resourcekey=0-nr4TI0YDCMCyUk2kYbIXew",
           "author": "Philip Dikland",
           "year": "2003",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00577",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00577",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.831039954285714,
+        "lng": -55.00952408,
+        "wkt": "Polygon ((-55.01419393 5.80412991, -55.00988132 5.86148595, -55.00754940 5.86185713, -55.00468054 5.86257315, -55.00756310 5.81939753, -55.00860634 5.80370610, -55.01419393 5.80412991))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59132787",
+      "fid": 1660,
+      "psurIds": [
+        "PSUR0246-A",
+        "PSUR0246-B",
+        "PSUR0372"
+      ],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59132787",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Mon Tr�sor",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Mon tr�sor",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
+        },
+        {
+          "text": "Mon Tresor",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        },
+        {
+          "text": "Pichotoe",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Pichot",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Mon Tresor 2001-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emR2lpNVUzbW10TWM/view?usp=sharing&resourcekey=0-R4L47-0wDoLxnKQ52ZtvNA",
+          "author": "Philip Dikland",
+          "year": "2003, aangevuld 2005, 2010",
           "notes": null
         }
       ]
