@@ -23401,48 +23401,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00572",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00572",
-      "type": "plantation",
-      "prefLabel": "Katwijk",
-      "altLabels": [],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.8441036959999995,
-        "lng": -54.996981268,
-        "wkt": "Polygon ((-54.99590481 5.82901026, -55.00145084 5.82787024, -54.99887128 5.86469653, -54.99277460 5.86993119, -54.99590481 5.82901026))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q2182096",
-      "fid": 1655,
-      "psurIds": [
-        "PSUR0157-A",
-        "PSUR0157-B"
-      ],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q2182096",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00939",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74721,6 +74679,79 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emYU5scjREd2tyc0E/view?usp=sharing&resourcekey=0-wvoHvfyjuUwbBm-6HZtvHQ",
           "author": "Philip Dikland",
           "year": "2005, aangevuld 2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00572",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00572",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.8441036959999995,
+        "lng": -54.996981268,
+        "wkt": "Polygon ((-54.99590481 5.82901026, -55.00145084 5.82787024, -54.99887128 5.86469653, -54.99277460 5.86993119, -54.99590481 5.82901026))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q2182096",
+      "fid": 1655,
+      "psurIds": [
+        "PSUR0157-A",
+        "PSUR0157-B"
+      ],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q2182096",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Katwijk",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Juliaansi",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "van Meeri",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "van Meel",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Katwijk 2001-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8embDBZS0hab2ZpNk0/view?usp=sharing&resourcekey=0-nJuNJJHPsIUK-qqygvxC9g",
+          "author": "Philip Dikland",
+          "year": "2001, aangevuld 2008, 2010",
           "notes": null
         }
       ]
