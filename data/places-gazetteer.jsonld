@@ -17315,47 +17315,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00653",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00653",
-      "type": "plantation",
-      "prefLabel": "Frederiksdorp",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.911882353999999,
-        "lng": -55.03174249999999,
-        "wkt": "Polygon ((-55.03569894 5.89018710, -55.03059948 5.94658053, -55.02584245 5.94564531, -55.03087269 5.88681173, -55.03569894 5.89018710))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q4968178",
-      "fid": 1736,
-      "psurIds": [
-        "PSUR0112"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q4968178",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01385",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74278,6 +74237,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emUDU2OWJsLS1hZkU/view?usp=sharing&resourcekey=0-unWnEYPaii9FZTIREVI9fA",
           "author": "Philip Dikland",
           "year": "2002",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00653",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00653",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.911882353999999,
+        "lng": -55.03174249999999,
+        "wkt": "Polygon ((-55.03569894 5.89018710, -55.03059948 5.94658053, -55.02584245 5.94564531, -55.03087269 5.88681173, -55.03569894 5.89018710))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q4968178",
+      "fid": 1736,
+      "psurIds": [
+        "PSUR0112"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q4968178",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Frederiksdorp",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Knofroe",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Knoffel",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Frederiksdorp 2003-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/drive/u/0/folders/0B88mZFitv8embmZaYWFQNnZacDQ?tid=0B88mZFitv8emcjVfcG5hWFJOdWs&resourcekey=0-sImlF_DkEFu3ebWbDQ58Kg",
+          "author": "Philip Dikland",
+          "year": "2003-2004, aangevuld 2008, 2009",
           "notes": null
         }
       ]
