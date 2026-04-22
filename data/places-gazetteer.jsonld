@@ -75132,6 +75132,18 @@
           "language": "nl",
           "type": "vernacular",
           "isPreferred": false
+        },
+        {
+          "text": "",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": false
+        },
+        {
+          "text": "Lustrijck",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
         }
       ],
       "diklandRefs": [
@@ -75140,7 +75152,7 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emNlBTTzJoY1pRWDg/view?usp=sharing&resourcekey=0-3tJ3FG-lJyp7p_wmGkedGw",
           "author": "Philip Dikland",
           "year": "2005",
-          "notes": null
+          "notes": "In het begin was Lustrijk geen aparte plantage, maar vormde een onderdeel van de grote\nsuikerplantage Schoonoord. Lavaux geeft dit in 1737 duidelijk op zijn kaart aan. Maar toch is de situatie onduidelijk. Er bestaat een meetkaart uit 1739 van Schoonoord, en hierop staat de grond van Lustrijck niet aangegeven. Van Lustrijk zelf zijn geen kaarten of certificaten bekend."
         }
       ]
     },
