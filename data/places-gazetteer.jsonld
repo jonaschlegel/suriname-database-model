@@ -63820,49 +63820,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02072",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02072",
-      "type": "plantation",
-      "prefLabel": "t Fortuin",
-      "altLabels": [
-        "Fortuin"
-      ],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.815514127500001,
-        "lng": -54.911640694999996,
-        "wkt": "Polygon ((-54.94050723 5.81493741, -54.94032366 5.81704961, -54.94004905 5.81964454, -54.93339041 5.81906234, -54.93262891 5.82521759, -54.88370054 5.81959762, -54.87349155 5.82066944, -54.87465380 5.80863035, -54.88133647 5.80800616, -54.88823701 5.80780467, -54.91086248 5.81061239, -54.94050723 5.81493741))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q13637207",
-      "fid": 3157,
-      "psurIds": [
-        "PSUR0369"
-      ],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Commetewane Kreek",
-      "locationDescriptionOriginal": "Commetewane-kreek, linkerhand in het opvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q13637207",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00750",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74731,6 +74688,78 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emOE1zN2pjRHQxcnc/view?usp=sharing&resourcekey=0-nfSrRIpI5inws9Q9kLXe_g",
           "author": "Philip Dikland",
           "year": "2005, aangevuld 2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02072",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02072",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.815514127500001,
+        "lng": -54.911640694999996,
+        "wkt": "Polygon ((-54.94050723 5.81493741, -54.94032366 5.81704961, -54.94004905 5.81964454, -54.93339041 5.81906234, -54.93262891 5.82521759, -54.88370054 5.81959762, -54.87349155 5.82066944, -54.87465380 5.80863035, -54.88133647 5.80800616, -54.88823701 5.80780467, -54.91086248 5.81061239, -54.94050723 5.81493741))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q13637207",
+      "fid": 3157,
+      "psurIds": [
+        "PSUR0369"
+      ],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Commetewane Kreek",
+      "locationDescriptionOriginal": "Commetewane-kreek, linkerhand in het opvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q13637207",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "t Fortuin",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Fortuin",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
+        },
+        {
+          "text": "Fortuyn",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        },
+        {
+          "text": "Baki",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Fortuyn 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emRHpvMGdSeVgxUGM/view?usp=sharing&resourcekey=0--KiscBUtuSD_-TLUdFmAfQ",
+          "author": "Philip Dikland",
+          "year": "2005",
           "notes": null
         }
       ]
