@@ -22979,44 +22979,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00603",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00603",
-      "type": "plantation",
-      "prefLabel": "Johanneszoon",
-      "altLabels": [],
-      "broader": "stm-00008",
-      "description": "",
-      "location": {
-        "lat": 5.9388116488888905,
-        "lng": -54.848068292222216,
-        "wkt": "Polygon ((-54.86294215 5.94233364, -54.83955681 5.94075455, -54.83344037 5.94031377, -54.83337030 5.93537230, -54.83546426 5.93534966, -54.83546426 5.93534966, -54.86526974 5.93783461, -54.86416459 5.93966301, -54.86294215 5.94233364))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59115746",
-      "fid": 1686,
-      "psurIds": [],
-      "district": "Divisie Matapplea",
-      "locationDescription": "Matappica Kreek",
-      "locationDescriptionOriginal": "Matappica-kreek, regterhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115746",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01960",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74677,6 +74639,69 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emX2g3YTBqVTc5aVU/view?usp=sharing&resourcekey=0-J1W-T-aX-ghyOzANFbadfw",
           "author": "Philip Dikland",
           "year": "2004",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00603",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00603",
+      "type": "plantation",
+      "broader": "stm-00008",
+      "description": "",
+      "location": {
+        "lat": 5.9388116488888905,
+        "lng": -54.848068292222216,
+        "wkt": "Polygon ((-54.86294215 5.94233364, -54.83955681 5.94075455, -54.83344037 5.94031377, -54.83337030 5.93537230, -54.83546426 5.93534966, -54.83546426 5.93534966, -54.86526974 5.93783461, -54.86416459 5.93966301, -54.86294215 5.94233364))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59115746",
+      "fid": 1686,
+      "psurIds": [],
+      "district": "Divisie Matapplea",
+      "locationDescription": "Matappica Kreek",
+      "locationDescriptionOriginal": "Matappica-kreek, regterhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115746",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Johanneszoon",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Pinari",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Penard(?)",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Johanneszoon geschiedenis 2008-01.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emM05BZWxHeVRINzQ/view?usp=sharing&resourcekey=0-zhy8KhU-Y7MeNORV8Zft6w",
+          "author": "Philip Dikland",
+          "year": "2005-2008",
           "notes": null
         }
       ]
