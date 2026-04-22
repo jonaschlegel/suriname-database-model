@@ -56820,47 +56820,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01156",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01156",
-      "type": "plantation",
-      "prefLabel": "Potribo",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.740659744375001,
-        "lng": -54.749637651875,
-        "wkt": "Polygon ((-54.73955607 5.73719969, -54.75018441 5.72844475, -54.75295776 5.72606735, -54.75756076 5.73101291, -54.76497093 5.73968108, -54.75946768 5.74442151, -54.74776360 5.75468530, -54.74628968 5.75154575, -54.74588761 5.74913414, -54.74643371 5.74669920, -54.74785707 5.74466478, -54.75024727 5.74256501, -54.74999112 5.74031039, -54.74902171 5.73901618, -54.74645698 5.73790818, -54.73955607 5.73719969))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59133101",
-      "fid": 2240,
-      "psurIds": [
-        "PSUR0289"
-      ],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59133101",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02094",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75977,6 +75936,84 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emeDBhMXdiTnZERHM/view?usp=sharing&resourcekey=0-N9npMbJM41VqLGwLdTfCjA",
           "author": "Philip Dikland",
           "year": "2008, aangevuld 2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01156",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01156",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.740659744375001,
+        "lng": -54.749637651875,
+        "wkt": "Polygon ((-54.73955607 5.73719969, -54.75018441 5.72844475, -54.75295776 5.72606735, -54.75756076 5.73101291, -54.76497093 5.73968108, -54.75946768 5.74442151, -54.74776360 5.75468530, -54.74628968 5.75154575, -54.74588761 5.74913414, -54.74643371 5.74669920, -54.74785707 5.74466478, -54.75024727 5.74256501, -54.74999112 5.74031039, -54.74902171 5.73901618, -54.74645698 5.73790818, -54.73955607 5.73719969))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59133101",
+      "fid": 2240,
+      "psurIds": [
+        "PSUR0289"
+      ],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) linkerhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59133101",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Potribo",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Goeijaba",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "guyave ?",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Gulik ?",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Guyaka",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Potribo 2004-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emYW8xX3k2cWZqQjQ/view?usp=sharing&resourcekey=0-KKrfXaF8pBdo9hjcLjUzFQ",
+          "author": "Philip Dikland",
+          "year": "2004, aangevuld 2005, 2010",
           "notes": null
         }
       ]
