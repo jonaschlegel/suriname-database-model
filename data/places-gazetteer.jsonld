@@ -36154,47 +36154,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00553",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00553",
-      "type": "plantation",
-      "prefLabel": "Nijd en Spijt",
-      "altLabels": [],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.824780555,
-        "lng": -55.01631508249999,
-        "wkt": "Polygon ((-55.02043275 5.80230781, -55.02059370 5.80293901, -55.01603311 5.86168761, -55.01476777 5.86164069, -55.00988132 5.86148595, -55.01419393 5.80412991, -55.01418533 5.80174565, -55.02043275 5.80230781))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59132916",
-      "fid": 1636,
-      "psurIds": [
-        "PSUR0261"
-      ],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59132916",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01467",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75742,6 +75701,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8embmpZRTJEYnNPUWs/view?usp=sharing&resourcekey=0-p1u-OPBObua0lRTtBKlWFA",
           "author": "Philip Dikland",
           "year": "1999, aangevuld 2005, 2010, 2011, 2012",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00553",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00553",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.824780555,
+        "lng": -55.01631508249999,
+        "wkt": "Polygon ((-55.02043275 5.80230781, -55.02059370 5.80293901, -55.01603311 5.86168761, -55.01476777 5.86164069, -55.00988132 5.86148595, -55.01419393 5.80412991, -55.01418533 5.80174565, -55.02043275 5.80230781))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59132916",
+      "fid": 1636,
+      "psurIds": [
+        "PSUR0261"
+      ],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59132916",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Nijd en Spijt",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "grani",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Grand",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Nijd en Spijt 2001-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emM0VsQjV3bmg1cjA/view?usp=sharing&resourcekey=0-wmqTVOyZrniXh-OsjjF56A",
+          "author": "Philip Dikland",
+          "year": "2001, aangevuld 2008, 2009",
           "notes": null
         }
       ]
