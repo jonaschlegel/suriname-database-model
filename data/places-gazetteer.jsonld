@@ -26705,47 +26705,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00616",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00616",
-      "type": "plantation",
-      "prefLabel": "La Jalousie",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.853483223076921,
-        "lng": -54.816323215384614,
-        "wkt": "Polygon ((-54.82875171 5.82857305, -54.82805483 5.84817948, -54.82761219 5.86265929, -54.82394742 5.86384740, -54.82100153 5.86573088, -54.82055234 5.86985237, -54.81949884 5.87583464, -54.81697223 5.87771885, -54.81424413 5.87858605, -54.80876402 5.87703795, -54.80667991 5.87418798, -54.80605951 5.87209556, -54.80767245 5.87016640, -54.80943088 5.86841630, -54.81150929 5.86513257, -54.81029911 5.85990205, -54.80827142 5.85809791, -54.80846381 5.82761236, -54.80982643 5.82795787, -54.81183030 5.82883063, -54.81446097 5.83075548, -54.81652896 5.83240201, -54.81894880 5.83372805, -54.82190246 5.83300801, -54.82436835 5.83167761, -54.82875171 5.82857305))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59116871",
-      "fid": 1699,
-      "psurIds": [
-        "PSUR0176"
-      ],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59116871",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02372",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74569,6 +74528,78 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emUGxkRFpWVVBDek0/view?usp=sharing&resourcekey=0-NJjXkeEEsKGDSEibpxepEQ",
           "author": "Philip Dikland",
           "year": "2011",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00616",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00616",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.853483223076921,
+        "lng": -54.816323215384614,
+        "wkt": "Polygon ((-54.82875171 5.82857305, -54.82805483 5.84817948, -54.82761219 5.86265929, -54.82394742 5.86384740, -54.82100153 5.86573088, -54.82055234 5.86985237, -54.81949884 5.87583464, -54.81697223 5.87771885, -54.81424413 5.87858605, -54.80876402 5.87703795, -54.80667991 5.87418798, -54.80605951 5.87209556, -54.80767245 5.87016640, -54.80943088 5.86841630, -54.81150929 5.86513257, -54.81029911 5.85990205, -54.80827142 5.85809791, -54.80846381 5.82761236, -54.80982643 5.82795787, -54.81183030 5.82883063, -54.81446097 5.83075548, -54.81652896 5.83240201, -54.81894880 5.83372805, -54.82190246 5.83300801, -54.82436835 5.83167761, -54.82875171 5.82857305))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59116871",
+      "fid": 1699,
+      "psurIds": [
+        "PSUR0176"
+      ],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59116871",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "La Jalousie",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Groot-jalousie",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        },
+        {
+          "text": "Pattra",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Pater",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Groot-jalousie 2002-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emVzJyY2VLaEhZVlU/view?usp=sharing&resourcekey=0-Ntl7daVG5On25_RCvdVXpg",
+          "author": "Philip Dikland",
+          "year": "2002, aangevuld 2010",
           "notes": null
         }
       ]
