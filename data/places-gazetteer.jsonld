@@ -17277,44 +17277,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00679",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00679",
-      "type": "plantation",
-      "prefLabel": "Frederiksburg",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.92054294125,
-        "lng": -54.96017188,
-        "wkt": "Polygon ((-54.96211020 5.93879733, -54.95590193 5.93852775, -54.95605027 5.93602974, -54.95608138 5.93443209, -54.95987199 5.87506095, -54.96627832 5.87868582, -54.96297075 5.92401252, -54.96211020 5.93879733))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q2356001",
-      "fid": 1762,
-      "psurIds": [],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q2356001",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01299",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74254,6 +74216,69 @@
           "author": "Philip Dikland",
           "year": "2002, aangevuld 2011",
           "notes": "Tot 1760 droeg de plantage de naam “Tenburg” of “De Burgh”"
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00679",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00679",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.92054294125,
+        "lng": -54.96017188,
+        "wkt": "Polygon ((-54.96211020 5.93879733, -54.95590193 5.93852775, -54.95605027 5.93602974, -54.95608138 5.93443209, -54.95987199 5.87506095, -54.96627832 5.87868582, -54.96297075 5.92401252, -54.96211020 5.93879733))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q2356001",
+      "fid": 1762,
+      "psurIds": [],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q2356001",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Frederiksburg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Spinassie",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "l'Espinasse",
+          "language": "nl",
+          "type": "historical",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Frederiksburg 2002-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emUDU2OWJsLS1hZkU/view?usp=sharing&resourcekey=0-unWnEYPaii9FZTIREVI9fA",
+          "author": "Philip Dikland",
+          "year": "2002",
+          "notes": null
         }
       ]
     },
