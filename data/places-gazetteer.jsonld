@@ -31172,46 +31172,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02501",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02501",
-      "type": "plantation",
-      "prefLabel": "Maria Petronella",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "Plantation from Surinaamse Almanakken (no QGIS geometry)",
-      "location": {
-        "lat": null,
-        "lng": null,
-        "wkt": null,
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q19974088",
-      "fid": null,
-      "psurIds": [
-        "PSUR0227"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Warappa Kreek",
-      "locationDescriptionOriginal": "Warappekreek. {",
-      "placeType": "kost, koffie en kweek",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q19974088",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00691",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75247,6 +75207,65 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTk9wdm1jOHlvWjQ/view?usp=sharing&resourcekey=0-ghvJEJ6-Ex4wj19EltEMKA",
           "author": "Philip Dikland",
           "year": "2007",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02501",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02501",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "Plantation from Surinaamse Almanakken (no QGIS geometry)",
+      "location": {
+        "lat": null,
+        "lng": null,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q19974088",
+      "fid": null,
+      "psurIds": [
+        "PSUR0227"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Warappa Kreek",
+      "locationDescriptionOriginal": "Warappekreek. {",
+      "placeType": "kost, koffie en kweek",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q19974088",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Maria Petronella",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Spaan",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Maria Petronella 2008-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emNGhXMG1vYWthTk0/view?usp=sharing&resourcekey=0-S6-wEElRq_Hz3MjoEvxCow",
+          "author": "Philip Dikland",
+          "year": "2008",
           "notes": null
         }
       ]
