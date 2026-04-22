@@ -22700,47 +22700,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00652",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00652",
-      "type": "plantation",
-      "prefLabel": "Johan en Margaretha",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.925381068,
-        "lng": -55.036235166,
-        "wkt": "Polygon ((-55.03297814 5.94693193, -55.03793074 5.89190360, -55.04111943 5.89402790, -55.03616938 5.94710998, -55.03297814 5.94693193))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q59115734",
-      "fid": 1735,
-      "psurIds": [
-        "PSUR0149"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59115734",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02499",
       "@type": [
         "E25_Human-Made_Feature"
@@ -74607,6 +74566,60 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emYkZfeUs4X0ttOG8/view?usp=sharing&resourcekey=0-fB6-plsrQUIuLNBxrcdAXg",
           "author": "Philip Dikland",
           "year": "2006, aangevuld 2009",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00652",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00652",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.925381068,
+        "lng": -55.036235166,
+        "wkt": "Polygon ((-55.03297814 5.94693193, -55.03793074 5.89190360, -55.04111943 5.89402790, -55.03616938 5.94710998, -55.03297814 5.94693193))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q59115734",
+      "fid": 1735,
+      "psurIds": [
+        "PSUR0149"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-22",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59115734",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Johan en Margaretha",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Johan en Margaretha en Buitenrust 2003-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emamRLNXVKUnQ2T3M/view?usp=sharing&resourcekey=0-EFYEspUYmdzFlJvZIMxgOQ",
+          "author": "Philip Dikland",
+          "year": "2003",
           "notes": null
         }
       ]
