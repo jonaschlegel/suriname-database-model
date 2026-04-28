@@ -75793,6 +75793,12 @@
           "language": "nl",
           "type": "variant",
           "isPreferred": false
+        },
+        {
+          "text": "Nieuw-Roosenbeeck",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
         }
       ],
       "diklandRefs": [
