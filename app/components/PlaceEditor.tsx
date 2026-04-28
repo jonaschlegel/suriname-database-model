@@ -12,8 +12,10 @@ import type {
   LocationAssertion,
   NameType,
   PlaceName,
+  PlantationStatusType,
   ProductAssertion,
   SkosMatchType,
+  StatusAssertion,
 } from '@/lib/types';
 import { getPreferredName } from '@/lib/types';
 import { buildExploreUrl } from '@/lib/url';
@@ -74,7 +76,7 @@ function normalizeDistrictAssertions(
       id: a.id || `district-assertion-${idx + 1}`,
       districtId: a.districtId ?? null,
       districtLabel: a.districtLabel ?? null,
-      source: a.source || place.sources[0] || 'almanakken',
+      source: a.source || preferAlmanakkenSource(place.sources),
       sourceYear: a.sourceYear,
       certainty: a.certainty,
       note: a.note ?? null,
@@ -89,7 +91,7 @@ function normalizeDistrictAssertions(
       id: 'district-assertion-1',
       districtId: place.broader ?? null,
       districtLabel: place.district ?? null,
-      source: place.sources[0] || 'almanakken',
+      source: preferAlmanakkenSource(place.sources),
       sourceYear: undefined,
       certainty: 'certain',
       note: null,
@@ -159,6 +161,28 @@ function normalizeLocationAssertions(
       note: null,
     },
   ];
+}
+
+const VALID_STATUSES: PlantationStatusType[] = [
+  'planned',
+  'built',
+  'abandoned',
+  'reactivated',
+  'unknown',
+];
+
+function normalizeStatusAssertions(place: GazetteerPlace): StatusAssertion[] {
+  if (Array.isArray(place.statusAssertions)) {
+    return place.statusAssertions.map((a, idx) => ({
+      id: a.id || `status-assertion-${idx + 1}`,
+      status: VALID_STATUSES.includes(a.status) ? a.status : 'unknown',
+      source: a.source || preferAlmanakkenSource(place.sources),
+      startYear: a.startYear,
+      endYear: a.endYear,
+      note: a.note ?? null,
+    }));
+  }
+  return [];
 }
 
 const CATEGORY_ORDER = [
@@ -501,6 +525,7 @@ export default function PlaceEditor({
     districtAssertions: normalizeDistrictAssertions(place),
     productAssertions: normalizeProductAssertions(place),
     locationAssertions: normalizeLocationAssertions(place),
+    statusAssertions: normalizeStatusAssertions(place),
   });
   const hydratedFromAppellations = useRef(false);
   const [saving, setSaving] = useState(false);
@@ -598,7 +623,7 @@ export default function PlaceEditor({
         id: `district-assertion-${Date.now()}`,
         districtId: draft.broader ?? null,
         districtLabel: draft.district ?? null,
-        source: draft.sources[0] || 'almanakken',
+        source: preferAlmanakkenSource(draft.sources),
         sourceYear: undefined,
         certainty: 'certain',
         note: null,
@@ -779,6 +804,144 @@ export default function PlaceEditor({
     },
     [applyLocationAssertions, locationAssertions],
   );
+
+  // ── Status assertions (lifecycle) ─────────────────────────────────────────
+
+  const statusAssertions = draft.statusAssertions || [];
+
+  const applyStatusAssertions = useCallback(
+    (nextAssertions: StatusAssertion[]) => {
+      setDraft((d) => ({ ...d, statusAssertions: nextAssertions }));
+    },
+    [],
+  );
+
+  const addStatusAssertion = useCallback(() => {
+    const next: StatusAssertion[] = [
+      ...statusAssertions,
+      {
+        id: `status-assertion-${Date.now()}`,
+        status: 'built',
+        source: preferAlmanakkenSource(draft.sources),
+        startYear: undefined,
+        endYear: undefined,
+        note: null,
+      },
+    ];
+    applyStatusAssertions(next);
+  }, [applyStatusAssertions, statusAssertions, draft.sources]);
+
+  const updateStatusAssertion = useCallback(
+    (idx: number, patch: Partial<StatusAssertion>) => {
+      const next = statusAssertions.map((a, i) =>
+        i === idx ? { ...a, ...patch } : a,
+      );
+      applyStatusAssertions(next);
+    },
+    [applyStatusAssertions, statusAssertions],
+  );
+
+  const removeStatusAssertion = useCallback(
+    (idx: number) => {
+      const next = statusAssertions.filter((_, i) => i !== idx);
+      applyStatusAssertions(next);
+    },
+    [applyStatusAssertions, statusAssertions],
+  );
+
+  /**
+   * Computed lifecycle events — merges status assertions + product assertions
+   * into a flat sorted list for the read-only timeline display.
+   */
+  const computedLifecycleEvents = useMemo(() => {
+    type EventKind = 'status' | 'product-activity';
+    interface LifecycleEvent {
+      kind: EventKind;
+      status?: PlantationStatusType;
+      product?: string;
+      startYear?: number;
+      endYear?: number;
+      source?: string;
+    }
+
+    const events: LifecycleEvent[] = [];
+
+    for (const a of statusAssertions) {
+      events.push({
+        kind: 'status',
+        status: a.status,
+        startYear: a.startYear,
+        endYear: a.endYear,
+        source: a.source,
+      });
+    }
+
+    for (const a of (draft.productAssertions || []).filter((p) => p.value)) {
+      events.push({
+        kind: 'product-activity',
+        product: a.value,
+        startYear: a.startYear,
+        endYear: a.endYear,
+        source: a.source,
+      });
+    }
+
+    // Sort by startYear ascending (undefined years go to end)
+    events.sort(
+      (a, b) => (a.startYear ?? Infinity) - (b.startYear ?? Infinity),
+    );
+
+    return events;
+  }, [statusAssertions, draft.productAssertions]);
+
+  /** Earliest year recorded across all assertions */
+  const firstMentionYear = useMemo(() => {
+    const years: number[] = [];
+    for (const a of statusAssertions) {
+      if (a.startYear) years.push(a.startYear);
+    }
+    for (const a of draft.productAssertions || []) {
+      if (a.startYear) years.push(a.startYear);
+    }
+    for (const a of draft.locationAssertions || []) {
+      if (a.startYear) years.push(a.startYear);
+    }
+    for (const a of draft.districtAssertions || []) {
+      if (a.sourceYear) years.push(a.sourceYear);
+    }
+    return years.length > 0 ? Math.min(...years) : null;
+  }, [
+    statusAssertions,
+    draft.productAssertions,
+    draft.locationAssertions,
+    draft.districtAssertions,
+  ]);
+
+  /** Latest year recorded across all assertions */
+  const lastMentionYear = useMemo(() => {
+    const years: number[] = [];
+    for (const a of statusAssertions) {
+      if (a.endYear) years.push(a.endYear);
+      else if (a.startYear) years.push(a.startYear);
+    }
+    for (const a of draft.productAssertions || []) {
+      if (a.endYear) years.push(a.endYear);
+      else if (a.startYear) years.push(a.startYear);
+    }
+    for (const a of draft.locationAssertions || []) {
+      if (a.endYear) years.push(a.endYear);
+      else if (a.startYear) years.push(a.startYear);
+    }
+    for (const a of draft.districtAssertions || []) {
+      if (a.sourceYear) years.push(a.sourceYear);
+    }
+    return years.length > 0 ? Math.max(...years) : null;
+  }, [
+    statusAssertions,
+    draft.productAssertions,
+    draft.locationAssertions,
+    draft.districtAssertions,
+  ]);
 
   useEffect(() => {
     if (hydratedFromAppellations.current) return;
@@ -2154,6 +2317,202 @@ export default function PlaceEditor({
             </div>
           </div>
         </div>
+
+        {/* Plantation Lifecycle */}
+        {draft.type === 'plantation' && (
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <label className="block text-sm font-medium text-stm-warm-700">
+                Plantation Lifecycle
+              </label>
+              {canEdit && (
+                <button
+                  type="button"
+                  onClick={addStatusAssertion}
+                  className="text-xs text-stm-sepia-600 hover:text-stm-sepia-800"
+                >
+                  + Add lifecycle event
+                </button>
+              )}
+            </div>
+
+            {/* First / last mention computed markers */}
+            {(firstMentionYear !== null || lastMentionYear !== null) && (
+              <div className="flex gap-3">
+                {firstMentionYear !== null && (
+                  <span className="inline-flex items-center gap-1 text-[10px] text-stm-warm-600 bg-stm-warm-100 border border-stm-warm-200 px-2 py-0.5">
+                    <span className="font-medium">First mentioned:</span>{' '}
+                    {firstMentionYear}
+                  </span>
+                )}
+                {lastMentionYear !== null && (
+                  <span className="inline-flex items-center gap-1 text-[10px] text-stm-warm-600 bg-stm-warm-100 border border-stm-warm-200 px-2 py-0.5">
+                    <span className="font-medium">Last mentioned:</span>{' '}
+                    {lastMentionYear}
+                  </span>
+                )}
+              </div>
+            )}
+
+            {/* Computed timeline (read-only merged view) */}
+            {computedLifecycleEvents.length > 0 && (
+              <div className="border border-stm-warm-200 divide-y divide-stm-warm-100">
+                <p className="px-2 py-1 text-[10px] text-stm-warm-500 uppercase tracking-wider bg-stm-warm-50">
+                  Timeline
+                </p>
+                {computedLifecycleEvents.map((ev, i) => {
+                  const yearSpan = ev.startYear
+                    ? ev.endYear && ev.endYear !== ev.startYear
+                      ? `${ev.startYear}–${ev.endYear}`
+                      : String(ev.startYear)
+                    : ev.endYear
+                      ? `–${ev.endYear}`
+                      : null;
+
+                  const statusColors: Record<string, string> = {
+                    planned:
+                      'bg-stm-warm-100 text-stm-warm-700 border-stm-warm-300',
+                    built:
+                      'bg-stm-teal-50 text-stm-teal-800 border-stm-teal-200',
+                    abandoned: 'bg-red-50 text-red-700 border-red-200',
+                    reactivated: 'bg-green-50 text-green-800 border-green-200',
+                    unknown:
+                      'bg-stm-warm-50 text-stm-warm-500 border-stm-warm-200',
+                    'product-activity':
+                      'bg-stm-sepia-50 text-stm-sepia-700 border-stm-sepia-200',
+                  };
+
+                  const colorKey =
+                    ev.kind === 'product-activity'
+                      ? 'product-activity'
+                      : (ev.status ?? 'unknown');
+                  const colorClass =
+                    statusColors[colorKey] ?? statusColors.unknown;
+
+                  return (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 px-2 py-1.5 text-xs"
+                    >
+                      <span
+                        className={`inline-block border px-1.5 py-0.5 text-[10px] font-medium shrink-0 ${colorClass}`}
+                      >
+                        {ev.kind === 'product-activity'
+                          ? ev.product
+                          : ev.status}
+                      </span>
+                      {yearSpan && (
+                        <span className="text-stm-warm-500 font-mono shrink-0">
+                          {yearSpan}
+                        </span>
+                      )}
+                      {ev.kind === 'product-activity' && (
+                        <span className="text-stm-warm-400 text-[10px]">
+                          (product)
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {computedLifecycleEvents.length === 0 &&
+              statusAssertions.length === 0 && (
+                <p className="text-xs text-stm-warm-400 italic">
+                  No lifecycle events recorded. Add product observations or
+                  status events to build the timeline.
+                </p>
+              )}
+
+            {/* Editable status assertions */}
+            {statusAssertions.length > 0 && (
+              <div className="space-y-2">
+                <p className="text-[10px] text-stm-warm-500 uppercase tracking-wider">
+                  Status Events
+                </p>
+                {statusAssertions.map((assertion, i) => (
+                  <div
+                    key={assertion.id}
+                    className="border border-stm-warm-200 bg-stm-warm-50 p-2 space-y-2"
+                  >
+                    <div className="grid grid-cols-3 gap-2">
+                      <select
+                        value={assertion.status}
+                        onChange={(e) =>
+                          updateStatusAssertion(i, {
+                            status: e.target.value as PlantationStatusType,
+                          })
+                        }
+                        disabled={!canEdit}
+                        className="px-2 py-1 text-xs border border-stm-warm-200 bg-white focus:ring-1 focus:ring-stm-sepia-400 outline-none disabled:bg-stm-warm-50"
+                      >
+                        <option value="planned">Planned</option>
+                        <option value="built">Built / Active</option>
+                        <option value="abandoned">Abandoned (verlaten)</option>
+                        <option value="reactivated">Reactivated</option>
+                        <option value="unknown">Unknown</option>
+                      </select>
+                      <input
+                        type="number"
+                        value={assertion.startYear ?? ''}
+                        onChange={(e) =>
+                          updateStatusAssertion(i, {
+                            startYear: e.target.value
+                              ? Number(e.target.value)
+                              : undefined,
+                          })
+                        }
+                        disabled={!canEdit}
+                        placeholder="From"
+                        className="px-2 py-1 text-xs border border-stm-warm-200 bg-white focus:ring-1 focus:ring-stm-sepia-400 outline-none disabled:bg-stm-warm-50"
+                      />
+                      <input
+                        type="number"
+                        value={assertion.endYear ?? ''}
+                        onChange={(e) =>
+                          updateStatusAssertion(i, {
+                            endYear: e.target.value
+                              ? Number(e.target.value)
+                              : undefined,
+                          })
+                        }
+                        disabled={!canEdit}
+                        placeholder="To"
+                        className="px-2 py-1 text-xs border border-stm-warm-200 bg-white focus:ring-1 focus:ring-stm-sepia-400 outline-none disabled:bg-stm-warm-50"
+                      />
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <select
+                        value={assertion.source}
+                        onChange={(e) =>
+                          updateStatusAssertion(i, { source: e.target.value })
+                        }
+                        disabled={!canEdit}
+                        className="flex-1 px-2 py-1 text-xs border border-stm-warm-200 bg-white focus:ring-1 focus:ring-stm-sepia-400 outline-none disabled:bg-stm-warm-50"
+                      >
+                        {registrySources.map((source) => (
+                          <option key={source.sourceId} value={source.sourceId}>
+                            {sourceDisplayLabel(source.sourceId)}
+                          </option>
+                        ))}
+                      </select>
+                      {canEdit && (
+                        <button
+                          type="button"
+                          onClick={() => removeStatusAssertion(i)}
+                          className="text-xs text-stm-warm-400 hover:text-red-500 shrink-0"
+                        >
+                          Remove
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
         {/* IDs (read-only) */}
         <div className="space-y-1 text-xs text-stm-warm-400">

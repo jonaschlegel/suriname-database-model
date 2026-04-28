@@ -235,6 +235,34 @@ export interface LocationAssertion {
   note?: string | null;
 }
 
+/**
+ * Plantation lifecycle status — vocabulary for E55 Type (type/plantation-status/*).
+ * CRM: E17 Type Assignment (P41 classified E25 Plantation, P42 assigned E55 Type).
+ */
+export type PlantationStatusType =
+  | 'planned'
+  | 'built'
+  | 'abandoned'
+  | 'reactivated'
+  | 'unknown';
+
+/**
+ * Lifecycle status event with source/time context.
+ * CRM: E17 Type Assignment — subclass of E13 Attribute Assignment.
+ *   P41 classified  → E25 Plantation (the physical thing)
+ *   P42 assigned    → E55 Type (type/plantation-status/{status})
+ *   P4 has time-span → E52 Time-Span (startYear / endYear)
+ *   prov:hadPrimarySource → E22 Source
+ */
+export interface StatusAssertion {
+  id: string;
+  status: PlantationStatusType; // CRM: P42 assigned -> E55 Type
+  source: string; // registry sourceId (prov:hadPrimarySource -> E22)
+  startYear?: number; // CRM: P4 has time-span -> E52 (begin)
+  endYear?: number; // CRM: P4 has time-span -> E52 (end)
+  note?: string | null;
+}
+
 /** All valid gazetteer place types */
 export type PlaceType =
   | 'plantation'
@@ -289,6 +317,7 @@ export interface GazetteerPlace {
   placeType: string | null;
   productAssertions?: ProductAssertion[];
   locationAssertions?: LocationAssertion[];
+  statusAssertions?: StatusAssertion[];
   diklandRefs: DiklandRef[];
   modifiedBy: string | null;
   modifiedAt: string | null;

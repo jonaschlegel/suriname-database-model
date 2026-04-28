@@ -14,7 +14,9 @@ import type {
   E41Appellation,
   GazetteerPlace,
   LocationAssertion,
+  PlantationStatusType,
   ProductAssertion,
+  StatusAssertion,
 } from '@/lib/types';
 import { getPreferredName } from '@/lib/types';
 import { extractPlaceId } from '@/lib/url';
@@ -150,7 +152,7 @@ function normalizeDistrictAssertionsFromLegacy(
       id: 'district-assertion-1',
       districtId: broader,
       districtLabel: district,
-      source: sources[0] || 'almanakken',
+      source: preferAlmanakkenSource(sources),
       sourceYear: undefined,
       certainty: 'certain',
       note: null,
@@ -281,6 +283,48 @@ function normalizeLocationAssertionsFromLegacy(
   ];
 }
 
+function normalizeStatusAssertionsFromLegacy(
+  entry: Record<string, unknown>,
+): StatusAssertion[] {
+  const sources = Array.isArray(entry.sources)
+    ? entry.sources.filter((x): x is string => typeof x === 'string')
+    : [];
+  if (Array.isArray(entry.statusAssertions)) {
+    return entry.statusAssertions
+      .filter((a): a is Record<string, unknown> =>
+        Boolean(a && typeof a === 'object'),
+      )
+      .map((a, idx) => ({
+        id:
+          typeof a.id === 'string' && a.id.trim()
+            ? a.id
+            : `status-assertion-${idx + 1}`,
+        status:
+          a.status === 'planned' ||
+          a.status === 'built' ||
+          a.status === 'abandoned' ||
+          a.status === 'reactivated' ||
+          a.status === 'unknown'
+            ? (a.status as PlantationStatusType)
+            : 'unknown',
+        source:
+          typeof a.source === 'string' && a.source.trim()
+            ? a.source
+            : preferAlmanakkenSource(sources),
+        startYear:
+          typeof a.startYear === 'number' && Number.isFinite(a.startYear)
+            ? a.startYear
+            : undefined,
+        endYear:
+          typeof a.endYear === 'number' && Number.isFinite(a.endYear)
+            ? a.endYear
+            : undefined,
+        note: typeof a.note === 'string' && a.note.trim() ? a.note : null,
+      }));
+  }
+  return [];
+}
+
 function getCurrentDistrictLabel(place: GazetteerPlace): string | null {
   const assertions = place.districtAssertions || [];
   const effective = getEffectiveDistrictAssertion(assertions);
@@ -307,6 +351,7 @@ function emptyPlace(): GazetteerPlace {
     placeType: null,
     productAssertions: [],
     locationAssertions: [],
+    statusAssertions: [],
     diklandRefs: [],
     modifiedBy: null,
     modifiedAt: null,
@@ -564,6 +609,9 @@ function PlacesPageInner() {
               p as unknown as Record<string, unknown>,
             ),
             locationAssertions: normalizeLocationAssertionsFromLegacy(
+              p as unknown as Record<string, unknown>,
+            ),
+            statusAssertions: normalizeStatusAssertionsFromLegacy(
               p as unknown as Record<string, unknown>,
             ),
           })),
