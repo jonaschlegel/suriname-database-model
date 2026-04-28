@@ -57636,44 +57636,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00669",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00669",
-      "type": "plantation",
-      "prefLabel": "Reijnsfort",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.925852843846154,
-        "lng": -54.92284468999999,
-        "wkt": "Polygon ((-54.94565125 5.93017576, -54.91152675 5.92898319, -54.89386060 5.92773825, -54.89340035 5.92497798, -54.89253058 5.92318200, -54.89120087 5.92121306, -54.92997126 5.92330052, -54.93388748 5.92352369, -54.93387144 5.92465657, -54.93986243 5.92454845, -54.93984511 5.92665447, -54.94572160 5.92695727, -54.94565125 5.93017576))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q19818810",
-      "fid": 1752,
-      "psurIds": [],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Warappa Kreek",
-      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q19818810",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00772",
       "@type": [
         "E25_Human-Made_Feature"
@@ -76624,6 +76586,69 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8embDRxeXZqU09sUFU/view?usp=sharing&resourcekey=0-RT4hwOo-UliUjGXSYNLUow",
           "author": "Philip Dikland",
           "year": "2001, aangevuld 2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00669",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00669",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.925852843846154,
+        "lng": -54.92284468999999,
+        "wkt": "Polygon ((-54.94565125 5.93017576, -54.91152675 5.92898319, -54.89386060 5.92773825, -54.89340035 5.92497798, -54.89253058 5.92318200, -54.89120087 5.92121306, -54.92997126 5.92330052, -54.93388748 5.92352369, -54.93387144 5.92465657, -54.93986243 5.92454845, -54.93984511 5.92665447, -54.94572160 5.92695727, -54.94565125 5.93017576))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q19818810",
+      "fid": 1752,
+      "psurIds": [],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Warappa Kreek",
+      "locationDescriptionOriginal": "Warrappa-kreek, linkerhand in het opvaren",
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-28",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q19818810",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Reijnsfort",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Reynsfort",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        },
+        {
+          "text": "Pikien Kakrakoe",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Reynsfort 2008-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emU0dWMU1PZTZjT0E/view?usp=sharing&resourcekey=0-ZsaGtw7z3KIBKE-d5Ti0og",
+          "author": "Philip Dikland",
+          "year": "2008",
           "notes": null
         }
       ]
