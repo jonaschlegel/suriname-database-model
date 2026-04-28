@@ -57636,47 +57636,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00664",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00664",
-      "type": "plantation",
-      "prefLabel": "Reijnsdorp",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.916275882777778,
-        "lng": -54.905622505000004,
-        "wkt": "Polygon ((-54.92997126 5.92330052, -54.89120087 5.92121306, -54.89111529 5.92019624, -54.89153774 5.91893323, -54.89282094 5.91965072, -54.89363966 5.91989483, -54.89462703 5.91918455, -54.89541308 5.91723941, -54.89448684 5.91575662, -54.89245920 5.91357510, -54.89049001 5.91110316, -54.89020148 5.90999891, -54.91968267 5.91152738, -54.92058812 5.91164781, -54.92301279 5.91186171, -54.92920296 5.91223189, -54.93078389 5.91235023, -54.92997126 5.92330052))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q19974104",
-      "fid": 1747,
-      "psurIds": [
-        "PSUR0297"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Matappica Kreek",
-      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q19974104",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00669",
       "@type": [
         "E25_Human-Made_Feature"
@@ -76599,6 +76558,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emYW8xX3k2cWZqQjQ/view?usp=sharing&resourcekey=0-KKrfXaF8pBdo9hjcLjUzFQ",
           "author": "Philip Dikland",
           "year": "2004, aangevuld 2005, 2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00664",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00664",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.916275882777778,
+        "lng": -54.905622505000004,
+        "wkt": "Polygon ((-54.92997126 5.92330052, -54.89120087 5.92121306, -54.89111529 5.92019624, -54.89153774 5.91893323, -54.89282094 5.91965072, -54.89363966 5.91989483, -54.89462703 5.91918455, -54.89541308 5.91723941, -54.89448684 5.91575662, -54.89245920 5.91357510, -54.89049001 5.91110316, -54.89020148 5.90999891, -54.91968267 5.91152738, -54.92058812 5.91164781, -54.92301279 5.91186171, -54.92920296 5.91223189, -54.93078389 5.91235023, -54.92997126 5.92330052))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q19974104",
+      "fid": 1747,
+      "psurIds": [
+        "PSUR0297"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Matappica Kreek",
+      "locationDescriptionOriginal": "Matappica-kreek, linkerhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-28",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q19974104",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Reijnsdorp",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "baki",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "pikien baki",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Reynsdorp 2001-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8embDRxeXZqU09sUFU/view?usp=sharing&resourcekey=0-RT4hwOo-UliUjGXSYNLUow",
+          "author": "Philip Dikland",
+          "year": "2001, aangevuld 2010",
           "notes": null
         }
       ]
