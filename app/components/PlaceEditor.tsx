@@ -168,6 +168,7 @@ const VALID_STATUSES: PlantationStatusType[] = [
   'built',
   'abandoned',
   'reactivated',
+  'present',
   'unknown',
 ];
 
@@ -2376,6 +2377,7 @@ export default function PlaceEditor({
                       'bg-stm-teal-50 text-stm-teal-800 border-stm-teal-200',
                     abandoned: 'bg-red-50 text-red-700 border-red-200',
                     reactivated: 'bg-green-50 text-green-800 border-green-200',
+                    present: 'bg-blue-50 text-blue-700 border-blue-200',
                     unknown:
                       'bg-stm-warm-50 text-stm-warm-500 border-stm-warm-200',
                     'product-activity':

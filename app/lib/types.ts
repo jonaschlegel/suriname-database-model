@@ -244,6 +244,7 @@ export type PlantationStatusType =
   | 'built'
   | 'abandoned'
   | 'reactivated'
+  | 'present' // attested by a source at a given year (maps, registers, etc.)
   | 'unknown';
 
 /**
