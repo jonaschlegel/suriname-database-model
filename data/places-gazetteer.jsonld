@@ -35063,44 +35063,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01221",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01221",
-      "type": "plantation",
-      "prefLabel": "Nieuw Rozenbeek",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.657438439,
-        "lng": -54.696018132000006,
-        "wkt": "Polygon ((-54.69460287 5.66077205, -54.69105837 5.65835621, -54.68740982 5.65547428, -54.68524461 5.64995160, -54.70250661 5.65120464, -54.70367491 5.65640245, -54.70355384 5.65942316, -54.70250606 5.66174517, -54.69502136 5.66028278, -54.69460287 5.66077205))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59132859",
-      "fid": 2305,
-      "psurIds": [],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59132859",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01193",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75725,6 +75687,63 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emWHUtZGRPMzJlS2M/view?usp=sharing&resourcekey=0-ZxBTPNo29xA5ic_lUMQllA",
           "author": "Philip Dikland",
           "year": "2011",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01221",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01221",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.657438439,
+        "lng": -54.696018132000006,
+        "wkt": "Polygon ((-54.69460287 5.66077205, -54.69105837 5.65835621, -54.68740982 5.65547428, -54.68524461 5.64995160, -54.70250661 5.65120464, -54.70367491 5.65640245, -54.70355384 5.65942316, -54.70250606 5.66174517, -54.69502136 5.66028278, -54.69460287 5.66077205))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59132859",
+      "fid": 2305,
+      "psurIds": [],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-28",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59132859",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Nieuw Rozenbeek",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Roosenbeeck",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Roosenbeeck 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emNThXSk5zY1E0NjA/view?usp=sharing&resourcekey=0-WDYHhcqcVw87AjD0fiqJvw",
+          "author": "Philip Dikland",
+          "year": "2005, aangevuld 2010",
           "notes": null
         }
       ]
