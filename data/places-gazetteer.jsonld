@@ -58199,44 +58199,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-01219",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-01219",
-      "type": "plantation",
-      "prefLabel": "Rustenburg",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.699706544444445,
-        "lng": -54.74460176,
-        "wkt": "Polygon ((-54.74235953 5.70759031, -54.73492112 5.69890739, -54.74647867 5.68890489, -54.74842402 5.69237808, -54.74813523 5.69562718, -54.74770781 5.69901405, -54.74659164 5.70198330, -54.74443829 5.70536339, -54.74235953 5.70759031))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q59133206",
-      "fid": 2303,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Boven-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
-      "placeType": null,
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q59133206",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01241",
       "@type": [
         "E25_Human-Made_Feature"
@@ -76800,6 +76762,57 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emY1UxYW4zYURJcWM/view?usp=sharing&resourcekey=0-TD-o8jYwbnS8fcVIvIvI8w",
           "author": "Philip Dikland",
           "year": "2002, aangevuld 2009, 2012",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-01219",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-01219",
+      "type": "plantation",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.699706544444445,
+        "lng": -54.74460176,
+        "wkt": "Polygon ((-54.74235953 5.70759031, -54.73492112 5.69890739, -54.74647867 5.68890489, -54.74842402 5.69237808, -54.74813523 5.69562718, -54.74770781 5.69901405, -54.74659164 5.70198330, -54.74443829 5.70536339, -54.74235953 5.70759031))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q59133206",
+      "fid": 2303,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (boven) regterhand in het afvaren",
+      "placeType": null,
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-28",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q59133206",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Rustenburg",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Rustenburg Commewijne 2004-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emLVM4dHdwdktuejg/view?usp=sharing&resourcekey=0-3CSqR2amhMA-FaKA7sEUGw",
+          "author": "Philip Dikland",
+          "year": "2004",
           "notes": null
         }
       ]
