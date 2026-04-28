@@ -59060,47 +59060,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02107",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02107",
-      "type": "plantation",
-      "prefLabel": "Schoonoord",
-      "altLabels": [],
-      "broader": "stm-00003",
-      "description": "",
-      "location": {
-        "lat": 5.860093398518519,
-        "lng": -54.886005832592595,
-        "wkt": "Polygon ((-54.91710861 5.85001024, -54.91626546 5.86131169, -54.91391038 5.86104781, -54.89599970 5.85940760, -54.89560163 5.86447347, -54.88589916 5.86422944, -54.88455810 5.88103018, -54.88176114 5.87642046, -54.87884218 5.87212150, -54.87554302 5.86792484, -54.87224699 5.86544843, -54.86964965 5.86489401, -54.86827092 5.86423175, -54.86786102 5.86305449, -54.86856599 5.85982939, -54.86959807 5.85639371, -54.87279460 5.85508536, -54.87528130 5.85495647, -54.87760878 5.85446299, -54.88026730 5.85529254, -54.88306822 5.85641311, -54.88740757 5.85644946, -54.88897586 5.85503138, -54.89119729 5.85346330, -54.89301322 5.85119304, -54.89375271 5.84833486, -54.91710861 5.85001024))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q1831145",
-      "fid": 3192,
-      "psurIds": [
-        "PSUR0311"
-      ],
-      "district": "Divisie Beneden-Commewijne",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q1831145",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-00900",
       "@type": [
         "E25_Human-Made_Feature"
@@ -76875,6 +76834,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTHhYUy16RFhpZWc/view?usp=sharing&resourcekey=0-QItKnUL9t5aZsf_KojS9DA",
           "author": "Philip Dikland",
           "year": "2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02107",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02107",
+      "type": "plantation",
+      "broader": "stm-00003",
+      "description": "",
+      "location": {
+        "lat": 5.860093398518519,
+        "lng": -54.886005832592595,
+        "wkt": "Polygon ((-54.91710861 5.85001024, -54.91626546 5.86131169, -54.91391038 5.86104781, -54.89599970 5.85940760, -54.89560163 5.86447347, -54.88589916 5.86422944, -54.88455810 5.88103018, -54.88176114 5.87642046, -54.87884218 5.87212150, -54.87554302 5.86792484, -54.87224699 5.86544843, -54.86964965 5.86489401, -54.86827092 5.86423175, -54.86786102 5.86305449, -54.86856599 5.85982939, -54.86959807 5.85639371, -54.87279460 5.85508536, -54.87528130 5.85495647, -54.87760878 5.85446299, -54.88026730 5.85529254, -54.88306822 5.85641311, -54.88740757 5.85644946, -54.88897586 5.85503138, -54.89119729 5.85346330, -54.89301322 5.85119304, -54.89375271 5.84833486, -54.91710861 5.85001024))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q1831145",
+      "fid": 3192,
+      "psurIds": [
+        "PSUR0311"
+      ],
+      "district": "Divisie Beneden-Commewijne",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) linkerhand in het afvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-28",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q1831145",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Schoonoord",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Salie",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Cellier",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Schoonoord 2002-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emam1MTjdHbUJ6Q28/view?usp=sharing&resourcekey=0-goFySPvBGpgJkJUg4OPhJA",
+          "author": "Philip Dikland",
+          "year": "2002, aangevuld 2010",
           "notes": null
         }
       ]
