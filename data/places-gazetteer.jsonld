@@ -75611,6 +75611,48 @@
       ]
     },
     {
+      "id": "stm-new-1777370836924",
+      "type": "plantation",
+      "names": [
+        {
+          "text": "Oranibo",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        }
+      ],
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": null,
+        "lng": null,
+        "wkt": null,
+        "crs": "EPSG:4326"
+      },
+      "sources": [],
+      "wikidataQid": null,
+      "externalLinks": [],
+      "fid": null,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Boven-Commewijne",
+      "locationDescriptionOriginal": "Boven-Commewijne, beide oevers in het afvaren",
+      "placeType": null,
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Oranibo geschiedenis dikland 2005.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emQmZqcm9sNGpkWVU/view?usp=sharing&resourcekey=0-dhmbbD7UeFf_uRbIyLvatQ",
+          "author": "Philip Dikland",
+          "year": "2005, aangevuld 2009",
+          "notes": "Ter plaatse van Oranibo lag toen (1667) een plantage met de naam “Merimato”; op een andere kaart “Merimaca” geheten."
+        }
+      ],
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-28",
+      "@id": "stm:place/stm-new-1777370836924",
+      "@type": "E25_Human-Made_Feature"
+    },
+    {
       "@id": "stm:place/stm-01239",
       "@type": "E25_Human-Made_Feature",
       "id": "stm-01239",
