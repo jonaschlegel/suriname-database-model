@@ -59134,47 +59134,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02105",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02105",
-      "type": "plantation",
-      "prefLabel": "Slootwijk",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.8351509676000015,
-        "lng": -54.87350240200001,
-        "wkt": "Polygon ((-54.86945430 5.85162550, -54.86707176 5.84809586, -54.86625209 5.84570676, -54.86679241 5.83979572, -54.86719302 5.83429910, -54.86647955 5.83121882, -54.86476306 5.82858428, -54.86342064 5.82747264, -54.86239258 5.82765450, -54.86191914 5.82167872, -54.86535444 5.82156301, -54.87349155 5.82066944, -54.88370054 5.81959762, -54.88216229 5.82265465, -54.88445260 5.82581523, -54.88559501 5.82768785, -54.88577061 5.83136974, -54.88395877 5.83408313, -54.88264231 5.83806467, -54.88047923 5.84091947, -54.87929755 5.84295521, -54.87841441 5.84448640, -54.87460969 5.84994303, -54.87243820 5.85120734, -54.86945430 5.85162550))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q2777030",
-      "fid": 3190,
-      "psurIds": [
-        "PSUR0313"
-      ],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Commetewane Kreek",
-      "locationDescriptionOriginal": "Commetewane-kreek, linkerhand in het opvaren",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q2777030",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02352",
       "@type": [
         "E25_Human-Made_Feature"
@@ -77110,6 +77069,72 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emeXlwWkZEYlhjLUk/view?usp=sharing&resourcekey=0-wPIylUP74CaSKng7UZfFsQ",
           "author": "Philip Dikland",
           "year": "2001, aangevuld 2010",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02105",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02105",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.8351509676000015,
+        "lng": -54.87350240200001,
+        "wkt": "Polygon ((-54.86945430 5.85162550, -54.86707176 5.84809586, -54.86625209 5.84570676, -54.86679241 5.83979572, -54.86719302 5.83429910, -54.86647955 5.83121882, -54.86476306 5.82858428, -54.86342064 5.82747264, -54.86239258 5.82765450, -54.86191914 5.82167872, -54.86535444 5.82156301, -54.87349155 5.82066944, -54.88370054 5.81959762, -54.88216229 5.82265465, -54.88445260 5.82581523, -54.88559501 5.82768785, -54.88577061 5.83136974, -54.88395877 5.83408313, -54.88264231 5.83806467, -54.88047923 5.84091947, -54.87929755 5.84295521, -54.87841441 5.84448640, -54.87460969 5.84994303, -54.87243820 5.85120734, -54.86945430 5.85162550))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q2777030",
+      "fid": 3190,
+      "psurIds": [
+        "PSUR0313"
+      ],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Commetewane Kreek",
+      "locationDescriptionOriginal": "Commetewane-kreek, linkerhand in het opvaren",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-28",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q2777030",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Slootwijk",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Baggri",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Bekker",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Slootwijk 2003-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emeW55RU5adS1XZTg/view?usp=sharing&resourcekey=0-t-b4rP0hW6SVl_d-iZ5n6A",
+          "author": "Philip Dikland",
+          "year": "2003, aangevuld 2005",
           "notes": null
         }
       ]
