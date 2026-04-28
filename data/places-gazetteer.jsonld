@@ -58435,47 +58435,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02078",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02078",
-      "type": "plantation",
-      "prefLabel": "Saltzhalen",
-      "altLabels": [],
-      "broader": "stm-00005",
-      "description": "",
-      "location": {
-        "lat": 5.826417595000001,
-        "lng": -54.924654343,
-        "wkt": "Polygon ((-54.94751330 5.82638398, -54.94739033 5.82825485, -54.94709758 5.82951572, -54.94690467 5.83063557, -54.92717991 5.82971676, -54.88445260 5.82581523, -54.88216229 5.82265465, -54.88370054 5.81959762, -54.93262891 5.82521759, -54.94751330 5.82638398))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q2184790",
-      "fid": 3163,
-      "psurIds": [
-        "PSUR0304"
-      ],
-      "district": "Divisie Boven-Commewijne",
-      "locationDescription": "Commetewane Kreek",
-      "locationDescriptionOriginal": "Commetewane-kreek, regterhand in het opvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q2184790",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-02076",
       "@type": [
         "E25_Human-Made_Feature"
@@ -76813,6 +76772,78 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emLVM4dHdwdktuejg/view?usp=sharing&resourcekey=0-3CSqR2amhMA-FaKA7sEUGw",
           "author": "Philip Dikland",
           "year": "2004",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-02078",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02078",
+      "type": "plantation",
+      "broader": "stm-00005",
+      "description": "",
+      "location": {
+        "lat": 5.826417595000001,
+        "lng": -54.924654343,
+        "wkt": "Polygon ((-54.94751330 5.82638398, -54.94739033 5.82825485, -54.94709758 5.82951572, -54.94690467 5.83063557, -54.92717991 5.82971676, -54.88445260 5.82581523, -54.88216229 5.82265465, -54.88370054 5.81959762, -54.93262891 5.82521759, -54.94751330 5.82638398))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q2184790",
+      "fid": 3163,
+      "psurIds": [
+        "PSUR0304"
+      ],
+      "district": "Divisie Boven-Commewijne",
+      "locationDescription": "Commetewane Kreek",
+      "locationDescriptionOriginal": "Commetewane-kreek, regterhand in het opvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-28",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q2184790",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Saltzhalen",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Salzhalen",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        },
+        {
+          "text": "Bossee",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Bossé",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Salzhalen 2005-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emdTQ4ekcwQ0Y5QVE/view?usp=sharing&resourcekey=0-7DnQCvET24YVsVkDZiBKCw",
+          "author": "Philip Dikland",
+          "year": "2005",
           "notes": null
         }
       ]
