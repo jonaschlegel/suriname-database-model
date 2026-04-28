@@ -58510,47 +58510,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-00690",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-00690",
-      "type": "plantation",
-      "prefLabel": "Saphir",
-      "altLabels": [],
-      "broader": "stm-00004",
-      "description": "",
-      "location": {
-        "lat": 5.889273145999999,
-        "lng": -54.915835368,
-        "wkt": "Polygon ((-54.91979919 5.89596099, -54.90310960 5.89510105, -54.91515477 5.88046953, -54.92131409 5.87887317, -54.91979919 5.89596099))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken",
-        "slave-registers"
-      ],
-      "wikidataQid": "Q2646534",
-      "fid": 1773,
-      "psurIds": [
-        "PSUR0305"
-      ],
-      "district": "Divisie Beneden-Cottica",
-      "locationDescription": "Beneden-Commewijne",
-      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
-      "placeType": "koffie",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q2646534",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01192",
       "@type": [
         "E25_Human-Made_Feature"
@@ -76844,6 +76803,78 @@
           "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emdTQ4ekcwQ0Y5QVE/view?usp=sharing&resourcekey=0-7DnQCvET24YVsVkDZiBKCw",
           "author": "Philip Dikland",
           "year": "2005",
+          "notes": null
+        }
+      ]
+    },
+    {
+      "@id": "stm:place/stm-00690",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-00690",
+      "type": "plantation",
+      "broader": "stm-00004",
+      "description": "",
+      "location": {
+        "lat": 5.889273145999999,
+        "lng": -54.915835368,
+        "wkt": "Polygon ((-54.91979919 5.89596099, -54.90310960 5.89510105, -54.91515477 5.88046953, -54.92131409 5.87887317, -54.91979919 5.89596099))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken",
+        "slave-registers"
+      ],
+      "wikidataQid": "Q2646534",
+      "fid": 1773,
+      "psurIds": [
+        "PSUR0305"
+      ],
+      "district": "Divisie Beneden-Cottica",
+      "locationDescription": "Beneden-Commewijne",
+      "locationDescriptionOriginal": "Rivier Commewijne, (beneden) regterhand in het afvaren",
+      "placeType": "koffie",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-28",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q2646534",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Saphir",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Saphier",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        },
+        {
+          "text": "Visser",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "eigenaar W.P. Visscher",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Saphier 2010-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emTHhYUy16RFhpZWc/view?usp=sharing&resourcekey=0-QItKnUL9t5aZsf_KojS9DA",
+          "author": "Philip Dikland",
+          "year": "2010",
           "notes": null
         }
       ]
