@@ -72070,6 +72070,39 @@
           "language": "nl",
           "type": "official",
           "isPreferred": true
+        },
+        {
+          "text": "Ganda",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Granda",
+          "language": "srn",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "Granman",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        },
+        {
+          "text": "gouverneur van der Veen",
+          "language": "nl",
+          "type": "vernacular",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Sinabo 2004-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emOWZLWmRKR2loZWc/view?usp=sharing&resourcekey=0-FuSsfxEm176p5v_uX9-GWw",
+          "author": "Philip Dikland",
+          "year": "2004, aangevuld 2005, 2007, 2008, 2009",
+          "notes": null
         }
       ]
     },
