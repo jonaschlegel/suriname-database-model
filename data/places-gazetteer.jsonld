@@ -37411,44 +37411,6 @@
       ]
     },
     {
-      "@id": "https://data.suriname-timemachine.org/place/stm-02081",
-      "@type": [
-        "E25_Human-Made_Feature"
-      ],
-      "id": "stm-02081",
-      "type": "plantation",
-      "prefLabel": "Oostenhuysen",
-      "altLabels": [],
-      "broader": null,
-      "description": "",
-      "location": {
-        "lat": 5.755005948333334,
-        "lng": -54.91911062166667,
-        "wkt": "Polygon ((-54.93499442 5.75077216, -54.93437111 5.76658451, -54.90298205 5.76177427, -54.90335497 5.75344577, -54.90396676 5.74668682, -54.93499442 5.75077216))",
-        "crs": "EPSG:4326"
-      },
-      "sources": [
-        "map-1930",
-        "almanakken"
-      ],
-      "wikidataQid": "Q124831724",
-      "fid": 3166,
-      "psurIds": [],
-      "district": null,
-      "locationDescription": "Commetewane Kreek",
-      "locationDescriptionOriginal": "Commetewana-kreek, regterhand",
-      "placeType": "suiker",
-      "modifiedBy": null,
-      "modifiedAt": null,
-      "externalLinks": [
-        {
-          "authority": "wikidata",
-          "identifier": "Q124831724",
-          "matchType": "closeMatch"
-        }
-      ]
-    },
-    {
       "@id": "https://data.suriname-timemachine.org/place/stm-01220",
       "@type": [
         "E25_Human-Made_Feature"
@@ -75740,6 +75702,63 @@
       "modifiedAt": "2026-04-28",
       "@id": "stm:place/stm-new-1777376677788",
       "@type": "E25_Human-Made_Feature"
+    },
+    {
+      "@id": "stm:place/stm-02081",
+      "@type": "E25_Human-Made_Feature",
+      "id": "stm-02081",
+      "type": "plantation",
+      "broader": null,
+      "description": "",
+      "location": {
+        "lat": 5.755005948333334,
+        "lng": -54.91911062166667,
+        "wkt": "Polygon ((-54.93499442 5.75077216, -54.93437111 5.76658451, -54.90298205 5.76177427, -54.90335497 5.75344577, -54.90396676 5.74668682, -54.93499442 5.75077216))",
+        "crs": "EPSG:4326"
+      },
+      "sources": [
+        "map-1930",
+        "almanakken"
+      ],
+      "wikidataQid": "Q124831724",
+      "fid": 3166,
+      "psurIds": [],
+      "district": null,
+      "locationDescription": "Commetewane Kreek",
+      "locationDescriptionOriginal": "Commetewana-kreek, regterhand",
+      "placeType": "suiker",
+      "modifiedBy": "GerDijkstra",
+      "modifiedAt": "2026-04-28",
+      "externalLinks": [
+        {
+          "authority": "wikidata",
+          "identifier": "Q124831724",
+          "matchType": "closeMatch"
+        }
+      ],
+      "names": [
+        {
+          "text": "Oostenhuysen",
+          "language": "nl",
+          "type": "official",
+          "isPreferred": true
+        },
+        {
+          "text": "Oosterhuijsen",
+          "language": "nl",
+          "type": "variant",
+          "isPreferred": false
+        }
+      ],
+      "diklandRefs": [
+        {
+          "folderPath": "erfgoed-geschiedenis\\Commewijne rivier\\plantages\\Solitude 1999-01 geschiedenis.pdf",
+          "driveUrl": "https://drive.google.com/file/d/0B88mZFitv8emaVVyX2xsRFJRVlU/view?usp=sharing&resourcekey=0-CxMRoZkLGYZjXqiG3_cdSQ",
+          "author": "Philip Dikland",
+          "year": "1999-2005",
+          "notes": "De plantage la Solitude en de bijbehorende grond Oosterhuijsen zijn alleen in het prille begin\nzelfstandige plantages geweest. Daarna zijn ze tot kost- en weidegronden geworden van de\nplantage Nieuwsorg."
+        }
+      ]
     },
     {
       "id": "stm-new-1777370836924",
