@@ -168,9 +168,11 @@ function deriveStatusAssertions(
   if (current) phases.push(current);
 
   // Convert phases to StatusAssertions, tracking whether an abandoned phase
-  // has been seen so subsequent active phases become 'reactivated'
+  // has been seen so subsequent active phases become 'reactivated'.
+  // 'built' is emitted only once (the very first active observation).
   const assertions: StatusAssertion[] = [];
   let seenAbandoned = false;
+  let seenBuilt = false;
 
   for (const phase of phases) {
     if (phase.state === 'abandoned') {
@@ -184,17 +186,26 @@ function deriveStatusAssertions(
       });
       seenAbandoned = true;
     } else {
+      // 'built' and 'reactivated' are point-in-time founding events — they mark
+      // when a plantation was established or re-established, not how long it
+      // operated. The operational period is already captured by productAssertions.
       const status: PlantationStatusType = seenAbandoned
         ? 'reactivated'
         : 'built';
+
+      // 'built' only fires once (the very first active observation).
+      // If there are gaps in coverage but no abandonment, skip subsequent phases.
+      if (status === 'built' && seenBuilt) continue;
+
       assertions.push({
         id: `status-almanakken-${status}-${phase.startYear}`,
         status,
         source: SOURCE_ID,
         startYear: phase.startYear,
-        endYear: phase.endYear !== phase.startYear ? phase.endYear : undefined,
+        // No endYear: built/reactivated are point-in-time events, not duration spans
         note: null,
       });
+      seenBuilt = true;
     }
   }
 
