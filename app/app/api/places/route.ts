@@ -330,7 +330,7 @@ export async function DELETE(request: NextRequest) {
     ).json();
 
     // Tombstone: mark deprecated in-place — never remove the entry
-    const entry = gazetteer[idx] as Record<string, unknown>;
+    const entry = gazetteer[idx];
     entry.deprecated = true;
     entry.deprecatedAt = now;
     entry.deprecatedBy = login;
