@@ -1430,8 +1430,12 @@ function PlacesPageInner() {
                         place={place}
                         isSelected={selectedIds.includes(place.id)}
                         onSelect={handleRowSelect}
-                        mergeChecked={canEdit ? mergeCheckIds.includes(place.id) : undefined}
-                        mergeDisabled={canEdit ? mergeCheckIds.length >= 2 : undefined}
+                        mergeChecked={
+                          canEdit ? mergeCheckIds.includes(place.id) : undefined
+                        }
+                        mergeDisabled={
+                          canEdit ? mergeCheckIds.length >= 2 : undefined
+                        }
                         onMergeCheck={canEdit ? handleMergeCheck : undefined}
                         colors={colors}
                         labels={labels}
