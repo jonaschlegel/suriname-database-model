@@ -1317,8 +1317,8 @@ function PlacesPageInner() {
                   )}
                 </div>
 
-                {/* Merge selection controls — shown when 1 or 2 entries are checked */}
-                {mergeCheckIds.length > 0 && (
+                {/* Merge selection controls — only shown when logged in and 1+ entries are checked */}
+                {canEdit && mergeCheckIds.length > 0 && (
                   <div className="flex items-center gap-2 border-l border-stm-warm-200 pl-3 shrink-0">
                     <span className="text-xs text-stm-sepia-600 whitespace-nowrap">
                       {mergeCheckIds.length === 1
@@ -1399,10 +1399,12 @@ function PlacesPageInner() {
                 <table className="w-full text-sm border-collapse">
                   <thead className="sticky top-0 z-10 bg-white">
                     <tr className="text-left text-xs text-stm-warm-500 border-b border-stm-warm-200">
-                      <th
-                        className="py-2 px-2 w-8"
-                        aria-label="Select for merge"
-                      />
+                      {canEdit && (
+                        <th
+                          className="py-2 px-2 w-8"
+                          aria-label="Select for merge"
+                        />
+                      )}
                       {COLUMN_DEFS.filter(
                         (col) =>
                           col.alwaysVisible || visibleColumns.has(col.key),
@@ -1428,9 +1430,9 @@ function PlacesPageInner() {
                         place={place}
                         isSelected={selectedIds.includes(place.id)}
                         onSelect={handleRowSelect}
-                        mergeChecked={mergeCheckIds.includes(place.id)}
-                        mergeDisabled={mergeCheckIds.length >= 2}
-                        onMergeCheck={handleMergeCheck}
+                        mergeChecked={canEdit ? mergeCheckIds.includes(place.id) : undefined}
+                        mergeDisabled={canEdit ? mergeCheckIds.length >= 2 : undefined}
+                        onMergeCheck={canEdit ? handleMergeCheck : undefined}
                         colors={colors}
                         labels={labels}
                         visibleColumns={visibleColumns}
