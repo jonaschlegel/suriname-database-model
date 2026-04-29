@@ -1114,7 +1114,7 @@ export default function PlaceEditor({
   };
 
   return (
-    <div className="bg-white border border-stm-warm-200 rounded-lg shadow-sm">
+    <div className="bg-white border border-stm-warm-200 shadow-sm h-full flex flex-col">
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-3 border-b border-stm-warm-100">
         <div className="min-w-0">
@@ -1159,7 +1159,7 @@ export default function PlaceEditor({
         </button>
       </div>
 
-      <div className="p-5 space-y-4">
+      <div className="p-5 space-y-4 flex-1 overflow-y-auto">
         {/* Names */}
         <div>
           <div className="flex items-center justify-between mb-1">
@@ -2515,7 +2515,10 @@ export default function PlaceEditor({
             )}
           </div>
         )}
+      </div>
 
+      {/* Footer — sticky: IDs + actions */}
+      <div className="border-t border-stm-warm-100 px-5 py-3 bg-white space-y-3 shrink-0">
         {/* IDs (read-only) */}
         <div className="space-y-1 text-xs text-stm-warm-400">
           <div>
@@ -2543,7 +2546,7 @@ export default function PlaceEditor({
 
         {/* Actions */}
         {canEdit && (
-          <div className="flex gap-2 pt-2">
+          <div className="flex gap-2">
             <button
               onClick={handleSave}
               disabled={

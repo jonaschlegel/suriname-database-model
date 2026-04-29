@@ -1101,7 +1101,7 @@ function PlacesPageInner() {
 
           {/* Editor panel — future: map over selectedIds for dual-panel compare/merge */}
           {selectedPlace && (
-            <div className="w-[40%] min-w-105 max-w-160 shrink-0 border-l border-stm-warm-200 bg-stm-warm-50 overflow-y-auto">
+            <div className="w-[40%] min-w-105 max-w-160 shrink-0 border-l border-stm-warm-200 bg-stm-warm-50 overflow-hidden flex flex-col">
               <PlaceEditor
                 key={selectedPlace.id}
                 place={selectedPlace}
